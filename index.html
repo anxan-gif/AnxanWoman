@@ -3,22 +3,423 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AnxanWoman</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="AnxanWoman - Retos, juegos y comunidad">
+
+    <title>AnxanWoman | Comunidad</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 
 <body>
 
-    <h1>⭐ ANXANWOMAN ⭐</h1>
 
-    <h2>🎮 Retos · Juegos · Comunidad</h2>
+<!-- =====================================
+     HEADER
+===================================== -->
 
-    <p>¡Bienvenido a la comunidad interactiva de Anxan!</p>
+<header>
 
-    <h2>🔥 Reto del día</h2>
+    <div class="header-content">
 
-    <p>Muy pronto podrás completar retos y conseguir puntos.</p>
+        <div class="logo">
+            ⭐ ANXAN<span>WOMAN</span>
+        </div>
+
+        <div class="user-points">
+            ⚡ <span id="header-points">0</span>
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================
+     HERO
+===================================== -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        🎮 COMUNIDAD ANXAN
+    </div>
+
+    <h1>
+        JUEGA.<br>
+        <span>COMPITE.</span><br>
+        DIVIÉRTETE.
+    </h1>
+
+    <p>
+        Retos, juegos y decisiones de la comunidad
+        para hacer tus partidas de Brawl Stars
+        mucho más divertidas.
+    </p>
+
+</section>
+
+
+
+<div class="container">
+
+
+<!-- =====================================
+     RETO DEL DÍA
+===================================== -->
+
+<section class="daily-challenge">
+
+    <div class="challenge-label">
+        🔥 RETO DEL DÍA
+    </div>
+
+    <h2 id="daily-title">
+        Gana 3 partidas seguidas
+    </h2>
+
+    <p id="daily-description">
+        Consigue tres victorias consecutivas
+        utilizando el mismo Brawler.
+    </p>
+
+    <button class="btn btn-yellow"
+            id="challenge-button">
+        ⚡ ACEPTO EL RETO
+    </button>
+
+</section>
+
+
+
+<!-- =====================================
+     JUEGOS
+===================================== -->
+
+<section class="games">
+
+    <h2 class="section-title">
+        🎮 ¿QUÉ HACEMOS HOY?
+    </h2>
+
+
+    <div class="game-grid">
+
+
+        <!-- RULETA -->
+
+        <div class="game-card"
+             onclick="location.href='ruleta.html'">
+
+            <span class="game-icon">
+                🎰
+            </span>
+
+            <h3>
+                RULETA
+            </h3>
+
+            <p>
+                Deja que el azar elija
+                tu próximo Brawler.
+            </p>
+
+        </div>
+
+
+
+        <!-- QUIZ -->
+
+        <div class="game-card"
+             onclick="location.href='quiz.html'">
+
+            <span class="game-icon">
+                🧠
+            </span>
+
+            <h3>
+                BRAWL QUIZ
+            </h3>
+
+            <p>
+                ¿Cuánto sabes realmente
+                sobre Brawl Stars?
+            </p>
+
+        </div>
+
+
+
+        <!-- RETOS -->
+
+        <div class="game-card"
+             onclick="location.href='retos.html'">
+
+            <span class="game-icon">
+                ⚔️
+            </span>
+
+            <h3>
+                RETOS
+            </h3>
+
+            <p>
+                ¿Te atreves a completar
+                los desafíos?
+            </p>
+
+        </div>
+
+
+
+        <!-- VOTACIONES -->
+
+        <div class="game-card"
+             onclick="location.href='votaciones.html'">
+
+            <span class="game-icon">
+                🗳️
+            </span>
+
+            <h3>
+                TÚ DECIDES
+            </h3>
+
+            <p>
+                Participa en las decisiones
+                de la comunidad.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     PROGRESO
+===================================== -->
+
+<section class="progress-section">
+
+    <h2 class="section-title">
+        ⚡ TU PROGRESO
+    </h2>
+
+
+    <div class="progress-card">
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <div class="stat-number"
+                     id="level">
+
+                    1
+
+                </div>
+
+                <div class="stat-name">
+                    NIVEL
+                </div>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <div class="stat-number"
+                     id="points">
+
+                    0
+
+                </div>
+
+                <div class="stat-name">
+                    PUNTOS ⚡
+                </div>
+
+            </div>
+
+
+
+            <div class="stat">
+
+                <div class="stat-number"
+                     id="streak">
+
+                    1 🔥
+
+                </div>
+
+                <div class="stat-name">
+                    RACHA
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     RANKING
+===================================== -->
+
+<section class="ranking">
+
+    <h2 class="section-title">
+        🏆 TOP COMUNIDAD
+    </h2>
+
+
+    <div class="ranking-card">
+
+
+        <div class="ranking-user">
+
+            <span class="position">
+                🥇
+            </span>
+
+            <span class="username">
+                Próximamente
+            </span>
+
+            <span class="points">
+                --- ⚡
+            </span>
+
+        </div>
+
+
+
+        <div class="ranking-user">
+
+            <span class="position">
+                🥈
+            </span>
+
+            <span class="username">
+                Próximamente
+            </span>
+
+            <span class="points">
+                --- ⚡
+            </span>
+
+        </div>
+
+
+
+        <div class="ranking-user">
+
+            <span class="position">
+                🥉
+            </span>
+
+            <span class="username">
+                Próximamente
+            </span>
+
+            <span class="points">
+                --- ⚡
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     PUBLICIDAD
+===================================== -->
+
+<div class="ad-space">
+
+    ESPACIO PUBLICITARIO
+
+</div>
+
+
+
+<!-- =====================================
+     EVENTO
+===================================== -->
+
+<section class="event-card">
+
+    <div class="challenge-label">
+        🎁 EVENTO ESPECIAL
+    </div>
+
+    <h2>
+        CALENDARIO DE ADVIENTO
+    </h2>
+
+    <p>
+        24 días. 24 sorpresas.
+        Retos, juegos y eventos especiales
+        para la comunidad.
+    </p>
+
+    <div class="locked">
+        🔒 DICIEMBRE 2026
+    </div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer>
+
+    <p>
+        Hecho con 💙 para la comunidad de
+        <strong>Anxan</strong>
+    </p>
+
+    <p style="margin-top:10px; font-size:12px;">
+        Este contenido no está afiliado,
+        respaldado ni patrocinado por Supercell.
+    </p>
+
+</footer>
+
+
 
 </body>
 
