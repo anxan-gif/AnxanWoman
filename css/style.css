@@ -900,3 +900,116 @@ footer strong {
     }
 
 }
+/* ========================================
+   PORTADA MÁS COMPACTA
+======================================== */
+
+.hero {
+    padding: 35px 20px 30px;
+}
+
+.hero h1.hero-title {
+    font-size: 55px;
+    line-height: 1;
+    margin: 12px 0;
+}
+
+.hero h1.hero-title span {
+    color: var(--amarillo);
+}
+
+.hero-slogan {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero > p {
+    font-size: 16px;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+
+/* REDES SOCIALES */
+
+.social-section {
+    margin-top: 25px;
+}
+
+.social-title {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.social-btn {
+    display: inline-block;
+    padding: 10px 17px;
+
+    border-radius: 12px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: transform 0.2s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+}
+
+.youtube {
+    background: #ff0033;
+}
+
+.twitch {
+    background: #9146ff;
+}
+
+.tiktok {
+    background: #151515;
+}
+
+.discord {
+    background: #5865f2;
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 550px) {
+
+    .hero {
+        padding: 25px 15px;
+    }
+
+    .hero h1.hero-title {
+        font-size: 39px;
+    }
+
+    .hero-slogan {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .hero > p {
+        font-size: 14px;
+    }
+
+    .social-btn {
+        font-size: 13px;
+        padding: 9px 12px;
+    }
+
+}
