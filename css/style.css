@@ -1,0 +1,902 @@
+/* ========================================
+   ANXANWOMAN
+   Estilos principales
+======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+
+/* ---------- VARIABLES ---------- */
+
+:root {
+    --azul: #168cff;
+    --azul-claro: #42c8ff;
+    --azul-oscuro: #0757c9;
+
+    --amarillo: #ffd429;
+    --amarillo-oscuro: #e8a900;
+
+    --morado: #8b5cff;
+    --rosa: #ff4fa3;
+    --verde: #39d98a;
+    --rojo: #ff5252;
+
+    --fondo: #07152e;
+    --fondo-secundario: #0d2245;
+    --tarjeta: #122c56;
+
+    --blanco: #ffffff;
+    --texto-secundario: #b9d5ff;
+
+    --borde: rgba(255, 255, 255, 0.12);
+
+    --sombra:
+        0 8px 0 rgba(0, 0, 0, 0.25),
+        0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------- RESET ---------- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Fredoka', Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #174a91 0%,
+            #0a2855 35%,
+            #07152e 75%
+        );
+
+    background-attachment: fixed;
+
+    color: var(--blanco);
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* ---------- FONDO DECORATIVO ---------- */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.05) 2px,
+            transparent 2px
+        );
+
+    background-size: 35px 35px;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* ---------- CONTENEDOR ---------- */
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+header {
+    width: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087cff,
+            #1755db
+        );
+
+    border-bottom: 4px solid rgba(0,0,0,0.25);
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,0.35);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-content {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 14px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.logo {
+    font-size: 28px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 3px 0 rgba(0,0,0,0.25);
+}
+
+
+.logo span {
+    color: var(--amarillo);
+}
+
+
+.user-points {
+    background: rgba(0,0,0,0.25);
+
+    border: 2px solid rgba(255,255,255,0.2);
+
+    border-radius: 30px;
+
+    padding: 8px 15px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+    text-align: center;
+
+    padding: 60px 20px 40px;
+}
+
+
+.hero-badge {
+    display: inline-block;
+
+    background: var(--amarillo);
+
+    color: #332400;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 5px 0 var(--amarillo-oscuro);
+
+    transform: rotate(-2deg);
+}
+
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 80px);
+
+    line-height: 0.95;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 5px 0 #06397d,
+        0 10px 20px rgba(0,0,0,0.4);
+
+    margin-bottom: 20px;
+}
+
+
+.hero h1 span {
+    color: var(--amarillo);
+}
+
+
+.hero p {
+    color: var(--texto-secundario);
+
+    font-size: 20px;
+
+    max-width: 600px;
+
+    margin: auto;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   TITULOS
+======================================== */
+
+.section-title {
+    font-size: 30px;
+
+    margin-bottom: 20px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 3px 0 rgba(0,0,0,0.3);
+}
+
+
+/* ========================================
+   RETO DEL DIA
+======================================== */
+
+.daily-challenge {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #744cff,
+            #b04dff
+        );
+
+    border: 3px solid rgba(255,255,255,0.2);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    margin-bottom: 45px;
+
+    box-shadow: var(--sombra);
+}
+
+
+.daily-challenge::after {
+    content: "🔥";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -35px;
+
+    font-size: 150px;
+
+    opacity: 0.12;
+
+    transform: rotate(-15deg);
+}
+
+
+.challenge-label {
+    display: inline-block;
+
+    background: var(--amarillo);
+
+    color: #302000;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+.daily-challenge h2 {
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+
+.daily-challenge p {
+    font-size: 18px;
+
+    opacity: 0.9;
+
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.btn {
+    display: inline-block;
+
+    border: none;
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 14px 25px;
+
+    border-radius: 14px;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+
+.btn:active {
+    transform: translateY(3px);
+}
+
+
+.btn-yellow {
+    background: var(--amarillo);
+
+    color: #352700;
+
+    box-shadow:
+        0 6px 0 var(--amarillo-oscuro);
+}
+
+
+.btn-yellow:active {
+    box-shadow:
+        0 2px 0 var(--amarillo-oscuro);
+}
+
+
+/* ========================================
+   JUEGOS
+======================================== */
+
+.games {
+    margin-bottom: 50px;
+}
+
+
+.game-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+.game-card {
+    position: relative;
+
+    min-height: 190px;
+
+    padding: 25px 20px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    border: 3px solid rgba(255,255,255,0.12);
+
+    box-shadow: var(--sombra);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+
+    overflow: hidden;
+}
+
+
+.game-card:hover {
+    transform:
+        translateY(-7px)
+        rotate(-1deg);
+
+    filter: brightness(1.08);
+}
+
+
+.game-card:nth-child(1) {
+    background:
+        linear-gradient(
+            145deg,
+            #ff9d28,
+            #ff5e28
+        );
+}
+
+
+.game-card:nth-child(2) {
+    background:
+        linear-gradient(
+            145deg,
+            #25b9ff,
+            #1266e8
+        );
+}
+
+
+.game-card:nth-child(3) {
+    background:
+        linear-gradient(
+            145deg,
+            #ec4fa3,
+            #a12ce0
+        );
+}
+
+
+.game-card:nth-child(4) {
+    background:
+        linear-gradient(
+            145deg,
+            #35d69a,
+            #139d75
+        );
+}
+
+
+.game-icon {
+    font-size: 55px;
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 5px 0 rgba(0,0,0,0.15)
+        );
+}
+
+
+.game-card h3 {
+    font-size: 23px;
+
+    margin-bottom: 5px;
+}
+
+
+.game-card p {
+    font-size: 14px;
+
+    opacity: 0.85;
+}
+
+
+/* ========================================
+   PROGRESO
+======================================== */
+
+.progress-section {
+    margin-bottom: 50px;
+}
+
+
+.progress-card {
+    background: var(--tarjeta);
+
+    border: 2px solid var(--borde);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow: var(--sombra);
+}
+
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    text-align: center;
+}
+
+
+.stat {
+    background: rgba(0,0,0,0.18);
+
+    padding: 20px;
+
+    border-radius: 16px;
+}
+
+
+.stat-number {
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: var(--amarillo);
+}
+
+
+.stat-name {
+    color: var(--texto-secundario);
+
+    margin-top: 5px;
+}
+
+
+/* ========================================
+   RANKING
+======================================== */
+
+.ranking {
+    margin-bottom: 50px;
+}
+
+
+.ranking-card {
+    background: var(--tarjeta);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    border: 2px solid var(--borde);
+
+    box-shadow: var(--sombra);
+}
+
+
+.ranking-user {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background: rgba(0,0,0,0.17);
+
+    border-radius: 14px;
+}
+
+
+.ranking-user:last-child {
+    margin-bottom: 0;
+}
+
+
+.position {
+    font-size: 20px;
+
+    font-weight: 700;
+
+    width: 45px;
+}
+
+
+.username {
+    flex: 1;
+
+    font-weight: 600;
+}
+
+
+.points {
+    color: var(--amarillo);
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   PUBLICIDAD
+======================================== */
+
+.ad-space {
+    min-height: 100px;
+
+    margin: 45px 0;
+
+    border:
+        2px dashed
+        rgba(255,255,255,0.18);
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: rgba(255,255,255,0.35);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   EVENTO / ADVIENTO
+======================================== */
+
+.event-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e73f68,
+            #9d31c7
+        );
+
+    border-radius: 25px;
+
+    padding: 40px;
+
+    margin-bottom: 60px;
+
+    text-align: center;
+
+    box-shadow: var(--sombra);
+
+    border:
+        3px solid
+        rgba(255,255,255,0.15);
+}
+
+
+.event-card::before {
+    content: "🎁";
+
+    position: absolute;
+
+    left: -25px;
+
+    top: -35px;
+
+    font-size: 150px;
+
+    opacity: 0.1;
+
+    transform: rotate(20deg);
+}
+
+
+.event-card h2 {
+    font-size: 36px;
+
+    margin-bottom: 10px;
+}
+
+
+.event-card p {
+    opacity: 0.9;
+
+    margin-bottom: 20px;
+}
+
+
+.locked {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(0,0,0,0.25);
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: var(--texto-secundario);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+
+footer strong {
+    color: var(--blanco);
+}
+
+
+/* ========================================
+   ANIMACIONES
+======================================== */
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+
+.float {
+    animation:
+        float
+        3s ease-in-out
+        infinite;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 850px) {
+
+    .game-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* ========================================
+   MOVIL
+======================================== */
+
+@media (max-width: 550px) {
+
+    .header-content {
+        padding: 12px 15px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .user-points {
+        font-size: 14px;
+
+        padding: 7px 11px;
+    }
+
+    .hero {
+        padding:
+            45px 15px
+            30px;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .daily-challenge {
+        padding: 25px 20px;
+    }
+
+    .daily-challenge h2 {
+        font-size: 26px;
+    }
+
+    .game-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .game-card {
+        min-height: 165px;
+
+        padding:
+            20px 12px;
+    }
+
+    .game-icon {
+        font-size: 45px;
+    }
+
+    .game-card h3 {
+        font-size: 19px;
+    }
+
+    .stats {
+        grid-template-columns:
+            1fr;
+    }
+
+    .event-card {
+        padding:
+            30px 20px;
+    }
+
+    .event-card h2 {
+        font-size: 29px;
+    }
+
+}
