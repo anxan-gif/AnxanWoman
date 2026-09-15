@@ -1013,3 +1013,155 @@ footer strong {
     }
 
 }
+/* ========================================
+   MODAL ANXANWOMAN
+======================================== */
+
+.anxan-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(3, 12, 31, 0.82);
+    backdrop-filter: blur(6px);
+
+    z-index: 9999;
+}
+
+
+/* Cuando esté abierto */
+
+.anxan-modal.show {
+    display: flex;
+}
+
+
+/* TARJETA */
+
+.anxan-modal-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 35px 30px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #7047ff,
+            #a943ff
+        );
+
+    border: 3px solid rgba(255,255,255,0.25);
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 40px rgba(139,92,255,0.35);
+
+    animation: modalEntrada 0.3s ease;
+}
+
+
+/* ICONO */
+
+.modal-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+
+/* TÍTULO */
+
+.anxan-modal-card h2 {
+    color: white;
+
+    font-size: 30px;
+    line-height: 1.1;
+
+    margin-bottom: 12px;
+}
+
+
+/* TEXTO */
+
+.anxan-modal-card p {
+    color: rgba(255,255,255,0.9);
+
+    font-size: 16px;
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+
+
+/* PREMIO */
+
+.modal-reward {
+    display: inline-block;
+
+    margin-bottom: 22px;
+    padding: 10px 22px;
+
+    background: #ffd429;
+    color: #302000;
+
+    border-radius: 15px;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    box-shadow: 0 5px 0 #dca900;
+}
+
+
+/* ANIMACIÓN */
+
+@keyframes modalEntrada {
+
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 550px) {
+
+    .anxan-modal-card {
+        max-width: 350px;
+        padding: 28px 20px;
+        border-radius: 22px;
+    }
+
+    .modal-icon {
+        font-size: 45px;
+    }
+
+    .anxan-modal-card h2 {
+        font-size: 25px;
+    }
+
+    .anxan-modal-card p {
+        font-size: 14px;
+    }
+
+    .modal-reward {
+        font-size: 23px;
+    }
+
+}
