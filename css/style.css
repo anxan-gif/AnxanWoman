@@ -1303,3 +1303,127 @@ footer strong {
     }
 
 }
+/* ========================================
+   CABECERA FINAL ANXANWOMAN
+======================================== */
+
+header .header-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+header .header-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+    width: auto !important;
+}
+
+
+/* BOTONES SUPERIORES */
+
+header .header-nav-button {
+    appearance: none;
+    -webkit-appearance: none;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    height: 42px;
+    padding: 0 18px !important;
+
+    border: 2px solid rgba(255,255,255,0.18) !important;
+    border-radius: 14px !important;
+
+    color: white !important;
+
+    font-family: inherit !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+
+header #progress-button {
+    background: linear-gradient(
+        135deg,
+        #7047ff,
+        #a743ff
+    ) !important;
+}
+
+
+header #ranking-button {
+    background: linear-gradient(
+        135deg,
+        #0786ff,
+        #27b0ff
+    ) !important;
+}
+
+
+header .header-nav-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+
+/* CONTADOR DE RAYOS */
+
+header .header-menu .user-points {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: auto !important;
+    min-width: 75px !important;
+    height: 42px;
+
+    padding: 0 15px !important;
+    margin: 0 !important;
+
+    border-radius: 14px;
+}
+
+
+/* ========================================
+   MÓVIL
+======================================== */
+
+@media (max-width: 650px) {
+
+    header .header-content {
+        flex-direction: column !important;
+        gap: 8px;
+    }
+
+    header .header-menu {
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 5px !important;
+    }
+
+    header .header-nav-button {
+        height: 36px;
+        padding: 0 9px !important;
+        font-size: 10px !important;
+    }
+
+    header .header-menu .user-points {
+        height: 36px;
+        min-width: 52px !important;
+        padding: 0 8px !important;
+    }
+
+}
