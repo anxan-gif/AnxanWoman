@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -13,116 +14,40 @@
     <title>Ruleta | AnxanWoman</title>
 
     <link rel="stylesheet" href="css/style.css">
-</head>
-<script>
 
-// ========================================
-// RULETA ANXANWOMAN
-// ========================================
+    <style>
 
-// Lista inicial de brawlers.
-// Ampliaremos y verificaremos el listado
-// completo antes de darlo por definitivo.
+        /* Ajustes propios de la ruleta */
 
-const brawlers = [
-    "Shelly", "Nita", "Colt", "Bull", "Brock",
-    "El Primo", "Barley", "Poco", "Rosa",
-    "Jessie", "Dynamike", "Tick", "8-Bit",
-    "Rico", "Darryl", "Penny", "Carl", "Jacky",
-    "Gus", "Bo", "Emz", "Stu", "Piper",
-    "Pam", "Frank", "Bibi", "Bea", "Nani",
-    "Edgar", "Griff", "Grom", "Bonnie",
-    "Gale", "Colette", "Belle", "Ash",
-    "Lola", "Sam", "Mandy", "Maisie",
-    "Hank", "Pearl", "Larry & Lawrie",
-    "Angelo", "Berry", "Shade", "Meeple",
-    "Mortis", "Tara", "Gene", "Max",
-    "Mr. P", "Sprout", "Byron", "Squeak",
-    "Gray", "Willow", "Doug", "Chuck",
-    "Charlie", "Mico", "Melodie", "Lily",
-    "Clancy", "Moe", "Juju", "Ollie",
-    "Lumi", "Finx", "Jae-yong",
-    "Spike", "Crow", "Leon", "Sandy",
-    "Amber", "Meg", "Chester", "Cordelius",
-    "Kit", "Draco", "Kenji", "Kaze"
-];
-
-const spinButton =
-    document.getElementById("spin-button");
-
-const rouletteIcon =
-    document.querySelector(".roulette-icon");
-
-const rouletteName =
-    document.querySelector(".roulette-name");
-
-let girando = false;
-
-
-// ========================================
-// GIRAR RULETA
-// ========================================
-
-spinButton.addEventListener("click", function() {
-
-    if (girando) return;
-
-    girando = true;
-
-    spinButton.disabled = true;
-
-    spinButton.textContent =
-        "🎰 GIRANDO...";
-
-    let vueltas = 0;
-
-    const intervalo = setInterval(function() {
-
-        const aleatorio =
-            Math.floor(Math.random() * brawlers.length);
-
-        rouletteIcon.textContent = "🎲";
-
-        rouletteName.textContent =
-            brawlers[aleatorio];
-
-        vueltas++;
-
-        if (vueltas >= 35) {
-
-            clearInterval(intervalo);
-
-            const ganador =
-                brawlers[
-                    Math.floor(
-                        Math.random() * brawlers.length
-                    )
-                ];
-
-            rouletteIcon.textContent = "🏆";
-
-            rouletteName.textContent =
-                ganador;
-
-            spinButton.textContent =
-                "🔄 VOLVER A GIRAR";
-
-            spinButton.disabled = false;
-
-            girando = false;
-
+        .roulette-name {
+            display: block;
+            overflow-wrap: anywhere;
         }
 
-    }, 90);
+        .roulette-icon {
+            display: block;
+        }
 
-});
+        .roulette-help {
+            margin-top: 20px;
+        }
 
-</script>
+        #spin-button:disabled {
+            opacity: 0.75;
+            cursor: wait;
+        }
+
+    </style>
+
+</head>
+
 
 <body>
 
 
-<!-- HEADER -->
+<!-- =====================================
+     HEADER
+===================================== -->
 
 <header>
 
@@ -137,7 +62,9 @@ spinButton.addEventListener("click", function() {
         </div>
 
         <div class="user-points">
+
             ⚡ <span id="header-points">0</span>
+
         </div>
 
     </div>
@@ -145,105 +72,398 @@ spinButton.addEventListener("click", function() {
 </header>
 
 
+<!-- =====================================
+     CONTENIDO
+===================================== -->
 
 <main>
 
-<div class="container">
+    <div class="container">
 
 
-    <!-- VOLVER -->
+        <!-- VOLVER -->
 
-    <div style="margin-top:30px;">
+        <div style="margin-top:30px;">
 
-        <a href="index.html"
-           class="btn"
-           style="text-decoration:none;">
+            <a href="index.html"
+               class="btn"
+               style="text-decoration:none;">
 
-            ← VOLVER
+                ← VOLVER
 
-        </a>
+            </a>
 
-    </div>
-
-
-
-    <!-- RULETA -->
-
-    <section class="roulette-section">
-
-        <div class="hero-badge">
-            🎰 RULETA ANXANWOMAN
         </div>
 
-        <h1>
-            ¿QUÉ BRAWLER<br>
-            TE TOCA?
-        </h1>
 
-        <p>
-            Pulsa el botón y deja que el azar
-            decida con qué Brawler tienes que jugar.
-        </p>
+        <!-- =====================================
+             RULETA
+        ===================================== -->
+
+        <section class="roulette-section">
 
 
-        <!-- RULETA VISUAL -->
+            <div class="hero-badge">
 
-        <div class="roulette-wheel">
-
-            <div class="roulette-content">
-
-                <span class="roulette-icon">
-                    ❓
-                </span>
-
-                <span class="roulette-name">
-                    ¿QUIÉN SERÁ?
-                </span>
+                🎰 RULETA ANXANWOMAN
 
             </div>
 
-        </div>
+
+            <h1>
+
+                ¿QUÉ BRAWLER<br>
+                TE TOCA?
+
+            </h1>
 
 
-        <!-- BOTÓN -->
+            <p>
 
-        <button class="btn btn-yellow"
-                id="spin-button">
+                Pulsa el botón y deja que el azar
+                decida con qué Brawler tienes que jugar.
 
-            🎰 GIRAR RULETA
-
-        </button>
+            </p>
 
 
-        <p class="roulette-help">
-            El destino decidirá tu próxima partida 👀
-        </p>
+            <!-- RULETA VISUAL -->
+
+            <div class="roulette-wheel">
+
+                <div class="roulette-content">
+
+                    <span class="roulette-icon">
+
+                        ❓
+
+                    </span>
+
+                    <span class="roulette-name">
+
+                        ¿QUIÉN SERÁ?
+
+                    </span>
+
+                </div>
+
+            </div>
 
 
-    </section>
+            <!-- BOTÓN GIRAR -->
+
+            <button
+                class="btn btn-yellow"
+                id="spin-button"
+                type="button">
+
+                🎰 GIRAR RULETA
+
+            </button>
 
 
-</div>
+            <p class="roulette-help">
+
+                El destino decidirá tu próxima partida 👀
+
+            </p>
+
+
+        </section>
+
+
+    </div>
 
 </main>
 
 
-
-<!-- FOOTER -->
+<!-- =====================================
+     FOOTER
+===================================== -->
 
 <footer>
 
     <p>
+
         Hecho con 💙 por
         <strong>AnxanWoman</strong>
+
     </p>
 
     <p style="margin-top:10px; font-size:12px;">
+
         Este contenido no está afiliado,
         respaldado ni patrocinado por Supercell.
+
     </p>
 
 </footer>
+
+
+<!-- =====================================
+     JAVASCRIPT DE LA RULETA
+     IMPORTANTE: VA AL FINAL DEL BODY
+===================================== -->
+
+<script>
+
+
+// ========================================
+// RAYITOS GUARDADOS
+// ========================================
+
+const rayosGuardados =
+    Number(localStorage.getItem("anxanRayos")) || 0;
+
+const contadorRayos =
+    document.getElementById("header-points");
+
+if (contadorRayos) {
+
+    contadorRayos.textContent = rayosGuardados;
+
+}
+
+
+// ========================================
+// LISTA INICIAL DE BRAWLERS
+// ========================================
+
+// Esta lista es provisional.
+// Completaremos el listado actualizado
+// después de comprobar que la ruleta gira.
+
+const brawlers = [
+
+    "Shelly",
+    "Nita",
+    "Colt",
+    "Bull",
+    "Brock",
+    "El Primo",
+    "Barley",
+    "Poco",
+    "Rosa",
+
+    "Jessie",
+    "Dynamike",
+    "Tick",
+    "8-Bit",
+    "Rico",
+    "Darryl",
+    "Penny",
+    "Carl",
+    "Jacky",
+    "Gus",
+
+    "Bo",
+    "Emz",
+    "Stu",
+    "Piper",
+    "Pam",
+    "Frank",
+    "Bibi",
+    "Bea",
+    "Nani",
+    "Edgar",
+    "Griff",
+    "Grom",
+    "Bonnie",
+
+    "Gale",
+    "Colette",
+    "Belle",
+    "Ash",
+    "Lola",
+    "Sam",
+    "Mandy",
+    "Maisie",
+    "Hank",
+    "Pearl",
+    "Larry & Lawrie",
+    "Angelo",
+    "Berry",
+    "Shade",
+    "Meeple",
+
+    "Mortis",
+    "Tara",
+    "Gene",
+    "Max",
+    "Mr. P",
+    "Sprout",
+    "Byron",
+    "Squeak",
+    "Gray",
+    "Willow",
+    "Doug",
+    "Chuck",
+    "Charlie",
+    "Mico",
+    "Melodie",
+    "Lily",
+    "Clancy",
+    "Moe",
+    "Juju",
+    "Ollie",
+    "Lumi",
+    "Finx",
+    "Jae-yong",
+
+    "Spike",
+    "Crow",
+    "Leon",
+    "Sandy",
+    "Amber",
+    "Meg",
+    "Chester",
+    "Cordelius",
+    "Kit",
+    "Draco",
+    "Kenji",
+    "Kaze"
+
+];
+
+
+// ========================================
+// ELEMENTOS DE LA RULETA
+// ========================================
+
+const spinButton =
+    document.getElementById("spin-button");
+
+const rouletteIcon =
+    document.querySelector(".roulette-icon");
+
+const rouletteName =
+    document.querySelector(".roulette-name");
+
+const rouletteHelp =
+    document.querySelector(".roulette-help");
+
+let girando = false;
+
+
+// ========================================
+// FUNCIÓN PARA ELEGIR UN BRAWLER
+// ========================================
+
+function elegirBrawler() {
+
+    const posicion =
+        Math.floor(
+            Math.random() * brawlers.length
+        );
+
+    return brawlers[posicion];
+
+}
+
+
+// ========================================
+// GIRAR RULETA
+// ========================================
+
+if (spinButton && rouletteIcon && rouletteName) {
+
+    spinButton.addEventListener(
+        "click",
+        function() {
+
+            // Evitar varios giros simultáneos
+
+            if (girando) {
+                return;
+            }
+
+            girando = true;
+
+            spinButton.disabled = true;
+
+            spinButton.textContent =
+                "🎰 GIRANDO...";
+
+            rouletteIcon.textContent =
+                "🎲";
+
+            if (rouletteHelp) {
+
+                rouletteHelp.textContent =
+                    "¡La suerte está echada! 👀";
+
+            }
+
+
+            // Elegir el resultado del giro
+
+            const ganador =
+                elegirBrawler();
+
+
+            // Animación de nombres
+
+            let vueltas = 0;
+
+            const totalVueltas = 35;
+
+
+            const intervalo = setInterval(
+                function() {
+
+                    rouletteName.textContent =
+                        elegirBrawler();
+
+                    vueltas++;
+
+
+                    // Finalizar el giro
+
+                    if (vueltas >= totalVueltas) {
+
+                        clearInterval(intervalo);
+
+
+                        rouletteIcon.textContent =
+                            "🏆";
+
+
+                        rouletteName.textContent =
+                            ganador;
+
+
+                        spinButton.textContent =
+                            "🔄 VOLVER A GIRAR";
+
+
+                        spinButton.disabled =
+                            false;
+
+
+                        girando = false;
+
+
+                        if (rouletteHelp) {
+
+                            rouletteHelp.textContent =
+                                "¡Te ha tocado " +
+                                ganador +
+                                "! ¿Aceptas el reto? 🔥";
+
+                        }
+
+                    }
+
+                },
+                90
+            );
+
+        }
+    );
+
+}
+
+
+</script>
 
 
 </body>
