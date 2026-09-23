@@ -143,11 +143,32 @@ document.getElementById("ranking-button")
 
 
 // ========================================
-// RETO DEL DÍA
+// RETO DEL DÍA - REINICIO DIARIO
 // ========================================
 
 const botonReto =
     document.getElementById("challenge-button");
+
+
+// Fecha local del móvil, en formato AAAA-MM-DD
+function obtenerFechaHoy() {
+
+    const ahora = new Date();
+
+    const año = ahora.getFullYear();
+
+    const mes = String(
+        ahora.getMonth() + 1
+    ).padStart(2, "0");
+
+    const dia = String(
+        ahora.getDate()
+    ).padStart(2, "0");
+
+    return año + "-" + mes + "-" + dia;
+
+}
+
 
 if (botonReto) {
 
@@ -158,95 +179,194 @@ if (botonReto) {
         localStorage.getItem("retoCompletado") === "true";
 
 
-    // Recuperar estado guardado
+    // ====================================
+    // COMPROBAR SI HA CAMBIADO EL DÍA
+    // ====================================
 
-    if (completado) {
+    function comprobarNuevoDia() {
 
-        botonReto.textContent =
-            "✅ RETO COMPLETADO";
+        const hoy = obtenerFechaHoy();
 
-        botonReto.disabled = true;
-
-    } else if (aceptado) {
-
-        botonReto.textContent =
-            "🏆 COMPLETAR RETO";
-
-    }
+        const fechaGuardada =
+            localStorage.getItem("fechaReto");
 
 
-    // Pulsar botón
+        // Si nunca guardamos una fecha,
+        // conservamos el estado actual.
+        // Así no perdemos tus 50 Rayitos.
 
-    botonReto.addEventListener("click", function() {
-
-        // Aceptar
-
-        if (!aceptado) {
-
-            aceptado = true;
+        if (!fechaGuardada) {
 
             localStorage.setItem(
-                "retoAceptado",
-                "true"
-            );
-
-            botonReto.textContent =
-                "🏆 COMPLETAR RETO";
-
-            mostrarVentana(
-
-                "🔥",
-
-                "¡RETO ACEPTADO!",
-
-                "Completa el reto y vuelve para reclamar tus Rayos.",
-
-                "+50 ⚡"
-
+                "fechaReto",
+                hoy
             );
 
         }
 
-        // Completar
 
-        else if (!completado) {
+        // Si la fecha es distinta,
+        // empieza un reto nuevo.
 
-            completado = true;
+        else if (fechaGuardada !== hoy) {
 
-            rayos += 50;
+            aceptado = false;
+
+            completado = false;
 
             localStorage.setItem(
-                "anxanRayos",
-                rayos
+                "retoAceptado",
+                "false"
             );
 
             localStorage.setItem(
                 "retoCompletado",
-                "true"
+                "false"
             );
 
-            actualizarRayos();
+            localStorage.setItem(
+                "fechaReto",
+                hoy
+            );
+
+        }
+
+
+        // Actualizar aspecto del botón
+
+        if (completado) {
 
             botonReto.textContent =
                 "✅ RETO COMPLETADO";
 
             botonReto.disabled = true;
 
-            mostrarVentana(
+        }
 
-                "⚡",
+        else if (aceptado) {
 
-                "¡RETO COMPLETADO!",
+            botonReto.textContent =
+                "🏆 COMPLETAR RETO";
 
-                "¡Has conseguido 50 Rayos! Ahora tienes " +
-                rayos + " ⚡",
-
-                "+50 ⚡"
-
-            );
+            botonReto.disabled = false;
 
         }
 
-    });
+        else {
+
+            botonReto.textContent =
+                "🔥 ACEPTO EL RETO";
+
+            botonReto.disabled = false;
+
+        }
+
+    }
+
+
+    // Comprobar al abrir la web
+
+    comprobarNuevoDia();
+
+
+    // ====================================
+    // PULSAR EL BOTÓN DEL RETO
+    // ====================================
+
+    botonReto.addEventListener(
+        "click",
+        function() {
+
+            comprobarNuevoDia();
+
+
+            // ACEPTAR RETO
+
+            if (!aceptado) {
+
+                aceptado = true;
+
+                localStorage.setItem(
+                    "retoAceptado",
+                    "true"
+                );
+
+                botonReto.textContent =
+                    "🏆 COMPLETAR RETO";
+
+                mostrarVentana(
+
+                    "🔥",
+
+                    "¡RETO ACEPTADO!",
+
+                    "Completa el reto y vuelve para reclamar tus Rayos.",
+
+                    "+50 ⚡"
+
+                );
+
+            }
+
+
+            // COMPLETAR RETO
+
+            else if (!completado) {
+
+                completado = true;
+
+                rayos += 50;
+
+                localStorage.setItem(
+                    "anxanRayos",
+                    rayos
+                );
+
+                localStorage.setItem(
+                    "retoCompletado",
+                    "true"
+                );
+
+                actualizarRayos();
+
+                botonReto.textContent =
+                    "✅ RETO COMPLETADO";
+
+                botonReto.disabled = true;
+
+                mostrarVentana(
+
+                    "⚡",
+
+                    "¡RETO COMPLETADO!",
+
+                    "¡Has conseguido 50 Rayitos! Ahora tienes " +
+                    rayos + " ⚡",
+
+                    "+50 ⚡"
+
+                );
+
+            }
+
+        }
+    );
+
+
+    // Si vuelves a la pestaña al día
+    // siguiente, actualizar el reto.
+
+    document.addEventListener(
+        "visibilitychange",
+        function() {
+
+            if (!document.hidden) {
+
+                comprobarNuevoDia();
+
+            }
+
+        }
+    );
 
 }
