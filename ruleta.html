@@ -2,52 +2,336 @@
 <html lang="es">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Ruletas | AnxanWoman</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
 
-    <meta name="description"
-          content="Ruleta de Brawlers de AnxanWoman">
+<style>
 
-    <title>Ruleta | AnxanWoman</title>
+/* =========================
+   RULETAS ANXANWOMAN
+========================= */
 
-    <link rel="stylesheet" href="css/style.css">
+* {
+    box-sizing: border-box;
+}
 
-    <style>
+.roulette-page {
+    max-width: 1150px;
+    margin: auto;
+    padding: 25px 16px 70px;
+    text-align: center;
+}
 
-        /* Ajustes propios de la ruleta */
+.roulette-page h1 {
+    font-size: clamp(32px, 7vw, 64px);
+    margin: 20px 0 8px;
+    line-height: 1.05;
+}
 
-        .roulette-name {
-            display: block;
-            overflow-wrap: anywhere;
-        }
+.roulette-page h1 span {
+    color: #ffda36;
+}
 
-        .roulette-icon {
-            display: block;
-        }
+.roulette-subtitle {
+    color: #d8e5ff;
+    margin-bottom: 28px;
+}
 
-        .roulette-help {
-            margin-top: 20px;
-        }
+/* TARJETAS */
 
-        #spin-button:disabled {
-            opacity: 0.75;
-            cursor: wait;
-        }
+.roulette-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+}
 
-    </style>
+.roulette-tab {
+    border: 3px solid #4962b3;
+    border-radius: 18px;
+    padding: 18px 8px;
+    background: #172d67;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 900;
+    font-size: 17px;
+    transition: transform .2s, background .2s;
+}
+
+.roulette-tab:active {
+    transform: scale(.97);
+}
+
+.roulette-tab.active {
+    background: #ffd43b;
+    border-color: white;
+    color: #211640;
+    box-shadow: 0 5px 0 #b7790d;
+}
+
+.roulette-tab .tab-icon {
+    display: block;
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+/* ÁREA PRINCIPAL */
+
+.roulette-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+}
+
+.roulette-panel,
+.roulette-list-panel {
+    min-width: 0;
+    background: #101f50;
+    border: 3px solid #4765c4;
+    border-radius: 24px;
+    padding: 18px;
+}
+
+.roulette-panel h2,
+.roulette-list-panel h2 {
+    margin: 0 0 18px;
+    color: white;
+}
+
+/* RUEDA */
+
+.wheel-wrap {
+    position: relative;
+    width: min(100%, 600px);
+    aspect-ratio: 1;
+    margin: 15px auto 24px;
+}
+
+#wheel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 9px solid #ffc928;
+    box-shadow:
+        0 0 0 5px #6d3d0c,
+        0 0 32px #ffd23d77;
+}
+
+.wheel-pointer {
+    position: absolute;
+    z-index: 5;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 1;
+    filter: drop-shadow(0 3px 2px #000);
+    pointer-events: none;
+}
+
+.wheel-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 5px solid #ffcf28;
+    background: #191c50;
+    display: grid;
+    place-items: center;
+    font-size: clamp(24px, 5vw, 50px);
+    box-shadow: 0 0 0 4px #080d29;
+    pointer-events: none;
+}
+
+/* BOTÓN */
+
+#spin-button {
+    display: block;
+    width: min(100%, 380px);
+    margin: 10px auto;
+    padding: 17px;
+    background: linear-gradient(#ffe96b, #ffb820);
+    color: #1b1434;
+    border: 3px solid #fff0a1;
+    border-radius: 17px;
+    box-shadow: 0 6px 0 #9c580b;
+    font: inherit;
+    font-size: clamp(17px, 4vw, 24px);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+#spin-button:disabled {
+    opacity: .7;
+    cursor: wait;
+}
+
+.roulette-result {
+    min-height: 65px;
+    margin-top: 22px;
+    padding: 13px;
+    background: #32217b;
+    border: 2px solid #8859ff;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+/* LISTADO */
+
+#search-brawler {
+    width: 100%;
+    padding: 13px;
+    border: 2px solid #5072d1;
+    border-radius: 12px;
+    background: #0c1940;
+    color: white;
+    font: inherit;
+    margin-bottom: 15px;
+}
+
+#search-brawler::placeholder {
+    color: #9cb3e5;
+}
+
+.roulette-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    max-height: 570px;
+    overflow-y: auto;
+    padding: 3px;
+}
+
+.roulette-item {
+    padding: 9px 5px;
+    border-radius: 10px;
+    background: #243d83;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.roulette-item.selected {
+    background: #ffce2f;
+    color: #211640;
+}
+
+/* RETO FINAL */
+
+.challenge-summary {
+    margin-top: 30px;
+    padding: 22px;
+    background: #101d49;
+    border: 3px solid #7958ff;
+    border-radius: 24px;
+}
+
+.challenge-summary h2 {
+    margin-top: 0;
+}
+
+.challenge-results {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.challenge-result-card {
+    padding: 18px 8px;
+    border-radius: 15px;
+    background: #39218b;
+    border: 2px solid #8859ff;
+    color: white;
+}
+
+.challenge-result-card:nth-child(2) {
+    background: #10488f;
+    border-color: #3c9fff;
+}
+
+.challenge-result-card:nth-child(3) {
+    background: #894014;
+    border-color: #ff983b;
+}
+
+.challenge-result-card strong {
+    display: block;
+    margin: 8px 0;
+}
+
+.challenge-result-card span {
+    display: block;
+    font-size: clamp(15px, 3vw, 23px);
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+#challenge-message {
+    margin-top: 20px;
+    font-size: 19px;
+    color: #ffdc48;
+    font-weight: 900;
+}
+
+/* MÓVIL */
+
+@media (max-width: 750px) {
+
+    .roulette-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .roulette-tabs {
+        gap: 7px;
+    }
+
+    .roulette-tab {
+        font-size: 12px;
+        padding: 12px 4px;
+    }
+
+    .roulette-tab .tab-icon {
+        font-size: 26px;
+    }
+
+    .roulette-panel,
+    .roulette-list-panel {
+        padding: 12px;
+    }
+
+    #wheel {
+        border-width: 6px;
+    }
+
+    .challenge-results {
+        gap: 6px;
+    }
+
+    .challenge-result-card {
+        padding: 12px 4px;
+        font-size: 12px;
+    }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================
-     HEADER
-===================================== -->
 
 <header>
 
@@ -62,9 +346,7 @@
         </div>
 
         <div class="user-points">
-
             ⚡ <span id="header-points">0</span>
-
         </div>
 
     </div>
@@ -72,290 +354,594 @@
 </header>
 
 
-<!-- =====================================
-     CONTENIDO
-===================================== -->
+<main class="roulette-page">
 
-<main>
+    <a href="index.html" class="btn"
+       style="display:inline-block;text-decoration:none;margin-bottom:15px;">
 
-    <div class="container">
+        ← VOLVER
 
+    </a>
 
-        <!-- VOLVER -->
+    <h1>
+        CREA TU PROPIO <span>RETO</span>
+    </h1>
 
-        <div style="margin-top:30px;">
-
-            <a href="index.html"
-               class="btn"
-               style="text-decoration:none;">
-
-                ← VOLVER
-
-            </a>
-
-        </div>
+    <p class="roulette-subtitle">
+        ¡Gira las tres ruletas y deja que el azar decida!
+    </p>
 
 
-        <!-- =====================================
-             RULETA
-        ===================================== -->
+    <!-- TRES TARJETAS -->
 
-        <section class="roulette-section">
+    <div class="roulette-tabs">
+
+        <button class="roulette-tab active"
+                data-type="brawlers">
+
+            <span class="tab-icon">🎮</span>
+            BRAWLERS
+
+        </button>
+
+        <button class="roulette-tab"
+                data-type="modes">
+
+            <span class="tab-icon">🗺️</span>
+            MODOS
+
+        </button>
+
+        <button class="roulette-tab"
+                data-type="trophies">
+
+            <span class="tab-icon">🏆</span>
+            COPAS
+
+        </button>
+
+    </div>
 
 
-            <div class="hero-badge">
+    <div class="roulette-layout">
 
-                🎰 RULETA ANXANWOMAN
+        <!-- RUEDA GRANDE -->
 
-            </div>
+        <section class="roulette-panel">
 
+            <h2 id="wheel-title">
+                🎮 RULETA DE BRAWLERS
+            </h2>
 
-            <h1>
+            <div class="wheel-wrap">
 
-                ¿QUÉ BRAWLER<br>
-                TE TOCA?
+                <canvas id="wheel"
+                        width="900"
+                        height="900">
+                </canvas>
 
-            </h1>
+                <div class="wheel-pointer">
+                    📍
+                </div>
 
-
-            <p>
-
-                Pulsa el botón y deja que el azar
-                decida con qué Brawler tienes que jugar.
-
-            </p>
-
-
-            <!-- RULETA VISUAL -->
-
-            <div class="roulette-wheel">
-
-                <div class="roulette-content">
-
-                    <span class="roulette-icon">
-
-                        ❓
-
-                    </span>
-
-                    <span class="roulette-name">
-
-                        ¿QUIÉN SERÁ?
-
-                    </span>
-
+                <div class="wheel-center">
+                    ⭐
                 </div>
 
             </div>
 
-
-            <!-- BOTÓN GIRAR -->
-
-            <button
-                class="btn btn-yellow"
-                id="spin-button"
-                type="button">
+            <button id="spin-button"
+                    type="button">
 
                 🎰 GIRAR RULETA
 
             </button>
 
+            <div class="roulette-result"
+                 id="roulette-result"
+                 aria-live="polite">
 
-            <p class="roulette-help">
+                ¿QUIÉN TE TOCARÁ? 👀
 
-                El destino decidirá tu próxima partida 👀
-
-            </p>
-
+            </div>
 
         </section>
 
 
+        <!-- LISTA DE PARTICIPANTES -->
+
+        <aside class="roulette-list-panel">
+
+            <h2 id="list-title">
+                TODOS LOS BRAWLERS
+            </h2>
+
+            <input
+                id="search-brawler"
+                type="search"
+                placeholder="🔎 Buscar brawler..."
+            >
+
+            <div class="roulette-items"
+                 id="roulette-items">
+            </div>
+
+        </aside>
+
     </div>
+
+
+    <!-- RETO ACTUAL -->
+
+    <section class="challenge-summary">
+
+        <h2>🔥 TU RETO ACTUAL</h2>
+
+        <div class="challenge-results">
+
+            <div class="challenge-result-card">
+
+                🎮
+                <strong>BRAWLER</strong>
+
+                <span id="result-brawler">
+                    ???
+                </span>
+
+            </div>
+
+            <div class="challenge-result-card">
+
+                🗺️
+                <strong>MODO</strong>
+
+                <span id="result-mode">
+                    ???
+                </span>
+
+            </div>
+
+            <div class="challenge-result-card">
+
+                🏆
+                <strong>OBJETIVO</strong>
+
+                <span id="result-trophies">
+                    ???
+                </span>
+
+            </div>
+
+        </div>
+
+        <p id="challenge-message">
+            Gira las tres ruletas para crear tu reto completo.
+        </p>
+
+    </section>
 
 </main>
 
 
-<!-- =====================================
-     FOOTER
-===================================== -->
-
 <footer>
 
     <p>
-
         Hecho con 💙 por
         <strong>AnxanWoman</strong>
-
     </p>
 
-    <p style="margin-top:10px; font-size:12px;">
-
+    <p style="margin-top:10px;font-size:12px;">
         Este contenido no está afiliado,
         respaldado ni patrocinado por Supercell.
-
     </p>
 
 </footer>
 
 
-<!-- =====================================
-     JAVASCRIPT DE LA RULETA
-     IMPORTANTE: VA AL FINAL DEL BODY
-===================================== -->
-
 <script>
 
-
 // ========================================
-// RAYITOS GUARDADOS
+// RAYITOS
 // ========================================
 
-const rayosGuardados =
+document.getElementById("header-points")
+    .textContent =
     Number(localStorage.getItem("anxanRayos")) || 0;
 
-const contadorRayos =
-    document.getElementById("header-points");
 
-if (contadorRayos) {
+// ========================================
+// PARTICIPANTES
+// ========================================
 
-    contadorRayos.textContent = rayosGuardados;
+const brawlers = [
+
+"Shelly", "Nita", "Colt", "Bull", "Brock",
+"El Primo", "Barley", "Poco", "Rosa",
+"Jessie", "Dynamike", "Tick", "8-Bit",
+"Rico", "Darryl", "Penny", "Carl",
+"Jacky", "Gus", "Bo", "Emz", "Stu",
+"Piper", "Pam", "Frank", "Bibi",
+"Bea", "Nani", "Edgar", "Griff",
+"Grom", "Bonnie", "Gale", "Colette",
+"Belle", "Ash", "Lola", "Sam",
+"Mandy", "Maisie", "Hank", "Pearl",
+"Larry & Lawrie", "Angelo", "Berry",
+"Shade", "Meeple", "Mortis", "Tara",
+"Gene", "Max", "Mr. P", "Sprout",
+"Byron", "Squeak", "Gray", "Willow",
+"Doug", "Chuck", "Charlie", "Mico",
+"Melodie", "Lily", "Clancy", "Moe",
+"Juju", "Ollie", "Lumi", "Finx",
+"Jae-yong", "Spike", "Crow", "Leon",
+"Sandy", "Amber", "Meg", "Chester",
+"Cordelius", "Kit", "Draco", "Kenji",
+"Kaze"
+
+];
+
+const modes = [
+
+"Atrapagemas",
+"Supervivencia solo",
+"Supervivencia dúo",
+"Balón Brawl",
+"Atraco",
+"Caza estelar",
+"Noqueo",
+"Zona restringida",
+"Duelo",
+"Premio al más buscado"
+
+];
+
+const trophies = [
+
+"+10 trofeos",
+"+20 trofeos",
+"+25 trofeos",
+"+30 trofeos",
+"+50 trofeos",
+"+75 trofeos",
+"+100 trofeos"
+
+];
+
+const collections = {
+    brawlers: brawlers,
+    modes: modes,
+    trophies: trophies
+};
+
+const titles = {
+    brawlers: "🎮 RULETA DE BRAWLERS",
+    modes: "🗺️ RULETA DE MODOS",
+    trophies: "🏆 RULETA DE COPAS"
+};
+
+const listTitles = {
+    brawlers: "TODOS LOS BRAWLERS",
+    modes: "MODOS DE JUEGO",
+    trophies: "OBJETIVOS DE COPAS"
+};
+
+const resultIds = {
+    brawlers: "result-brawler",
+    modes: "result-mode",
+    trophies: "result-trophies"
+};
+
+
+// ========================================
+// ELEMENTOS
+// ========================================
+
+const canvas = document.getElementById("wheel");
+
+const ctx = canvas.getContext("2d");
+
+const spinButton =
+    document.getElementById("spin-button");
+
+const resultText =
+    document.getElementById("roulette-result");
+
+const listElement =
+    document.getElementById("roulette-items");
+
+const searchInput =
+    document.getElementById("search-brawler");
+
+let currentType = "brawlers";
+
+let rotation = 0;
+
+let spinning = false;
+
+let selectedResults = {
+    brawlers: null,
+    modes: null,
+    trophies: null
+};
+
+
+// ========================================
+// DIBUJAR RUEDA
+// ========================================
+
+function drawWheel() {
+
+    const items = collections[currentType];
+
+    const count = items.length;
+
+    const center = canvas.width / 2;
+
+    const radius = center - 12;
+
+    const slice = Math.PI * 2 / count;
+
+    const colors = [
+        "#ffcf35",
+        "#f04b83",
+        "#7651e8",
+        "#26b5eb",
+        "#31caa3",
+        "#ff9146",
+        "#4379ed"
+    ];
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    ctx.save();
+
+    ctx.translate(center, center);
+
+    ctx.rotate(rotation);
+
+
+    items.forEach(function(name, index) {
+
+        const start =
+            index * slice - Math.PI / 2;
+
+        const end =
+            start + slice;
+
+        ctx.beginPath();
+
+        ctx.moveTo(0, 0);
+
+        ctx.arc(
+            0,
+            0,
+            radius,
+            start,
+            end
+        );
+
+        ctx.closePath();
+
+        ctx.fillStyle =
+            colors[index % colors.length];
+
+        ctx.fill();
+
+        ctx.strokeStyle = "#101b45";
+
+        ctx.lineWidth = 2;
+
+        ctx.stroke();
+
+
+        // NOMBRES EN LA RUEDA
+
+        ctx.save();
+
+        ctx.rotate(
+            start + slice / 2
+        );
+
+        ctx.translate(
+            radius * 0.65,
+            0
+        );
+
+        ctx.rotate(Math.PI / 2);
+
+        ctx.fillStyle = "#ffffff";
+
+        ctx.strokeStyle = "#10102b";
+
+        ctx.lineWidth = 4;
+
+        ctx.textAlign = "center";
+
+        ctx.textBaseline = "middle";
+
+        const fontSize =
+            count > 50 ? 11 :
+            count > 20 ? 15 : 24;
+
+        ctx.font =
+            "bold " + fontSize + "px Arial";
+
+        ctx.strokeText(
+            name,
+            0,
+            0
+        );
+
+        ctx.fillText(
+            name,
+            0,
+            0
+        );
+
+        ctx.restore();
+
+    });
+
+    ctx.restore();
 
 }
 
 
 // ========================================
-// LISTA INICIAL DE BRAWLERS
+// LISTA DE PARTICIPANTES
 // ========================================
 
-// Esta lista es provisional.
-// Completaremos el listado actualizado
-// después de comprobar que la ruleta gira.
+function updateList(filter = "") {
 
-const brawlers = [
+    listElement.innerHTML = "";
 
-    "Shelly",
-    "Nita",
-    "Colt",
-    "Bull",
-    "Brock",
-    "El Primo",
-    "Barley",
-    "Poco",
-    "Rosa",
+    collections[currentType]
+        .filter(function(name) {
 
-    "Jessie",
-    "Dynamike",
-    "Tick",
-    "8-Bit",
-    "Rico",
-    "Darryl",
-    "Penny",
-    "Carl",
-    "Jacky",
-    "Gus",
+            return name.toLowerCase()
+                .includes(filter.toLowerCase());
 
-    "Bo",
-    "Emz",
-    "Stu",
-    "Piper",
-    "Pam",
-    "Frank",
-    "Bibi",
-    "Bea",
-    "Nani",
-    "Edgar",
-    "Griff",
-    "Grom",
-    "Bonnie",
+        })
+        .forEach(function(name) {
 
-    "Gale",
-    "Colette",
-    "Belle",
-    "Ash",
-    "Lola",
-    "Sam",
-    "Mandy",
-    "Maisie",
-    "Hank",
-    "Pearl",
-    "Larry & Lawrie",
-    "Angelo",
-    "Berry",
-    "Shade",
-    "Meeple",
+            const item =
+                document.createElement("div");
 
-    "Mortis",
-    "Tara",
-    "Gene",
-    "Max",
-    "Mr. P",
-    "Sprout",
-    "Byron",
-    "Squeak",
-    "Gray",
-    "Willow",
-    "Doug",
-    "Chuck",
-    "Charlie",
-    "Mico",
-    "Melodie",
-    "Lily",
-    "Clancy",
-    "Moe",
-    "Juju",
-    "Ollie",
-    "Lumi",
-    "Finx",
-    "Jae-yong",
+            item.className =
+                "roulette-item";
 
-    "Spike",
-    "Crow",
-    "Leon",
-    "Sandy",
-    "Amber",
-    "Meg",
-    "Chester",
-    "Cordelius",
-    "Kit",
-    "Draco",
-    "Kenji",
-    "Kaze"
+            item.textContent = name;
 
-];
+            if (
+                selectedResults[currentType]
+                === name
+            ) {
+                item.classList.add("selected");
+            }
+
+            listElement.appendChild(item);
+
+        });
+
+}
 
 
 // ========================================
-// ELEMENTOS DE LA RULETA
+// CAMBIAR DE RULETA
 // ========================================
 
-const spinButton =
-    document.getElementById("spin-button");
+function changeType(type) {
 
-const rouletteIcon =
-    document.querySelector(".roulette-icon");
+    if (spinning) return;
 
-const rouletteName =
-    document.querySelector(".roulette-name");
+    currentType = type;
 
-const rouletteHelp =
-    document.querySelector(".roulette-help");
+    rotation = 0;
 
-let girando = false;
+    document.getElementById("wheel-title")
+        .textContent = titles[type];
+
+    document.getElementById("list-title")
+        .textContent = listTitles[type];
+
+    document.querySelectorAll(".roulette-tab")
+        .forEach(function(tab) {
+
+            tab.classList.toggle(
+                "active",
+                tab.dataset.type === type
+            );
+
+        });
+
+    searchInput.value = "";
+
+    searchInput.placeholder =
+        type === "brawlers"
+        ? "🔎 Buscar brawler..."
+        : "🔎 Buscar opción...";
+
+    resultText.textContent =
+        selectedResults[type]
+        ? "Último resultado: " + selectedResults[type]
+        : "¡GIRA LA RULETA! 👀";
+
+    updateList();
+
+    drawWheel();
+
+}
 
 
-// ========================================
-// FUNCIÓN PARA ELEGIR UN BRAWLER
-// ========================================
+document.querySelectorAll(".roulette-tab")
+    .forEach(function(tab) {
 
-function elegirBrawler() {
+        tab.addEventListener(
+            "click",
+            function() {
 
-    const posicion =
-        Math.floor(
-            Math.random() * brawlers.length
+                changeType(tab.dataset.type);
+
+            }
         );
 
-    return brawlers[posicion];
+    });
+
+
+searchInput.addEventListener(
+    "input",
+    function() {
+
+        updateList(searchInput.value);
+
+    }
+);
+
+
+// ========================================
+// RETO FINAL
+// ========================================
+
+function updateChallenge() {
+
+    const brawler =
+        selectedResults.brawlers;
+
+    const mode =
+        selectedResults.modes;
+
+    const trophyGoal =
+        selectedResults.trophies;
+
+    document.getElementById("result-brawler")
+        .textContent = brawler || "???";
+
+    document.getElementById("result-mode")
+        .textContent = mode || "???";
+
+    document.getElementById("result-trophies")
+        .textContent = trophyGoal || "???";
+
+    const message =
+        document.getElementById("challenge-message");
+
+    if (brawler && mode && trophyGoal) {
+
+        message.textContent =
+            "🔥 ¡TU RETO ESTÁ LISTO! Juega con " +
+            brawler + " en " + mode +
+            " y consigue " + trophyGoal + ".";
+
+    } else {
+
+        message.textContent =
+            "Gira las tres ruletas para crear tu reto completo.";
+
+    }
 
 }
 
@@ -364,108 +950,154 @@ function elegirBrawler() {
 // GIRAR RULETA
 // ========================================
 
-if (spinButton && rouletteIcon && rouletteName) {
+spinButton.addEventListener(
+    "click",
+    function() {
 
-    spinButton.addEventListener(
-        "click",
-        function() {
+        if (spinning) return;
 
-            // Evitar varios giros simultáneos
+        spinning = true;
 
-            if (girando) {
-                return;
-            }
+        spinButton.disabled = true;
 
-            girando = true;
+        spinButton.textContent =
+            "🎰 GIRANDO...";
 
-            spinButton.disabled = true;
-
-            spinButton.textContent =
-                "🎰 GIRANDO...";
-
-            rouletteIcon.textContent =
-                "🎲";
-
-            if (rouletteHelp) {
-
-                rouletteHelp.textContent =
-                    "¡La suerte está echada! 👀";
-
-            }
+        resultText.textContent =
+            "¡EL DESTINO ESTÁ DECIDIENDO!";
 
 
-            // Elegir el resultado del giro
+        const items =
+            collections[currentType];
 
-            const ganador =
-                elegirBrawler();
+        const count =
+            items.length;
 
-
-            // Animación de nombres
-
-            let vueltas = 0;
-
-            const totalVueltas = 35;
-
-
-            const intervalo = setInterval(
-                function() {
-
-                    rouletteName.textContent =
-                        elegirBrawler();
-
-                    vueltas++;
-
-
-                    // Finalizar el giro
-
-                    if (vueltas >= totalVueltas) {
-
-                        clearInterval(intervalo);
-
-
-                        rouletteIcon.textContent =
-                            "🏆";
-
-
-                        rouletteName.textContent =
-                            ganador;
-
-
-                        spinButton.textContent =
-                            "🔄 VOLVER A GIRAR";
-
-
-                        spinButton.disabled =
-                            false;
-
-
-                        girando = false;
-
-
-                        if (rouletteHelp) {
-
-                            rouletteHelp.textContent =
-                                "¡Te ha tocado " +
-                                ganador +
-                                "! ¿Aceptas el reto? 🔥";
-
-                        }
-
-                    }
-
-                },
-                90
+        const selectedIndex =
+            Math.floor(
+                Math.random() * count
             );
 
+        const selectedName =
+            items[selectedIndex];
+
+        const slice =
+            Math.PI * 2 / count;
+
+
+        // El centro del segmento ganador
+        // terminará bajo la flecha superior.
+
+        const desiredAngle =
+            -(selectedIndex + 0.5) * slice;
+
+        const currentAngle =
+            rotation % (Math.PI * 2);
+
+        const adjustment =
+            (
+                desiredAngle -
+                currentAngle +
+                Math.PI * 2
+            ) % (Math.PI * 2);
+
+        const startRotation =
+            rotation;
+
+        const finalRotation =
+            startRotation +
+            Math.PI * 2 * 6 +
+            adjustment;
+
+        const duration = 4500;
+
+        const startTime =
+            performance.now();
+
+
+        function animate(now) {
+
+            const elapsed =
+                now - startTime;
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            // Frenado progresivo
+
+            const eased =
+                1 - Math.pow(
+                    1 - progress,
+                    4
+                );
+
+            rotation =
+                startRotation +
+                (
+                    finalRotation -
+                    startRotation
+                ) * eased;
+
+            drawWheel();
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    animate
+                );
+
+            } else {
+
+                rotation =
+                    finalRotation;
+
+                drawWheel();
+
+                selectedResults[currentType] =
+                    selectedName;
+
+                resultText.textContent =
+                    "🏆 ¡TE HA TOCADO " +
+                    selectedName + "!";
+
+                spinButton.textContent =
+                    "🔄 VOLVER A GIRAR";
+
+                spinButton.disabled =
+                    false;
+
+                spinning = false;
+
+                updateList(searchInput.value);
+
+                updateChallenge();
+
+            }
+
         }
-    );
 
-}
+        requestAnimationFrame(
+            animate
+        );
 
+    }
+);
+
+
+// ========================================
+// INICIAR
+// ========================================
+
+changeType("brawlers");
+
+updateChallenge();
 
 </script>
 
-
 </body>
-
 </html>
