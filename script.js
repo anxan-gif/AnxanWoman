@@ -2,66 +2,23 @@
 // ANXANWOMAN - SISTEMA DE RAYOS
 // ========================================
 
-// Recuperar los Rayos guardados
-let rayos = parseInt(
-    localStorage.getItem("anxanRayos"),
-    10
+// Recuperar Rayos guardados
+let rayos = Number(
+    localStorage.getItem("anxanRayos")
 ) || 0;
 
 
 // ========================================
-// ELEMENTOS DE LA PÁGINA
-// ========================================
-
-const headerPoints =
-    document.getElementById("header-points");
-
-const points =
-    document.getElementById("points");
-
-const challengeButton =
-    document.getElementById("challenge-button");
-
-const progressButton =
-    document.getElementById("progress-button");
-
-const rankingButton =
-    document.getElementById("ranking-button");
-
-
-// Elementos de la ventana
-
-const modal =
-    document.getElementById("anxan-modal");
-
-const modalIcon =
-    document.getElementById("modal-icon");
-
-const modalTitle =
-    document.getElementById("modal-title");
-
-const modalText =
-    document.getElementById("modal-text");
-
-const modalReward =
-    document.getElementById("modal-reward");
-
-const modalButton =
-    document.getElementById("modal-button");
-
-
-// ========================================
-// ACTUALIZAR RAYOS
+// ACTUALIZAR CONTADOR
 // ========================================
 
 function actualizarRayos() {
 
-    if (headerPoints) {
-        headerPoints.textContent = rayos;
-    }
+    const contador =
+        document.getElementById("header-points");
 
-    if (points) {
-        points.textContent = rayos;
+    if (contador) {
+        contador.textContent = rayos;
     }
 
 }
@@ -70,309 +27,226 @@ actualizarRayos();
 
 
 // ========================================
-// SISTEMA DE NIVELES
+// VENTANA CENTRAL
 // ========================================
 
-// Por ahora: 500 Rayos por nivel.
-// Lo podremos cambiar más adelante.
+const modal =
+    document.getElementById("anxan-modal");
 
-function obtenerNivel() {
+function mostrarVentana(icono, titulo, texto, premio = "") {
 
-    return Math.floor(rayos / 500) + 1;
+    if (!modal) return;
 
-}
+    document.getElementById("modal-icon").textContent =
+        icono;
 
+    document.getElementById("modal-title").textContent =
+        titulo;
 
-// ========================================
-// VENTANA ANXANWOMAN
-// ========================================
+    document.getElementById("modal-text").textContent =
+        texto;
 
-function mostrarVentana(
-    icono,
-    titulo,
-    texto,
-    recompensa,
-    boton
-) {
+    const recompensa =
+        document.getElementById("modal-reward");
 
-    if (!modal) {
-        return;
-    }
+    recompensa.textContent = premio;
 
-    modalIcon.textContent = icono;
+    recompensa.style.display =
+        premio ? "inline-block" : "none";
 
-    modalTitle.textContent = titulo;
-
-    modalText.textContent = texto;
-
-    modalReward.textContent = recompensa;
-
-    modalButton.textContent = boton;
-
-    // Ocultar el recuadro de recompensa
-    // cuando no haya una cantidad que mostrar
-
-    modalReward.style.display =
-        recompensa ? "inline-block" : "none";
+    document.getElementById("modal-button").textContent =
+        "CERRAR";
 
     modal.classList.add("show");
 
 }
 
 
-// ========================================
-// CERRAR VENTANA
-// ========================================
+// Cerrar ventana
 
-function cerrarVentana() {
+document.getElementById("modal-button")
+    ?.addEventListener("click", function() {
 
-    if (modal) {
+        modal.classList.remove("show");
+
+    });
+
+
+// Cerrar pulsando fuera
+
+modal?.addEventListener("click", function(event) {
+
+    if (event.target === modal) {
         modal.classList.remove("show");
     }
 
-}
-
-
-if (modalButton) {
-
-    modalButton.addEventListener(
-        "click",
-        cerrarVentana
-    );
-
-}
-
-
-// Cerrar pulsando fuera de la tarjeta
-
-if (modal) {
-
-    modal.addEventListener(
-        "click",
-        function(event) {
-
-            if (event.target === modal) {
-                cerrarVentana();
-            }
-
-        }
-    );
-
-}
+});
 
 
 // ========================================
-// BOTÓN: TU PROGRESO
+// TU PROGRESO
 // ========================================
 
-if (progressButton) {
+document.getElementById("progress-button")
+    ?.addEventListener("click", function() {
 
-    progressButton.addEventListener(
-        "click",
-        function() {
+        const nivel =
+            Math.floor(rayos / 500) + 1;
 
-            const nivel = obtenerNivel();
+        const progreso =
+            rayos % 500;
 
-            const progresoNivel = rayos % 500;
+        mostrarVentana(
 
-            mostrarVentana(
+            "⚡",
 
-                "⚡",
+            "TU PROGRESO",
 
-                "TU PROGRESO",
+            "NIVEL " + nivel +
+            "\n\n" +
+            "⚡ " + rayos + " RAYOS" +
+            "\n\n" +
+            "Próximo nivel: " +
+            progreso + " / 500 ⚡" +
+            "\n\n" +
+            "🔥 Racha: próximamente"
 
-                "NIVEL " + nivel +
-                " · " + rayos + " RAYOS ⚡" +
-                "\n\n" +
-                "Próximo nivel: " +
-                progresoNivel + " / 500 ⚡" +
-                "\n\n" +
-                "Racha: próximamente 🔥",
+        );
 
-                "",
-
-                "CERRAR"
-
-            );
-
-        }
-    );
-
-}
+    });
 
 
 // ========================================
-// BOTÓN: TOP COMUNIDAD
+// TOP COMUNIDAD
 // ========================================
 
-if (rankingButton) {
+document.getElementById("ranking-button")
+    ?.addEventListener("click", function() {
 
-    rankingButton.addEventListener(
-        "click",
-        function() {
+        mostrarVentana(
 
-            mostrarVentana(
+            "🏆",
 
-                "🏆",
+            "TOP COMUNIDAD",
 
-                "TOP COMUNIDAD",
+            "🥇 Próximamente" +
+            "\n\n" +
+            "🥈 Próximamente" +
+            "\n\n" +
+            "🥉 Próximamente" +
+            "\n\n" +
+            "¡Muy pronto podrás competir!"
 
-                "🥇 Próximamente" +
-                "\n\n" +
-                "🥈 Próximamente" +
-                "\n\n" +
-                "🥉 Próximamente" +
-                "\n\n" +
-                "¡Muy pronto podrás competir " +
-                "con toda la comunidad!",
+        );
 
-                "",
-
-                "CERRAR"
-
-            );
-
-        }
-    );
-
-}
+    });
 
 
 // ========================================
 // RETO DEL DÍA
 // ========================================
 
-if (challengeButton) {
+const botonReto =
+    document.getElementById("challenge-button");
 
-    let retoAceptado =
-        localStorage.getItem("retoAceptado")
-        === "true";
+if (botonReto) {
 
-    let retoCompletado =
-        localStorage.getItem("retoCompletado")
-        === "true";
+    let aceptado =
+        localStorage.getItem("retoAceptado") === "true";
+
+    let completado =
+        localStorage.getItem("retoCompletado") === "true";
 
 
-    // Recuperar estado anterior
+    // Recuperar estado guardado
 
-    if (retoCompletado) {
+    if (completado) {
 
-        challengeButton.textContent =
+        botonReto.textContent =
             "✅ RETO COMPLETADO";
 
-        challengeButton.disabled = true;
+        botonReto.disabled = true;
 
-    }
+    } else if (aceptado) {
 
-    else if (retoAceptado) {
-
-        challengeButton.textContent =
+        botonReto.textContent =
             "🏆 COMPLETAR RETO";
 
     }
 
 
-    // ====================================
-    // CLICK EN EL RETO
-    // ====================================
+    // Pulsar botón
 
-    challengeButton.addEventListener(
-        "click",
-        function() {
+    botonReto.addEventListener("click", function() {
 
+        // Aceptar
 
-            // ACEPTAR RETO
+        if (!aceptado) {
 
-            if (!retoAceptado) {
+            aceptado = true;
 
-                retoAceptado = true;
+            localStorage.setItem(
+                "retoAceptado",
+                "true"
+            );
 
-                localStorage.setItem(
-                    "retoAceptado",
-                    "true"
-                );
+            botonReto.textContent =
+                "🏆 COMPLETAR RETO";
 
-                challengeButton.textContent =
-                    "🏆 COMPLETAR RETO";
+            mostrarVentana(
 
-                mostrarVentana(
+                "🔥",
 
-                    "🔥",
+                "¡RETO ACEPTADO!",
 
-                    "¡RETO ACEPTADO!",
+                "Completa el reto y vuelve para reclamar tus Rayos.",
 
-                    "Completa el reto y vuelve " +
-                    "para reclamar tu recompensa.",
+                "+50 ⚡"
 
-                    "+50 ⚡",
-
-                    "¡A POR ELLO!"
-
-                );
-
-            }
-
-
-            // COMPLETAR RETO
-
-            else if (!retoCompletado) {
-
-                retoCompletado = true;
-
-                rayos += 50;
-
-
-                // Guardar Rayos
-
-                localStorage.setItem(
-                    "anxanRayos",
-                    rayos
-                );
-
-
-                // Guardar reto completado
-
-                localStorage.setItem(
-                    "retoCompletado",
-                    "true"
-                );
-
-
-                // Actualizar contador
-
-                actualizarRayos();
-
-
-                // Actualizar botón
-
-                challengeButton.textContent =
-                    "✅ RETO COMPLETADO";
-
-                challengeButton.disabled = true;
-
-
-                // Mostrar recompensa
-
-                mostrarVentana(
-
-                    "⚡",
-
-                    "¡RETO COMPLETADO!",
-
-                    "¡Has conseguido 50 Rayos!" +
-                    "\n\n" +
-                    "Ahora tienes " +
-                    rayos + " ⚡",
-
-                    "+50 ⚡",
-
-                    "¡GENIAL!"
-
-                );
-
-            }
+            );
 
         }
-    );
+
+        // Completar
+
+        else if (!completado) {
+
+            completado = true;
+
+            rayos += 50;
+
+            localStorage.setItem(
+                "anxanRayos",
+                rayos
+            );
+
+            localStorage.setItem(
+                "retoCompletado",
+                "true"
+            );
+
+            actualizarRayos();
+
+            botonReto.textContent =
+                "✅ RETO COMPLETADO";
+
+            botonReto.disabled = true;
+
+            mostrarVentana(
+
+                "⚡",
+
+                "¡RETO COMPLETADO!",
+
+                "¡Has conseguido 50 Rayos! Ahora tienes " +
+                rayos + " ⚡",
+
+                "+50 ⚡"
+
+            );
+
+        }
+
+    });
 
 }
