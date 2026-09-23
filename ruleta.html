@@ -575,7 +575,7 @@ const brawlers = [
 "Jae-yong", "Spike", "Crow", "Leon",
 "Sandy", "Amber", "Meg", "Chester",
 "Cordelius", "Kit", "Draco", "Kenji",
-"Kaze"
+"Kaze", "Nori", "Damian", "Bolt", "Starr Nova", "Cosmo"
 
 ];
 
@@ -584,14 +584,17 @@ const modes = [
 "Atrapagemas",
 "Supervivencia solo",
 "Supervivencia dúo",
+"Supervivencia trío"
 "Balón Brawl",
 "Atraco",
 "Caza estelar",
 "Noqueo",
 "Zona restringida",
 "Duelo",
-"Premio al más buscado"
-
+"HockeyBrawl",
+"Brawloncesto",
+"Destrucción",
+"Arenas",
 ];
 
 const trophies = [
@@ -602,7 +605,9 @@ const trophies = [
 "+30 trofeos",
 "+50 trofeos",
 "+75 trofeos",
-"+100 trofeos"
+"+100 trofeos",
+"+150 trofeos",
+"+200 trofeos"
 
 ];
 
@@ -791,44 +796,20 @@ function drawWheel() {
 }
 
 
-// ========================================
-// LISTA DE PARTICIPANTES
-// ========================================
+<!-- LISTA OCULTA PARA CONSERVAR EL FUNCIONAMIENTO -->
 
-function updateList(filter = "") {
+<aside style="display:none;">
 
-    listElement.innerHTML = "";
+    <h2 id="list-title"></h2>
 
-    collections[currentType]
-        .filter(function(name) {
+    <input
+        id="search-brawler"
+        type="search"
+    >
 
-            return name.toLowerCase()
-                .includes(filter.toLowerCase());
+    <div id="roulette-items"></div>
 
-        })
-        .forEach(function(name) {
-
-            const item =
-                document.createElement("div");
-
-            item.className =
-                "roulette-item";
-
-            item.textContent = name;
-
-            if (
-                selectedResults[currentType]
-                === name
-            ) {
-                item.classList.add("selected");
-            }
-
-            listElement.appendChild(item);
-
-        });
-
-}
-
+</aside>
 
 // ========================================
 // CAMBIAR DE RULETA
@@ -1090,8 +1071,186 @@ spinButton.addEventListener(
 
 
 // ========================================
-// INICIAR
+// GIRAR RULETA - COSTE 2 RAYITOS
 // ========================================
+
+const COSTE_GIRO = 2;
+
+spinButton.addEventListener(
+    "click",
+    function() {
+
+        if (spinning) return;
+
+        // Consultar los Rayitos actuales
+
+        let rayos =
+            Number(
+                localStorage.getItem("anxanRayos")
+            ) || 0;
+
+
+        // Comprobar si tiene suficientes Rayitos
+
+        if (rayos < COSTE_GIRO) {
+
+            resultText.textContent =
+                "⚡ ¡Necesitas 2 Rayitos para girar! " +
+                "Completa el reto diario para conseguir más.";
+
+            return;
+
+        }
+
+
+        // Descontar los 2 Rayitos
+
+        rayos -= COSTE_GIRO;
+
+        localStorage.setItem(
+            "anxanRayos",
+            rayos
+        );
+
+
+        // Actualizar contador de la cabecera
+
+        document.getElementById("header-points")
+            .textContent = rayos;
+
+
+        // Comenzar giro
+
+        spinning = true;
+
+        spinButton.disabled = true;
+
+        spinButton.textContent =
+            "🎰 GIRANDO...";
+
+        resultText.textContent =
+            "⚡ -2 RAYITOS · ¡EL DESTINO ESTÁ DECIDIENDO!";
+
+
+        const items =
+            collections[currentType];
+
+        const count =
+            items.length;
+
+        const selectedIndex =
+            Math.floor(
+                Math.random() * count
+            );
+
+        const selectedName =
+            items[selectedIndex];
+
+        const slice =
+            Math.PI * 2 / count;
+
+
+        // Colocar el ganador bajo la flecha
+
+        const desiredAngle =
+            -(selectedIndex + 0.5) * slice;
+
+        const currentAngle =
+            rotation % (Math.PI * 2);
+
+        const adjustment =
+            (
+                desiredAngle -
+                currentAngle +
+                Math.PI * 2
+            ) % (Math.PI * 2);
+
+        const startRotation =
+            rotation;
+
+        const finalRotation =
+            startRotation +
+            Math.PI * 2 * 6 +
+            adjustment;
+
+        const duration = 4500;
+
+        const startTime =
+            performance.now();
+
+
+        function animate(now) {
+
+            const elapsed =
+                now - startTime;
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            // Frenado progresivo
+
+            const eased =
+                1 - Math.pow(
+                    1 - progress,
+                    4
+                );
+
+            rotation =
+                startRotation +
+                (
+                    finalRotation -
+                    startRotation
+                ) * eased;
+
+            drawWheel();
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    animate
+                );
+
+            } else {
+
+                rotation =
+                    finalRotation;
+
+                drawWheel();
+
+                selectedResults[currentType] =
+                    selectedName;
+
+                resultText.textContent =
+                    "🏆 ¡TE HA TOCADO " +
+                    selectedName + "!";
+
+                spinButton.textContent =
+                    "🔄 VOLVER A GIRAR · 2 ⚡";
+
+                spinButton.disabled =
+                    false;
+
+                spinning = false;
+
+                updateList(searchInput.value);
+
+                updateChallenge();
+
+            }
+
+        }
+
+        requestAnimationFrame(
+            animate
+        );
+
+    }
+);
 
 changeType("brawlers");
 
