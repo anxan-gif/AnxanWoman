@@ -3,8 +3,11 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
       content="Descubre tu Destino Brawler: un trío y una predicción semanal según tu signo del zodiaco.">
@@ -54,6 +57,45 @@
     color: #ffda36;
 }
 
+.nick-section {
+    background: #30216f;
+    border: 2px solid #a080ff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 24px 0;
+}
+
+.nick-section label {
+    display: block;
+    color: #ffda36;
+    font-weight: 900;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.nick-section p {
+    color: #d8e5ff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nick-input {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    background: #101f50;
+    color: white;
+    border: 2px solid #a080ff;
+    border-radius: 14px;
+    font: inherit;
+    font-size: 18px;
+    text-align: center;
+}
+
+.nick-input:focus {
+    outline: 2px solid #ffda36;
+}
+
 .signos-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -73,11 +115,7 @@
 }
 
 .signo-button:hover,
-.signo-button:focus-visible {
-    background: #39218b;
-    border-color: #ffda36;
-}
-
+.signo-button:focus-visible,
 .signo-button.selected {
     background: #39218b;
     border-color: #ffda36;
@@ -117,6 +155,7 @@
     font-size: clamp(26px, 6vw, 42px);
     margin: 14px 0;
     color: white;
+    overflow-wrap: anywhere;
 }
 
 .trio-nombre {
@@ -225,6 +264,7 @@
 
 </head>
 
+
 <body>
 
 <header>
@@ -301,11 +341,44 @@
     </section>
 
 
+    <!-- NICK EDITABLE -->
+
+    <section class="nick-section">
+
+        <label for="nick-input">
+
+            💙 ¿CÓMO TE LLAMAS EN BRAWL STARS?
+
+        </label>
+
+        <input
+            id="nick-input"
+            class="nick-input"
+            type="text"
+            maxlength="24"
+            autocomplete="nickname"
+            placeholder="Escribe tu nick (opcional)"
+        >
+
+        <p>
+
+            Aparecerá en tu imagen personalizada.
+            Puedes cambiarlo cuando quieras.
+
+        </p>
+
+    </section>
+
+
+    <!-- SIGNOS -->
+
     <div class="signos-grid"
          id="signos-grid">
 
     </div>
 
+
+    <!-- RESULTADO -->
 
     <section class="resultado"
              id="resultado"
@@ -316,9 +389,9 @@
 
         </div>
 
-        <h2>
+        <h2 id="resultado-titulo">
 
-            TU TRÍO DEL DESTINO
+            MI DESTINO BRAWLER
 
         </h2>
 
@@ -398,7 +471,7 @@
 <script>
 
 // ========================================
-// CONTADOR DE RAYITOS
+// RAYITOS
 // ========================================
 
 function actualizarContador() {
@@ -410,7 +483,9 @@ function actualizarContador() {
     ) || 0;
 
     document.getElementById(
+
         "header-points"
+
     ).textContent = rayitos;
 
 }
@@ -419,7 +494,67 @@ actualizarContador();
 
 
 // ========================================
-// SIGNOS DEL ZODIACO
+// NICK
+// ========================================
+
+const CLAVE_NICK = "anxanDestinoNick";
+
+const inputNick = document.getElementById(
+    "nick-input"
+);
+
+inputNick.value =
+
+    localStorage.getItem(CLAVE_NICK) || "";
+
+
+function obtenerNick() {
+
+    return inputNick.value.trim();
+
+}
+
+
+function actualizarTitulo() {
+
+    const nick = obtenerNick();
+
+    document.getElementById(
+
+        "resultado-titulo"
+
+    ).textContent = nick
+
+        ? "EL DESTINO DE " + nick
+
+        : "MI DESTINO BRAWLER";
+
+}
+
+
+inputNick.addEventListener(
+
+    "input",
+
+    function() {
+
+        localStorage.setItem(
+
+            CLAVE_NICK,
+
+            inputNick.value
+
+        );
+
+        actualizarTitulo();
+
+    }
+
+);
+
+
+// ========================================
+// SIGNOS
 // ========================================
 
 const signos = [
@@ -441,11 +576,8 @@ const signos = [
 
 
 // ========================================
-// TRÍOS DE BRAWL STARS
+// TRÍOS
 // ========================================
-
-// Si cambia algún integrante en el juego,
-// solo habrá que editar esta lista.
 
 const trios = [
 
@@ -567,11 +699,8 @@ const consejos = [
 
 
 // ========================================
-// NÚMERO DE SEMANA
+// SEMANA
 // ========================================
-
-// Se calcula con la fecha local.
-// Cambia al llegar el lunes.
 
 function obtenerSemana() {
 
@@ -592,8 +721,6 @@ function obtenerSemana() {
     );
 
     const dia = fecha.getUTCDay() || 7;
-
-    // El jueves determina el año ISO.
 
     fecha.setUTCDate(
 
@@ -637,44 +764,37 @@ function obtenerSemana() {
 
 
 // ========================================
-// ELEMENTOS
+// ELEMENTOS Y RESULTADO ACTUAL
 // ========================================
 
-const gridSignos =
+const gridSignos = document.getElementById(
+    "signos-grid"
+);
 
-    document.getElementById(
-        "signos-grid"
-    );
-
-const resultado =
-
-    document.getElementById(
-        "resultado"
-    );
+const resultado = document.getElementById(
+    "resultado"
+);
 
 let signoSeleccionado = null;
 
-let textoCompartir = "";
+let destinoActual = null;
 
 
 // ========================================
-// CREAR BOTONES DE SIGNOS
+// BOTONES DE SIGNOS
 // ========================================
 
 signos.forEach(
 
     function(signo, indice) {
 
-        const boton =
-
-            document.createElement(
-                "button"
-            );
+        const boton = document.createElement(
+            "button"
+        );
 
         boton.type = "button";
 
-        boton.className =
-            "signo-button";
+        boton.className = "signo-button";
 
         boton.innerHTML =
 
@@ -717,16 +837,12 @@ signos.forEach(
 
 function mostrarDestino(indiceSigno) {
 
-    signoSeleccionado =
-        indiceSigno;
+    signoSeleccionado = indiceSigno;
 
-    const signo =
-        signos[indiceSigno];
+    const signo = signos[indiceSigno];
 
-    const semana =
-        obtenerSemana();
+    const semana = obtenerSemana();
 
-    // El trío cambia cada semana.
 
     const indiceTrio =
 
@@ -735,11 +851,6 @@ function mostrarDestino(indiceSigno) {
             indiceSigno
         ) % trios.length;
 
-    const trio =
-        trios[indiceTrio];
-
-    // También cambian la predicción
-    // y el consejo.
 
     const indicePrediccion =
 
@@ -748,6 +859,7 @@ function mostrarDestino(indiceSigno) {
             indiceSigno * 3
         ) % predicciones.length;
 
+
     const indiceConsejo =
 
         (
@@ -755,20 +867,39 @@ function mostrarDestino(indiceSigno) {
             indiceSigno * 2
         ) % consejos.length;
 
+
+    const trio = trios[indiceTrio];
+
     const prediccion =
 
-        predicciones[
-            indicePrediccion
-        ];
+        predicciones[indicePrediccion];
 
     const consejo =
 
-        consejos[
-            indiceConsejo
-        ];
+        consejos[indiceConsejo];
 
 
-    // TÍTULO
+    // Guardamos lo que se está viendo.
+
+    destinoActual = {
+
+        signo: signo,
+
+        trio: trio,
+
+        prediccion: prediccion,
+
+        consejo: consejo
+
+    };
+
+
+    // TÍTULO PERSONALIZADO
+
+    actualizarTitulo();
+
+
+    // SIGNO
 
     document.getElementById(
 
@@ -809,50 +940,33 @@ function mostrarDestino(indiceSigno) {
 
         function(nombre) {
 
-            const tarjeta =
-
-                document.createElement(
-                    "div"
-                );
-
-            tarjeta.className =
-                "brawler-card";
-
-            const icono =
-
-                document.createElement(
-                    "span"
-                );
-
-            icono.className =
-                "brawler-icon";
-
-            icono.textContent =
-                "⭐";
-
-            const texto =
-
-                document.createElement(
-                    "span"
-                );
-
-            texto.className =
-                "brawler-name";
-
-            texto.textContent =
-                nombre;
-
-            tarjeta.appendChild(
-                icono
+            const tarjeta = document.createElement(
+                "div"
             );
 
-            tarjeta.appendChild(
-                texto
+            tarjeta.className = "brawler-card";
+
+            const icono = document.createElement(
+                "span"
             );
 
-            gridBrawlers.appendChild(
-                tarjeta
+            icono.className = "brawler-icon";
+
+            icono.textContent = "⭐";
+
+            const texto = document.createElement(
+                "span"
             );
+
+            texto.className = "brawler-name";
+
+            texto.textContent = nombre;
+
+            tarjeta.appendChild(icono);
+
+            tarjeta.appendChild(texto);
+
+            gridBrawlers.appendChild(tarjeta);
 
         }
 
@@ -865,50 +979,16 @@ function mostrarDestino(indiceSigno) {
 
         "prediccion-texto"
 
-    ).textContent =
-        prediccion;
+    ).textContent = prediccion;
 
     document.getElementById(
 
         "consejo-texto"
 
-    ).textContent =
-        consejo;
+    ).textContent = consejo;
 
 
-    // TEXTO PARA COMPARTIR
-
-    textoCompartir =
-
-        "🔮 MI DESTINO BRAWLER\n\n" +
-
-        signo.emoji +
-        " " +
-        signo.nombre +
-        "\n\n" +
-
-        "Mi trío: " +
-        trio.nombre +
-        "\n" +
-
-        trio.brawlers.join(
-            " · "
-        ) +
-
-        "\n\n✨ " +
-        prediccion +
-
-        "\n\n" +
-        consejo +
-
-        "\n\nDescubre el tuyo en:\n" +
-
-        window.location.href.split(
-            "?"
-        )[0];
-
-
-    // MARCAR SIGNO ELEGIDO
+    // MARCAR SIGNO
 
     document.querySelectorAll(
 
@@ -931,8 +1011,6 @@ function mostrarDestino(indiceSigno) {
     );
 
 
-    // MOSTRAR RESULTADO
-
     resultado.hidden = false;
 
     resultado.scrollIntoView({
@@ -947,7 +1025,698 @@ function mostrarDestino(indiceSigno) {
 
 
 // ========================================
-// COMPARTIR
+// DIBUJAR TARJETA PNG
+// ========================================
+
+function crearImagenDestino() {
+
+    if (!destinoActual) return null;
+
+    const canvas = document.createElement(
+        "canvas"
+    );
+
+    canvas.width = 1080;
+
+    canvas.height = 1920;
+
+    const ctx = canvas.getContext("2d");
+
+    const W = canvas.width;
+
+    const H = canvas.height;
+
+
+    // FONDO
+
+    const fondo = ctx.createLinearGradient(
+
+        0, 0, W, H
+
+    );
+
+    fondo.addColorStop(
+        0,
+        "#101d49"
+    );
+
+    fondo.addColorStop(
+        0.55,
+        "#39218b"
+    );
+
+    fondo.addColorStop(
+        1,
+        "#101d49"
+    );
+
+    ctx.fillStyle = fondo;
+
+    ctx.fillRect(
+        0, 0, W, H
+    );
+
+
+    // ESTRELLAS DECORATIVAS
+
+    ctx.fillStyle = "#ffffff";
+
+    for (let i = 0; i < 65; i++) {
+
+        const x =
+
+            (
+                i * 173 + 91
+            ) % W;
+
+        const y =
+
+            (
+                i * 311 + 73
+            ) % H;
+
+        const radio =
+
+            i % 4 === 0
+                ? 3
+                : 1.5;
+
+        ctx.beginPath();
+
+        ctx.arc(
+
+            x,
+
+            y,
+
+            radio,
+
+            0,
+
+            Math.PI * 2
+
+        );
+
+        ctx.fill();
+
+    }
+
+
+    // FUNCIONES DE DIBUJO
+
+    function texto(
+
+        contenido,
+
+        x,
+
+        y,
+
+        tamaño,
+
+        color = "#ffffff",
+
+        peso = "bold",
+
+        alineacion = "center"
+
+    ) {
+
+        ctx.fillStyle = color;
+
+        ctx.font =
+
+            peso +
+            " " +
+            tamaño +
+            "px Arial, sans-serif";
+
+        ctx.textAlign = alineacion;
+
+        ctx.textBaseline = "middle";
+
+        ctx.fillText(
+
+            contenido,
+
+            x,
+
+            y
+
+        );
+
+    }
+
+
+    function caja(
+
+        x,
+
+        y,
+
+        ancho,
+
+        alto,
+
+        color,
+
+        borde = null
+
+    ) {
+
+        ctx.fillStyle = color;
+
+        ctx.fillRect(
+
+            x,
+
+            y,
+
+            ancho,
+
+            alto
+
+        );
+
+        if (borde) {
+
+            ctx.strokeStyle = borde;
+
+            ctx.lineWidth = 5;
+
+            ctx.strokeRect(
+
+                x,
+
+                y,
+
+                ancho,
+
+                alto
+
+            );
+
+        }
+
+    }
+
+
+    // Ajustar texto largo a varias líneas.
+
+    function textoEnLineas(
+
+        contenido,
+
+        x,
+
+        y,
+
+        anchoMaximo,
+
+        tamaño,
+
+        altoLinea,
+
+        color = "#ffffff",
+
+        peso = "normal"
+
+    ) {
+
+        ctx.font =
+
+            peso +
+            " " +
+            tamaño +
+            "px Arial, sans-serif";
+
+        ctx.fillStyle = color;
+
+        ctx.textAlign = "center";
+
+        ctx.textBaseline = "middle";
+
+        const palabras =
+
+            contenido.split(/\s+/);
+
+        const lineas = [];
+
+        let linea = "";
+
+
+        palabras.forEach(
+
+            function(palabra) {
+
+                const prueba =
+
+                    linea
+
+                        ? linea + " " + palabra
+
+                        : palabra;
+
+
+                if (
+
+                    ctx.measureText(
+                        prueba
+                    ).width > anchoMaximo &&
+
+                    linea
+
+                ) {
+
+                    lineas.push(linea);
+
+                    linea = palabra;
+
+                } else {
+
+                    linea = prueba;
+
+                }
+
+            }
+
+        );
+
+
+        if (linea) {
+
+            lineas.push(linea);
+
+        }
+
+
+        lineas.forEach(
+
+            function(lineaActual, indice) {
+
+                ctx.fillText(
+
+                    lineaActual,
+
+                    x,
+
+                    y + indice * altoLinea,
+
+                    anchoMaximo
+
+                );
+
+            }
+
+        );
+
+        return y + lineas.length * altoLinea;
+
+    }
+
+
+    // ====================================
+    // CABECERA DE LA IMAGEN
+    // ====================================
+
+    texto(
+
+        "⭐ ANXANWOMAN",
+
+        540,
+
+        135,
+
+        64,
+
+        "#ffda36"
+
+    );
+
+
+    texto(
+
+        "🔮 MI DESTINO BRAWLER",
+
+        540,
+
+        245,
+
+        58
+
+    );
+
+
+    // NICK
+
+    const nick = obtenerNick();
+
+    const tituloNick = nick
+
+        ? "EL DESTINO DE " + nick
+
+        : "TU DESTINO ESTÁ ESCRITO";
+
+
+    textoEnLineas(
+
+        tituloNick,
+
+        540,
+
+        345,
+
+        880,
+
+        51,
+
+        62,
+
+        "#ffffff",
+
+        "bold"
+
+    );
+
+
+    // SIGNO
+
+    caja(
+
+        130,
+
+        455,
+
+        820,
+
+        120,
+
+        "#30216f",
+
+        "#a080ff"
+
+    );
+
+
+    texto(
+
+        destinoActual.signo.emoji +
+        " " +
+        destinoActual.signo.nombre.toUpperCase(),
+
+        540,
+
+        515,
+
+        58,
+
+        "#ffda36"
+
+    );
+
+
+    texto(
+
+        "ESTA SEMANA",
+
+        540,
+
+        625,
+
+        32,
+
+        "#d8e5ff"
+
+    );
+
+
+    // ====================================
+    // TRÍO
+    // ====================================
+
+    texto(
+
+        "TU TRÍO DEL DESTINO",
+
+        540,
+
+        720,
+
+        43,
+
+        "#ffffff"
+
+    );
+
+
+    texto(
+
+        destinoActual.trio.icono +
+        " " +
+        destinoActual.trio.nombre,
+
+        540,
+
+        805,
+
+        46,
+
+        "#ffda36"
+
+    );
+
+
+    const posiciones = [
+
+        200,
+
+        540,
+
+        880
+
+    ];
+
+
+    destinoActual.trio.brawlers.forEach(
+
+        function(nombre, indice) {
+
+            const centro =
+
+                posiciones[indice];
+
+
+            caja(
+
+                centro - 145,
+
+                875,
+
+                290,
+
+                225,
+
+                "#243d83",
+
+                "#7958ff"
+
+            );
+
+
+            texto(
+
+                "⭐",
+
+                centro,
+
+                950,
+
+                55
+
+            );
+
+
+            texto(
+
+                nombre.toUpperCase(),
+
+                centro,
+
+                1035,
+
+                39,
+
+                "#ffffff"
+
+            );
+
+        }
+
+    );
+
+
+    // ====================================
+    // PREDICCIÓN
+    // ====================================
+
+    caja(
+
+        85,
+
+        1160,
+
+        910,
+
+        410,
+
+        "#30216f",
+
+        "#a080ff"
+
+    );
+
+
+    texto(
+
+        "✨ TU PREDICCIÓN",
+
+        540,
+
+        1225,
+
+        48,
+
+        "#ffda36"
+
+    );
+
+
+    textoEnLineas(
+
+        destinoActual.prediccion,
+
+        540,
+
+        1310,
+
+        790,
+
+        37,
+
+        51,
+
+        "#ffffff",
+
+        "normal"
+
+    );
+
+
+    // ====================================
+    // FIRMA Y LLAMADA A COMPARTIR
+    // ====================================
+
+    texto(
+
+        "¿Y A TI QUÉ TRÍO TE TOCA?",
+
+        540,
+
+        1660,
+
+        43,
+
+        "#ffffff"
+
+    );
+
+
+    texto(
+
+        "@anxanwoman",
+
+        540,
+
+        1740,
+
+        51,
+
+        "#ffda36"
+
+    );
+
+
+    texto(
+
+        "anxan-gif.github.io/AnxanWoman/",
+
+        540,
+
+        1810,
+
+        31,
+
+        "#d8e5ff"
+
+    );
+
+
+    return canvas;
+
+}
+
+
+// ========================================
+// GUARDAR PNG
+// ========================================
+
+function guardarImagen(
+
+    archivo,
+
+    nombreArchivo
+
+) {
+
+    const enlace = document.createElement(
+        "a"
+    );
+
+    const url = URL.createObjectURL(
+        archivo
+    );
+
+    enlace.href = url;
+
+    enlace.download = nombreArchivo;
+
+    document.body.appendChild(
+        enlace
+    );
+
+    enlace.click();
+
+    enlace.remove();
+
+    setTimeout(
+
+        function() {
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
+
+        60000
+
+    );
+
+}
+
+
+// ========================================
+// COMPARTIR IMAGEN
 // ========================================
 
 document.getElementById(
@@ -960,71 +1729,214 @@ document.getElementById(
 
     async function() {
 
-        if (!textoCompartir) return;
+        if (!destinoActual) return;
 
-        if (navigator.share) {
 
-            try {
+        const boton = this;
 
-                await navigator.share({
+        boton.disabled = true;
 
-                    title:
-                        "Mi Destino Brawler",
+        boton.textContent =
 
-                    text:
-                        textoCompartir
+            "🔮 CREANDO TU IMAGEN...";
+
+
+        try {
+
+            const canvas =
+
+                crearImagenDestino();
+
+
+            const archivo = await new Promise(
+
+                function(resolve) {
+
+                    canvas.toBlob(
+
+                        resolve,
+
+                        "image/png"
+
+                    );
+
+                }
+
+            );
+
+
+            if (!archivo) {
+
+                throw new Error(
+
+                    "No se pudo crear la imagen"
+
+                );
+
+            }
+
+
+            const nombreSeguro =
+
+                obtenerNick()
+
+                    .toLowerCase()
+
+                    .normalize("NFD")
+
+                    .replace(
+
+                        /[\u0300-\u036f]/g,
+
+                        ""
+
+                    )
+
+                    .replace(
+
+                        /[^a-z0-9_-]+/g,
+
+                        "-"
+
+                    )
+
+                    .slice(0, 24)
+
+                || "brawler";
+
+
+            const nombreArchivo =
+
+                "destino-" +
+
+                nombreSeguro +
+
+                ".png";
+
+
+            const imagen = new File(
+
+                [archivo],
+
+                nombreArchivo,
+
+                {
+                    type: "image/png"
+                }
+
+            );
+
+
+            // Compartir archivo cuando
+            // el móvil lo permita.
+
+            const puedeCompartir =
+
+                navigator.share &&
+
+                navigator.canShare &&
+
+                navigator.canShare({
+
+                    files: [imagen]
 
                 });
 
-            } catch (error) {
 
-                // Si cancela compartir,
-                // no hacemos nada.
+            if (puedeCompartir) {
 
-            }
+                try {
 
-        } else if (
+                    await navigator.share({
 
-            navigator.clipboard &&
-            navigator.clipboard.writeText
+                        files: [imagen],
 
-        ) {
+                        title:
+                            "Mi Destino Brawler",
 
-            try {
+                        text:
 
-                await navigator.clipboard.writeText(
+                            "🔮 Descubre tu " +
+                            "Destino Brawler en " +
+                            "AnxanWoman: " +
+                            "https://anxan-gif.github.io/AnxanWoman/destino.html"
 
-                    textoCompartir
+                    });
+
+                } catch (error) {
+
+                    // Si la persona cancela,
+                    // no descargamos nada.
+
+                    if (
+
+                        error.name !==
+                        "AbortError"
+
+                    ) {
+
+                        guardarImagen(
+
+                            archivo,
+
+                            nombreArchivo
+
+                        );
+
+                        alert(
+
+                            "No se pudo abrir " +
+                            "el menú de compartir. " +
+                            "Hemos intentado " +
+                            "guardar tu PNG 💙"
+
+                        );
+
+                    }
+
+                }
+
+            } else {
+
+                // Alternativa para
+                // navegadores sin compartir.
+
+                guardarImagen(
+
+                    archivo,
+
+                    nombreArchivo
 
                 );
 
                 alert(
 
-                    "¡Destino copiado! " +
-                    "Ya puedes compartirlo 💙"
-
-                );
-
-            } catch (error) {
-
-                alert(
-
-                    "No se ha podido copiar. " +
-                    "Puedes hacer una captura " +
-                    "de tu resultado."
+                    "¡Imagen creada! 💙 " +
+                    "Hemos intentado guardar " +
+                    "tu PNG para que puedas " +
+                    "compartirlo."
 
                 );
 
             }
 
-        } else {
+        } catch (error) {
 
             alert(
 
-                "Haz una captura de tu " +
-                "resultado para compartirlo 💙"
+                "No se pudo generar " +
+                "la imagen. Inténtalo " +
+                "de nuevo."
 
             );
+
+        } finally {
+
+            boton.disabled = false;
+
+            boton.textContent =
+
+                "📤 COMPARTIR MI DESTINO";
 
         }
 
@@ -1061,11 +1973,12 @@ document.getElementById(
 
 
 // ========================================
-// ACTUALIZAR AL VOLVER A LA PESTAÑA
+// ACTUALIZAR AL VOLVER
 // ========================================
 
 let semanaMostrada =
     obtenerSemana();
+
 
 document.addEventListener(
 
@@ -1113,4 +2026,5 @@ document.addEventListener(
 </script>
 
 </body>
+
 </html>
