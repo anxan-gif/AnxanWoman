@@ -1,9 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Crea tu propio reto de Brawl Stars con las ruletas de AnxanWoman">
 
 <title>Ruletas | AnxanWoman</title>
 
@@ -11,16 +18,16 @@
 
 <style>
 
-/* =========================
+/* ========================================
    RULETAS ANXANWOMAN
-========================= */
+======================================== */
 
 * {
     box-sizing: border-box;
 }
 
 .roulette-page {
-    max-width: 1150px;
+    max-width: 900px;
     margin: auto;
     padding: 25px 16px 70px;
     text-align: center;
@@ -28,8 +35,8 @@
 
 .roulette-page h1 {
     font-size: clamp(32px, 7vw, 64px);
-    margin: 20px 0 8px;
     line-height: 1.05;
+    margin: 20px 0 8px;
 }
 
 .roulette-page h1 span {
@@ -41,11 +48,13 @@
     margin-bottom: 28px;
 }
 
-/* TARJETAS */
+/* ========================================
+   TRES TARJETAS
+======================================== */
 
 .roulette-tabs {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
     margin-bottom: 28px;
 }
@@ -80,31 +89,27 @@
     margin-bottom: 6px;
 }
 
-/* ÁREA PRINCIPAL */
+/* ========================================
+   PANEL DE LA RULETA
+======================================== */
 
-.roulette-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: 22px;
-    align-items: start;
-}
-
-.roulette-panel,
-.roulette-list-panel {
+.roulette-panel {
+    width: 100%;
     min-width: 0;
     background: #101f50;
     border: 3px solid #4765c4;
     border-radius: 24px;
-    padding: 18px;
+    padding: 22px;
 }
 
-.roulette-panel h2,
-.roulette-list-panel h2 {
+.roulette-panel h2 {
     margin: 0 0 18px;
     color: white;
 }
 
-/* RUEDA */
+/* ========================================
+   RUEDA CIRCULAR
+======================================== */
 
 .wheel-wrap {
     position: relative;
@@ -124,17 +129,21 @@
         0 0 32px #ffd23d77;
 }
 
+/* Flecha superior */
+
 .wheel-pointer {
     position: absolute;
     z-index: 5;
-    top: -16px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: clamp(38px, 6vw, 65px);
+    font-size: clamp(35px, 6vw, 60px);
     line-height: 1;
     filter: drop-shadow(0 3px 2px #000);
     pointer-events: none;
 }
+
+/* Centro de la rueda */
 
 .wheel-center {
     position: absolute;
@@ -153,7 +162,9 @@
     pointer-events: none;
 }
 
-/* BOTÓN */
+/* ========================================
+   BOTÓN GIRAR
+======================================== */
 
 #spin-button {
     display: block;
@@ -176,6 +187,16 @@
     cursor: wait;
 }
 
+.spin-price {
+    color: #ffd43b;
+    font-weight: 900;
+    margin: 15px 0;
+}
+
+/* ========================================
+   RESULTADO
+======================================== */
+
 .roulette-result {
     min-height: 65px;
     margin-top: 22px;
@@ -184,52 +205,14 @@
     border: 2px solid #8859ff;
     border-radius: 15px;
     color: white;
-    font-size: 20px;
+    font-size: clamp(17px, 4vw, 23px);
     font-weight: 900;
-}
-
-/* LISTADO */
-
-#search-brawler {
-    width: 100%;
-    padding: 13px;
-    border: 2px solid #5072d1;
-    border-radius: 12px;
-    background: #0c1940;
-    color: white;
-    font: inherit;
-    margin-bottom: 15px;
-}
-
-#search-brawler::placeholder {
-    color: #9cb3e5;
-}
-
-.roulette-items {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    max-height: 570px;
-    overflow-y: auto;
-    padding: 3px;
-}
-
-.roulette-item {
-    padding: 9px 5px;
-    border-radius: 10px;
-    background: #243d83;
-    color: white;
-    font-size: 13px;
-    font-weight: 700;
     overflow-wrap: anywhere;
 }
 
-.roulette-item.selected {
-    background: #ffce2f;
-    color: #211640;
-}
-
-/* RETO FINAL */
+/* ========================================
+   RETO FINAL
+======================================== */
 
 .challenge-summary {
     margin-top: 30px;
@@ -255,6 +238,7 @@
     background: #39218b;
     border: 2px solid #8859ff;
     color: white;
+    min-width: 0;
 }
 
 .challenge-result-card:nth-child(2) {
@@ -286,13 +270,11 @@
     font-weight: 900;
 }
 
-/* MÓVIL */
+/* ========================================
+   MÓVIL
+======================================== */
 
 @media (max-width: 750px) {
-
-    .roulette-layout {
-        grid-template-columns: 1fr;
-    }
 
     .roulette-tabs {
         gap: 7px;
@@ -307,8 +289,7 @@
         font-size: 26px;
     }
 
-    .roulette-panel,
-    .roulette-list-panel {
+    .roulette-panel {
         padding: 12px;
     }
 
@@ -331,7 +312,13 @@
 
 </head>
 
+
 <body>
+
+
+<!-- ========================================
+     CABECERA
+======================================== -->
 
 <header>
 
@@ -346,7 +333,9 @@
         </div>
 
         <div class="user-points">
+
             ⚡ <span id="header-points">0</span>
+
         </div>
 
     </div>
@@ -354,285 +343,475 @@
 </header>
 
 
+<!-- ========================================
+     PÁGINA DE RULETAS
+======================================== -->
+
 <main class="roulette-page">
 
-    <a href="index.html" class="btn"
-       style="display:inline-block;text-decoration:none;margin-bottom:15px;">
+
+    <!-- VOLVER -->
+
+    <a href="index.html"
+       class="btn"
+       style="display:inline-block;
+              text-decoration:none;
+              margin-bottom:15px;">
 
         ← VOLVER
 
     </a>
 
+
     <h1>
+
         CREA TU PROPIO <span>RETO</span>
+
     </h1>
 
+
     <p class="roulette-subtitle">
+
         ¡Gira las tres ruletas y deja que el azar decida!
+
     </p>
 
 
-    <!-- TRES TARJETAS -->
+    <!-- ====================================
+         TARJETAS PARA ELEGIR RULETA
+    ==================================== -->
 
     <div class="roulette-tabs">
 
+
         <button class="roulette-tab active"
-                data-type="brawlers">
+                data-type="brawlers"
+                type="button">
 
             <span class="tab-icon">🎮</span>
+
             BRAWLERS
 
         </button>
 
+
         <button class="roulette-tab"
-                data-type="modes">
+                data-type="modes"
+                type="button">
 
             <span class="tab-icon">🗺️</span>
+
             MODOS
 
         </button>
 
+
         <button class="roulette-tab"
-                data-type="trophies">
+                data-type="trophies"
+                type="button">
 
             <span class="tab-icon">🏆</span>
+
             COPAS
 
         </button>
 
-    </div>
-
-
-    <div class="roulette-layout">
-
-        <!-- RUEDA GRANDE -->
-
-        <section class="roulette-panel">
-
-            <h2 id="wheel-title">
-                🎮 RULETA DE BRAWLERS
-            </h2>
-
-            <div class="wheel-wrap">
-
-                <canvas id="wheel"
-                        width="900"
-                        height="900">
-                </canvas>
-
-                <div class="wheel-pointer">
-                    📍
-                </div>
-
-                <div class="wheel-center">
-                    ⭐
-                </div>
-
-            </div>
-
-            <button id="spin-button"
-                    type="button">
-
-                🎰 GIRAR RULETA
-
-            </button>
-
-            <div class="roulette-result"
-                 id="roulette-result"
-                 aria-live="polite">
-
-                ¿QUIÉN TE TOCARÁ? 👀
-
-            </div>
-
-        </section>
-
-
-        <!-- LISTA DE PARTICIPANTES -->
-
-        <aside class="roulette-list-panel">
-
-            <h2 id="list-title">
-                TODOS LOS BRAWLERS
-            </h2>
-
-            <input
-                id="search-brawler"
-                type="search"
-                placeholder="🔎 Buscar brawler..."
-            >
-
-            <div class="roulette-items"
-                 id="roulette-items">
-            </div>
-
-        </aside>
 
     </div>
 
 
-    <!-- RETO ACTUAL -->
+    <!-- ====================================
+         RULETA GRANDE
+    ==================================== -->
+
+    <section class="roulette-panel">
+
+
+        <h2 id="wheel-title">
+
+            🎮 RULETA DE BRAWLERS
+
+        </h2>
+
+
+        <div class="wheel-wrap">
+
+
+            <canvas id="wheel"
+                    width="900"
+                    height="900">
+
+            </canvas>
+
+
+            <div class="wheel-pointer">
+
+                🔻
+
+            </div>
+
+
+            <div class="wheel-center">
+
+                ⭐
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PRECIO -->
+
+        <p class="spin-price">
+
+            CADA GIRO CUESTA 2 ⚡
+
+        </p>
+
+
+        <!-- BOTÓN -->
+
+        <button id="spin-button"
+                type="button">
+
+            🎰 GIRAR RULETA · 2 ⚡
+
+        </button>
+
+
+        <!-- RESULTADO -->
+
+        <div class="roulette-result"
+             id="roulette-result"
+             aria-live="polite">
+
+            ¿QUIÉN TE TOCARÁ? 👀
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ====================================
+         TU RETO ACTUAL
+    ==================================== -->
 
     <section class="challenge-summary">
 
-        <h2>🔥 TU RETO ACTUAL</h2>
+
+        <h2>
+
+            🔥 TU RETO ACTUAL
+
+        </h2>
+
 
         <div class="challenge-results">
+
 
             <div class="challenge-result-card">
 
                 🎮
+
                 <strong>BRAWLER</strong>
 
                 <span id="result-brawler">
+
                     ???
+
                 </span>
 
             </div>
+
 
             <div class="challenge-result-card">
 
                 🗺️
+
                 <strong>MODO</strong>
 
                 <span id="result-mode">
+
                     ???
+
                 </span>
 
             </div>
+
 
             <div class="challenge-result-card">
 
                 🏆
+
                 <strong>OBJETIVO</strong>
 
                 <span id="result-trophies">
+
                     ???
+
                 </span>
 
             </div>
 
+
         </div>
 
+
         <p id="challenge-message">
+
             Gira las tres ruletas para crear tu reto completo.
+
         </p>
 
+
     </section>
+
 
 </main>
 
 
+<!-- ========================================
+     PIE DE PÁGINA
+======================================== -->
+
 <footer>
 
     <p>
+
         Hecho con 💙 por
         <strong>AnxanWoman</strong>
+
     </p>
 
-    <p style="margin-top:10px;font-size:12px;">
+    <p style="margin-top:10px; font-size:12px;">
+
         Este contenido no está afiliado,
         respaldado ni patrocinado por Supercell.
+
     </p>
 
 </footer>
 
 
+<!-- ========================================
+     JAVASCRIPT
+     TODO EL CÓDIGO VA AQUÍ ABAJO
+======================================== -->
+
 <script>
+
 
 // ========================================
 // RAYITOS
 // ========================================
 
-document.getElementById("header-points")
-    .textContent =
-    Number(localStorage.getItem("anxanRayos")) || 0;
+const COSTE_GIRO = 2;
+
+const contadorRayos =
+    document.getElementById("header-points");
+
+
+function obtenerRayos() {
+
+    return Number(
+        localStorage.getItem("anxanRayos")
+    ) || 0;
+
+}
+
+
+function actualizarContador() {
+
+    contadorRayos.textContent =
+        obtenerRayos();
+
+}
+
+
+// Mostrar saldo al abrir
+
+actualizarContador();
 
 
 // ========================================
-// PARTICIPANTES
+// BRAWLERS
 // ========================================
+
+// Lista editable.
+// Conservamos los nombres de tu archivo.
+// No es una lista verificada de todos los
+// brawlers jugables a fecha 23/09/2026.
 
 const brawlers = [
 
-"Shelly", "Nita", "Colt", "Bull", "Brock",
-"El Primo", "Barley", "Poco", "Rosa",
-"Jessie", "Dynamike", "Tick", "8-Bit",
-"Rico", "Darryl", "Penny", "Carl",
-"Jacky", "Gus", "Bo", "Emz", "Stu",
-"Piper", "Pam", "Frank", "Bibi",
-"Bea", "Nani", "Edgar", "Griff",
-"Grom", "Bonnie", "Gale", "Colette",
-"Belle", "Ash", "Lola", "Sam",
-"Mandy", "Maisie", "Hank", "Pearl",
-"Larry & Lawrie", "Angelo", "Berry",
-"Shade", "Meeple", "Mortis", "Tara",
-"Gene", "Max", "Mr. P", "Sprout",
-"Byron", "Squeak", "Gray", "Willow",
-"Doug", "Chuck", "Charlie", "Mico",
-"Melodie", "Lily", "Clancy", "Moe",
-"Juju", "Ollie", "Lumi", "Finx",
-"Jae-yong", "Spike", "Crow", "Leon",
-"Sandy", "Amber", "Meg", "Chester",
-"Cordelius", "Kit", "Draco", "Kenji",
-"Kaze", "Nori", "Damian", "Bolt", "Starr Nova", "Cosmo"
+    "Shelly",
+    "Nita",
+    "Colt",
+    "Bull",
+    "Brock",
+    "El Primo",
+    "Barley",
+    "Poco",
+    "Rosa",
+
+    "Jessie",
+    "Dynamike",
+    "Tick",
+    "8-Bit",
+    "Rico",
+    "Darryl",
+    "Penny",
+    "Carl",
+    "Jacky",
+    "Gus",
+
+    "Bo",
+    "Emz",
+    "Stu",
+    "Piper",
+    "Pam",
+    "Frank",
+    "Bibi",
+    "Bea",
+    "Nani",
+    "Edgar",
+    "Griff",
+    "Grom",
+    "Bonnie",
+
+    "Gale",
+    "Colette",
+    "Belle",
+    "Ash",
+    "Lola",
+    "Sam",
+    "Mandy",
+    "Maisie",
+    "Hank",
+    "Pearl",
+    "Larry & Lawrie",
+    "Angelo",
+    "Berry",
+    "Shade",
+    "Meeple",
+
+    "Mortis",
+    "Tara",
+    "Gene",
+    "Max",
+    "Mr. P",
+    "Sprout",
+    "Byron",
+    "Squeak",
+    "Gray",
+    "Willow",
+    "Doug",
+    "Chuck",
+    "Charlie",
+    "Mico",
+    "Melodie",
+    "Lily",
+    "Clancy",
+    "Moe",
+    "Juju",
+    "Ollie",
+    "Lumi",
+    "Finx",
+    "Jae-yong",
+
+    "Spike",
+    "Crow",
+    "Leon",
+    "Sandy",
+    "Amber",
+    "Meg",
+    "Chester",
+    "Cordelius",
+    "Kit",
+    "Draco",
+    "Kenji",
+    "Kaze",
+
+    "Nori",
+    "Damian",
+    "Bolt",
+    "Starr Nova",
+    "Cosmo"
 
 ];
+
+
+// ========================================
+// MODOS DE JUEGO
+// ========================================
 
 const modes = [
 
-"Atrapagemas",
-"Supervivencia solo",
-"Supervivencia dúo",
-"Supervivencia trío"
-"Balón Brawl",
-"Atraco",
-"Caza estelar",
-"Noqueo",
-"Zona restringida",
-"Duelo",
-"HockeyBrawl",
-"Brawloncesto",
-"Destrucción",
-"Arenas",
+    "Atrapagemas",
+    "Supervivencia solo",
+    "Supervivencia dúo",
+    "Supervivencia trío",
+    "Balón Brawl",
+    "Atraco",
+    "Caza estelar",
+    "Noqueo",
+    "Zona restringida",
+    "Duelo",
+    "HockeyBrawl",
+    "Brawloncesto",
+    "Destrucción",
+    "Arenas"
+
 ];
+
+
+// ========================================
+// OBJETIVOS DE COPAS
+// ========================================
 
 const trophies = [
 
-"+10 trofeos",
-"+20 trofeos",
-"+25 trofeos",
-"+30 trofeos",
-"+50 trofeos",
-"+75 trofeos",
-"+100 trofeos",
-"+150 trofeos",
-"+200 trofeos"
+    "+10 trofeos",
+    "+20 trofeos",
+    "+25 trofeos",
+    "+30 trofeos",
+    "+50 trofeos",
+    "+75 trofeos",
+    "+100 trofeos",
+    "+150 trofeos",
+    "+200 trofeos"
 
 ];
 
+
+// ========================================
+// COLECCIONES
+// ========================================
+
 const collections = {
+
     brawlers: brawlers,
+
     modes: modes,
+
     trophies: trophies
+
 };
+
 
 const titles = {
-    brawlers: "🎮 RULETA DE BRAWLERS",
-    modes: "🗺️ RULETA DE MODOS",
-    trophies: "🏆 RULETA DE COPAS"
-};
 
-const listTitles = {
-    brawlers: "TODOS LOS BRAWLERS",
-    modes: "MODOS DE JUEGO",
-    trophies: "OBJETIVOS DE COPAS"
-};
+    brawlers:
+        "🎮 RULETA DE BRAWLERS",
 
-const resultIds = {
-    brawlers: "result-brawler",
-    modes: "result-mode",
-    trophies: "result-trophies"
+    modes:
+        "🗺️ RULETA DE MODOS",
+
+    trophies:
+        "🏆 RULETA DE COPAS"
+
 };
 
 
@@ -640,9 +819,11 @@ const resultIds = {
 // ELEMENTOS
 // ========================================
 
-const canvas = document.getElementById("wheel");
+const canvas =
+    document.getElementById("wheel");
 
-const ctx = canvas.getContext("2d");
+const ctx =
+    canvas.getContext("2d");
 
 const spinButton =
     document.getElementById("spin-button");
@@ -650,11 +831,13 @@ const spinButton =
 const resultText =
     document.getElementById("roulette-result");
 
-const listElement =
-    document.getElementById("roulette-items");
+const tabs =
+    document.querySelectorAll(".roulette-tab");
 
-const searchInput =
-    document.getElementById("search-brawler");
+
+// ========================================
+// ESTADO DE LA RULETA
+// ========================================
 
 let currentType = "brawlers";
 
@@ -662,10 +845,17 @@ let rotation = 0;
 
 let spinning = false;
 
-let selectedResults = {
+
+// Resultados de las tres ruletas
+
+const selectedResults = {
+
     brawlers: null,
+
     modes: null,
+
     trophies: null
+
 };
 
 
@@ -675,17 +865,24 @@ let selectedResults = {
 
 function drawWheel() {
 
-    const items = collections[currentType];
+    const items =
+        collections[currentType];
 
-    const count = items.length;
+    const count =
+        items.length;
 
-    const center = canvas.width / 2;
+    const center =
+        canvas.width / 2;
 
-    const radius = center - 12;
+    const radius =
+        center - 12;
 
-    const slice = Math.PI * 2 / count;
+    const slice =
+        Math.PI * 2 / count;
+
 
     const colors = [
+
         "#ffcf35",
         "#f04b83",
         "#7651e8",
@@ -693,7 +890,9 @@ function drawWheel() {
         "#31caa3",
         "#ff9146",
         "#4379ed"
+
     ];
+
 
     ctx.clearRect(
         0,
@@ -701,6 +900,7 @@ function drawWheel() {
         canvas.width,
         canvas.height
     );
+
 
     ctx.save();
 
@@ -711,11 +911,15 @@ function drawWheel() {
 
     items.forEach(function(name, index) {
 
+
         const start =
             index * slice - Math.PI / 2;
 
         const end =
             start + slice;
+
+
+        // Segmento
 
         ctx.beginPath();
 
@@ -731,19 +935,22 @@ function drawWheel() {
 
         ctx.closePath();
 
+
         ctx.fillStyle =
             colors[index % colors.length];
 
         ctx.fill();
 
-        ctx.strokeStyle = "#101b45";
+
+        ctx.strokeStyle =
+            "#101b45";
 
         ctx.lineWidth = 2;
 
         ctx.stroke();
 
 
-        // NOMBRES EN LA RUEDA
+        // Nombre dentro del segmento
 
         ctx.save();
 
@@ -756,24 +963,36 @@ function drawWheel() {
             0
         );
 
-        ctx.rotate(Math.PI / 2);
+        ctx.rotate(
+            Math.PI / 2
+        );
 
-        ctx.fillStyle = "#ffffff";
 
-        ctx.strokeStyle = "#10102b";
+        ctx.fillStyle =
+            "#ffffff";
 
-        ctx.lineWidth = 4;
+        ctx.strokeStyle =
+            "#10102b";
 
-        ctx.textAlign = "center";
+        ctx.lineWidth = 3;
 
-        ctx.textBaseline = "middle";
+        ctx.textAlign =
+            "center";
+
+        ctx.textBaseline =
+            "middle";
+
 
         const fontSize =
             count > 50 ? 11 :
             count > 20 ? 15 : 24;
 
+
         ctx.font =
-            "bold " + fontSize + "px Arial";
+            "bold " +
+            fontSize +
+            "px Arial";
+
 
         ctx.strokeText(
             name,
@@ -787,107 +1006,96 @@ function drawWheel() {
             0
         );
 
+
         ctx.restore();
 
     });
+
 
     ctx.restore();
 
 }
 
 
-<!-- LISTA OCULTA PARA CONSERVAR EL FUNCIONAMIENTO -->
-
-<aside style="display:none;">
-
-    <h2 id="list-title"></h2>
-
-    <input
-        id="search-brawler"
-        type="search"
-    >
-
-    <div id="roulette-items"></div>
-
-</aside>
-
 // ========================================
-// CAMBIAR DE RULETA
+// CAMBIAR ENTRE LAS TRES RULETAS
 // ========================================
 
 function changeType(type) {
 
-    if (spinning) return;
+    if (spinning) {
+        return;
+    }
+
 
     currentType = type;
 
     rotation = 0;
 
+
     document.getElementById("wheel-title")
-        .textContent = titles[type];
+        .textContent =
+        titles[type];
 
-    document.getElementById("list-title")
-        .textContent = listTitles[type];
 
-    document.querySelectorAll(".roulette-tab")
-        .forEach(function(tab) {
+    tabs.forEach(function(tab) {
 
-            tab.classList.toggle(
-                "active",
-                tab.dataset.type === type
-            );
+        tab.classList.toggle(
 
-        });
+            "active",
 
-    searchInput.value = "";
+            tab.dataset.type === type
 
-    searchInput.placeholder =
-        type === "brawlers"
-        ? "🔎 Buscar brawler..."
-        : "🔎 Buscar opción...";
+        );
 
-    resultText.textContent =
-        selectedResults[type]
-        ? "Último resultado: " + selectedResults[type]
-        : "¡GIRA LA RULETA! 👀";
+    });
 
-    updateList();
+
+    if (selectedResults[type]) {
+
+        resultText.textContent =
+            "Último resultado: " +
+            selectedResults[type];
+
+    } else {
+
+        resultText.textContent =
+            "¡GIRA LA RULETA! 👀";
+
+    }
+
 
     drawWheel();
 
 }
 
 
-document.querySelectorAll(".roulette-tab")
-    .forEach(function(tab) {
+// ========================================
+// ACTIVAR LAS TARJETAS
+// ========================================
 
-        tab.addEventListener(
-            "click",
-            function() {
+tabs.forEach(function(tab) {
 
-                changeType(tab.dataset.type);
+    tab.addEventListener(
+        "click",
+        function() {
 
-            }
-        );
+            changeType(
+                tab.dataset.type
+            );
 
-    });
+        }
+    );
 
-
-searchInput.addEventListener(
-    "input",
-    function() {
-
-        updateList(searchInput.value);
-
-    }
-);
+});
 
 
 // ========================================
-// RETO FINAL
+// ACTUALIZAR RETO FINAL
 // ========================================
 
 function updateChallenge() {
+
 
     const brawler =
         selectedResults.brawlers;
@@ -898,29 +1106,52 @@ function updateChallenge() {
     const trophyGoal =
         selectedResults.trophies;
 
+
     document.getElementById("result-brawler")
-        .textContent = brawler || "???";
+        .textContent =
+        brawler || "???";
+
 
     document.getElementById("result-mode")
-        .textContent = mode || "???";
+        .textContent =
+        mode || "???";
+
 
     document.getElementById("result-trophies")
-        .textContent = trophyGoal || "???";
+        .textContent =
+        trophyGoal || "???";
+
 
     const message =
         document.getElementById("challenge-message");
 
-    if (brawler && mode && trophyGoal) {
+
+    if (
+        brawler &&
+        mode &&
+        trophyGoal
+    ) {
 
         message.textContent =
-            "🔥 ¡TU RETO ESTÁ LISTO! Juega con " +
-            brawler + " en " + mode +
-            " y consigue " + trophyGoal + ".";
+
+            "🔥 ¡TU RETO ESTÁ LISTO! " +
+
+            "Juega con " +
+            brawler +
+
+            " en " +
+            mode +
+
+            " y consigue " +
+            trophyGoal +
+            ".";
 
     } else {
 
         message.textContent =
-            "Gira las tres ruletas para crear tu reto completo.";
+
+            "Gira las tres ruletas " +
+            "para crear tu reto completo.";
 
     }
 
@@ -929,22 +1160,77 @@ function updateChallenge() {
 
 // ========================================
 // GIRAR RULETA
+// COSTE: 2 RAYITOS
 // ========================================
 
 spinButton.addEventListener(
     "click",
     function() {
 
-        if (spinning) return;
+
+        // No permitir giros simultáneos
+
+        if (spinning) {
+            return;
+        }
+
+
+        // Consultar saldo actual
+
+        let rayos =
+            obtenerRayos();
+
+
+        // Comprobar saldo suficiente
+
+        if (rayos < COSTE_GIRO) {
+
+            resultText.textContent =
+
+                "⚡ Necesitas 2 Rayitos " +
+                "para girar. " +
+                "¡Completa el reto diario!";
+
+            return;
+
+        }
+
+
+        // ====================================
+        // DESCONTAR EXACTAMENTE 2 RAYITOS
+        // ====================================
+
+        rayos -= COSTE_GIRO;
+
+
+        localStorage.setItem(
+
+            "anxanRayos",
+
+            rayos
+
+        );
+
+
+        actualizarContador();
+
+
+        // ====================================
+        // PREPARAR GIRO
+        // ====================================
 
         spinning = true;
+
 
         spinButton.disabled = true;
 
         spinButton.textContent =
             "🎰 GIRANDO...";
 
+
         resultText.textContent =
+
+            "⚡ -2 RAYITOS · " +
             "¡EL DESTINO ESTÁ DECIDIENDO!";
 
 
@@ -954,6 +1240,9 @@ spinButton.addEventListener(
         const count =
             items.length;
 
+
+        // Elegir ganador
+
         const selectedIndex =
             Math.floor(
                 Math.random() * count
@@ -962,44 +1251,77 @@ spinButton.addEventListener(
         const selectedName =
             items[selectedIndex];
 
+
         const slice =
             Math.PI * 2 / count;
+
+
+        // ====================================
+        // CALCULAR GIRO
+        // ====================================
+
+        const fullCircle =
+            Math.PI * 2;
 
 
         // El centro del segmento ganador
-        // terminará bajo la flecha superior.
+        // debe terminar bajo la flecha.
 
         const desiredAngle =
+
             -(selectedIndex + 0.5) * slice;
 
+
         const currentAngle =
-            rotation % (Math.PI * 2);
+
+            (
+                rotation % fullCircle +
+                fullCircle
+
+            ) % fullCircle;
+
 
         const adjustment =
+
             (
                 desiredAngle -
                 currentAngle +
-                Math.PI * 2
-            ) % (Math.PI * 2);
+                fullCircle
+
+            ) % fullCircle;
+
 
         const startRotation =
             rotation;
 
+
         const finalRotation =
+
             startRotation +
-            Math.PI * 2 * 6 +
+
+            fullCircle * 6 +
+
             adjustment;
 
-        const duration = 4500;
+
+        const duration =
+            4500;
+
 
         const startTime =
             performance.now();
 
 
+        // ====================================
+        // ANIMACIÓN
+        // ====================================
+
         function animate(now) {
+
 
             const elapsed =
                 now - startTime;
+
 
             const progress =
                 Math.min(
@@ -1011,233 +1333,80 @@ spinButton.addEventListener(
             // Frenado progresivo
 
             const eased =
+
                 1 - Math.pow(
                     1 - progress,
                     4
                 );
 
+
             rotation =
+
                 startRotation +
+
                 (
                     finalRotation -
                     startRotation
+
                 ) * eased;
+
 
             drawWheel();
 
+
+            // Seguir girando
 
             if (progress < 1) {
 
                 requestAnimationFrame(
                     animate
                 );
-
-            } else {
-
-                rotation =
-                    finalRotation;
-
-                drawWheel();
-
-                selectedResults[currentType] =
-                    selectedName;
-
-                resultText.textContent =
-                    "🏆 ¡TE HA TOCADO " +
-                    selectedName + "!";
-
-                spinButton.textContent =
-                    "🔄 VOLVER A GIRAR";
-
-                spinButton.disabled =
-                    false;
-
-                spinning = false;
-
-                updateList(searchInput.value);
-
-                updateChallenge();
 
             }
 
-        }
 
-        requestAnimationFrame(
-            animate
-        );
+            // =================================
+            // TERMINAR GIRO
+            // =================================
 
-    }
-);
+            else {
 
-
-// ========================================
-// GIRAR RULETA - COSTE 2 RAYITOS
-// ========================================
-
-const COSTE_GIRO = 2;
-
-spinButton.addEventListener(
-    "click",
-    function() {
-
-        if (spinning) return;
-
-        // Consultar los Rayitos actuales
-
-        let rayos =
-            Number(
-                localStorage.getItem("anxanRayos")
-            ) || 0;
-
-
-        // Comprobar si tiene suficientes Rayitos
-
-        if (rayos < COSTE_GIRO) {
-
-            resultText.textContent =
-                "⚡ ¡Necesitas 2 Rayitos para girar! " +
-                "Completa el reto diario para conseguir más.";
-
-            return;
-
-        }
-
-
-        // Descontar los 2 Rayitos
-
-        rayos -= COSTE_GIRO;
-
-        localStorage.setItem(
-            "anxanRayos",
-            rayos
-        );
-
-
-        // Actualizar contador de la cabecera
-
-        document.getElementById("header-points")
-            .textContent = rayos;
-
-
-        // Comenzar giro
-
-        spinning = true;
-
-        spinButton.disabled = true;
-
-        spinButton.textContent =
-            "🎰 GIRANDO...";
-
-        resultText.textContent =
-            "⚡ -2 RAYITOS · ¡EL DESTINO ESTÁ DECIDIENDO!";
-
-
-        const items =
-            collections[currentType];
-
-        const count =
-            items.length;
-
-        const selectedIndex =
-            Math.floor(
-                Math.random() * count
-            );
-
-        const selectedName =
-            items[selectedIndex];
-
-        const slice =
-            Math.PI * 2 / count;
-
-
-        // Colocar el ganador bajo la flecha
-
-        const desiredAngle =
-            -(selectedIndex + 0.5) * slice;
-
-        const currentAngle =
-            rotation % (Math.PI * 2);
-
-        const adjustment =
-            (
-                desiredAngle -
-                currentAngle +
-                Math.PI * 2
-            ) % (Math.PI * 2);
-
-        const startRotation =
-            rotation;
-
-        const finalRotation =
-            startRotation +
-            Math.PI * 2 * 6 +
-            adjustment;
-
-        const duration = 4500;
-
-        const startTime =
-            performance.now();
-
-
-        function animate(now) {
-
-            const elapsed =
-                now - startTime;
-
-            const progress =
-                Math.min(
-                    elapsed / duration,
-                    1
-                );
-
-
-            // Frenado progresivo
-
-            const eased =
-                1 - Math.pow(
-                    1 - progress,
-                    4
-                );
-
-            rotation =
-                startRotation +
-                (
-                    finalRotation -
-                    startRotation
-                ) * eased;
-
-            drawWheel();
-
-
-            if (progress < 1) {
-
-                requestAnimationFrame(
-                    animate
-                );
-
-            } else {
 
                 rotation =
                     finalRotation;
 
+
                 drawWheel();
+
+
+                // Guardar ganador
+                // de la ruleta actual
 
                 selectedResults[currentType] =
                     selectedName;
 
+
                 resultText.textContent =
+
                     "🏆 ¡TE HA TOCADO " +
-                    selectedName + "!";
+                    selectedName +
+                    "!";
+
 
                 spinButton.textContent =
+
                     "🔄 VOLVER A GIRAR · 2 ⚡";
 
+
                 spinButton.disabled =
                     false;
 
-                spinning = false;
 
-                updateList(searchInput.value);
+                spinning =
+                    false;
+
+
+                // Actualizar reto combinado
 
                 updateChallenge();
 
@@ -1245,18 +1414,29 @@ spinButton.addEventListener(
 
         }
 
+
+        // Iniciar animación
+
         requestAnimationFrame(
             animate
         );
 
     }
 );
+
+
+// ========================================
+// INICIAR PÁGINA
+// ========================================
 
 changeType("brawlers");
 
 updateChallenge();
 
+
 </script>
 
+
 </body>
+
 </html>
