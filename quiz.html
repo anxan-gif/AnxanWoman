@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz diario | AnxanWoman</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+.quiz-page {
+    max-width: 850px;
+    margin: auto;
+    padding: 25px 16px 70px;
+    text-align: center;
+}
+
+.quiz-page h1 {
+    font-size: clamp(32px, 7vw, 58px);
+    line-height: 1.08;
+    margin: 20px 0 10px;
+}
+
+.quiz-page h1 span {
+    color: #ffda36;
+}
+
+.quiz-subtitle {
+    color: #d8e5ff;
+    font-size: 17px;
+}
+
+.quiz-info {
+    background: #101f50;
+    border: 3px solid #4765c4;
+    border-radius: 20px;
+    padding: 18px;
+    margin: 25px 0;
+}
+
+.quiz-info strong {
+    color: #ffda36;
+}
+
+.quiz-progress {
+    color: #d8e5ff;
+    font-weight: 800;
+    margin-top: 12px;
+}
+
+.question-card {
+    background: #101f50;
+    border: 3px solid #7958ff;
+    border-radius: 24px;
+    padding: 22px;
+    margin: 22px 0;
+    text-align: left;
+}
+
+.question-label {
+    color: #ffda36;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.question-title {
+    color: white;
+    font-size: clamp(20px, 5vw, 27px);
+    line-height: 1.3;
+    margin: 0 0 22px;
+}
+
+.answer-options {
+    display: grid;
+    gap: 12px;
+}
+
+.answer-button {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #5878d7;
+    border-radius: 14px;
+    background: #243d83;
+    color: white;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 800;
+    text-align: left;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+}
+
+.answer-button:active:not(:disabled) {
+    transform: scale(.99);
+}
+
+.answer-button:disabled {
+    cursor: default;
+    opacity: .8;
+}
+
+.answer-button.correct {
+    background: #137b51;
+    border-color: #5df0a1;
+    color: white;
+    opacity: 1;
+}
+
+.answer-button.incorrect {
+    background: #a52b45;
+    border-color: #ff8299;
+    color: white;
+    opacity: 1;
+}
+
+.answer-feedback {
+    min-height: 25px;
+    margin: 18px 0 0;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.answer-feedback.success {
+    color: #6ff5a8;
+}
+
+.answer-feedback.failure {
+    color: #ffb3c2;
+}
+
+.quiz-summary {
+    background: #39218b;
+    border: 3px solid #a080ff;
+    border-radius: 22px;
+    padding: 22px;
+    margin-top: 28px;
+}
+
+.quiz-summary h2 {
+    color: #ffda36;
+    margin-top: 0;
+}
+
+.quiz-summary p {
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.quiz-summary[hidden] {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    .question-card {
+        padding: 15px;
+    }
+
+    .answer-button {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+
+        <div class="logo"
+             onclick="location.href='index.html'"
+             style="cursor:pointer;">
+
+            ⭐ ANXAN<span>WOMAN</span>
+
+        </div>
+
+        <div class="user-points">
+            ⚡ <span id="header-points">0</span>
+        </div>
+
+    </div>
+</header>
+
+<main class="quiz-page">
+
+    <a href="index.html"
+       class="btn"
+       style="display:inline-block;
+              text-decoration:none;
+              margin-bottom:15px;">
+
+        ← VOLVER
+
+    </a>
+
+    <h1>
+        ¿CUÁNTO SABES DE <span>BRAWL STARS?</span>
+    </h1>
+
+    <p class="quiz-subtitle">
+        🧠 ¡Demuestra cuánto sabes y gana Rayitos!
+    </p>
+
+    <section class="quiz-info">
+
+        <p>
+            📅 <strong>QUIZ DIARIO</strong>
+        </p>
+
+        <p>
+            Dos preguntas al día ·
+            <strong>+6 ⚡ por acierto</strong>
+        </p>
+
+        <p>
+            ¡Puedes conseguir hasta
+            <strong>12 ⚡ diarios!</strong>
+        </p>
+
+        <div class="quiz-progress"
+             id="quiz-progress">
+
+            Preguntas respondidas: 0/2
+
+        </div>
+
+    </section>
+
+    <div id="questions-container"></div>
+
+    <section class="quiz-summary"
+             id="quiz-summary"
+             hidden>
+
+        <h2>🏆 ¡QUIZ COMPLETADO!</h2>
+
+        <p id="quiz-final-result"></p>
+
+        <p>
+            📅 ¡Vuelve mañana para responder
+            dos preguntas nuevas!
+        </p>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <p>
+        Hecho con 💙 por
+        <strong>AnxanWoman</strong>
+    </p>
+
+    <p style="margin-top:10px;font-size:12px;">
+        Este contenido no está afiliado,
+        respaldado ni patrocinado por Supercell.
+    </p>
+
+</footer>
+
+<script>
+
+// ========================================
+// CONFIGURACIÓN
+// ========================================
+
+const PUNTOS_POR_ACIERTO = 6;
+
+const CLAVE_RAYITOS = "anxanRayos";
+
+const CLAVE_QUIZ = "anxanQuizDiarioV1";
+
+
+// ========================================
+// BANCO DE PREGUNTAS
+// ========================================
+
+// Son preguntas sobre aspectos conocidos
+// de Brawl Stars. Podemos ampliar este
+// banco más adelante.
+
+const preguntas = [
+
+    {
+        pregunta: "¿Cuál es el ataque principal de Shelly?",
+        opciones: [
+            "Disparar con una escopeta",
+            "Lanzar cartas",
+            "Disparar cohetes",
+            "Lanzar botellas"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué personaje lanza un oso con su Súper?",
+        opciones: [
+            "Jessie",
+            "Nita",
+            "Penny",
+            "Rosa"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué modo consiste en reunir y conservar gemas?",
+        opciones: [
+            "Atraco",
+            "Noqueo",
+            "Atrapagemas",
+            "Balón Brawl"
+        ],
+        correcta: 2
+    },
+
+    {
+        pregunta: "¿Qué brawler utiliza una pala como arma?",
+        opciones: [
+            "Mortis",
+            "Colt",
+            "Spike",
+            "Brock"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué hay que marcar para ganar en Balón Brawl?",
+        opciones: [
+            "Dos goles",
+            "Diez eliminaciones",
+            "Tres gemas",
+            "Un punto de captura"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué brawler ataca lanzando botellas?",
+        opciones: [
+            "Bull",
+            "Barley",
+            "Leon",
+            "Frank"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué personaje coloca una torreta con su Súper?",
+        opciones: [
+            "Jessie",
+            "Poco",
+            "Edgar",
+            "El Primo"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Cuál de estos brawlers utiliza cohetes?",
+        opciones: [
+            "Rosa",
+            "Brock",
+            "Nita",
+            "Bibi"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué brawler ataca con notas musicales?",
+        opciones: [
+            "Poco",
+            "Colt",
+            "Carl",
+            "Bull"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué personaje puede volverse invisible con su Súper?",
+        opciones: [
+            "Frank",
+            "Leon",
+            "Penny",
+            "Pam"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué brawler utiliza dinamita?",
+        opciones: [
+            "Dynamike",
+            "Gus",
+            "Rico",
+            "Max"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué brawler lanza su pico como ataque?",
+        opciones: [
+            "Spike",
+            "Carl",
+            "Crow",
+            "Gene"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Cuál es el objetivo principal de Atraco?",
+        opciones: [
+            "Marcar goles",
+            "Destruir la caja fuerte enemiga",
+            "Recoger diez gemas",
+            "Capturar una zona"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué brawler utiliza una bate de béisbol?",
+        opciones: [
+            "Bibi",
+            "Bea",
+            "Amber",
+            "Tara"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué personaje lanza dagas envenenadas?",
+        opciones: [
+            "Crow",
+            "Sandy",
+            "Poco",
+            "Ash"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué modo se juega intentando sobrevivir hasta el final?",
+        opciones: [
+            "Atrapagemas",
+            "Supervivencia",
+            "Atraco",
+            "Balón Brawl"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué brawler tiene un ataque que rebota entre enemigos?",
+        opciones: [
+            "Jessie",
+            "Bull",
+            "El Primo",
+            "Rosa"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué brawler lanza espinas?",
+        opciones: [
+            "Frank",
+            "Spike",
+            "Max",
+            "Pam"
+        ],
+        correcta: 1
+    },
+
+    {
+        pregunta: "¿Qué brawler puede saltar sobre los enemigos con su Súper?",
+        opciones: [
+            "El Primo",
+            "Penny",
+            "Barley",
+            "Gus"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué personaje utiliza cartas como ataque?",
+        opciones: [
+            "Tara",
+            "Nita",
+            "Shelly",
+            "Brock"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué brawler utiliza un paraguas como arma?",
+        opciones: [
+            "Piper",
+            "Bull",
+            "Tick",
+            "Bo"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué brawler lanza minas con su ataque?",
+        opciones: [
+            "Tick",
+            "Poco",
+            "Rosa",
+            "Colt"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué personaje utiliza un bate y puede devolver ataques con su Súper?",
+        opciones: [
+            "Bibi",
+            "Edgar",
+            "Nani",
+            "Bea"
+        ],
+        correcta: 0
+    },
+
+    {
+        pregunta: "¿Qué brawler puede curar a sus aliados con su Súper?",
+        opciones: [
+            "Poco",
+            "Brock",
+            "Mortis",
+            "Bull"
+        ],
+        correcta: 0
+    }
+
+];
+
+
+// ========================================
+// ELEMENTOS DE LA PÁGINA
+// ========================================
+
+const contadorRayitos =
+    document.getElementById("header-points");
+
+const contenedor =
+    document.getElementById("questions-container");
+
+const progreso =
+    document.getElementById("quiz-progress");
+
+const resumen =
+    document.getElementById("quiz-summary");
+
+const resultadoFinal =
+    document.getElementById("quiz-final-result");
+
+
+// ========================================
+// FECHA LOCAL DEL VISITANTE
+// ========================================
+
+function fechaDeHoy() {
+
+    const hoy = new Date();
+
+    const anio = hoy.getFullYear();
+
+    const mes = String(
+        hoy.getMonth() + 1
+    ).padStart(2, "0");
+
+    const dia = String(
+        hoy.getDate()
+    ).padStart(2, "0");
+
+    return anio + "-" + mes + "-" + dia;
+
+}
+
+
+// ========================================
+// ELEGIR DOS PREGUNTAS DEL DÍA
+// ========================================
+
+function preguntasDelDia() {
+
+    const hoy = new Date();
+
+    const numeroDia = Math.floor(
+
+        Date.UTC(
+            hoy.getFullYear(),
+            hoy.getMonth(),
+            hoy.getDate()
+        ) / 86400000
+
+    );
+
+    // Recorremos el banco de dos en dos.
+    // Así las dos preguntas son distintas.
+
+    const primera =
+
+        (numeroDia * 2) %
+        preguntas.length;
+
+    const segunda =
+
+        (primera + 1) %
+        preguntas.length;
+
+    return [
+
+        preguntas[primera],
+
+        preguntas[segunda]
+
+    ];
+
+}
+
+
+// ========================================
+// RAYITOS
+// ========================================
+
+function obtenerRayitos() {
+
+    return Number(
+        localStorage.getItem(CLAVE_RAYITOS)
+    ) || 0;
+
+}
+
+
+function actualizarRayitos() {
+
+    contadorRayitos.textContent =
+        obtenerRayitos();
+
+}
+
+
+// ========================================
+// ESTADO DIARIO DEL QUIZ
+// ========================================
+
+function cargarEstado() {
+
+    let guardado = null;
+
+    try {
+
+        guardado = JSON.parse(
+
+            localStorage.getItem(CLAVE_QUIZ)
+
+        );
+
+    } catch (error) {
+
+        guardado = null;
+
+    }
+
+    // Si ya se respondió hoy,
+    // recuperamos las respuestas.
+
+    if (
+        guardado &&
+        guardado.fecha === fechaDeHoy() &&
+        Array.isArray(guardado.respuestas) &&
+        guardado.respuestas.length === 2
+    ) {
+
+        return guardado;
+
+    }
+
+    // Día nuevo: se reinicia el quiz,
+    // pero NO se borran los Rayitos.
+
+    return {
+
+        fecha: fechaDeHoy(),
+
+        respuestas: [null, null]
+
+    };
+
+}
+
+
+let estado = cargarEstado();
+
+
+// ========================================
+// GUARDAR RESPUESTAS
+// ========================================
+
+function guardarEstado() {
+
+    localStorage.setItem(
+
+        CLAVE_QUIZ,
+
+        JSON.stringify(estado)
+
+    );
+
+}
+
+
+// ========================================
+// RESPONDER UNA PREGUNTA
+// ========================================
+
+function responder(
+    numeroPregunta,
+    opcionElegida
+) {
+
+    // Si ha cambiado el día mientras
+    // la página estaba abierta,
+    // cargamos el nuevo quiz.
+
+    if (
+        estado.fecha !== fechaDeHoy()
+    ) {
+
+        estado = cargarEstado();
+
+        renderizarQuiz();
+
+        return;
+
+    }
+
+    // Impedir repetir la pregunta.
+
+    if (
+        estado.respuestas[numeroPregunta] !== null
+    ) {
+
+        return;
+
+    }
+
+    const preguntasHoy =
+        preguntasDelDia();
+
+    const pregunta =
+        preguntasHoy[numeroPregunta];
+
+    const acierto =
+
+        opcionElegida ===
+        pregunta.correcta;
+
+    // Guardar la respuesta antes
+    // de actualizar la pantalla.
+
+    estado.respuestas[numeroPregunta] = {
+
+        elegida: opcionElegida,
+
+        acierto: acierto
+
+    };
+
+    guardarEstado();
+
+    // Sumar solo si ha acertado.
+
+    if (acierto) {
+
+        const nuevosRayitos =
+
+            obtenerRayitos() +
+            PUNTOS_POR_ACIERTO;
+
+        localStorage.setItem(
+
+            CLAVE_RAYITOS,
+
+            nuevosRayitos
+
+        );
+
+    }
+
+    actualizarRayitos();
+
+    renderizarQuiz();
+
+}
+
+
+// ========================================
+// CREAR LAS DOS PREGUNTAS
+// ========================================
+
+function renderizarQuiz() {
+
+    const preguntasHoy =
+        preguntasDelDia();
+
+    contenedor.innerHTML = "";
+
+    let respondidas = 0;
+
+    let aciertos = 0;
+
+
+    preguntasHoy.forEach(
+        function(pregunta, numeroPregunta) {
+
+            const respuestaGuardada =
+
+                estado.respuestas[numeroPregunta];
+
+            const respondida =
+
+                respuestaGuardada !== null;
+
+            if (respondida) {
+
+                respondidas++;
+
+                if (respuestaGuardada.acierto) {
+
+                    aciertos++;
+
+                }
+
+            }
+
+
+            // TARJETA
+
+            const tarjeta =
+                document.createElement("section");
+
+            tarjeta.className =
+                "question-card";
+
+
+            // NÚMERO DE PREGUNTA
+
+            const etiqueta =
+                document.createElement("div");
+
+            etiqueta.className =
+                "question-label";
+
+            etiqueta.textContent =
+
+                "PREGUNTA " +
+                (numeroPregunta + 1) +
+                " DE 2 · +6 ⚡";
+
+
+            // ENUNCIADO
+
+            const titulo =
+                document.createElement("h2");
+
+            titulo.className =
+                "question-title";
+
+            titulo.textContent =
+                pregunta.pregunta;
+
+
+            // OPCIONES
+
+            const opciones =
+                document.createElement("div");
+
+            opciones.className =
+                "answer-options";
+
+
+            pregunta.opciones.forEach(
+                function(opcion, indice) {
+
+                    const boton =
+                        document.createElement("button");
+
+                    boton.type =
+                        "button";
+
+                    boton.className =
+                        "answer-button";
+
+                    boton.textContent =
+
+                        String.fromCharCode(
+                            65 + indice
+                        ) +
+
+                        ") " + opcion;
+
+
+                    if (respondida) {
+
+                        boton.disabled = true;
+
+                        if (
+                            indice ===
+                            pregunta.correcta
+                        ) {
+
+                            boton.classList.add(
+                                "correct"
+                            );
+
+                        } else if (
+
+                            indice ===
+                            respuestaGuardada.elegida
+
+                        ) {
+
+                            boton.classList.add(
+                                "incorrect"
+                            );
+
+                        }
+
+                    } else {
+
+                        boton.addEventListener(
+
+                            "click",
+
+                            function() {
+
+                                responder(
+                                    numeroPregunta,
+                                    indice
+                                );
+
+                            }
+
+                        );
+
+                    }
+
+
+                    opciones.appendChild(
+                        boton
+                    );
+
+                }
+            );
+
+
+            // MENSAJE DE ACIERTO O FALLO
+
+            const mensaje =
+                document.createElement("p");
+
+            mensaje.className =
+                "answer-feedback";
+
+
+            if (respondida) {
+
+                if (
+                    respuestaGuardada.acierto
+                ) {
+
+                    mensaje.classList.add(
+                        "success"
+                    );
+
+                    mensaje.textContent =
+
+                        "✅ ¡CORRECTO! +6 ⚡";
+
+                } else {
+
+                    mensaje.classList.add(
+                        "failure"
+                    );
+
+                    mensaje.textContent =
+
+                        "❌ ¡CASI! La respuesta " +
+                        "correcta era: " +
+
+                        pregunta.opciones[
+                            pregunta.correcta
+                        ];
+
+                }
+
+            }
+
+
+            tarjeta.appendChild(
+                etiqueta
+            );
+
+            tarjeta.appendChild(
+                titulo
+            );
+
+            tarjeta.appendChild(
+                opciones
+            );
+
+            tarjeta.appendChild(
+                mensaje
+            );
+
+            contenedor.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+
+    // ACTUALIZAR PROGRESO
+
+    progreso.textContent =
+
+        "Preguntas respondidas: " +
+        respondidas +
+        "/2";
+
+
+    // MOSTRAR RESUMEN FINAL
+
+    if (respondidas === 2) {
+
+        resumen.hidden = false;
+
+        resultadoFinal.textContent =
+
+            "Has acertado " +
+            aciertos +
+            " de 2 preguntas y " +
+            "conseguido " +
+
+            (
+                aciertos *
+                PUNTOS_POR_ACIERTO
+            ) +
+
+            " ⚡.";
+
+    } else {
+
+        resumen.hidden = true;
+
+    }
+
+}
+
+
+// ========================================
+// INICIAR QUIZ
+// ========================================
+
+actualizarRayitos();
+
+renderizarQuiz();
+
+
+// Si la página queda abierta de un día
+// para otro, comprobar al volver a ella.
+
+document.addEventListener(
+    "visibilitychange",
+    function() {
+
+        if (
+            !document.hidden &&
+            estado.fecha !== fechaDeHoy()
+        ) {
+
+            estado = cargarEstado();
+
+            actualizarRayitos();
+
+            renderizarQuiz();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
