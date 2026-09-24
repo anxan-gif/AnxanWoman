@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Descubre tu Destino Brawler: un trío y una predicción semanal según tu signo del zodiaco.">
+
+<title>Destino Brawler | AnxanWoman</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+.destino-page {
+    max-width: 950px;
+    margin: auto;
+    padding: 28px 16px 70px;
+    text-align: center;
+}
+
+.destino-title {
+    font-size: clamp(34px, 8vw, 66px);
+    line-height: 1.05;
+    margin: 24px 0 12px;
+}
+
+.destino-title span {
+    color: #ffda36;
+}
+
+.destino-subtitle {
+    color: #d8e5ff;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.destino-intro {
+    background: #101f50;
+    border: 3px solid #7958ff;
+    border-radius: 22px;
+    padding: 20px;
+    margin: 28px 0;
+}
+
+.destino-intro strong {
+    color: #ffda36;
+}
+
+.signos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.signo-button {
+    background: #243d83;
+    border: 2px solid #5878d7;
+    border-radius: 18px;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    padding: 18px 8px;
+    min-width: 0;
+}
+
+.signo-button:hover,
+.signo-button:focus-visible {
+    background: #39218b;
+    border-color: #ffda36;
+}
+
+.signo-button.selected {
+    background: #39218b;
+    border-color: #ffda36;
+}
+
+.signo-emoji {
+    display: block;
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.signo-nombre {
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.resultado {
+    background: #101f50;
+    border: 3px solid #a080ff;
+    border-radius: 26px;
+    padding: 25px 18px;
+    margin-top: 32px;
+}
+
+.resultado[hidden] {
+    display: none;
+}
+
+.resultado-signo {
+    color: #ffda36;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.resultado h2 {
+    font-size: clamp(26px, 6vw, 42px);
+    margin: 14px 0;
+    color: white;
+}
+
+.trio-nombre {
+    color: #ffda36;
+    font-size: 22px;
+    font-weight: 900;
+    margin: 18px 0;
+}
+
+.brawlers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.brawler-card {
+    background: #243d83;
+    border: 2px solid #5878d7;
+    border-radius: 18px;
+    padding: 20px 6px;
+}
+
+.brawler-icon {
+    display: block;
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.brawler-name {
+    color: white;
+    font-size: clamp(14px, 3.5vw, 20px);
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+.prediccion {
+    background: #30216f;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 22px 0;
+    text-align: left;
+}
+
+.prediccion h3 {
+    color: #ffda36;
+    margin: 0 0 12px;
+}
+
+.prediccion p {
+    color: white;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.consejo {
+    color: #d8e5ff;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+.destino-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.destino-actions button {
+    cursor: pointer;
+}
+
+.destino-note {
+    color: #c7d5f5;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 24px;
+}
+
+@media (max-width: 650px) {
+
+    .signos-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .signo-button {
+        padding: 14px 4px;
+    }
+
+    .signo-emoji {
+        font-size: 30px;
+    }
+
+    .signo-nombre {
+        font-size: 13px;
+    }
+
+    .brawler-card {
+        padding: 15px 4px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-content">
+
+        <div class="logo"
+             onclick="location.href='index.html'"
+             style="cursor:pointer;">
+
+            ⭐ ANXAN<span>WOMAN</span>
+
+        </div>
+
+        <div class="user-points">
+
+            ⚡ <span id="header-points">0</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="destino-page">
+
+    <a href="index.html"
+       class="btn"
+       style="display:inline-block;
+              text-decoration:none;">
+
+        ← VOLVER
+
+    </a>
+
+
+    <h1 class="destino-title">
+
+        🔮 TU DESTINO <span>BRAWLER</span>
+
+    </h1>
+
+    <p class="destino-subtitle">
+
+        Las estrellas han elegido tu equipo...
+        ¿Qué te espera esta semana?
+
+    </p>
+
+
+    <section class="destino-intro">
+
+        <p>
+
+            ✨ <strong>ELIGE TU SIGNO DEL ZODIACO</strong>
+
+        </p>
+
+        <p>
+
+            Descubre qué trío de Brawl Stars
+            te representa y qué dicen las estrellas
+            sobre tus próximas partidas.
+
+        </p>
+
+        <p>
+
+            📅 <strong>Nuevo destino cada lunes</strong>
+
+        </p>
+
+    </section>
+
+
+    <div class="signos-grid"
+         id="signos-grid">
+
+    </div>
+
+
+    <section class="resultado"
+             id="resultado"
+             hidden>
+
+        <div class="resultado-signo"
+             id="resultado-signo">
+
+        </div>
+
+        <h2>
+
+            TU TRÍO DEL DESTINO
+
+        </h2>
+
+        <div class="trio-nombre"
+             id="trio-nombre">
+
+        </div>
+
+        <div class="brawlers-grid"
+             id="brawlers-grid">
+
+        </div>
+
+        <div class="prediccion">
+
+            <h3>✨ TU PREDICCIÓN</h3>
+
+            <p id="prediccion-texto"></p>
+
+        </div>
+
+        <p class="consejo"
+           id="consejo-texto">
+
+        </p>
+
+        <div class="destino-actions">
+
+            <button class="btn btn-yellow"
+                    id="compartir-button">
+
+                📤 COMPARTIR MI DESTINO
+
+            </button>
+
+            <button class="btn"
+                    id="cambiar-signo-button">
+
+                🔮 CAMBIAR SIGNO
+
+            </button>
+
+        </div>
+
+        <p class="destino-note">
+
+            Horóscopo de entretenimiento creado
+            para la comunidad de AnxanWoman.
+            No concede ni consume Rayitos.
+
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+
+        Hecho con 💙 por
+        <strong>AnxanWoman</strong>
+
+    </p>
+
+    <p style="margin-top:10px; font-size:12px;">
+
+        Este contenido no está afiliado,
+        respaldado ni patrocinado por Supercell.
+
+    </p>
+
+</footer>
+
+
+<script>
+
+// ========================================
+// CONTADOR DE RAYITOS
+// ========================================
+
+function actualizarContador() {
+
+    const rayitos = Number(
+
+        localStorage.getItem("anxanRayos")
+
+    ) || 0;
+
+    document.getElementById(
+        "header-points"
+    ).textContent = rayitos;
+
+}
+
+actualizarContador();
+
+
+// ========================================
+// SIGNOS DEL ZODIACO
+// ========================================
+
+const signos = [
+
+    { nombre: "Aries", emoji: "♈" },
+    { nombre: "Tauro", emoji: "♉" },
+    { nombre: "Géminis", emoji: "♊" },
+    { nombre: "Cáncer", emoji: "♋" },
+    { nombre: "Leo", emoji: "♌" },
+    { nombre: "Virgo", emoji: "♍" },
+    { nombre: "Libra", emoji: "♎" },
+    { nombre: "Escorpio", emoji: "♏" },
+    { nombre: "Sagitario", emoji: "♐" },
+    { nombre: "Capricornio", emoji: "♑" },
+    { nombre: "Acuario", emoji: "♒" },
+    { nombre: "Piscis", emoji: "♓" }
+
+];
+
+
+// ========================================
+// TRÍOS DE BRAWL STARS
+// ========================================
+
+// Si cambia algún integrante en el juego,
+// solo habrá que editar esta lista.
+
+const trios = [
+
+    {
+        nombre: "ARCADE",
+        brawlers: [
+            "Brock",
+            "Rico",
+            "8-Bit"
+        ],
+        icono: "🕹️"
+    },
+
+    {
+        nombre: "TIENDA DE REGALOS",
+        brawlers: [
+            "Edgar",
+            "Colette",
+            "Griff"
+        ],
+        icono: "🎁"
+    },
+
+    {
+        nombre: "CHATARRERÍA",
+        brawlers: [
+            "Jessie",
+            "Pam",
+            "Nani"
+        ],
+        icono: "🔧"
+    },
+
+    {
+        nombre: "MÍSTICO",
+        brawlers: [
+            "Tara",
+            "Gene",
+            "Sandy"
+        ],
+        icono: "🔮"
+    },
+
+    {
+        nombre: "PIRATAS",
+        brawlers: [
+            "Darryl",
+            "Penny",
+            "Tick"
+        ],
+        icono: "🏴‍☠️"
+    },
+
+    {
+        nombre: "ESPECTÁCULO ACROBÁTICO",
+        brawlers: [
+            "Stu",
+            "Janet",
+            "Bonnie"
+        ],
+        icono: "🎪"
+    }
+
+];
+
+
+// ========================================
+// PREDICCIONES
+// ========================================
+
+const predicciones = [
+
+    "Esta semana tendrás que elegir entre jugar con cabeza o lanzarte a por todas. Tu mejor partida llegará cuando dejes de perseguir eliminaciones y juegues por el objetivo.",
+
+    "Las estrellas anuncian una remontada inesperada. No abandones mentalmente una partida porque empiece mal: todavía puedes darle la vuelta.",
+
+    "Tu mayor poder esta semana será la paciencia. Espera el momento adecuado para usar tu Súper y sorprenderás incluso a tus compañeros.",
+
+    "Se acercan partidas intensas y decisiones difíciles. El secreto estará en confiar en tu equipo y no intentar hacerlo absolutamente todo tú.",
+
+    "Tu destino está lleno de jugadas arriesgadas. Atrévete a probar una estrategia distinta, pero recuerda que retirarse a tiempo también es una victoria.",
+
+    "Esta semana descubrirás que una buena defensa puede ser más espectacular que una eliminación. Protege la ventaja y deja que el rival cometa el error.",
+
+    "Las estrellas te invitan a salir de tu zona de confort. Prueba un brawler que normalmente no elegirías: podrías llevarte una sorpresa.",
+
+    "Una derrota no definirá tu semana. Analiza lo que ha pasado, cambia de estrategia y vuelve a entrar con una idea nueva.",
+
+    "Tu mejor aliado será la coordinación. Una buena jugada compartida puede valer mucho más que tres intentos individuales.",
+
+    "Esta semana tendrás momentos de auténtico protagonista. Aprovecha las oportunidades, pero no olvides mirar el mapa antes de lanzarte.",
+
+    "Las estrellas señalan una semana de aprendizaje. Puede que no todas las partidas salgan como esperas, pero cada una te dará una pista para mejorar.",
+
+    "Tu destino favorece las decisiones inteligentes. No necesitas ser quien más elimine: necesitas estar donde tu equipo más te necesita."
+
+];
+
+
+// ========================================
+// CONSEJOS
+// ========================================
+
+const consejos = [
+
+    "🎯 Consejo brawler: juega por el objetivo, no solo por las eliminaciones.",
+
+    "🛡️ Consejo brawler: conserva tu ventaja cuando tu equipo vaya ganando.",
+
+    "⚡ Consejo brawler: guarda tu Súper para el momento decisivo.",
+
+    "👀 Consejo brawler: mira el mapa antes de entrar en combate.",
+
+    "🤝 Consejo brawler: coordínate con tu equipo para atacar juntos.",
+
+    "🎮 Consejo brawler: prueba una estrategia diferente esta semana."
+
+];
+
+
+// ========================================
+// NÚMERO DE SEMANA
+// ========================================
+
+// Se calcula con la fecha local.
+// Cambia al llegar el lunes.
+
+function obtenerSemana() {
+
+    const hoy = new Date();
+
+    const fecha = new Date(
+
+        Date.UTC(
+
+            hoy.getFullYear(),
+
+            hoy.getMonth(),
+
+            hoy.getDate()
+
+        )
+
+    );
+
+    const dia = fecha.getUTCDay() || 7;
+
+    // El jueves determina el año ISO.
+
+    fecha.setUTCDate(
+
+        fecha.getUTCDate() + 4 - dia
+
+    );
+
+    const inicioAnio = new Date(
+
+        Date.UTC(
+
+            fecha.getUTCFullYear(),
+
+            0,
+
+            1
+
+        )
+
+    );
+
+    const numeroSemana = Math.ceil(
+
+        (
+            (
+                fecha - inicioAnio
+            ) / 86400000 + 1
+        ) / 7
+
+    );
+
+    return (
+
+        fecha.getUTCFullYear() * 53 +
+
+        numeroSemana
+
+    );
+
+}
+
+
+// ========================================
+// ELEMENTOS
+// ========================================
+
+const gridSignos =
+
+    document.getElementById(
+        "signos-grid"
+    );
+
+const resultado =
+
+    document.getElementById(
+        "resultado"
+    );
+
+let signoSeleccionado = null;
+
+let textoCompartir = "";
+
+
+// ========================================
+// CREAR BOTONES DE SIGNOS
+// ========================================
+
+signos.forEach(
+
+    function(signo, indice) {
+
+        const boton =
+
+            document.createElement(
+                "button"
+            );
+
+        boton.type = "button";
+
+        boton.className =
+            "signo-button";
+
+        boton.innerHTML =
+
+            '<span class="signo-emoji">' +
+
+            signo.emoji +
+
+            '</span>' +
+
+            '<span class="signo-nombre">' +
+
+            signo.nombre +
+
+            '</span>';
+
+        boton.addEventListener(
+
+            "click",
+
+            function() {
+
+                mostrarDestino(indice);
+
+            }
+
+        );
+
+        gridSignos.appendChild(
+            boton
+        );
+
+    }
+
+);
+
+
+// ========================================
+// MOSTRAR DESTINO
+// ========================================
+
+function mostrarDestino(indiceSigno) {
+
+    signoSeleccionado =
+        indiceSigno;
+
+    const signo =
+        signos[indiceSigno];
+
+    const semana =
+        obtenerSemana();
+
+    // El trío cambia cada semana.
+
+    const indiceTrio =
+
+        (
+            semana +
+            indiceSigno
+        ) % trios.length;
+
+    const trio =
+        trios[indiceTrio];
+
+    // También cambian la predicción
+    // y el consejo.
+
+    const indicePrediccion =
+
+        (
+            semana * 7 +
+            indiceSigno * 3
+        ) % predicciones.length;
+
+    const indiceConsejo =
+
+        (
+            semana +
+            indiceSigno * 2
+        ) % consejos.length;
+
+    const prediccion =
+
+        predicciones[
+            indicePrediccion
+        ];
+
+    const consejo =
+
+        consejos[
+            indiceConsejo
+        ];
+
+
+    // TÍTULO
+
+    document.getElementById(
+
+        "resultado-signo"
+
+    ).textContent =
+
+        signo.emoji +
+        " " +
+        signo.nombre.toUpperCase() +
+        " · ESTA SEMANA";
+
+
+    // TRÍO
+
+    document.getElementById(
+
+        "trio-nombre"
+
+    ).textContent =
+
+        trio.icono +
+        " " +
+        trio.nombre;
+
+
+    // BRAWLERS
+
+    const gridBrawlers =
+
+        document.getElementById(
+            "brawlers-grid"
+        );
+
+    gridBrawlers.innerHTML = "";
+
+    trio.brawlers.forEach(
+
+        function(nombre) {
+
+            const tarjeta =
+
+                document.createElement(
+                    "div"
+                );
+
+            tarjeta.className =
+                "brawler-card";
+
+            const icono =
+
+                document.createElement(
+                    "span"
+                );
+
+            icono.className =
+                "brawler-icon";
+
+            icono.textContent =
+                "⭐";
+
+            const texto =
+
+                document.createElement(
+                    "span"
+                );
+
+            texto.className =
+                "brawler-name";
+
+            texto.textContent =
+                nombre;
+
+            tarjeta.appendChild(
+                icono
+            );
+
+            tarjeta.appendChild(
+                texto
+            );
+
+            gridBrawlers.appendChild(
+                tarjeta
+            );
+
+        }
+
+    );
+
+
+    // PREDICCIÓN Y CONSEJO
+
+    document.getElementById(
+
+        "prediccion-texto"
+
+    ).textContent =
+        prediccion;
+
+    document.getElementById(
+
+        "consejo-texto"
+
+    ).textContent =
+        consejo;
+
+
+    // TEXTO PARA COMPARTIR
+
+    textoCompartir =
+
+        "🔮 MI DESTINO BRAWLER\n\n" +
+
+        signo.emoji +
+        " " +
+        signo.nombre +
+        "\n\n" +
+
+        "Mi trío: " +
+        trio.nombre +
+        "\n" +
+
+        trio.brawlers.join(
+            " · "
+        ) +
+
+        "\n\n✨ " +
+        prediccion +
+
+        "\n\n" +
+        consejo +
+
+        "\n\nDescubre el tuyo en:\n" +
+
+        window.location.href.split(
+            "?"
+        )[0];
+
+
+    // MARCAR SIGNO ELEGIDO
+
+    document.querySelectorAll(
+
+        ".signo-button"
+
+    ).forEach(
+
+        function(boton, indice) {
+
+            boton.classList.toggle(
+
+                "selected",
+
+                indice === indiceSigno
+
+            );
+
+        }
+
+    );
+
+
+    // MOSTRAR RESULTADO
+
+    resultado.hidden = false;
+
+    resultado.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+// ========================================
+// COMPARTIR
+// ========================================
+
+document.getElementById(
+
+    "compartir-button"
+
+).addEventListener(
+
+    "click",
+
+    async function() {
+
+        if (!textoCompartir) return;
+
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+
+                    title:
+                        "Mi Destino Brawler",
+
+                    text:
+                        textoCompartir
+
+                });
+
+            } catch (error) {
+
+                // Si cancela compartir,
+                // no hacemos nada.
+
+            }
+
+        } else if (
+
+            navigator.clipboard &&
+            navigator.clipboard.writeText
+
+        ) {
+
+            try {
+
+                await navigator.clipboard.writeText(
+
+                    textoCompartir
+
+                );
+
+                alert(
+
+                    "¡Destino copiado! " +
+                    "Ya puedes compartirlo 💙"
+
+                );
+
+            } catch (error) {
+
+                alert(
+
+                    "No se ha podido copiar. " +
+                    "Puedes hacer una captura " +
+                    "de tu resultado."
+
+                );
+
+            }
+
+        } else {
+
+            alert(
+
+                "Haz una captura de tu " +
+                "resultado para compartirlo 💙"
+
+            );
+
+        }
+
+    }
+
+);
+
+
+// ========================================
+// CAMBIAR SIGNO
+// ========================================
+
+document.getElementById(
+
+    "cambiar-signo-button"
+
+).addEventListener(
+
+    "click",
+
+    function() {
+
+        gridSignos.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+    }
+
+);
+
+
+// ========================================
+// ACTUALIZAR AL VOLVER A LA PESTAÑA
+// ========================================
+
+let semanaMostrada =
+    obtenerSemana();
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    function() {
+
+        if (document.hidden) return;
+
+        actualizarContador();
+
+        const semanaActual =
+            obtenerSemana();
+
+        if (
+
+            semanaActual !==
+            semanaMostrada
+
+        ) {
+
+            semanaMostrada =
+                semanaActual;
+
+            if (
+
+                signoSeleccionado !== null
+
+            ) {
+
+                mostrarDestino(
+
+                    signoSeleccionado
+
+                );
+
+            }
+
+        }
+
+    }
+
+);
+
+</script>
+
+</body>
+</html>
