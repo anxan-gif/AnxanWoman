@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Adivina el Brawler con emojis - AnxanWoman">
+
+    <title>Adivina el Brawler | AnxanWoman</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* ========================================
+           ADIVINA EL BRAWLER - EMOJIS
+        ======================================== */
+
+        .emoji-page {
+            width: 92%;
+            max-width: 850px;
+            margin: 45px auto 70px;
+            text-align: center;
+        }
+
+        .emoji-title {
+            font-size: clamp(34px, 7vw, 58px);
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow:
+                0 5px 0 #06397d,
+                0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .emoji-title span {
+            color: var(--amarillo);
+        }
+
+        .emoji-subtitle {
+            color: var(--texto-secundario);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+
+        /* TARJETA PRINCIPAL */
+
+        .emoji-game-card {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #7047ff,
+                    #168cff
+                );
+
+            border: 3px solid rgba(255,255,255,0.18);
+            border-radius: 30px;
+
+            padding: 35px 25px;
+
+            box-shadow: var(--sombra);
+        }
+
+        .emoji-game-card::before {
+            content: "❓";
+
+            position: absolute;
+            right: -25px;
+            bottom: -50px;
+
+            font-size: 190px;
+            opacity: 0.08;
+
+            transform: rotate(-12deg);
+
+            pointer-events: none;
+        }
+
+
+        /* INFORMACIÓN SUPERIOR */
+
+        .emoji-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        .emoji-round,
+        .emoji-difficulty {
+            background: rgba(0,0,0,0.22);
+
+            border: 2px solid rgba(255,255,255,0.13);
+            border-radius: 30px;
+
+            padding: 8px 15px;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .emoji-difficulty {
+            color: var(--amarillo);
+        }
+
+
+        /* ZONA DE EMOJIS */
+
+        .emoji-display {
+            min-height: 190px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 15px 0 15px;
+
+            padding: 25px 15px;
+
+            background: rgba(3, 16, 48, 0.38);
+
+            border: 3px solid rgba(255,255,255,0.13);
+            border-radius: 25px;
+
+            box-shadow:
+                inset 0 0 30px rgba(0,0,0,0.18);
+        }
+
+        #emoji-clues {
+            font-size: clamp(65px, 13vw, 105px);
+
+            letter-spacing: 10px;
+
+            line-height: 1.2;
+
+            filter:
+                drop-shadow(
+                    0 6px 0 rgba(0,0,0,0.18)
+                );
+
+            animation: emojiEntrada 0.25s ease;
+        }
+
+
+        /* CONTADOR DE PISTAS */
+
+        .clue-counter {
+            color: rgba(255,255,255,0.75);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* RESPUESTA */
+
+        .answer-box {
+            display: none;
+
+            margin: 20px auto 25px;
+            padding: 18px;
+
+            max-width: 500px;
+
+            background: var(--amarillo);
+            color: #302000;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 7px 0 var(--amarillo-oscuro);
+
+            animation: answerEntrada 0.3s ease;
+        }
+
+        .answer-box.show {
+            display: block;
+        }
+
+        .answer-small {
+            display: block;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 3px;
+
+            opacity: 0.7;
+        }
+
+        #answer-name {
+            font-size: clamp(32px, 7vw, 50px);
+            font-weight: 700;
+        }
+
+
+        /* BOTONES */
+
+        .emoji-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 10px;
+        }
+
+        .emoji-btn {
+            border: none;
+
+            border-radius: 15px;
+
+            padding: 14px 23px;
+
+            font-family: inherit;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s ease,
+                filter 0.15s ease;
+        }
+
+        .emoji-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+        }
+
+        .emoji-btn:active {
+            transform: translateY(2px);
+        }
+
+        .btn-clue {
+            background: var(--amarillo);
+            color: #302000;
+
+            box-shadow:
+                0 6px 0 var(--amarillo-oscuro);
+        }
+
+        .btn-reveal {
+            background: #ff4fa3;
+            color: white;
+
+            box-shadow:
+                0 6px 0 #b52a70;
+        }
+
+        .btn-next {
+            display: none;
+
+            background: #39d98a;
+            color: #073523;
+
+            box-shadow:
+                0 6px 0 #17945c;
+        }
+
+        .btn-next.show {
+            display: inline-block;
+        }
+
+
+        /* BOTONES SECUNDARIOS */
+
+        .emoji-secondary {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .secondary-btn {
+            border: 2px solid rgba(255,255,255,0.15);
+
+            border-radius: 13px;
+
+            padding: 10px 15px;
+
+            background: rgba(0,0,0,0.2);
+            color: white;
+
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+
+        /* MODO GRABACIÓN */
+
+        body.recording-mode header,
+        body.recording-mode footer,
+        body.recording-mode .emoji-title,
+        body.recording-mode .emoji-subtitle,
+        body.recording-mode .emoji-secondary {
+            display: none;
+        }
+
+        body.recording-mode .emoji-page {
+            min-height: 100vh;
+
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.recording-mode .emoji-game-card {
+            width: 100%;
+            max-width: 800px;
+        }
+
+
+        /* ANIMACIONES */
+
+        @keyframes emojiEntrada {
+
+            from {
+                opacity: 0;
+                transform: scale(0.75);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+        @keyframes answerEntrada {
+
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotate(-2deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+
+        }
+
+
+        /* MÓVIL */
+
+        @media (max-width: 550px) {
+
+            .emoji-page {
+                width: 94%;
+                margin-top: 25px;
+            }
+
+            .emoji-game-card {
+                padding: 25px 15px;
+                border-radius: 23px;
+            }
+
+            .emoji-display {
+                min-height: 160px;
+                padding: 20px 8px;
+            }
+
+            #emoji-clues {
+                letter-spacing: 4px;
+            }
+
+            .emoji-btn {
+                width: 100%;
+            }
+
+            .emoji-top {
+                gap: 5px;
+            }
+
+            .emoji-round,
+            .emoji-difficulty {
+                font-size: 11px;
+                padding: 7px 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+    <div class="header-content">
+
+        <div class="logo"
+             onclick="location.href='index.html'"
+             style="cursor:pointer;">
+
+            ⭐ ANXAN<span>WOMAN</span>
+
+        </div>
+
+        <div class="header-menu">
+
+            <div class="user-points">
+
+                ⚡ <span id="header-points">0</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+    <section class="emoji-page">
+
+
+        <h1 class="emoji-title">
+
+            ADIVINA EL <span>BRAWLER</span>
+
+        </h1>
+
+
+        <p class="emoji-subtitle">
+
+            ¿Podrás descubrirlo solo con emojis?
+
+        </p>
+
+
+
+        <div class="emoji-game-card">
+
+
+            <div class="emoji-top">
+
+                <div class="emoji-round">
+
+                    🎯 RONDA
+                    <span id="round-number">1</span>
+
+                </div>
+
+
+                <div class="emoji-difficulty">
+
+                    🔥 DIFÍCIL
+
+                </div>
+
+            </div>
+
+
+
+            <div class="emoji-display">
+
+                <div id="emoji-clues">
+
+                    ❓
+
+                </div>
+
+            </div>
+
+
+
+            <div class="clue-counter">
+
+                PISTA
+                <span id="current-clue">1</span>
+                DE
+                <span id="total-clues">4</span>
+
+            </div>
+
+
+
+            <div id="answer-box"
+                 class="answer-box">
+
+                <span class="answer-small">
+
+                    EL BRAWLER ERA
+
+                </span>
+
+                <div id="answer-name">
+
+                    ???
+
+                </div>
+
+            </div>
+
+
+
+            <div class="emoji-buttons">
+
+
+                <button id="clue-button"
+                        class="emoji-btn btn-clue">
+
+                    🔍 OTRA PISTA
+
+                </button>
+
+
+                <button id="reveal-button"
+                        class="emoji-btn btn-reveal">
+
+                    👀 REVELAR
+
+                </button>
+
+
+                <button id="next-button"
+                        class="emoji-btn btn-next">
+
+                    ➡️ SIGUIENTE
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="emoji-secondary">
+
+
+                <button id="recording-button"
+                        class="secondary-btn">
+
+                    🎬 MODO GRABACIÓN
+
+                </button>
+
+
+                <button class="secondary-btn"
+                        onclick="location.href='index.html'">
+
+                    🏠 VOLVER
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+
+        Hecho con 💙 por
+        <strong>AnxanWoman</strong>
+
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+// ========================================
+// BRAWLERS Y PISTAS
+// ========================================
+//
+// IMPORTANTE:
+// El orden está pensado para que
+// la primera pista sea la más difícil
+// y la última la más evidente.
+// ========================================
+
+const brawlers = [
+
+    {
+        nombre: "MORTIS",
+        pistas: ["🌙", "🪦", "🦇", "🧛"]
+    },
+
+    {
+        nombre: "SPIKE",
+        pistas: ["🏜️", "🤫", "🌵", "🌵"]
+    },
+
+    {
+        nombre: "SANDY",
+        pistas: ["😴", "🌙", "🏜️", "💤"]
+    },
+
+    {
+        nombre: "CROW",
+        pistas: ["☠️", "🧪", "🗡️", "🐦‍⬛"]
+    },
+
+    {
+        nombre: "LEON",
+        pistas: ["🍭", "👻", "🫥", "🦎"]
+    },
+
+    {
+        nombre: "NITA",
+        pistas: ["🌲", "🐾", "👧", "🐻"]
+    },
+
+    {
+        nombre: "POCO",
+        pistas: ["🎶", "💀", "🇲🇽", "🎸"]
+    },
+
+    {
+        nombre: "DYNAMIKE",
+        pistas: ["⛏️", "💥", "🧨", "👴"]
+    },
+
+    {
+        nombre: "BYRON",
+        pistas: ["💼", "🐍", "🧪", "☠️"]
+    },
+
+    {
+        nombre: "GENE",
+        pistas: ["🪔", "✨", "🧞", "✋"]
+    },
+
+    {
+        nombre: "TARA",
+        pistas: ["🔮", "🃏", "👁️", "🌌"]
+    },
+
+    {
+        nombre: "EMZ",
+        pistas: ["📱", "💜", "☁️", "🧟"]
+    },
+
+    {
+        nombre: "FRANK",
+        pistas: ["🎧", "⚡", "🔨", "🧟"]
+    },
+
+    {
+        nombre: "PIPER",
+        pistas: ["👗", "☂️", "💋", "🎯"]
+    },
+
+    {
+        nombre: "BIBI",
+        pistas: ["🫧", "⚾", "🧢", "🏏"]
+    },
+
+    {
+        nombre: "MAX",
+        pistas: ["⚡", "🥤", "🏃‍♀️", "💨"]
+    },
+
+    {
+        nombre: "SURGE",
+        pistas: ["🥤", "⚡", "🤖", "🦸"]
+    },
+
+    {
+        nombre: "AMBER",
+        pistas: ["🎪", "🔥", "🕯️", "🧯"]
+    },
+
+    {
+        nombre: "COLETTE",
+        pistas: ["📖", "✍️", "😍", "📕"]
+    },
+
+    {
+        nombre: "EDGAR",
+        pistas: ["🖤", "🧣", "😒", "👊"]
+    },
+
+    {
+        nombre: "GRIFF",
+        pistas: ["🪙", "💰", "🧾", "🏪"]
+    },
+
+    {
+        nombre: "GROM",
+        pistas: ["📻", "💣", "🧥", "🧨"]
+    },
+
+    {
+        nombre: "BELLE",
+        pistas: ["⚡", "💰", "🎯", "🤠"]
+    },
+
+    {
+        nombre: "ASH",
+        pistas: ["😡", "🧹", "🗑️", "🛡️"]
+    },
+
+    {
+        nombre: "LOLA",
+        pistas: ["🎬", "💎", "🦊", "⭐"]
+    },
+
+    {
+        nombre: "FANG",
+        pistas: ["🎬", "👟", "🥋", "🦵"]
+    },
+
+    {
+        nombre: "EVE",
+        pistas: ["🌌", "🥚", "👽", "🛸"]
+    },
+
+    {
+        nombre: "JANET",
+        pistas: ["🎤", "⭐", "🚀", "🎶"]
+    },
+
+    {
+        nombre: "OTIS",
+        pistas: ["🎨", "🌊", "🦑", "🤐"]
+    },
+
+    {
+        nombre: "SAM",
+        pistas: ["🤠", "⚙️", "👊", "🥊"]
+    },
+
+    {
+        nombre: "MANDY",
+        pistas: ["🍬", "👑", "🎯", "🍭"]
+    },
+
+    {
+        nombre: "CHESTER",
+        pistas: ["🎁", "🃏", "🤡", "🔔"]
+    },
+
+    {
+        nombre: "R-T",
+        pistas: ["📹", "👁️", "🤖", "📡"]
+    },
+
+    {
+        nombre: "WILLOW",
+        pistas: ["🌊", "🧠", "🌀", "🐸"]
+    },
+
+    {
+        nombre: "MAISIE",
+        pistas: ["🚨", "💨", "🔥", "🦾"]
+    },
+
+    {
+        nombre: "CORDELIUS",
+        pistas: ["🌲", "🍄", "☠️", "🌑"]
+    },
+
+    {
+        nombre: "DOUG",
+        pistas: ["🌭", "💦", "❤️", "🦕"]
+    },
+
+    {
+        nombre: "CHUCK",
+        pistas: ["🎩", "🚂", "🎼", "🚉"]
+    },
+
+    {
+        nombre: "CHARLIE",
+        pistas: ["🎪", "🕸️", "🕷️", "🪀"]
+    },
+
+    {
+        nombre: "MICO",
+        pistas: ["🎤", "🎬", "🍌", "🐒"]
+    },
+
+    {
+        nombre: "MELODIE",
+        pistas: ["🎵", "🎤", "💖", "🎶"]
+    },
+
+    {
+        nombre: "ANGELO",
+        pistas: ["💘", "🦟", "🏹", "💧"]
+    },
+
+    {
+        nombre: "LILY",
+        pistas: ["🌸", "🌑", "🗡️", "🌿"]
+    },
+
+    {
+        nombre: "BERRY",
+        pistas: ["🍦", "🦄", "🍨", "🌈"]
+    },
+
+    {
+        nombre: "MOE",
+        pistas: ["🕳️", "⛏️", "🐀", "🧀"]
+    },
+
+    {
+        nombre: "KENJI",
+        pistas: ["🍣", "⚔️", "🥷", "🐟"]
+    }
+
+];
+
+
+// ========================================
+// VARIABLES
+// ========================================
+
+let disponibles = [];
+
+let actual = null;
+
+let pistaActual = 1;
+
+let ronda = 0;
+
+
+// ========================================
+// ELEMENTOS
+// ========================================
+
+const emojiClues =
+    document.getElementById("emoji-clues");
+
+const clueButton =
+    document.getElementById("clue-button");
+
+const revealButton =
+    document.getElementById("reveal-button");
+
+const nextButton =
+    document.getElementById("next-button");
+
+const answerBox =
+    document.getElementById("answer-box");
+
+const answerName =
+    document.getElementById("answer-name");
+
+const roundNumber =
+    document.getElementById("round-number");
+
+const currentClue =
+    document.getElementById("current-clue");
+
+const totalClues =
+    document.getElementById("total-clues");
+
+const recordingButton =
+    document.getElementById("recording-button");
+
+
+// ========================================
+// BARAJAR
+// ========================================
+
+function barajar(array) {
+
+    const copia = [...array];
+
+    for (
+        let i = copia.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            copia[i],
+            copia[j]
+        ] = [
+            copia[j],
+            copia[i]
+        ];
+
+    }
+
+    return copia;
+
+}
+
+
+// ========================================
+// NUEVA RONDA
+// ========================================
+
+function nuevaRonda() {
+
+    if (disponibles.length === 0) {
+
+        disponibles =
+            barajar(brawlers);
+
+    }
+
+    actual =
+        disponibles.pop();
+
+    pistaActual = 1;
+
+    ronda++;
+
+
+    roundNumber.textContent =
+        ronda;
+
+    currentClue.textContent =
+        pistaActual;
+
+    totalClues.textContent =
+        actual.pistas.length;
+
+
+    answerBox.classList.remove(
+        "show"
+    );
+
+    nextButton.classList.remove(
+        "show"
+    );
+
+
+    clueButton.style.display =
+        "inline-block";
+
+    revealButton.style.display =
+        "inline-block";
+
+
+    actualizarPistas();
+
+}
+
+
+// ========================================
+// MOSTRAR PISTAS
+// ========================================
+
+function actualizarPistas() {
+
+    emojiClues.style.animation =
+        "none";
+
+    void emojiClues.offsetWidth;
+
+    emojiClues.style.animation =
+        "emojiEntrada 0.25s ease";
+
+
+    emojiClues.textContent =
+        actual.pistas
+            .slice(0, pistaActual)
+            .join(" ");
+
+
+    currentClue.textContent =
+        pistaActual;
+
+
+    if (
+        pistaActual >=
+        actual.pistas.length
+    ) {
+
+        clueButton.style.display =
+            "none";
+
+    }
+
+}
+
+
+// ========================================
+// OTRA PISTA
+// ========================================
+
+clueButton.addEventListener(
+
+    "click",
+
+    function() {
+
+        if (
+            pistaActual <
+            actual.pistas.length
+        ) {
+
+            pistaActual++;
+
+            actualizarPistas();
+
+        }
+
+    }
+
+);
+
+
+// ========================================
+// REVELAR RESPUESTA
+// ========================================
+
+revealButton.addEventListener(
+
+    "click",
+
+    function() {
+
+        answerName.textContent =
+            actual.nombre;
+
+        answerBox.classList.add(
+            "show"
+        );
+
+
+        clueButton.style.display =
+            "none";
+
+        revealButton.style.display =
+            "none";
+
+        nextButton.classList.add(
+            "show"
+        );
+
+    }
+
+);
+
+
+// ========================================
+// SIGUIENTE
+// ========================================
+
+nextButton.addEventListener(
+
+    "click",
+
+    function() {
+
+        nuevaRonda();
+
+    }
+
+);
+
+
+// ========================================
+// MODO GRABACIÓN
+// ========================================
+
+recordingButton.addEventListener(
+
+    "click",
+
+    function() {
+
+        document.body.classList.toggle(
+            "recording-mode"
+        );
+
+
+        if (
+            document.body.classList.contains(
+                "recording-mode"
+            )
+        ) {
+
+            recordingButton.textContent =
+                "❌ SALIR DE GRABACIÓN";
+
+        } else {
+
+            recordingButton.textContent =
+                "🎬 MODO GRABACIÓN";
+
+        }
+
+    }
+
+);
+
+
+// ========================================
+// RAYITOS
+// ========================================
+
+function actualizarRayitos() {
+
+    const rayos =
+        Number(
+            localStorage.getItem(
+                "anxanRayos"
+            )
+        ) || 0;
+
+
+    const contador =
+        document.getElementById(
+            "header-points"
+        );
+
+
+    if (contador) {
+
+        contador.textContent =
+            rayos;
+
+    }
+
+}
+
+actualizarRayitos();
+
+
+// ========================================
+// EMPEZAR
+// ========================================
+
+disponibles =
+    barajar(brawlers);
+
+nuevaRonda();
+
+
+</script>
+
+
+</body>
+
+</html>
