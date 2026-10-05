@@ -1,14 +1,9 @@
-
 // ========================================
 // ANXANWOMAN - SISTEMA DE RAYITOS
 // ========================================
 
-// Recuperar Rayitos guardados.
-
 let rayos = Number(
-
     localStorage.getItem("anxanRayos")
-
 ) || 0;
 
 
@@ -18,19 +13,11 @@ let rayos = Number(
 
 function actualizarRayos() {
 
-    // Leer el saldo actualizado para
-    // conservar también los Rayitos
-    // ganados en el quiz o usados
-    // en la ruleta.
-
     rayos = Number(
-
         localStorage.getItem("anxanRayos")
-
     ) || 0;
 
     const contador =
-
         document.getElementById(
             "header-points"
         );
@@ -52,7 +39,6 @@ actualizarRayos();
 // ========================================
 
 const modal =
-
     document.getElementById(
         "anxan-modal"
     );
@@ -68,29 +54,19 @@ function mostrarVentana(
     if (!modal) return;
 
     document.getElementById(
-
         "modal-icon"
-
-    ).textContent =
-        icono;
+    ).textContent = icono;
 
     document.getElementById(
-
         "modal-title"
-
-    ).textContent =
-        titulo;
+    ).textContent = titulo;
 
     document.getElementById(
-
         "modal-text"
-
-    ).textContent =
-        texto;
+    ).textContent = texto;
 
 
     const recompensa =
-
         document.getElementById(
             "modal-reward"
         );
@@ -99,16 +75,13 @@ function mostrarVentana(
         premio;
 
     recompensa.style.display =
-
         premio
             ? "inline-block"
             : "none";
 
 
     document.getElementById(
-
         "modal-button"
-
     ).textContent =
         "CERRAR";
 
@@ -125,9 +98,7 @@ function mostrarVentana(
 // ========================================
 
 document.getElementById(
-
     "modal-button"
-
 )?.addEventListener(
 
     "click",
@@ -143,7 +114,7 @@ document.getElementById(
 );
 
 
-// Cerrar pulsando fuera.
+// Cerrar pulsando fuera
 
 modal?.addEventListener(
 
@@ -151,9 +122,7 @@ modal?.addEventListener(
 
     function(event) {
 
-        if (
-            event.target === modal
-        ) {
+        if (event.target === modal) {
 
             modal.classList.remove(
                 "show"
@@ -171,9 +140,7 @@ modal?.addEventListener(
 // ========================================
 
 document.getElementById(
-
     "progress-button"
-
 )?.addEventListener(
 
     "click",
@@ -183,13 +150,11 @@ document.getElementById(
         actualizarRayos();
 
         const nivel =
-
             Math.floor(
                 rayos / 500
             ) + 1;
 
         const progreso =
-
             rayos % 500;
 
 
@@ -230,9 +195,7 @@ document.getElementById(
 // ========================================
 
 document.getElementById(
-
     "ranking-button"
-
 )?.addEventListener(
 
     "click",
@@ -267,6 +230,383 @@ document.getElementById(
 
 
 // ========================================
+// RETOS DIARIOS
+// ========================================
+
+const retosDiarios = [
+
+    {
+        titulo:
+            "VICTORIA CON UN BRAWLER ALEATORIO",
+
+        texto:
+            "Juega con un Brawler elegido al azar y consigue una victoria."
+    },
+
+    {
+        titulo:
+            "GANA SIN CAMBIAR DE BRAWLER",
+
+        texto:
+            "Consigue 2 victorias seguidas utilizando el mismo Brawler."
+    },
+
+    {
+        titulo:
+            "RETO SIN GADGET",
+
+        texto:
+            "Consigue una victoria sin utilizar ningún gadget."
+    },
+
+    {
+        titulo:
+            "CAMBIA DE CLASE",
+
+        texto:
+            "Juega 3 partidas usando Brawlers de clases diferentes."
+    },
+
+    {
+        titulo:
+            "TU BRAWLER MENOS USADO",
+
+        texto:
+            "Elige uno de tus Brawlers menos utilizados y consigue una victoria."
+    },
+
+    {
+        titulo:
+            "RETO SUPERVIVENCIA",
+
+        texto:
+            "Termina entre los 4 primeros en Supervivencia."
+    },
+
+    {
+        titulo:
+            "RETO DEL AZAR",
+
+        texto:
+            "Usa la Ruleta de AnxanWoman y juega una partida con el Brawler que te toque."
+    }
+
+];
+
+
+// ========================================
+// FECHA LOCAL
+// ========================================
+
+function obtenerFechaReto() {
+
+    const hoy =
+        new Date();
+
+    const año =
+        hoy.getFullYear();
+
+    const mes =
+        String(
+            hoy.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+    const dia =
+        String(
+            hoy.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+    return (
+        año +
+        "-" +
+        mes +
+        "-" +
+        dia
+    );
+
+}
+
+
+// ========================================
+// RETO DEL DÍA
+// ========================================
+
+function obtenerRetoDelDia() {
+
+    const hoy =
+        new Date();
+
+    const inicio =
+        new Date(
+            hoy.getFullYear(),
+            0,
+            0
+        );
+
+    const diferencia =
+        hoy - inicio;
+
+    const numeroDia =
+        Math.floor(
+            diferencia /
+            86400000
+        );
+
+    return retosDiarios[
+        numeroDia %
+        retosDiarios.length
+    ];
+
+}
+
+
+// ========================================
+// CARGAR RETO
+// ========================================
+
+function cargarRetoDiario() {
+
+    const titulo =
+        document.getElementById(
+            "daily-challenge-title"
+        );
+
+    const texto =
+        document.getElementById(
+            "daily-challenge-text"
+        );
+
+    const boton =
+        document.getElementById(
+            "daily-challenge-button"
+        );
+
+
+    if (
+        !titulo ||
+        !texto ||
+        !boton
+    ) {
+
+        return;
+
+    }
+
+
+    const fechaHoy =
+        obtenerFechaReto();
+
+    const reto =
+        obtenerRetoDelDia();
+
+    const fechaGuardada =
+        localStorage.getItem(
+            "anxanRetoFecha"
+        );
+
+
+    // Nuevo día:
+    // reiniciar reto.
+
+    if (
+        fechaGuardada !==
+        fechaHoy
+    ) {
+
+        localStorage.setItem(
+            "anxanRetoFecha",
+            fechaHoy
+        );
+
+        localStorage.removeItem(
+            "anxanRetoAceptado"
+        );
+
+        localStorage.removeItem(
+            "anxanRetoCompletado"
+        );
+
+    }
+
+
+    const aceptado =
+        localStorage.getItem(
+            "anxanRetoAceptado"
+        ) === "true";
+
+
+    const completado =
+        localStorage.getItem(
+            "anxanRetoCompletado"
+        ) === "true";
+
+
+    titulo.textContent =
+        reto.titulo;
+
+    texto.textContent =
+        reto.texto;
+
+
+    if (completado) {
+
+        boton.textContent =
+            "✅ RETO COMPLETADO · +10 ⚡";
+
+        boton.disabled =
+            true;
+
+    }
+
+    else if (aceptado) {
+
+        boton.textContent =
+            "🏆 HE COMPLETADO EL RETO";
+
+        boton.disabled =
+            false;
+
+    }
+
+    else {
+
+        boton.textContent =
+            "🎯 ACEPTAR RETO · +10 ⚡";
+
+        boton.disabled =
+            false;
+
+    }
+
+}
+
+
+// ========================================
+// BOTÓN RETO DIARIO
+// ========================================
+
+document.getElementById(
+    "daily-challenge-button"
+)?.addEventListener(
+
+    "click",
+
+    function() {
+
+        const aceptado =
+            localStorage.getItem(
+                "anxanRetoAceptado"
+            ) === "true";
+
+
+        const completado =
+            localStorage.getItem(
+                "anxanRetoCompletado"
+            ) === "true";
+
+
+        // -----------------------------
+        // ACEPTAR RETO
+        // -----------------------------
+
+        if (!aceptado) {
+
+            localStorage.setItem(
+                "anxanRetoAceptado",
+                "true"
+            );
+
+
+            mostrarVentana(
+
+                "🎯",
+
+                "¡RETO ACEPTADO!",
+
+                "Completa el reto y vuelve para reclamar tu recompensa.",
+
+                "+10 ⚡ AL COMPLETARLO"
+
+            );
+
+
+            cargarRetoDiario();
+
+            return;
+
+        }
+
+
+        // -----------------------------
+        // COMPLETAR RETO
+        // -----------------------------
+
+        if (!completado) {
+
+            let saldoActual =
+                Number(
+                    localStorage.getItem(
+                        "anxanRayos"
+                    )
+                ) || 0;
+
+
+            // PREMIO DIARIO
+
+            saldoActual += 10;
+
+
+            localStorage.setItem(
+                "anxanRayos",
+                saldoActual
+            );
+
+
+            localStorage.setItem(
+                "anxanRetoCompletado",
+                "true"
+            );
+
+
+            actualizarRayos();
+
+
+            mostrarVentana(
+
+                "⚡",
+
+                "¡RETO COMPLETADO!",
+
+                "Has completado el reto diario.",
+
+                "+10 ⚡ RAYITOS"
+
+            );
+
+
+            cargarRetoDiario();
+
+        }
+
+    }
+
+);
+
+
+// ========================================
+// INICIAR RETO
+// ========================================
+
+cargarRetoDiario();
+
+
+// ========================================
 // ACTUALIZAR AL VOLVER A LA WEB
 // ========================================
 
@@ -280,9 +620,10 @@ document.addEventListener(
 
             actualizarRayos();
 
+            cargarRetoDiario();
+
         }
 
     }
 
 );
-
