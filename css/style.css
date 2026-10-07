@@ -1783,3 +1783,232 @@ header .header-menu .user-points {
     }
 
 }
+/* ========================================
+   PÁGINAS LEGALES - ESTILO PROFESIONAL
+======================================== */
+
+body.legal-page {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* CABECERA */
+
+.legal-page .logo {
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+
+
+/* CONTENIDO */
+
+.legal-main {
+    padding: 55px 20px 70px;
+}
+
+.legal-container {
+    max-width: 850px;
+}
+
+
+/* TÍTULO PRINCIPAL */
+
+.legal-container > h1 {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+
+    text-transform: none;
+    letter-spacing: -0.5px;
+
+    text-shadow: none;
+}
+
+
+/* ETIQUETA SUPERIOR */
+
+.legal-badge {
+    background: transparent;
+
+    color: var(--texto-secundario);
+
+    padding: 0;
+
+    margin-bottom: 12px;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* INTRODUCCIÓN */
+
+.legal-intro {
+    max-width: 700px;
+
+    margin-bottom: 35px;
+
+    color: var(--texto-secundario);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* TARJETAS */
+
+.legal-card {
+    padding: 30px;
+
+    background: rgba(13, 34, 69, 0.85);
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    border-radius: 12px;
+
+    box-shadow: none;
+}
+
+
+/* TÍTULOS DE LAS SECCIONES */
+
+.legal-card h2 {
+    margin-bottom: 14px;
+
+    color: var(--blanco);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* TEXTO */
+
+.legal-card p {
+    margin-bottom: 15px;
+
+    color: #d4e3f7;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    line-height: 1.75;
+}
+
+
+/* ENLACES */
+
+.legal-email {
+    color: #7fc4ff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+
+/* BOTÓN VOLVER */
+
+.legal-back-button {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: rgba(0,0,0,0.20);
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    box-shadow: none;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+
+/* CONTACTO */
+
+.contact-icon {
+    display: none;
+}
+
+.contact-email-button {
+    background: var(--azul);
+
+    color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    border-radius: 8px;
+
+    box-shadow: none;
+
+    font-size: 14px;
+}
+
+
+/* FECHA DE ACTUALIZACIÓN */
+
+.legal-update {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,0.5);
+}
+
+
+/* FOOTER EN PÁGINAS LEGALES */
+
+.legal-page footer {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 550px) {
+
+    .legal-main {
+        padding: 35px 16px 50px;
+    }
+
+    .legal-container > h1 {
+        font-size: 29px;
+    }
+
+    .legal-intro {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+    .legal-card {
+        padding: 22px 19px;
+        border-radius: 10px;
+    }
+
+    .legal-card h2 {
+        font-size: 18px;
+    }
+
+    .legal-card p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+}
