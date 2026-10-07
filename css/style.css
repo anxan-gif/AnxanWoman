@@ -1425,5 +1425,19 @@ header .header-menu .user-points {
         min-width: 52px !important;
         padding: 0 8px !important;
     }
+   
+/* ========================================
+   RAYITOS - BORDE NEGRO DEFINITIVO
+======================================== */
 
+header .header-menu .user-points {
+    border: 3px solid #000000 !important;
+
+    box-shadow:
+        0 4px 0 #000000,
+        0 6px 12px rgba(0, 0, 0, 0.25) !important;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    font-weight: 700;
 }
