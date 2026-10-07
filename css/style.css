@@ -1441,3 +1441,345 @@ header .header-menu .user-points {
 
     font-weight: 700;
 }
+   /* ========================================
+   FOOTER - ENLACES LEGALES
+======================================== */
+
+.legal-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 15px;
+}
+
+.legal-links a {
+    color: var(--amarillo);
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.legal-links a:hover {
+    color: var(--blanco);
+    transform: translateY(-1px);
+}
+
+.legal-links span {
+    color: rgba(255,255,255,0.3);
+}
+
+.supercell-disclaimer {
+    margin-top: 15px;
+
+    font-size: 12px;
+
+    color: rgba(185,213,255,0.7);
+}
+
+
+/* ========================================
+   PÁGINAS LEGALES
+======================================== */
+
+.legal-main {
+    width: 100%;
+
+    padding: 55px 20px 70px;
+}
+
+.legal-container {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+.legal-container > h1 {
+    margin-bottom: 12px;
+
+    font-size: clamp(34px, 6vw, 52px);
+
+    line-height: 1;
+
+    text-shadow:
+        0 4px 0 rgba(0,0,0,0.25);
+}
+
+.legal-badge {
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    padding: 8px 16px;
+
+    background: var(--amarillo);
+    color: #302000;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 0 var(--amarillo-oscuro);
+}
+
+.legal-intro {
+    max-width: 680px;
+
+    margin-bottom: 35px;
+
+    color: var(--texto-secundario);
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* TARJETAS */
+
+.legal-card {
+    position: relative;
+
+    margin-bottom: 20px;
+
+    padding: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,44,86,0.96),
+            rgba(13,34,69,0.96)
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.10);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 7px 0 rgba(0,0,0,0.18),
+        0 12px 25px rgba(0,0,0,0.18);
+}
+
+.legal-card h2 {
+    margin-bottom: 14px;
+
+    color: var(--amarillo);
+
+    font-size: 22px;
+}
+
+.legal-card p {
+    margin-bottom: 13px;
+
+    color: var(--texto-secundario);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.legal-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* EMAIL */
+
+.legal-email {
+    color: var(--amarillo);
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    overflow-wrap: anywhere;
+}
+
+.legal-email:hover {
+    text-decoration: underline;
+}
+
+
+/* VOLVER */
+
+.legal-back-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+
+    padding: 0 16px;
+
+    background: rgba(0,0,0,0.22);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.18);
+
+    border-radius: 13px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 0 rgba(0,0,0,0.18);
+}
+
+.legal-back-button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* FECHA */
+
+.legal-update {
+    margin-top: 30px;
+
+    text-align: center;
+
+    color: rgba(185,213,255,0.65);
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   CONTACTO
+======================================== */
+
+.legal-contact {
+    text-align: center;
+}
+
+.legal-contact .legal-card {
+    text-align: left;
+}
+
+.contact-card {
+    text-align: center !important;
+}
+
+.contact-icon {
+    margin-bottom: 10px;
+
+    font-size: 55px;
+}
+
+.contact-email-button {
+    display: inline-block;
+
+    max-width: 100%;
+
+    margin-top: 10px;
+
+    padding: 14px 20px;
+
+    background: var(--amarillo);
+
+    color: #352700;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+
+    box-shadow:
+        0 5px 0 var(--amarillo-oscuro);
+}
+
+.contact-email-button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   PÁGINAS LEGALES - MÓVIL
+======================================== */
+
+@media (max-width: 550px) {
+
+    .legal-main {
+        padding:
+            35px 15px
+            50px;
+    }
+
+    .legal-header {
+        flex-direction: row !important;
+
+        width: 100%;
+
+        gap: 10px !important;
+    }
+
+    .legal-container > h1 {
+        font-size: 34px;
+    }
+
+    .legal-intro {
+        font-size: 15px;
+
+        margin-bottom: 25px;
+    }
+
+    .legal-card {
+        padding: 22px 18px;
+
+        border-radius: 18px;
+    }
+
+    .legal-card h2 {
+        font-size: 19px;
+    }
+
+    .legal-card p {
+        font-size: 14px;
+    }
+
+    .legal-back-button {
+        height: 36px;
+
+        padding: 0 12px;
+
+        font-size: 11px;
+    }
+
+    .contact-email-button {
+        width: 100%;
+
+        padding: 13px 10px;
+
+        font-size: 12px;
+    }
+
+    .legal-links {
+        gap: 7px;
+    }
+
+    .legal-links a {
+        font-size: 12px;
+    }
+
+}
