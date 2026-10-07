@@ -2,9 +2,26 @@
 // ANXANWOMAN - SISTEMA DE RAYITOS
 // ========================================
 
-let rayos = Number(
-    localStorage.getItem("anxanRayos")
-) || 0;
+let rayos = 0;
+
+
+// ========================================
+// OBTENER RAYITOS
+// ========================================
+
+function obtenerRayos() {
+
+    const guardados =
+        parseInt(
+            localStorage.getItem("anxanRayos"),
+            10
+        );
+
+    return Number.isNaN(guardados)
+        ? 0
+        : guardados;
+
+}
 
 
 // ========================================
@@ -13,9 +30,7 @@ let rayos = Number(
 
 function actualizarRayos() {
 
-    rayos = Number(
-        localStorage.getItem("anxanRayos")
-    ) || 0;
+    rayos = obtenerRayos();
 
     const contador =
         document.getElementById(
@@ -30,6 +45,35 @@ function actualizarRayos() {
     }
 
 }
+
+
+// ========================================
+// SUMAR RAYITOS
+// ========================================
+
+function sumarRayitos(cantidad) {
+
+    const saldoActual =
+        obtenerRayos();
+
+    const nuevoSaldo =
+        saldoActual + cantidad;
+
+    localStorage.setItem(
+        "anxanRayos",
+        String(nuevoSaldo)
+    );
+
+    rayos = nuevoSaldo;
+
+    actualizarRayos();
+
+    return nuevoSaldo;
+
+}
+
+
+// Primera actualización
 
 actualizarRayos();
 
@@ -53,37 +97,63 @@ function mostrarVentana(
 
     if (!modal) return;
 
-    document.getElementById(
-        "modal-icon"
-    ).textContent = icono;
 
-    document.getElementById(
-        "modal-title"
-    ).textContent = titulo;
+    const modalIcon =
+        document.getElementById(
+            "modal-icon"
+        );
 
-    document.getElementById(
-        "modal-text"
-    ).textContent = texto;
+    const modalTitle =
+        document.getElementById(
+            "modal-title"
+        );
 
+    const modalText =
+        document.getElementById(
+            "modal-text"
+        );
 
     const recompensa =
         document.getElementById(
             "modal-reward"
         );
 
-    recompensa.textContent =
-        premio;
-
-    recompensa.style.display =
-        premio
-            ? "inline-block"
-            : "none";
+    const modalButton =
+        document.getElementById(
+            "modal-button"
+        );
 
 
-    document.getElementById(
-        "modal-button"
-    ).textContent =
-        "CERRAR";
+    if (modalIcon) {
+        modalIcon.textContent = icono;
+    }
+
+    if (modalTitle) {
+        modalTitle.textContent = titulo;
+    }
+
+    if (modalText) {
+        modalText.textContent = texto;
+    }
+
+    if (recompensa) {
+
+        recompensa.textContent =
+            premio;
+
+        recompensa.style.display =
+            premio
+                ? "inline-block"
+                : "none";
+
+    }
+
+    if (modalButton) {
+
+        modalButton.textContent =
+            "CERRAR";
+
+    }
 
 
     modal.classList.add(
@@ -113,8 +183,6 @@ document.getElementById(
 
 );
 
-
-// Cerrar pulsando fuera
 
 modal?.addEventListener(
 
@@ -334,32 +402,29 @@ function obtenerFechaReto() {
 
 
 // ========================================
-// RETO DEL DÍA
+// ELEGIR RETO DEL DÍA
 // ========================================
 
 function obtenerRetoDelDia() {
 
-    const hoy =
-        new Date();
+    const fecha =
+        obtenerFechaReto();
 
-    const inicio =
-        new Date(
-            hoy.getFullYear(),
-            0,
-            0
-        );
+    let numero = 0;
 
-    const diferencia =
-        hoy - inicio;
+    for (
+        let i = 0;
+        i < fecha.length;
+        i++
+    ) {
 
-    const numeroDia =
-        Math.floor(
-            diferencia /
-            86400000
-        );
+        numero +=
+            fecha.charCodeAt(i);
+
+    }
 
     return retosDiarios[
-        numeroDia %
+        numero %
         retosDiarios.length
     ];
 
@@ -367,10 +432,48 @@ function obtenerRetoDelDia() {
 
 
 // ========================================
-// CARGAR RETO
+// REINICIAR SI ES UN NUEVO DÍA
+// ========================================
+
+function comprobarNuevoDia() {
+
+    const fechaHoy =
+        obtenerFechaReto();
+
+    const fechaGuardada =
+        localStorage.getItem(
+            "anxanRetoFecha"
+        );
+
+
+    if (fechaGuardada !== fechaHoy) {
+
+        localStorage.setItem(
+            "anxanRetoFecha",
+            fechaHoy
+        );
+
+        localStorage.removeItem(
+            "anxanRetoAceptado"
+        );
+
+        localStorage.removeItem(
+            "anxanRetoCompletado"
+        );
+
+    }
+
+}
+
+
+// ========================================
+// MOSTRAR RETO
 // ========================================
 
 function cargarRetoDiario() {
+
+    comprobarNuevoDia();
+
 
     const titulo =
         document.getElementById(
@@ -399,40 +502,8 @@ function cargarRetoDiario() {
     }
 
 
-    const fechaHoy =
-        obtenerFechaReto();
-
     const reto =
         obtenerRetoDelDia();
-
-    const fechaGuardada =
-        localStorage.getItem(
-            "anxanRetoFecha"
-        );
-
-
-    // Nuevo día:
-    // reiniciar reto.
-
-    if (
-        fechaGuardada !==
-        fechaHoy
-    ) {
-
-        localStorage.setItem(
-            "anxanRetoFecha",
-            fechaHoy
-        );
-
-        localStorage.removeItem(
-            "anxanRetoAceptado"
-        );
-
-        localStorage.removeItem(
-            "anxanRetoCompletado"
-        );
-
-    }
 
 
     const aceptado =
@@ -462,9 +533,12 @@ function cargarRetoDiario() {
         boton.disabled =
             true;
 
+        return;
+
     }
 
-    else if (aceptado) {
+
+    if (aceptado) {
 
         boton.textContent =
             "🏆 HE COMPLETADO EL RETO";
@@ -472,32 +546,38 @@ function cargarRetoDiario() {
         boton.disabled =
             false;
 
-    }
-
-    else {
-
-        boton.textContent =
-            "🎯 ACEPTAR RETO · +10 ⚡";
-
-        boton.disabled =
-            false;
+        return;
 
     }
+
+
+    boton.textContent =
+        "🎯 ACEPTAR RETO · +10 ⚡";
+
+    boton.disabled =
+        false;
 
 }
 
 
 // ========================================
-// BOTÓN RETO DIARIO
+// BOTÓN DEL RETO
 // ========================================
 
-document.getElementById(
-    "daily-challenge-button"
-)?.addEventListener(
+const botonReto =
+    document.getElementById(
+        "daily-challenge-button"
+    );
+
+
+botonReto?.addEventListener(
 
     "click",
 
     function() {
+
+        comprobarNuevoDia();
+
 
         const aceptado =
             localStorage.getItem(
@@ -511,9 +591,22 @@ document.getElementById(
             ) === "true";
 
 
-        // -----------------------------
-        // ACEPTAR RETO
-        // -----------------------------
+        // =================================
+        // YA COMPLETADO
+        // =================================
+
+        if (completado) {
+
+            cargarRetoDiario();
+
+            return;
+
+        }
+
+
+        // =================================
+        // PRIMER CLIC: ACEPTAR RETO
+        // =================================
 
         if (!aceptado) {
 
@@ -521,6 +614,9 @@ document.getElementById(
                 "anxanRetoAceptado",
                 "true"
             );
+
+
+            cargarRetoDiario();
 
 
             mostrarVentana(
@@ -536,63 +632,41 @@ document.getElementById(
             );
 
 
-            cargarRetoDiario();
-
             return;
 
         }
 
 
-        // -----------------------------
-        // COMPLETAR RETO
-        // -----------------------------
+        // =================================
+        // SEGUNDO CLIC: COMPLETAR Y COBRAR
+        // =================================
 
-        if (!completado) {
-
-            let saldoActual =
-                Number(
-                    localStorage.getItem(
-                        "anxanRayos"
-                    )
-                ) || 0;
+        localStorage.setItem(
+            "anxanRetoCompletado",
+            "true"
+        );
 
 
-            // PREMIO DIARIO
-
-            saldoActual += 10;
-
-
-            localStorage.setItem(
-                "anxanRayos",
-                saldoActual
-            );
+        const nuevoSaldo =
+            sumarRayitos(10);
 
 
-            localStorage.setItem(
-                "anxanRetoCompletado",
-                "true"
-            );
+        cargarRetoDiario();
 
 
-            actualizarRayos();
+        mostrarVentana(
 
+            "⚡",
 
-            mostrarVentana(
+            "¡RETO COMPLETADO!",
 
-                "⚡",
+            "¡Buen trabajo! Ya tienes " +
+            nuevoSaldo +
+            " Rayitos.",
 
-                "¡RETO COMPLETADO!",
+            "+10 ⚡ RAYITOS"
 
-                "Has completado el reto diario.",
-
-                "+10 ⚡ RAYITOS"
-
-            );
-
-
-            cargarRetoDiario();
-
-        }
+        );
 
     }
 
@@ -604,6 +678,8 @@ document.getElementById(
 // ========================================
 
 cargarRetoDiario();
+
+actualizarRayos();
 
 
 // ========================================
@@ -623,6 +699,24 @@ document.addEventListener(
             cargarRetoDiario();
 
         }
+
+    }
+
+);
+
+
+// También actualizar si volvemos
+// mediante el botón atrás del navegador.
+
+window.addEventListener(
+
+    "pageshow",
+
+    function() {
+
+        actualizarRayos();
+
+        cargarRetoDiario();
 
     }
 
