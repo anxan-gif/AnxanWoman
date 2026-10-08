@@ -1,1 +1,355 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | AnxanWoman</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: radial-gradient(circle at top, #293d89, #10152d 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 22px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: #1b2347;
+      border: 2px solid #435bba;
+      border-radius: 22px;
+      padding: 28px 23px;
+      text-align: center;
+      box-shadow: 0 15px 45px #0007;
+    }
+
+    h1 { color: #ffcf34; font-size: 27px; margin: 0 0 8px; }
+    h2 { font-size: 22px; }
+    p { color: #c5cbea; line-height: 1.5; }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 8px 0;
+      border: 1px solid #6474b3;
+      border-radius: 11px;
+      background: #101831;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 15px;
+      margin-top: 12px;
+      border-radius: 11px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled { opacity: .55; cursor: wait; }
+    .primary { background: #ffcc28; color: #172042; }
+    .google { background: white; color: #222; }
+    .secondary { background: #344782; color: white; }
+    .danger { background: #ad344d; color: white; }
+
+    a { color: #ffd64c; }
+    .small { font-size: 13px; }
+    .link {
+      background: none;
+      color: #ffda58;
+      padding: 7px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .hidden { display: none; }
+    .divider { margin: 20px 0; color: #aeb8de; }
+    #message { min-height: 22px; font-size: 14px; }
+    #message.error { color: #ff9da9; }
+    #message.ok { color: #89f0b3; }
+    #accountEmail { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+
+  <main class="card">
+    <h1>⚡ ANXANWOMAN</h1>
+    <p>¡Únete a nuestra comunidad de Brawl Stars!</p>
+
+    <div id="loading">
+      <p>Comprobando tu sesión...</p>
+    </div>
+
+    <section id="loginPanel" class="hidden">
+      <h2 id="formTitle">Iniciar sesión</h2>
+
+      <form id="emailForm">
+        <input id="email" type="email"
+               placeholder="Tu correo electrónico"
+               autocomplete="email" required>
+
+        <input id="password" type="password"
+               placeholder="Tu contraseña"
+               autocomplete="current-password"
+               minlength="6" required>
+
+        <button id="emailButton" class="primary" type="submit">
+          🔐 Entrar con correo
+        </button>
+      </form>
+
+      <button id="toggleMode" class="link" type="button">
+        ¿No tienes cuenta? Regístrate
+      </button>
+
+      <button id="resetPassword" class="link" type="button">
+        ¿Has olvidado tu contraseña?
+      </button>
+
+      <div class="divider">──── O ────</div>
+
+      <button id="googleButton" class="google" type="button">
+        🌐 Continuar con Google
+      </button>
+    </section>
+
+    <section id="accountPanel" class="hidden">
+      <h2>🎉 ¡Sesión iniciada!</h2>
+      <p>Has entrado como:</p>
+      <strong id="accountEmail"></strong>
+      <p>⚡ Tu perfil de AnxanWoman está en preparación.</p>
+
+      <button id="homeButton" class="primary" type="button">
+        🏠 Ir a AnxanWoman
+      </button>
+
+      <button id="logoutButton" class="danger" type="button">
+        Cerrar sesión
+      </button>
+    </section>
+
+    <p id="message" role="status" aria-live="polite"></p>
+    <p class="small"><a href="index.html">← Volver a la web</a></p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      signOut,
+      onAuthStateChanged
+    } from
+      "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAs6sUeZNniso iXsYAspHowlZ2iOwv9TVg".replace(" ", ""),
+      authDomain: "anxanwoman.firebaseapp.com",
+      projectId: "anxanwoman",
+      storageBucket: "anxanwoman.firebasestorage.app",
+      messagingSenderId: "366283389190",
+      appId: "1:366283389190:web:60115f7658d96304688687",
+      measurementId: "G-6DN2N02ZPG"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    auth.languageCode = "es";
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const $ = id => document.getElementById(id);
+    let registering = false;
+    let busy = false;
+
+    function showMessage(text, type = "") {
+      $("message").textContent = text;
+      $("message").className = type;
+    }
+
+    function setBusy(value) {
+      busy = value;
+      $("emailButton").disabled = value;
+      $("googleButton").disabled = value;
+      $("resetPassword").disabled = value;
+      $("logoutButton").disabled = value;
+    }
+
+    function readableError(error) {
+      const code = error?.code || "";
+
+      const errors = {
+        "auth/email-already-in-use":
+          "Este correo ya está registrado. Prueba a iniciar sesión.",
+        "auth/invalid-email":
+          "El correo electrónico no es válido.",
+        "auth/weak-password":
+          "La contraseña es demasiado débil.",
+        "auth/invalid-credential":
+          "Correo o contraseña incorrectos.",
+        "auth/wrong-password":
+          "Correo o contraseña incorrectos.",
+        "auth/user-not-found":
+          "Correo o contraseña incorrectos.",
+        "auth/popup-closed-by-user":
+          "Has cerrado la ventana de Google.",
+        "auth/popup-blocked":
+          "El navegador ha bloqueado la ventana de Google.",
+        "auth/unauthorized-domain":
+          "Este dominio no está autorizado en Firebase.",
+        "auth/network-request-failed":
+          "Error de conexión. Comprueba Internet.",
+        "auth/too-many-requests":
+          "Demasiados intentos. Inténtalo más tarde.",
+        "auth/operation-not-allowed":
+          "Este método de acceso no está habilitado."
+      };
+
+      return errors[code] ||
+        "No se pudo completar la operación. " + code;
+    }
+
+    function setMode(register) {
+      registering = register;
+      $("formTitle").textContent =
+        register ? "Crear cuenta" : "Iniciar sesión";
+      $("emailButton").textContent =
+        register ? "⚡ Crear mi cuenta" : "🔐 Entrar con correo";
+      $("toggleMode").textContent = register
+        ? "¿Ya tienes cuenta? Inicia sesión"
+        : "¿No tienes cuenta? Regístrate";
+      $("password").autocomplete =
+        register ? "new-password" : "current-password";
+      $("resetPassword").classList.toggle("hidden", register);
+      showMessage("");
+    }
+
+    $("toggleMode").addEventListener("click", () => {
+      setMode(!registering);
+    });
+
+    $("emailForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      if (busy) return;
+
+      const email = $("email").value.trim();
+      const password = $("password").value;
+
+      setBusy(true);
+      showMessage("");
+
+      try {
+        if (registering) {
+          await createUserWithEmailAndPassword(
+            auth, email, password
+          );
+        } else {
+          await signInWithEmailAndPassword(
+            auth, email, password
+          );
+        }
+        $("password").value = "";
+      } catch (error) {
+        showMessage(readableError(error), "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    $("googleButton").addEventListener("click", async () => {
+      if (busy) return;
+      setBusy(true);
+      showMessage("");
+
+      try {
+        await signInWithPopup(auth, googleProvider);
+      } catch (error) {
+        showMessage(readableError(error), "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    $("resetPassword").addEventListener("click", async () => {
+      if (busy) return;
+
+      const email = $("email").value.trim();
+      if (!email) {
+        showMessage(
+          "Escribe primero tu correo electrónico.",
+          "error"
+        );
+        return;
+      }
+
+      setBusy(true);
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMessage(
+          "Si existe una cuenta compatible, recibirás un correo para restablecer la contraseña.",
+          "ok"
+        );
+      } catch (error) {
+        showMessage(readableError(error), "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    $("logoutButton").addEventListener("click", async () => {
+      if (busy) return;
+      setBusy(true);
+
+      try {
+        await signOut(auth);
+        showMessage("Has cerrado sesión.", "ok");
+      } catch (error) {
+        showMessage(readableError(error), "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    $("homeButton").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    onAuthStateChanged(auth, user => {
+      $("loading").classList.add("hidden");
+
+      if (user) {
+        $("loginPanel").classList.add("hidden");
+        $("accountPanel").classList.remove("hidden");
+        $("accountEmail").textContent =
+          user.displayName || user.email || "Jugador";
+      } else {
+        $("accountPanel").classList.add("hidden");
+        $("loginPanel").classList.remove("hidden");
+      }
+    }, error => {
+      $("loading").classList.add("hidden");
+      $("loginPanel").classList.remove("hidden");
+      showMessage(readableError(error), "error");
+    });
+  </script>
+</body>
+</html>
+
