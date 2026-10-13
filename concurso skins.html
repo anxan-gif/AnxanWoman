@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANXAN SKIN WARS | AnxanWoman</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0c1024;
+  --panel: #181f40;
+  --blue: #23b7ff;
+  --pink: #ff4ea9;
+  --yellow: #ffcc39;
+  --white: #f7f9ff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Fredoka, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% -10%, #243c89, transparent 45%),
+    var(--bg);
+  color: var(--white);
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.top {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  gap: 12px;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--yellow);
+}
+
+.brand span { color: white; }
+
+.topnav { display: flex; gap: 10px; }
+
+.navlink {
+  background: #18254c;
+  border: 1px solid #5c77b2;
+  border-radius: 14px;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+.hero {
+  text-align: center;
+  max-width: 1060px;
+  margin: 30px auto 0;
+  padding: 46px 24px;
+  border-radius: 32px;
+  border: 2px solid #3459ac;
+  background:
+    radial-gradient(circle at 10% 10%, #b22d87aa, transparent 34%),
+    radial-gradient(circle at 90% 20%, #0576b8aa, transparent 40%),
+    linear-gradient(140deg, #202b70, #101735);
+  box-shadow: 0 16px 60px #0007;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 100px;
+  background: #ffcc3925;
+  border: 1px solid var(--yellow);
+  color: var(--yellow);
+  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-size: clamp(44px, 9vw, 100px);
+  line-height: .94;
+  margin: 20px 0 14px;
+  text-shadow: 5px 6px 0 #090d2b;
+}
+
+.hero h1 em {
+  display: block;
+  font-style: normal;
+  color: var(--yellow);
+}
+
+.hero p {
+  font-size: clamp(16px, 2.5vw, 22px);
+  max-width: 660px;
+  margin: 20px auto 26px;
+  color: #e0e8ff;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primary, .secondary {
+  display: inline-block;
+  border: 0;
+  border-radius: 15px;
+  padding: 13px 21px;
+  font-weight: 700;
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--yellow), #ff922f);
+  color: #1e1930;
+  box-shadow: 0 5px 0 #ad651d;
+}
+
+.secondary {
+  background: #283d78;
+  color: white;
+  border: 1px solid #5877ce;
+}
+
+.notice {
+  font-size: 13px;
+  margin: 24px auto 0;
+  color: #d9e7ff;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: auto;
+  padding: 35px 22px 90px;
+}
+
+.section-title {
+  font-size: 32px;
+  margin: 10px 0 8px;
+}
+
+.muted { color: #aebce2; }
+
+.banner {
+  border: 1px solid #e7b443;
+  background: #463a1b;
+  color: #ffe8a0;
+  border-radius: 13px;
+  padding: 13px 16px;
+  margin: 20px 0;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.search {
+  min-width: min(100%, 320px);
+  background: #171f40;
+  color: white;
+  border: 1px solid #41558b;
+  border-radius: 13px;
+  padding: 13px 16px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 17px;
+}
+
+.skin {
+  background: linear-gradient(155deg, #263466, #141b38);
+  border: 1px solid #42588b;
+  border-radius: 19px;
+  overflow: hidden;
+  transition: transform .15s, border-color .15s;
+}
+
+.skin:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+}
+
+.art {
+  height: 205px;
+  background: repeating-linear-gradient(
+    135deg,
+    #283d79, #283d79 13px,
+    #314887 13px, #314887 26px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.art strong { font-size: 52px; }
+.art small { letter-spacing: 2px; }
+
+.art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.skin-info { padding: 15px; }
+
+.skin-info h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.skin-info p {
+  margin: 0 0 12px;
+  color: #b6c4e5;
+  font-size: 13px;
+}
+
+.skin-actions { display: flex; gap: 7px; }
+
+.skin-actions button {
+  flex: 1;
+  border: 1px solid #50659c;
+  border-radius: 10px;
+  padding: 9px 6px;
+  background: #24345e;
+  color: white;
+  font-size: 12px;
+}
+
+.skin-actions .choose {
+  background: #146da5;
+  border-color: #29b9ff;
+}
+
+.ballot {
+  margin-top: 55px;
+  padding: 25px;
+  background: linear-gradient(150deg, #25376c, #171d40);
+  border: 2px solid #5a75bf;
+  border-radius: 25px;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.slot {
+  padding: 18px 12px;
+  background: #111b3c;
+  border: 1px solid #455c97;
+  border-radius: 16px;
+  min-height: 120px;
+}
+
+.slot b {
+  display: block;
+  color: var(--yellow);
+  margin-bottom: 9px;
+}
+
+.slot p { margin: 0; color: #d2ddf6; }
+
+.slot button {
+  margin-top: 10px;
+  border: 0;
+  background: #31487e;
+  color: white;
+  border-radius: 9px;
+  padding: 6px 11px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #050918dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 10;
+}
+
+.hidden { display: none !important; }
+
+.dialog {
+  width: min(100%, 440px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #202c59;
+  border: 1px solid #6388d8;
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 20px 90px #000b;
+}
+
+.dialog p { color: #d1ddf5; }
+
+.close {
+  float: right;
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 24px;
+}
+
+.rankbtn {
+  background: #30457e;
+  border: 1px solid #6d8bd0;
+  border-radius: 12px;
+  color: white;
+  padding: 12px 14px;
+  margin: 5px;
+}
+
+.rankbtn:disabled { opacity: .4; }
+
+.preview {
+  border: 2px dashed #6a84c5;
+  background: #273a6a;
+  border-radius: 14px;
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  color: #9eacd1;
+  font-size: 13px;
+}
+
+@media (max-width: 650px) {
+  .top { padding: 16px; }
+  .brand { font-size: 18px; }
+  .navlink { font-size: 12px; padding: 9px; }
+  .hero { margin: 10px 12px 0; padding: 35px 18px; }
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .art { height: 150px; }
+  .skin-info { padding: 10px; }
+  .skin-info h3 { font-size: 15px; }
+  .skin-actions { flex-direction: column; }
+  .slots { grid-template-columns: 1fr; }
+  .ballot { padding: 17px; }
+  .wrap { padding: 25px 13px 60px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+  <a href="index.html" class="brand">
+    ⭐ ANXAN<span>WOMAN</span>
+  </a>
+  <nav class="topnav">
+    <a href="index.html" class="navlink">← Inicio</a>
+    <a href="login.html" class="navlink">👤 Entrar</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">⚡ EVENTO DE LA COMUNIDAD ⚡</span>
+  <h1>ANXAN <em>SKIN WARS</em></h1>
+  <p>
+    ¡50 artistas, un montón de creatividad y una comunidad
+    que decide qué skins merecen lo más alto!
+  </p>
+  <div class="actions">
+    <a href="#participantes" class="primary">🎨 VER SKINS</a>
+    <a href="#mi-top" class="secondary">🏆 MI TOP 3</a>
+  </div>
+  <div class="notice">
+    🚧 PREVISUALIZACIÓN · Votaciones todavía cerradas
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="banner">
+    Esta es una demostración del concurso.
+    Los participantes son provisionales y todavía
+    no se guardan votos reales en Firebase.
+  </div>
+
+  <section id="participantes">
+    <h2 class="section-title">🎨 GALERÍA DE SKINS</h2>
+    <p class="muted">
+      Explora los diseños y elige tus tres favoritos.
+    </p>
+
+    <div class="controls">
+      <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="🔎 Buscar skin o participante"
+      >
+      <span id="count"></span>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+    <p id="no-results" class="hidden">
+      No hay resultados para esa búsqueda.
+    </p>
+  </section>
+
+  <section class="ballot" id="mi-top">
+    <h2>🏆 MI TOP 3</h2>
+    <p class="muted">
+      Elige tres skins diferentes:
+      3 puntos, 2 puntos y 1 punto.
+    </p>
+
+    <div class="slots" id="slots"></div>
+
+    <button class="primary" id="confirm" disabled>
+      🔒 CONFIRMAR MI TOP 3
+    </button>
+
+    <p class="muted">
+      La votación real se habilitará cuando
+      configuremos la seguridad de Firebase.
+    </p>
+  </section>
+</main>
+
+<footer class="footer">
+  ANXAN SKIN WARS · AnxanWoman · Concurso de fans no oficial
+</footer>
+
+<div class="overlay hidden" id="overlay">
+  <div class="dialog" role="dialog" aria-modal="true"
+       aria-labelledby="dialog-title">
+    <button class="close" id="close" aria-label="Cerrar">×</button>
+    <h2 id="dialog-title"></h2>
+    <div class="preview" id="preview"></div>
+    <p id="dialog-desc"></p>
+    <div id="dialog-actions"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+// 50 participantes provisionales.
+const skins = Array.from({ length: 50 }, (_, i) => ({
+  id: `skin-${String(i + 1).padStart(2, "0")}`,
+  name: `Skin #${String(i + 1).padStart(2, "0")}`,
+  author: "Participante pendiente",
+  image: null
+}));
+
+const picks = [null, null, null];
+
+const $ = id => document.getElementById(id);
+const byId = id => skins.find(s => s.id === id);
+
+function make(tag, cls, value) {
+  const element = document.createElement(tag);
+  if (cls) element.className = cls;
+  if (value !== undefined) element.textContent = value;
+  return element;
+}
+
+function renderGallery() {
+  const q = $("search").value.trim().toLowerCase();
+
+  const shown = skins.filter(s =>
+    (s.name + " " + s.author).toLowerCase().includes(q)
+  );
+
+  $("gallery").replaceChildren();
+  $("count").textContent = `${shown.length} de ${skins.length} skins`;
+  $("no-results").classList.toggle("hidden", shown.length > 0);
+
+  for (const s of shown) {
+    const card = make("article", "skin");
+    const art = make("div", "art");
+
+    if (s.image) {
+      const img = make("img");
+      img.src = s.image;
+      img.alt = s.name;
+      img.loading = "lazy";
+      art.append(img);
+    } else {
+      art.append(
+        make("strong", "", "🎨"),
+        make("small", "", s.id.toUpperCase())
+      );
+    }
+
+    const info = make("div", "skin-info");
+    info.append(
+      make("h3", "", s.name),
+      make("p", "", s.author)
+    );
+
+    const actions = make("div", "skin-actions");
+    const view = make("button", "", "Ampliar");
+    const choose = make(
+      "button",
+      "choose",
+      picks.includes(s.id) ? "✓ Seleccionada" : "Elegir TOP 3"
+    );
+
+    view.addEventListener("click", () => openDialog(s));
+    choose.addEventListener("click", () => openDialog(s));
+
+    actions.append(view, choose);
+    info.append(actions);
+    card.append(art, info);
+    $("gallery").append(card);
+  }
+}
+
+function renderPicks() {
+  const names = [
+    "🥇 1.º puesto · 3 puntos",
+    "🥈 2.º puesto · 2 puntos",
+    "🥉 3.º puesto · 1 punto"
+  ];
+
+  $("slots").replaceChildren();
+
+  picks.forEach((id, i) => {
+    const box = make("div", "slot");
+
+    box.append(
+      make("b", "", names[i]),
+      make("p", "", id ? byId(id).name : "Todavía sin elegir")
+    );
+
+    if (id) {
+      const remove = make("button", "", "Quitar");
+
+      remove.addEventListener("click", () => {
+        picks[i] = null;
+        renderPicks();
+        renderGallery();
+      });
+
+      box.append(remove);
+    }
+
+    $("slots").append(box);
+  });
+
+  // Desactivado hasta conectar Firebase.
+  $("confirm").disabled = true;
+}
+
+function openDialog(s) {
+  $("dialog-title").textContent = s.name;
+  $("dialog-desc").textContent =
+    `${s.author} · Elige el puesto para esta skin.`;
+
+  const preview = $("preview");
+  preview.replaceChildren();
+
+  if (s.image) {
+    const img = make("img");
+    img.src = s.image;
+    img.alt = s.name;
+    preview.append(img);
+  } else {
+    preview.append(make("div", "", "🎨 Imagen pendiente de subir"));
+  }
+
+  const actions = $("dialog-actions");
+  actions.replaceChildren();
+
+  [3, 2, 1].forEach((points, i) => {
+    const button = make(
+      "button",
+      "rankbtn",
+      `${i + 1}.º puesto · ${points} puntos`
+    );
+
+    button.disabled =
+      picks.includes(s.id) && picks[i] !== s.id;
+
+    button.addEventListener("click", () => {
+      const previous = picks.indexOf(s.id);
+
+      if (previous !== -1) picks[previous] = null;
+
+      picks[i] = s.id;
+
+      closeDialog();
+      renderPicks();
+      renderGallery();
+    });
+
+    actions.append(button);
+  });
+
+  $("overlay").classList.remove("hidden");
+  $("close").focus();
+}
+
+function closeDialog() {
+  $("overlay").classList.add("hidden");
+}
+
+$("close").addEventListener("click", closeDialog);
+
+$("overlay").addEventListener("click", event => {
+  if (event.target === $("overlay")) closeDialog();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeDialog();
+});
+
+$("search").addEventListener("input", renderGallery);
+
+renderGallery();
+renderPicks();
+</script>
+
+</body>
+</html>
