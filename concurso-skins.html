@@ -4,656 +4,689 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ANXAN SKIN WARS | AnxanWoman</title>
-
+<title>Brawloween Skin Wars | AnxanWoman</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #0c1024;
-  --panel: #181f40;
-  --blue: #23b7ff;
-  --pink: #ff4ea9;
-  --yellow: #ffcc39;
-  --white: #f7f9ff;
+  --bg:#0e1022;
+  --card:#1c2040;
+  --blue:#39baff;
+  --pink:#ff5baf;
+  --yellow:#ffd45a;
+  --text:#f7f7ff;
+  --muted:#abb3d0;
 }
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
 body {
-  margin: 0;
-  font-family: Fredoka, sans-serif;
-  background:
-    radial-gradient(ellipse at 50% -10%, #243c89, transparent 45%),
-    var(--bg);
-  color: var(--white);
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Fredoka,sans-serif;
 }
-
-button, input { font: inherit; }
-button { cursor: pointer; }
-a { color: inherit; text-decoration: none; }
-
-.top {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 24px;
-  gap: 12px;
+button,input {font:inherit}
+button {cursor:pointer}
+a {text-decoration:none;color:inherit}
+header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
 }
-
-.brand {
-  font-size: 23px;
-  font-weight: 700;
-  color: var(--yellow);
+.logo {font-size:23px;font-weight:700;color:var(--blue)}
+.logo span {color:white}
+.nav {
+  padding:10px 15px;
+  background:#24294c;
+  border-radius:12px;
 }
-
-.brand span { color: white; }
-
-.topnav { display: flex; gap: 10px; }
-
-.navlink {
-  background: #18254c;
-  border: 1px solid #5c77b2;
-  border-radius: 14px;
-  padding: 10px 15px;
-  font-size: 14px;
-}
-
 .hero {
-  text-align: center;
-  max-width: 1060px;
-  margin: 30px auto 0;
-  padding: 46px 24px;
-  border-radius: 32px;
-  border: 2px solid #3459ac;
-  background:
-    radial-gradient(circle at 10% 10%, #b22d87aa, transparent 34%),
-    radial-gradient(circle at 90% 20%, #0576b8aa, transparent 40%),
-    linear-gradient(140deg, #202b70, #101735);
-  box-shadow: 0 16px 60px #0007;
+  max-width:1100px;
+  margin:15px auto;
+  padding:50px 25px;
+  text-align:center;
+  background:linear-gradient(140deg,#30215c,#15294d);
+  border:1px solid #604b9c;
+  border-radius:25px;
 }
-
 .eyebrow {
-  display: inline-block;
-  padding: 7px 16px;
-  border-radius: 100px;
-  background: #ffcc3925;
-  border: 1px solid var(--yellow);
-  color: var(--yellow);
-  letter-spacing: 2px;
-  font-size: 13px;
-  font-weight: 700;
+  color:var(--yellow);
+  font-weight:700;
+  letter-spacing:2px;
 }
-
-.hero h1 {
-  font-size: clamp(44px, 9vw, 100px);
-  line-height: .94;
-  margin: 20px 0 14px;
-  text-shadow: 5px 6px 0 #090d2b;
+h1 {
+  font-size:clamp(38px,7vw,75px);
+  line-height:1.05;
+  margin:15px 0;
 }
-
-.hero h1 em {
-  display: block;
-  font-style: normal;
-  color: var(--yellow);
-}
-
+h1 span {color:var(--pink)}
 .hero p {
-  font-size: clamp(16px, 2.5vw, 22px);
-  max-width: 660px;
-  margin: 20px auto 26px;
-  color: #e0e8ff;
+  max-width:650px;
+  margin:15px auto;
+  font-size:19px;
+  line-height:1.5;
 }
-
-.actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+.date {
+  display:inline-block;
+  margin:12px;
+  padding:12px 20px;
+  border:1px solid #765b9e;
+  border-radius:12px;
+  background:#201b3f;
 }
-
-.primary, .secondary {
-  display: inline-block;
-  border: 0;
-  border-radius: 15px;
-  padding: 13px 21px;
-  font-weight: 700;
+.btn {
+  display:inline-block;
+  border:0;
+  border-radius:12px;
+  padding:13px 22px;
+  font-weight:700;
 }
-
-.primary {
-  background: linear-gradient(135deg, var(--yellow), #ff922f);
-  color: #1e1930;
-  box-shadow: 0 5px 0 #ad651d;
+.btn-main {
+  background:var(--pink);
+  color:#1c1028;
 }
-
-.secondary {
-  background: #283d78;
-  color: white;
-  border: 1px solid #5877ce;
+.btn-blue {
+  background:var(--blue);
+  color:#081526;
 }
-
-.notice {
-  font-size: 13px;
-  margin: 24px auto 0;
-  color: #d9e7ff;
+.btn-dark {
+  background:#30375c;
+  color:white;
 }
-
-.wrap {
-  max-width: 1200px;
-  margin: auto;
-  padding: 35px 22px 90px;
+.hero-actions {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:22px;
 }
-
-.section-title {
-  font-size: 32px;
-  margin: 10px 0 8px;
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px 90px;
 }
-
-.muted { color: #aebce2; }
-
-.banner {
-  border: 1px solid #e7b443;
-  background: #463a1b;
-  color: #ffe8a0;
-  border-radius: 13px;
-  padding: 13px 16px;
-  margin: 20px 0;
+.section-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
 }
-
-.controls {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 25px 0;
+h2 {font-size:30px;margin:0 0 10px}
+.subtitle {color:var(--muted);margin:0 0 22px}
+.toolbar {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+  margin:25px 0;
 }
-
+.tabs {display:flex;gap:8px;flex-wrap:wrap}
+.tab {
+  background:#242947;
+  color:#d9ddf0;
+  border:1px solid #434c77;
+  border-radius:12px;
+  padding:12px 16px;
+}
+.tab.active {
+  background:#3c2854;
+  color:white;
+  border-color:var(--pink);
+}
 .search {
-  min-width: min(100%, 320px);
-  background: #171f40;
-  color: white;
-  border: 1px solid #41558b;
-  border-radius: 13px;
-  padding: 13px 16px;
+  padding:12px 15px;
+  border:1px solid #454e79;
+  border-radius:12px;
+  background:#1d2342;
+  color:white;
+  min-width:240px;
+  max-width:100%;
 }
-
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 17px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(195px,1fr));
+  gap:18px;
 }
-
 .skin {
-  background: linear-gradient(155deg, #263466, #141b38);
-  border: 1px solid #42588b;
-  border-radius: 19px;
-  overflow: hidden;
-  transition: transform .15s, border-color .15s;
+  position:relative;
+  background:var(--card);
+  border:1px solid #353b64;
+  border-radius:17px;
+  overflow:hidden;
+  transition:transform .2s,border-color .2s;
 }
-
 .skin:hover {
-  transform: translateY(-4px);
-  border-color: var(--blue);
+  transform:translateY(-4px);
+  border-color:var(--blue);
 }
-
 .art {
-  height: 205px;
-  background: repeating-linear-gradient(
-    135deg,
-    #283d79, #283d79 13px,
-    #314887 13px, #314887 26px
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
+  width:100%;
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#30365c,#252043);
+  border:0;
+  color:#9da9d2;
+  font-size:45px;
 }
-
-.art strong { font-size: 52px; }
-.art small { letter-spacing: 2px; }
-
 .art img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
-
-.skin-info { padding: 15px; }
-
-.skin-info h3 {
-  margin: 0 0 4px;
-  font-size: 18px;
+.heart {
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:2;
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:#14182bdd;
+  color:white;
+  font-size:25px;
+  transition:transform .15s;
 }
-
-.skin-info p {
-  margin: 0 0 12px;
-  color: #b6c4e5;
-  font-size: 13px;
+.heart:hover {transform:scale(1.12)}
+.heart.active {color:var(--pink)}
+.skin-info {padding:14px}
+.skin-info strong {display:block;font-size:17px}
+.skin-info small {
+  display:block;
+  color:var(--muted);
+  margin:5px 0 12px;
 }
-
-.skin-actions { display: flex; gap: 7px; }
-
-.skin-actions button {
-  flex: 1;
-  border: 1px solid #50659c;
-  border-radius: 10px;
-  padding: 9px 6px;
-  background: #24345e;
-  color: white;
-  font-size: 12px;
+.pick-btn {
+  width:100%;
+  border:1px solid #4e75a4;
+  background:#243c61;
+  color:white;
+  padding:10px;
+  border-radius:10px;
 }
-
-.skin-actions .choose {
-  background: #146da5;
-  border-color: #29b9ff;
+.vote {
+  margin-top:65px;
+  background:linear-gradient(135deg,#24264c,#30224c);
+  border:2px solid var(--pink);
+  border-radius:24px;
+  padding:30px;
+  text-align:center;
 }
-
-.ballot {
-  margin-top: 55px;
-  padding: 25px;
-  background: linear-gradient(150deg, #25376c, #171d40);
-  border: 2px solid #5a75bf;
-  border-radius: 25px;
-}
-
+.vote h2 {color:var(--yellow)}
 .slots {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 22px 0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+  margin:25px 0;
 }
-
 .slot {
-  padding: 18px 12px;
-  background: #111b3c;
-  border: 1px solid #455c97;
-  border-radius: 16px;
-  min-height: 120px;
+  background:#151b38;
+  border:1px solid #49527e;
+  border-radius:15px;
+  padding:20px 12px;
+  min-height:140px;
 }
-
-.slot b {
-  display: block;
-  color: var(--yellow);
-  margin-bottom: 9px;
-}
-
-.slot p { margin: 0; color: #d2ddf6; }
-
+.slot b {display:block;margin-bottom:12px}
+.slot p {color:#c9d2eb}
 .slot button {
-  margin-top: 10px;
-  border: 0;
-  background: #31487e;
-  color: white;
-  border-radius: 9px;
-  padding: 6px 11px;
+  background:#39446d;
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:7px 12px;
 }
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: #050918dd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  z-index: 10;
+.confirm {
+  padding:16px 35px;
+  font-size:18px;
+  background:var(--yellow);
+  color:#21182b;
+  border:0;
+  border-radius:14px;
+  font-weight:700;
 }
-
-.hidden { display: none !important; }
-
-.dialog {
-  width: min(100%, 440px);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #202c59;
-  border: 1px solid #6388d8;
-  border-radius: 22px;
-  padding: 25px;
-  box-shadow: 0 20px 90px #000b;
+.confirm:disabled {opacity:.55;cursor:not-allowed}
+.note {color:var(--muted);font-size:14px}
+.empty {
+  text-align:center;
+  color:var(--muted);
+  padding:50px 15px;
 }
-
-.dialog p { color: #d1ddf5; }
-
+.modal {
+  position:fixed;
+  inset:0;
+  z-index:20;
+  background:#070915e8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.hidden {display:none!important}
+.modal-box {
+  background:#24294e;
+  border:1px solid #6975aa;
+  border-radius:20px;
+  padding:25px;
+  width:min(100%,470px);
+  max-height:90vh;
+  overflow:auto;
+}
+.modal-preview {
+  display:grid;
+  place-items:center;
+  background:#151b39;
+  min-height:220px;
+  border-radius:14px;
+  margin:15px 0;
+}
+.modal-preview img {
+  max-width:100%;
+  max-height:55vh;
+  object-fit:contain;
+}
+.rank-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.rank-actions button {
+  flex:1;
+  min-width:110px;
+  border:1px solid #6678b4;
+  border-radius:10px;
+  padding:12px;
+  background:#344677;
+  color:white;
+}
 .close {
-  float: right;
-  background: none;
-  border: 0;
-  color: white;
-  font-size: 24px;
+  float:right;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
 }
-
-.rankbtn {
-  background: #30457e;
-  border: 1px solid #6d8bd0;
-  border-radius: 12px;
-  color: white;
-  padding: 12px 14px;
-  margin: 5px;
+footer {
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
 }
-
-.rankbtn:disabled { opacity: .4; }
-
-.preview {
-  border: 2px dashed #6a84c5;
-  background: #273a6a;
-  border-radius: 14px;
-  min-height: 200px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.preview img {
-  max-width: 100%;
-  max-height: 60vh;
-  object-fit: contain;
-}
-
-.footer {
-  text-align: center;
-  padding: 30px;
-  color: #9eacd1;
-  font-size: 13px;
-}
-
-@media (max-width: 650px) {
-  .top { padding: 16px; }
-  .brand { font-size: 18px; }
-  .navlink { font-size: 12px; padding: 9px; }
-  .hero { margin: 10px 12px 0; padding: 35px 18px; }
+@media(max-width:650px) {
+  .hero {margin:10px;padding:35px 18px}
   .gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
   }
-  .art { height: 150px; }
-  .skin-info { padding: 10px; }
-  .skin-info h3 { font-size: 15px; }
-  .skin-actions { flex-direction: column; }
-  .slots { grid-template-columns: 1fr; }
-  .ballot { padding: 17px; }
-  .wrap { padding: 25px 13px 60px; }
+  .art {height:165px}
+  .skin-info {padding:10px}
+  .slots {grid-template-columns:1fr}
+  .vote {padding:20px 12px}
+  .container {padding:30px 12px}
 }
 </style>
 </head>
 
 <body>
-
-<header class="top">
-  <a href="index.html" class="brand">
-    ⭐ ANXAN<span>WOMAN</span>
+<header>
+  <a href="index.html" class="logo">
+    ANXAN<span>WOMAN</span>
   </a>
-  <nav class="topnav">
-    <a href="index.html" class="navlink">← Inicio</a>
-    <a href="login.html" class="navlink">👤 Entrar</a>
-  </nav>
+  <a href="index.html" class="nav">← Inicio</a>
 </header>
 
 <section class="hero">
-  <span class="eyebrow">⚡ EVENTO DE LA COMUNIDAD ⚡</span>
-  <h1>ANXAN <em>SKIN WARS</em></h1>
+  <div class="eyebrow"> CONCURSO BRAWLOWEEN </div>
+  <h1>ANXAN<br><span>SKIN WARS</span></h1>
   <p>
-    ¡50 artistas, un montón de creatividad y una comunidad
-    que decide qué skins merecen lo más alto!
+    50 artistas. 50 creaciones únicas.<br>
+    ¡Vota por tu skin de Brawloween favorita!
   </p>
-  <div class="actions">
-    <a href="#participantes" class="primary">🎨 VER SKINS</a>
-    <a href="#mi-top" class="secondary">🏆 MI TOP 3</a>
+
+  <div class="date">
+    Vídeo con los resultados: <b>30 DE OCTUBRE</b>
   </div>
-  <div class="notice">
-    🚧 PREVISUALIZACIÓN · Votaciones todavía cerradas
+
+  <p style="font-size:15px;color:#d4d6ee">
+    Revisa el vídeo donde se presentan todas las skins
+    y descubre a sus creadores.
+  </p>
+
+  <div class="hero-actions">
+    <a id="youtube-link"
+       href="https://www.youtube.com/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn btn-dark">
+      ▶ Ver vídeo de presentación
+    </a>
+    <a href="#galeria" class="btn btn-main">
+       Explorar skins
+    </a>
+    <a href="#votacion" class="btn btn-blue">
+       Ir a votar
+    </a>
   </div>
 </section>
 
-<main class="wrap">
-  <div class="banner">
-    Esta es una demostración del concurso.
-    Los participantes son provisionales y todavía
-    no se guardan votos reales en Firebase.
+<main class="container">
+
+<section id="galeria">
+  <div class="section-heading">
+    <div>
+      <h2> Galería de skins</h2>
+      <p class="subtitle">
+        Explora, amplía y guarda tus diseños favoritos.
+      </p>
+    </div>
+    <span id="counter"></span>
   </div>
 
-  <section id="participantes">
-    <h2 class="section-title">🎨 GALERÍA DE SKINS</h2>
-    <p class="muted">
-      Explora los diseños y elige tus tres favoritos.
-    </p>
-
-    <div class="controls">
-      <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="🔎 Buscar skin o participante"
-      >
-      <span id="count"></span>
+  <div class="toolbar">
+    <div class="tabs">
+      <button class="tab active" id="all-tab">
+        Todas las skins
+      </button>
+      <button class="tab" id="fav-tab">
+        ❤️ Mis favoritas (0)
+      </button>
     </div>
+    <input id="search" class="search"
+      type="search" placeholder="🔎 Buscar skin o artista">
+  </div>
 
-    <div class="gallery" id="gallery"></div>
-    <p id="no-results" class="hidden">
-      No hay resultados para esa búsqueda.
-    </p>
-  </section>
+  <div id="gallery" class="gallery"></div>
+  <div id="empty" class="empty hidden">
+    Todavía no hay skins en esta sección.
+  </div>
+</section>
 
-  <section class="ballot" id="mi-top">
-    <h2>🏆 MI TOP 3</h2>
-    <p class="muted">
-      Elige tres skins diferentes:
-      3 puntos, 2 puntos y 1 punto.
-    </p>
+<section class="vote" id="votacion">
+  <h2> ¡ES HORA DE VOTAR!</h2>
+  <p>Elige tus 3 mejores skins de Brawloween.</p>
+  <p class="subtitle">
+    🥇 3 puntos · 🥈 2 puntos · 🥉 1 punto
+  </p>
 
-    <div class="slots" id="slots"></div>
+  <div class="slots" id="slots"></div>
 
-    <button class="primary" id="confirm" disabled>
-      🔒 CONFIRMAR MI TOP 3
-    </button>
+  <button id="confirm" class="confirm" disabled>
+     ENVIAR MI VOTACIÓN
+  </button>
+  <p class="note">
+    Votaciones cerradas durante la preparación del concurso.
+  </p>
+</section>
 
-    <p class="muted">
-      La votación real se habilitará cuando
-      configuremos la seguridad de Firebase.
-    </p>
-  </section>
 </main>
 
-<footer class="footer">
-  ANXAN SKIN WARS · AnxanWoman · Concurso de fans no oficial
+<footer>
+  ANXAN SKIN WARS · Concurso de fans no oficial
 </footer>
 
-<div class="overlay hidden" id="overlay">
-  <div class="dialog" role="dialog" aria-modal="true"
-       aria-labelledby="dialog-title">
+<div id="modal" class="modal hidden">
+  <div class="modal-box" role="dialog"
+       aria-modal="true" aria-labelledby="modal-title">
     <button class="close" id="close" aria-label="Cerrar">×</button>
-    <h2 id="dialog-title"></h2>
-    <div class="preview" id="preview"></div>
-    <p id="dialog-desc"></p>
-    <div id="dialog-actions"></div>
+    <h2 id="modal-title"></h2>
+    <div id="modal-preview" class="modal-preview"></div>
+    <p id="modal-author"></p>
+    <div id="rank-actions" class="rank-actions"></div>
   </div>
 </div>
 
 <script>
 "use strict";
 
-// 50 participantes provisionales.
-const skins = Array.from({ length: 50 }, (_, i) => ({
-  id: `skin-${String(i + 1).padStart(2, "0")}`,
-  name: `Skin #${String(i + 1).padStart(2, "0")}`,
-  author: "Participante pendiente",
-  image: null
+// Sustituir el enlace cuando publiques el vídeo.
+const YOUTUBE_VIDEO = "https://www.youtube.com/";
+document.getElementById("youtube-link").href = YOUTUBE_VIDEO;
+
+// Participantes provisionales.
+const skins = Array.from({length:50},(_,i)=>({
+  id:"skin-"+String(i+1).padStart(2,"0"),
+  name:"Skin #"+String(i+1).padStart(2,"0"),
+  author:"Artista pendiente",
+  image:null
 }));
 
-const picks = [null, null, null];
-
 const $ = id => document.getElementById(id);
-const byId = id => skins.find(s => s.id === id);
+const validIds = new Set(skins.map(s=>s.id));
 
-function make(tag, cls, value) {
-  const element = document.createElement(tag);
-  if (cls) element.className = cls;
-  if (value !== undefined) element.textContent = value;
-  return element;
-}
-
-function renderGallery() {
-  const q = $("search").value.trim().toLowerCase();
-
-  const shown = skins.filter(s =>
-    (s.name + " " + s.author).toLowerCase().includes(q)
-  );
-
-  $("gallery").replaceChildren();
-  $("count").textContent = `${shown.length} de ${skins.length} skins`;
-  $("no-results").classList.toggle("hidden", shown.length > 0);
-
-  for (const s of shown) {
-    const card = make("article", "skin");
-    const art = make("div", "art");
-
-    if (s.image) {
-      const img = make("img");
-      img.src = s.image;
-      img.alt = s.name;
-      img.loading = "lazy";
-      art.append(img);
-    } else {
-      art.append(
-        make("strong", "", "🎨"),
-        make("small", "", s.id.toUpperCase())
-      );
-    }
-
-    const info = make("div", "skin-info");
-    info.append(
-      make("h3", "", s.name),
-      make("p", "", s.author)
+function loadFavorites() {
+  try {
+    const saved=JSON.parse(
+      localStorage.getItem("anxanSkinFavorites")||"[]"
     );
-
-    const actions = make("div", "skin-actions");
-    const view = make("button", "", "Ampliar");
-    const choose = make(
-      "button",
-      "choose",
-      picks.includes(s.id) ? "✓ Seleccionada" : "Elegir TOP 3"
+    return new Set(
+      Array.isArray(saved)
+        ? saved.filter(id=>validIds.has(id))
+        : []
     );
-
-    view.addEventListener("click", () => openDialog(s));
-    choose.addEventListener("click", () => openDialog(s));
-
-    actions.append(view, choose);
-    info.append(actions);
-    card.append(art, info);
-    $("gallery").append(card);
+  } catch {
+    return new Set();
   }
 }
 
+const favorites=loadFavorites();
+const picks=[null,null,null];
+let currentTab="all";
+let selectedSkin=null;
+
+function element(tag,cls,text) {
+  const el=document.createElement(tag);
+  if(cls) el.className=cls;
+  if(text!==undefined) el.textContent=text;
+  return el;
+}
+
+function toggleFavorite(id) {
+  if(favorites.has(id)) favorites.delete(id);
+  else favorites.add(id);
+
+  try {
+    localStorage.setItem(
+      "anxanSkinFavorites",
+      JSON.stringify([...favorites])
+    );
+  } catch(e) {
+    console.warn("No se pudieron guardar favoritos",e);
+  }
+
+  renderGallery();
+}
+
+function renderGallery() {
+  const q=$("search").value.trim().toLowerCase();
+  const gallery=$("gallery");
+  gallery.replaceChildren();
+
+  const filtered=skins.filter(s=>{
+    const match=(s.name+" "+s.author)
+      .toLowerCase().includes(q);
+    return match &&
+      (currentTab==="all"||favorites.has(s.id));
+  });
+
+  $("fav-tab").textContent=
+    "❤️ Mis favoritas ("+favorites.size+")";
+
+  $("all-tab").classList.toggle(
+    "active",currentTab==="all"
+  );
+  $("fav-tab").classList.toggle(
+    "active",currentTab==="fav"
+  );
+
+  $("counter").textContent=
+    filtered.length+" skins";
+
+  $("empty").classList.toggle(
+    "hidden",filtered.length>0
+  );
+
+  filtered.forEach(s=>{
+    const card=element("article","skin");
+
+    const heart=element(
+      "button",
+      "heart"+(favorites.has(s.id)?" active":""),
+      favorites.has(s.id)?"♥":"♡"
+    );
+    heart.type="button";
+    heart.setAttribute(
+      "aria-label",
+      (favorites.has(s.id)?"Quitar de":"Añadir a")+
+      " favoritas: "+s.name
+    );
+    heart.setAttribute(
+      "aria-pressed",String(favorites.has(s.id))
+    );
+    heart.onclick=()=>toggleFavorite(s.id);
+
+    const art=element("button","art");
+    art.type="button";
+    art.setAttribute("aria-label","Ampliar "+s.name);
+
+    if(s.image) {
+      const img=element("img");
+      img.src=s.image;
+      img.alt=s.name;
+      img.loading="lazy";
+      art.append(img);
+    } else {
+      art.textContent="🎨";
+    }
+    art.onclick=()=>openModal(s);
+
+    const info=element("div","skin-info");
+    info.append(
+      element("strong","",s.name),
+      element("small","",s.author)
+    );
+
+    const pick=element(
+      "button","pick-btn",
+      picks.includes(s.id)?"✓ En tu TOP 3":"Elegir para TOP 3"
+    );
+    pick.onclick=()=>openModal(s);
+    info.append(pick);
+
+    card.append(heart,art,info);
+    gallery.append(card);
+  });
+}
+
 function renderPicks() {
-  const names = [
-    "🥇 1.º puesto · 3 puntos",
-    "🥈 2.º puesto · 2 puntos",
-    "🥉 3.º puesto · 1 punto"
+  const labels=[
+    "🥇 Primer puesto · 3 puntos",
+    "🥈 Segundo puesto · 2 puntos",
+    "🥉 Tercer puesto · 1 punto"
   ];
 
   $("slots").replaceChildren();
 
-  picks.forEach((id, i) => {
-    const box = make("div", "slot");
+  picks.forEach((id,i)=>{
+    const slot=element("div","slot");
+    const skin=skins.find(s=>s.id===id);
 
-    box.append(
-      make("b", "", names[i]),
-      make("p", "", id ? byId(id).name : "Todavía sin elegir")
+    slot.append(
+      element("b","",labels[i]),
+      element("p","",skin?skin.name:"Sin seleccionar")
     );
 
-    if (id) {
-      const remove = make("button", "", "Quitar");
-
-      remove.addEventListener("click", () => {
-        picks[i] = null;
+    if(skin) {
+      const remove=element("button","","Quitar");
+      remove.onclick=()=>{
+        picks[i]=null;
         renderPicks();
         renderGallery();
-      });
-
-      box.append(remove);
+      };
+      slot.append(remove);
     }
-
-    $("slots").append(box);
+    $("slots").append(slot);
   });
 
-  // Desactivado hasta conectar Firebase.
-  $("confirm").disabled = true;
+  // La votación real todavía está desactivada.
+  $("confirm").disabled=true;
 }
 
-function openDialog(s) {
-  $("dialog-title").textContent = s.name;
-  $("dialog-desc").textContent =
-    `${s.author} · Elige el puesto para esta skin.`;
+function openModal(s) {
+  selectedSkin=s;
+  $("modal-title").textContent=s.name;
+  $("modal-author").textContent="Por "+s.author;
 
-  const preview = $("preview");
+  const preview=$("modal-preview");
   preview.replaceChildren();
 
-  if (s.image) {
-    const img = make("img");
-    img.src = s.image;
-    img.alt = s.name;
+  if(s.image) {
+    const img=element("img");
+    img.src=s.image;
+    img.alt=s.name;
     preview.append(img);
   } else {
-    preview.append(make("div", "", "🎨 Imagen pendiente de subir"));
+    preview.append(
+      element("span","","🎨 Imagen pendiente")
+    );
   }
 
-  const actions = $("dialog-actions");
+  const actions=$("rank-actions");
   actions.replaceChildren();
 
-  [3, 2, 1].forEach((points, i) => {
-    const button = make(
-      "button",
-      "rankbtn",
-      `${i + 1}.º puesto · ${points} puntos`
+  [3,2,1].forEach((points,i)=>{
+    const btn=element(
+      "button","",
+      ["🥇","🥈","🥉"][i]+" "+points+" puntos"
     );
 
-    button.disabled =
-      picks.includes(s.id) && picks[i] !== s.id;
+    btn.onclick=()=>{
+      const old=picks.indexOf(s.id);
+      if(old!==-1) picks[old]=null;
 
-    button.addEventListener("click", () => {
-      const previous = picks.indexOf(s.id);
-
-      if (previous !== -1) picks[previous] = null;
-
-      picks[i] = s.id;
-
-      closeDialog();
+      picks[i]=s.id;
+      closeModal();
       renderPicks();
       renderGallery();
-    });
-
-    actions.append(button);
+    };
+    actions.append(btn);
   });
 
-  $("overlay").classList.remove("hidden");
+  $("modal").classList.remove("hidden");
   $("close").focus();
 }
 
-function closeDialog() {
-  $("overlay").classList.add("hidden");
+function closeModal() {
+  $("modal").classList.add("hidden");
 }
 
-$("close").addEventListener("click", closeDialog);
+$("close").onclick=closeModal;
 
-$("overlay").addEventListener("click", event => {
-  if (event.target === $("overlay")) closeDialog();
+$("modal").onclick=e=>{
+  if(e.target===$("modal")) closeModal();
+};
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
 });
 
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeDialog();
-});
+$("all-tab").onclick=()=>{
+  currentTab="all";
+  renderGallery();
+};
 
-$("search").addEventListener("input", renderGallery);
+$("fav-tab").onclick=()=>{
+  currentTab="fav";
+  renderGallery();
+};
+
+$("search").oninput=renderGallery;
 
 renderGallery();
 renderPicks();
 </script>
-
 </body>
 </html>
