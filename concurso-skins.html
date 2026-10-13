@@ -242,17 +242,10 @@ h2 {
   transition:transform .15s;
 }
 
-.heart:hover {
-  transform:scale(1.12);
-}
+.heart:hover {transform:scale(1.12)}
+.heart.active {color:var(--pink)}
 
-.heart.active {
-  color:var(--pink);
-}
-
-.skin-info {
-  padding:14px;
-}
+.skin-info {padding:14px}
 
 .skin-info strong {
   display:block;
@@ -283,9 +276,7 @@ h2 {
   text-align:center;
 }
 
-.vote h2 {
-  color:var(--yellow);
-}
+.vote h2 {color:var(--yellow)}
 
 .auth-panel {
   margin:20px auto;
@@ -296,9 +287,7 @@ h2 {
   border-radius:14px;
 }
 
-.auth-panel p {
-  line-height:1.5;
-}
+.auth-panel p {line-height:1.5}
 
 .slots {
   display:grid;
@@ -320,9 +309,7 @@ h2 {
   margin-bottom:12px;
 }
 
-.slot p {
-  color:#c9d2eb;
-}
+.slot p {color:#c9d2eb}
 
 .slot button {
   background:#39446d;
@@ -369,9 +356,7 @@ h2 {
   padding:20px;
 }
 
-.hidden {
-  display:none!important;
-}
+.hidden {display:none!important}
 
 .modal-box {
   background:#24294e;
@@ -439,25 +424,11 @@ footer {
     gap:10px;
   }
 
-  .art {
-    height:165px;
-  }
-
-  .skin-info {
-    padding:10px;
-  }
-
-  .slots {
-    grid-template-columns:1fr;
-  }
-
-  .vote {
-    padding:20px 12px;
-  }
-
-  .container {
-    padding:30px 12px;
-  }
+  .art {height:165px}
+  .skin-info {padding:10px}
+  .slots {grid-template-columns:1fr}
+  .vote {padding:20px 12px}
+  .container {padding:30px 12px}
 }
 </style>
 </head>
@@ -473,9 +444,6 @@ footer {
     ← Inicio
   </a>
 </header>
-
-
-<!-- PORTADA DEL CONCURSO -->
 
 <section class="hero">
 
@@ -525,15 +493,11 @@ footer {
 
 </section>
 
-
 <main class="container">
-
-<!-- GALERÍA -->
 
 <section id="galeria">
 
   <div class="section-heading">
-
     <div>
       <h2>🎨 Galería de skins</h2>
       <p class="subtitle">
@@ -542,13 +506,11 @@ footer {
     </div>
 
     <span id="counter"></span>
-
   </div>
 
   <div class="toolbar">
 
     <div class="tabs">
-
       <button class="tab active" id="all-tab">
         Todas las skins
       </button>
@@ -556,7 +518,6 @@ footer {
       <button class="tab" id="fav-tab">
         ❤️ Mis favoritas (0)
       </button>
-
     </div>
 
     <input
@@ -576,9 +537,6 @@ footer {
 
 </section>
 
-
-<!-- VOTACIÓN -->
-
 <section class="vote" id="votacion">
 
   <h2>🏆 ¡ES HORA DE VOTAR!</h2>
@@ -590,8 +548,6 @@ footer {
   <p class="subtitle">
     🥇 3 puntos · 🥈 2 puntos · 🥉 1 punto
   </p>
-
-  <!-- ESTADO DE FIREBASE AUTH -->
 
   <div class="auth-panel" aria-live="polite">
 
@@ -614,26 +570,22 @@ footer {
     class="confirm"
     type="button"
     disabled>
-    ENVIAR MI VOTACIÓN
+    🔒 VOTACIONES NO ABIERTAS
   </button>
 
   <p class="note">
-    🔒 Votaciones cerradas durante la preparación
-    del concurso. Aunque inicies sesión,
-    todavía no se enviará ningún voto.
+    🔒 Puedes votar una sola vez por cuenta.
+    Tu TOP 3 será definitivo y los resultados
+    se anunciarán el 30 de octubre.
   </p>
 
 </section>
 
 </main>
 
-
 <footer>
   ANXAN SKIN WARS · Concurso de fans no oficial
 </footer>
-
-
-<!-- MODAL DE SELECCIÓN -->
 
 <div id="modal" class="modal hidden">
 
@@ -667,14 +619,10 @@ footer {
 
 </div>
 
-
-<!-- FUNCIONES DE GALERÍA Y TOP 3 -->
+<!-- GALERÍA, FAVORITOS Y TOP 3 -->
 
 <script>
 "use strict";
-
-// Sustituiremos este enlace por el vídeo
-// cuando esté publicado.
 
 const YOUTUBE_VIDEO =
   "https://youtube.com/@anxanwoman";
@@ -682,8 +630,9 @@ const YOUTUBE_VIDEO =
 document.getElementById("youtube-link").href =
   YOUTUBE_VIDEO;
 
-
-// PARTICIPANTES PROVISIONALES
+// Las 50 skins siguen siendo provisionales.
+// Sustituir nombres, artistas e imágenes antes
+// de abrir el concurso.
 
 const skins = Array.from(
   {length:50},
@@ -695,18 +644,14 @@ const skins = Array.from(
   })
 );
 
-
 const $ = id => document.getElementById(id);
 
 const validIds = new Set(
   skins.map(s=>s.id)
 );
 
-
 function loadFavorites() {
-
   try {
-
     const saved = JSON.parse(
       localStorage.getItem("anxanSkinFavorites") || "[]"
     );
@@ -716,27 +661,18 @@ function loadFavorites() {
         ? saved.filter(id=>validIds.has(id))
         : []
     );
-
   } catch {
-
     return new Set();
-
   }
-
 }
 
-
 const favorites = loadFavorites();
-
 const picks = [null,null,null];
 
 let currentTab = "all";
-
 let selectedSkin = null;
 
-
 function element(tag,cls,text) {
-
   const el = document.createElement(tag);
 
   if(cls) {
@@ -748,12 +684,9 @@ function element(tag,cls,text) {
   }
 
   return el;
-
 }
 
-
 function toggleFavorite(id) {
-
   if(favorites.has(id)) {
     favorites.delete(id);
   } else {
@@ -761,37 +694,27 @@ function toggleFavorite(id) {
   }
 
   try {
-
     localStorage.setItem(
       "anxanSkinFavorites",
       JSON.stringify([...favorites])
     );
-
   } catch(e) {
-
     console.warn(
       "No se pudieron guardar favoritos",
       e
     );
-
   }
 
   renderGallery();
-
 }
 
-
 function renderGallery() {
-
   const q = $("search").value.trim().toLowerCase();
-
   const gallery = $("gallery");
 
   gallery.replaceChildren();
 
-
   const filtered = skins.filter(s=>{
-
     const match = (
       s.name+" "+s.author
     ).toLowerCase().includes(q);
@@ -800,13 +723,10 @@ function renderGallery() {
       currentTab==="all" ||
       favorites.has(s.id)
     );
-
   });
-
 
   $("fav-tab").textContent =
     "❤️ Mis favoritas ("+favorites.size+")";
-
 
   $("all-tab").classList.toggle(
     "active",
@@ -818,21 +738,16 @@ function renderGallery() {
     currentTab==="fav"
   );
 
-
   $("counter").textContent =
     filtered.length+" skins";
-
 
   $("empty").classList.toggle(
     "hidden",
     filtered.length>0
   );
 
-
   filtered.forEach(s=>{
-
     const card = element("article","skin");
-
 
     const heart = element(
       "button",
@@ -860,9 +775,7 @@ function renderGallery() {
 
     heart.onclick = ()=>toggleFavorite(s.id);
 
-
     const art = element("button","art");
-
     art.type = "button";
 
     art.setAttribute(
@@ -870,9 +783,7 @@ function renderGallery() {
       "Ampliar "+s.name
     );
 
-
     if(s.image) {
-
       const img = element("img");
 
       img.src = s.image;
@@ -880,15 +791,11 @@ function renderGallery() {
       img.loading = "lazy";
 
       art.append(img);
-
     } else {
-
       art.textContent = "🎨";
-
     }
 
     art.onclick = ()=>openModal(s);
-
 
     const info = element("div","skin-info");
 
@@ -896,7 +803,6 @@ function renderGallery() {
       element("strong","",s.name),
       element("small","",s.author)
     );
-
 
     const pick = element(
       "button",
@@ -907,11 +813,9 @@ function renderGallery() {
     );
 
     pick.type = "button";
-
     pick.onclick = ()=>openModal(s);
 
     info.append(pick);
-
 
     card.append(
       heart,
@@ -920,14 +824,10 @@ function renderGallery() {
     );
 
     gallery.append(card);
-
   });
-
 }
 
-
 function renderPicks() {
-
   const labels = [
     "🥇 Primer puesto · 3 puntos",
     "🥈 Segundo puesto · 2 puntos",
@@ -936,13 +836,9 @@ function renderPicks() {
 
   $("slots").replaceChildren();
 
-
   picks.forEach((id,i)=>{
-
     const slot = element("div","slot");
-
     const skin = skins.find(s=>s.id===id);
-
 
     slot.append(
       element("b","",labels[i]),
@@ -953,9 +849,7 @@ function renderPicks() {
       )
     );
 
-
     if(skin) {
-
       const remove = element(
         "button",
         "",
@@ -965,33 +859,24 @@ function renderPicks() {
       remove.type = "button";
 
       remove.onclick = ()=>{
-
         picks[i] = null;
-
         renderPicks();
-
         renderGallery();
-
       };
 
       slot.append(remove);
-
     }
 
-
     $("slots").append(slot);
-
   });
 
-
-  // BLOQUEADO HASTA CONFIGURAR FIRESTORE
-  $("confirm").disabled = true;
-
+  // Firebase decide si el botón puede activarse.
+  if(window.actualizarBotonVoto) {
+    window.actualizarBotonVoto();
+  }
 }
 
-
 function openModal(s) {
-
   selectedSkin = s;
 
   $("modal-title").textContent = s.name;
@@ -999,23 +884,15 @@ function openModal(s) {
   $("modal-author").textContent =
     "Por "+s.author;
 
-
   const preview = $("modal-preview");
-
   preview.replaceChildren();
 
-
   if(s.image) {
-
     const img = element("img");
-
     img.src = s.image;
     img.alt = s.name;
-
     preview.append(img);
-
   } else {
-
     preview.append(
       element(
         "span",
@@ -1023,17 +900,12 @@ function openModal(s) {
         "🎨 Imagen pendiente"
       )
     );
-
   }
 
-
   const actions = $("rank-actions");
-
   actions.replaceChildren();
 
-
   [3,2,1].forEach((points,i)=>{
-
     const btn = element(
       "button",
       "",
@@ -1044,7 +916,6 @@ function openModal(s) {
     btn.type = "button";
 
     btn.onclick = ()=>{
-
       const old = picks.indexOf(s.id);
 
       if(old!==-1) {
@@ -1054,86 +925,53 @@ function openModal(s) {
       picks[i] = s.id;
 
       closeModal();
-
       renderPicks();
-
       renderGallery();
-
     };
 
     actions.append(btn);
-
   });
 
-
   $("modal").classList.remove("hidden");
-
   $("close").focus();
-
 }
-
 
 function closeModal() {
-
   $("modal").classList.add("hidden");
-
 }
-
 
 $("close").onclick = closeModal;
 
-
 $("modal").onclick = e=>{
-
   if(e.target===$("modal")) {
     closeModal();
   }
-
 };
 
-
 document.addEventListener("keydown",e=>{
-
   if(e.key==="Escape") {
     closeModal();
   }
-
 });
 
-
 $("all-tab").onclick = ()=>{
-
   currentTab = "all";
-
   renderGallery();
-
 };
-
 
 $("fav-tab").onclick = ()=>{
-
   currentTab = "fav";
-
   renderGallery();
-
 };
-
 
 $("search").oninput = renderGallery;
 
-
 renderGallery();
-
 renderPicks();
 
 </script>
 
-
-<!-- =====================================
-     FIREBASE AUTHENTICATION
-     Comprueba la sesión del usuario
-     No habilita todavía el envío de votos
-===================================== -->
+<!-- FIREBASE AUTH + FIRESTORE -->
 
 <script type="module">
 
@@ -1143,103 +981,248 @@ import {
   getApp
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
-
 import {
   getAuth,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyAs6sUeZNNisoiXsYAspHow1Z2iOwv9TVg",
-
-  authDomain:
-    "anxanwoman.firebaseapp.com",
-
-  projectId:
-    "anxanwoman",
-
-  storageBucket:
-    "anxanwoman.firebasestorage.app",
-
-  messagingSenderId:
-    "366283389190",
-
-  appId:
-    "1:366283389190:web:60115f7658d96304688687",
-
-  measurementId:
-    "G-6DN2N02ZPG"
-
+  apiKey: "AIzaSyAs6sUeZNNisoiXsYAspHow1Z2iOwv9TVg",
+  authDomain: "anxanwoman.firebaseapp.com",
+  projectId: "anxanwoman",
+  storageBucket: "anxanwoman.firebasestorage.app",
+  messagingSenderId: "366283389190",
+  appId: "1:366283389190:web:60115f7658d96304688687",
+  measurementId: "G-6DN2N02ZPG"
 };
-
 
 const app = getApps().length
   ? getApp()
   : initializeApp(firebaseConfig);
 
-
 const auth = getAuth(app);
+const db = getFirestore(app);
 
+const status = document.getElementById("auth-status");
+const login = document.getElementById("login-link");
+const boton = document.getElementById("confirm");
 
-const status = document.getElementById(
-  "auth-status"
-);
+let usuario = null;
+let enviando = false;
+let votoEnviado = false;
 
+// Apertura: 16/10/2026 00:00 CEST.
+// Cierre: 26/10/2026 00:00 CET.
 
-const login = document.getElementById(
-  "login-link"
-);
+const APERTURA =
+  new Date("2026-10-16T00:00:00+02:00");
 
+const CIERRE =
+  new Date("2026-10-26T00:00:00+01:00");
 
-onAuthStateChanged(
+function plazoAbierto() {
+  const ahora = Date.now();
 
-  auth,
+  return ahora >= APERTURA.getTime()
+    && ahora < CIERRE.getTime();
+}
 
-  (user)=>{
+function nombreSkin(id) {
+  const skin = skins.find(s => s.id === id);
+  return skin ? skin.name : id;
+}
 
-    if(user) {
+function papeletaCompleta() {
+  return picks.every(id => id !== null)
+    && new Set(picks).size === 3;
+}
 
-      status.textContent =
-        "✅ Sesión iniciada como " +
-        (
-          user.displayName ||
-          user.email ||
-          "usuario de AnxanWoman"
-        ) +
-        ". Las votaciones aún no están abiertas.";
-
-      login.classList.add("hidden");
-
-    } else {
-
-      status.textContent =
-        "🔐 Inicia sesión para participar " +
-        "cuando se abran las votaciones.";
-
-      login.classList.remove("hidden");
-
-    }
-
-  },
-
-  (error)=>{
-
-    console.error(
-      "Firebase Auth:",
-      error
-    );
-
-    status.textContent =
-      "⚠️ No se pudo comprobar la sesión. " +
-      "Prueba a recargar la página.";
-
-    login.classList.remove("hidden");
-
+function actualizarBotonVoto() {
+  if(votoEnviado) {
+    boton.disabled = true;
+    boton.textContent = "✅ VOTO ENVIADO";
+    return;
   }
 
+  if(enviando) {
+    boton.disabled = true;
+    boton.textContent = "⏳ ENVIANDO...";
+    return;
+  }
+
+  if(!plazoAbierto()) {
+    boton.disabled = true;
+
+    boton.textContent =
+      Date.now() < APERTURA.getTime()
+        ? "🔒 VOTACIONES NO ABIERTAS"
+        : "🔒 VOTACIONES CERRADAS";
+
+    return;
+  }
+
+  if(!usuario) {
+    boton.disabled = true;
+    boton.textContent = "🔐 INICIA SESIÓN";
+    return;
+  }
+
+  boton.disabled = !papeletaCompleta();
+
+  boton.textContent = papeletaCompleta()
+    ? "🏆 ENVIAR MI VOTACIÓN"
+    : "ELIGE TUS 3 SKINS";
+}
+
+window.actualizarBotonVoto = actualizarBotonVoto;
+
+onAuthStateChanged(auth, user => {
+  usuario = user;
+
+  // Al cambiar de cuenta, no damos por hecho
+  // que el nuevo usuario haya votado.
+  votoEnviado = false;
+
+  if(user) {
+    login.classList.add("hidden");
+
+    const nombre =
+      user.displayName ||
+      user.email ||
+      "usuario de AnxanWoman";
+
+    if(Date.now() < APERTURA.getTime()) {
+      status.textContent =
+        "✅ Sesión iniciada como " + nombre +
+        ". Las votaciones comienzan el 16 de octubre.";
+    } else if(!plazoAbierto()) {
+      status.textContent =
+        "🔒 Las votaciones finalizaron el 25 de octubre.";
+    } else {
+      status.textContent =
+        "✅ Sesión iniciada como " + nombre +
+        ". ¡Ya puedes elegir tu TOP 3!";
+    }
+
+  } else {
+    login.classList.remove("hidden");
+
+    status.textContent =
+      "🔐 Inicia sesión para participar " +
+      "en las votaciones.";
+  }
+
+  actualizarBotonVoto();
+
+}, error => {
+  console.error("Error de autenticación:", error);
+
+  usuario = null;
+
+  status.textContent =
+    "⚠️ No se pudo comprobar la sesión.";
+
+  login.classList.remove("hidden");
+
+  actualizarBotonVoto();
+});
+
+boton.addEventListener("click", async () => {
+
+  if(enviando || votoEnviado) return;
+
+  if(!usuario) {
+    alert("Debes iniciar sesión para votar.");
+    return;
+  }
+
+  if(!plazoAbierto()) {
+    alert("Las votaciones no están abiertas.");
+    actualizarBotonVoto();
+    return;
+  }
+
+  if(!papeletaCompleta()) {
+    alert("Selecciona tres skins diferentes.");
+    return;
+  }
+
+  const primero = picks[0];
+  const segundo = picks[1];
+  const tercero = picks[2];
+
+  const mensaje =
+    "🎃 CONFIRMA TU VOTACIÓN\n\n" +
+    "🥇 3 puntos: " + nombreSkin(primero) + "\n" +
+    "🥈 2 puntos: " + nombreSkin(segundo) + "\n" +
+    "🥉 1 punto: " + nombreSkin(tercero) + "\n\n" +
+    "⚠️ No podrás modificar tu voto después.\n\n" +
+    "¿Quieres enviarlo definitivamente?";
+
+  if(!window.confirm(mensaje)) return;
+
+  enviando = true;
+  actualizarBotonVoto();
+
+  try {
+    const referencia = doc(
+      db,
+      "votos_skins",
+      usuario.uid
+    );
+
+    await setDoc(referencia, {
+      primero,
+      segundo,
+      tercero
+    });
+
+    votoEnviado = true;
+
+    status.textContent =
+      "🎉 ¡Tu votación se ha guardado correctamente!";
+
+    alert(
+      "🎉 ¡VOTO REGISTRADO!\n\n" +
+      "Gracias por participar en ANXAN SKIN WARS."
+    );
+
+  } catch(error) {
+    console.error("Error al votar:", error);
+
+    if(error.code === "permission-denied") {
+      alert(
+        "No se pudo registrar el voto.\n\n" +
+        "Puede que ya hayas votado, " +
+        "que el plazo esté cerrado " +
+        "o que la papeleta no sea válida."
+      );
+    } else {
+      alert(
+        "No se ha podido confirmar el envío.\n" +
+        "Comprueba tu conexión antes " +
+        "de volver a intentarlo."
+      );
+    }
+
+  } finally {
+    enviando = false;
+    actualizarBotonVoto();
+  }
+
+});
+
+actualizarBotonVoto();
+
+document.addEventListener(
+  "visibilitychange",
+  actualizarBotonVoto
 );
 
 </script>
