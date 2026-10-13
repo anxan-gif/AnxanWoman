@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brawloween Skin Wars | AnxanWoman</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -17,17 +18,21 @@
   --text:#f7f7ff;
   --muted:#abb3d0;
 }
+
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
+
 body {
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:Fredoka,sans-serif;
 }
+
 button,input {font:inherit}
 button {cursor:pointer}
 a {text-decoration:none;color:inherit}
+
 header {
   display:flex;
   align-items:center;
@@ -36,13 +41,21 @@ header {
   margin:auto;
   padding:20px;
 }
-.logo {font-size:23px;font-weight:700;color:var(--blue)}
+
+.logo {
+  font-size:23px;
+  font-weight:700;
+  color:var(--blue);
+}
+
 .logo span {color:white}
+
 .nav {
   padding:10px 15px;
   background:#24294c;
   border-radius:12px;
 }
+
 .hero {
   max-width:1100px;
   margin:15px auto;
@@ -52,23 +65,28 @@ header {
   border:1px solid #604b9c;
   border-radius:25px;
 }
+
 .eyebrow {
   color:var(--yellow);
   font-weight:700;
   letter-spacing:2px;
 }
+
 h1 {
   font-size:clamp(38px,7vw,75px);
   line-height:1.05;
   margin:15px 0;
 }
+
 h1 span {color:var(--pink)}
+
 .hero p {
   max-width:650px;
   margin:15px auto;
   font-size:19px;
   line-height:1.5;
 }
+
 .date {
   display:inline-block;
   margin:12px;
@@ -77,6 +95,7 @@ h1 span {color:var(--pink)}
   border-radius:12px;
   background:#201b3f;
 }
+
 .btn {
   display:inline-block;
   border:0;
@@ -84,18 +103,22 @@ h1 span {color:var(--pink)}
   padding:13px 22px;
   font-weight:700;
 }
+
 .btn-main {
   background:var(--pink);
   color:#1c1028;
 }
+
 .btn-blue {
   background:var(--blue);
   color:#081526;
 }
+
 .btn-dark {
   background:#30375c;
   color:white;
 }
+
 .hero-actions {
   display:flex;
   flex-wrap:wrap;
@@ -103,11 +126,13 @@ h1 span {color:var(--pink)}
   gap:12px;
   margin-top:22px;
 }
+
 .container {
   max-width:1200px;
   margin:auto;
   padding:35px 20px 90px;
 }
+
 .section-heading {
   display:flex;
   align-items:center;
@@ -115,8 +140,17 @@ h1 span {color:var(--pink)}
   gap:15px;
   flex-wrap:wrap;
 }
-h2 {font-size:30px;margin:0 0 10px}
-.subtitle {color:var(--muted);margin:0 0 22px}
+
+h2 {
+  font-size:30px;
+  margin:0 0 10px;
+}
+
+.subtitle {
+  color:var(--muted);
+  margin:0 0 22px;
+}
+
 .toolbar {
   display:flex;
   justify-content:space-between;
@@ -124,7 +158,13 @@ h2 {font-size:30px;margin:0 0 10px}
   gap:15px;
   margin:25px 0;
 }
-.tabs {display:flex;gap:8px;flex-wrap:wrap}
+
+.tabs {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
 .tab {
   background:#242947;
   color:#d9ddf0;
@@ -132,11 +172,13 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:12px;
   padding:12px 16px;
 }
+
 .tab.active {
   background:#3c2854;
   color:white;
   border-color:var(--pink);
 }
+
 .search {
   padding:12px 15px;
   border:1px solid #454e79;
@@ -146,11 +188,13 @@ h2 {font-size:30px;margin:0 0 10px}
   min-width:240px;
   max-width:100%;
 }
+
 .gallery {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(195px,1fr));
   gap:18px;
 }
+
 .skin {
   position:relative;
   background:var(--card);
@@ -159,10 +203,12 @@ h2 {font-size:30px;margin:0 0 10px}
   overflow:hidden;
   transition:transform .2s,border-color .2s;
 }
+
 .skin:hover {
   transform:translateY(-4px);
   border-color:var(--blue);
 }
+
 .art {
   width:100%;
   height:220px;
@@ -174,11 +220,13 @@ h2 {font-size:30px;margin:0 0 10px}
   color:#9da9d2;
   font-size:45px;
 }
+
 .art img {
   width:100%;
   height:100%;
   object-fit:contain;
 }
+
 .heart {
   position:absolute;
   top:10px;
@@ -193,15 +241,30 @@ h2 {font-size:30px;margin:0 0 10px}
   font-size:25px;
   transition:transform .15s;
 }
-.heart:hover {transform:scale(1.12)}
-.heart.active {color:var(--pink)}
-.skin-info {padding:14px}
-.skin-info strong {display:block;font-size:17px}
+
+.heart:hover {
+  transform:scale(1.12);
+}
+
+.heart.active {
+  color:var(--pink);
+}
+
+.skin-info {
+  padding:14px;
+}
+
+.skin-info strong {
+  display:block;
+  font-size:17px;
+}
+
 .skin-info small {
   display:block;
   color:var(--muted);
   margin:5px 0 12px;
 }
+
 .pick-btn {
   width:100%;
   border:1px solid #4e75a4;
@@ -210,6 +273,7 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:10px;
   border-radius:10px;
 }
+
 .vote {
   margin-top:65px;
   background:linear-gradient(135deg,#24264c,#30224c);
@@ -218,13 +282,31 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:30px;
   text-align:center;
 }
-.vote h2 {color:var(--yellow)}
+
+.vote h2 {
+  color:var(--yellow);
+}
+
+.auth-panel {
+  margin:20px auto;
+  padding:15px;
+  max-width:600px;
+  background:#151b38;
+  border:1px solid #49527e;
+  border-radius:14px;
+}
+
+.auth-panel p {
+  line-height:1.5;
+}
+
 .slots {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:15px;
   margin:25px 0;
 }
+
 .slot {
   background:#151b38;
   border:1px solid #49527e;
@@ -232,8 +314,16 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:20px 12px;
   min-height:140px;
 }
-.slot b {display:block;margin-bottom:12px}
-.slot p {color:#c9d2eb}
+
+.slot b {
+  display:block;
+  margin-bottom:12px;
+}
+
+.slot p {
+  color:#c9d2eb;
+}
+
 .slot button {
   background:#39446d;
   color:white;
@@ -241,6 +331,7 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:8px;
   padding:7px 12px;
 }
+
 .confirm {
   padding:16px 35px;
   font-size:18px;
@@ -250,13 +341,23 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:14px;
   font-weight:700;
 }
-.confirm:disabled {opacity:.55;cursor:not-allowed}
-.note {color:var(--muted);font-size:14px}
+
+.confirm:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.note {
+  color:var(--muted);
+  font-size:14px;
+}
+
 .empty {
   text-align:center;
   color:var(--muted);
   padding:50px 15px;
 }
+
 .modal {
   position:fixed;
   inset:0;
@@ -267,7 +368,11 @@ h2 {font-size:30px;margin:0 0 10px}
   justify-content:center;
   padding:20px;
 }
-.hidden {display:none!important}
+
+.hidden {
+  display:none!important;
+}
+
 .modal-box {
   background:#24294e;
   border:1px solid #6975aa;
@@ -277,6 +382,7 @@ h2 {font-size:30px;margin:0 0 10px}
   max-height:90vh;
   overflow:auto;
 }
+
 .modal-preview {
   display:grid;
   place-items:center;
@@ -285,16 +391,19 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:14px;
   margin:15px 0;
 }
+
 .modal-preview img {
   max-width:100%;
   max-height:55vh;
   object-fit:contain;
 }
+
 .rank-actions {
   display:flex;
   flex-wrap:wrap;
   gap:8px;
 }
+
 .rank-actions button {
   flex:1;
   min-width:110px;
@@ -304,6 +413,7 @@ h2 {font-size:30px;margin:0 0 10px}
   background:#344677;
   color:white;
 }
+
 .close {
   float:right;
   background:none;
@@ -311,44 +421,81 @@ h2 {font-size:30px;margin:0 0 10px}
   color:white;
   font-size:25px;
 }
+
 footer {
   text-align:center;
   padding:30px;
   color:var(--muted);
 }
+
 @media(max-width:650px) {
-  .hero {margin:10px;padding:35px 18px}
+  .hero {
+    margin:10px;
+    padding:35px 18px;
+  }
+
   .gallery {
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
-  .art {height:165px}
-  .skin-info {padding:10px}
-  .slots {grid-template-columns:1fr}
-  .vote {padding:20px 12px}
-  .container {padding:30px 12px}
+
+  .art {
+    height:165px;
+  }
+
+  .skin-info {
+    padding:10px;
+  }
+
+  .slots {
+    grid-template-columns:1fr;
+  }
+
+  .vote {
+    padding:20px 12px;
+  }
+
+  .container {
+    padding:30px 12px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header>
   <a href="index.html" class="logo">
     ANXAN<span>WOMAN</span>
   </a>
-  <a href="index.html" class="nav">← Inicio</a>
+
+  <a href="index.html" class="nav">
+    ← Inicio
+  </a>
 </header>
 
+
+<!-- PORTADA DEL CONCURSO -->
+
 <section class="hero">
-  <div class="eyebrow"> CONCURSO BRAWLOWEEN </div>
-  <h1>ANXAN<br><span>SKIN WARS</span></h1>
+
+  <div class="eyebrow">
+    🎃 CONCURSO BRAWLOWEEN
+  </div>
+
+  <h1>
+    ANXAN<br>
+    <span>SKIN WARS</span>
+  </h1>
+
   <p>
     50 artistas. 50 creaciones únicas.<br>
     ¡Vota por tu skin de Brawloween favorita!
   </p>
 
   <div class="date">
-    Vídeo con los resultados: <b>30 DE OCTUBRE</b>
+    Vídeo con los resultados:
+    <b>30 DE OCTUBRE</b>
   </div>
 
   <p style="font-size:15px;color:#d4d6ee">
@@ -357,232 +504,431 @@ footer {
   </p>
 
   <div class="hero-actions">
+
     <a id="youtube-link"
-       href="https://www.youtube.com/"
+       href="https://youtube.com/@anxanwoman"
        target="_blank"
        rel="noopener noreferrer"
        class="btn btn-dark">
       ▶ Ver vídeo de presentación
     </a>
+
     <a href="#galeria" class="btn btn-main">
-       Explorar skins
+      Explorar skins
     </a>
+
     <a href="#votacion" class="btn btn-blue">
-       Ir a votar
+      Ir a votar
     </a>
+
   </div>
+
 </section>
+
 
 <main class="container">
 
+<!-- GALERÍA -->
+
 <section id="galeria">
+
   <div class="section-heading">
+
     <div>
-      <h2> Galería de skins</h2>
+      <h2>🎨 Galería de skins</h2>
       <p class="subtitle">
         Explora, amplía y guarda tus diseños favoritos.
       </p>
     </div>
+
     <span id="counter"></span>
+
   </div>
 
   <div class="toolbar">
+
     <div class="tabs">
+
       <button class="tab active" id="all-tab">
         Todas las skins
       </button>
+
       <button class="tab" id="fav-tab">
         ❤️ Mis favoritas (0)
       </button>
+
     </div>
-    <input id="search" class="search"
-      type="search" placeholder="🔎 Buscar skin o artista">
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="🔎 Buscar skin o artista"
+    >
+
   </div>
 
   <div id="gallery" class="gallery"></div>
+
   <div id="empty" class="empty hidden">
     Todavía no hay skins en esta sección.
   </div>
+
 </section>
 
+
+<!-- VOTACIÓN -->
+
 <section class="vote" id="votacion">
-  <h2> ¡ES HORA DE VOTAR!</h2>
-  <p>Elige tus 3 mejores skins de Brawloween.</p>
+
+  <h2>🏆 ¡ES HORA DE VOTAR!</h2>
+
+  <p>
+    Elige tus 3 mejores skins de Brawloween.
+  </p>
+
   <p class="subtitle">
     🥇 3 puntos · 🥈 2 puntos · 🥉 1 punto
   </p>
 
+  <!-- ESTADO DE FIREBASE AUTH -->
+
+  <div class="auth-panel" aria-live="polite">
+
+    <p id="auth-status">
+      🔄 Comprobando inicio de sesión...
+    </p>
+
+    <a id="login-link"
+       href="login.html"
+       class="btn btn-blue hidden">
+      🔐 Iniciar sesión para votar
+    </a>
+
+  </div>
+
   <div class="slots" id="slots"></div>
 
-  <button id="confirm" class="confirm" disabled>
-     ENVIAR MI VOTACIÓN
+  <button
+    id="confirm"
+    class="confirm"
+    type="button"
+    disabled>
+    ENVIAR MI VOTACIÓN
   </button>
+
   <p class="note">
-    Votaciones cerradas durante la preparación del concurso.
+    🔒 Votaciones cerradas durante la preparación
+    del concurso. Aunque inicies sesión,
+    todavía no se enviará ningún voto.
   </p>
+
 </section>
 
 </main>
+
 
 <footer>
   ANXAN SKIN WARS · Concurso de fans no oficial
 </footer>
 
+
+<!-- MODAL DE SELECCIÓN -->
+
 <div id="modal" class="modal hidden">
-  <div class="modal-box" role="dialog"
-       aria-modal="true" aria-labelledby="modal-title">
-    <button class="close" id="close" aria-label="Cerrar">×</button>
+
+  <div class="modal-box"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modal-title">
+
+    <button
+      class="close"
+      id="close"
+      aria-label="Cerrar">
+      ×
+    </button>
+
     <h2 id="modal-title"></h2>
-    <div id="modal-preview" class="modal-preview"></div>
+
+    <div
+      id="modal-preview"
+      class="modal-preview">
+    </div>
+
     <p id="modal-author"></p>
-    <div id="rank-actions" class="rank-actions"></div>
+
+    <div
+      id="rank-actions"
+      class="rank-actions">
+    </div>
+
   </div>
+
 </div>
+
+
+<!-- FUNCIONES DE GALERÍA Y TOP 3 -->
 
 <script>
 "use strict";
 
-// Sustituir el enlace cuando publiques el vídeo.
-const YOUTUBE_VIDEO = "https://www.youtube.com/";
-document.getElementById("youtube-link").href = YOUTUBE_VIDEO;
+// Sustituiremos este enlace por el vídeo
+// cuando esté publicado.
 
-// Participantes provisionales.
-const skins = Array.from({length:50},(_,i)=>({
-  id:"skin-"+String(i+1).padStart(2,"0"),
-  name:"Skin #"+String(i+1).padStart(2,"0"),
-  author:"Artista pendiente",
-  image:null
-}));
+const YOUTUBE_VIDEO =
+  "https://youtube.com/@anxanwoman";
+
+document.getElementById("youtube-link").href =
+  YOUTUBE_VIDEO;
+
+
+// PARTICIPANTES PROVISIONALES
+
+const skins = Array.from(
+  {length:50},
+  (_,i)=>({
+    id:"skin-"+String(i+1).padStart(2,"0"),
+    name:"Skin #"+String(i+1).padStart(2,"0"),
+    author:"Artista pendiente",
+    image:null
+  })
+);
+
 
 const $ = id => document.getElementById(id);
-const validIds = new Set(skins.map(s=>s.id));
+
+const validIds = new Set(
+  skins.map(s=>s.id)
+);
+
 
 function loadFavorites() {
+
   try {
-    const saved=JSON.parse(
-      localStorage.getItem("anxanSkinFavorites")||"[]"
+
+    const saved = JSON.parse(
+      localStorage.getItem("anxanSkinFavorites") || "[]"
     );
+
     return new Set(
       Array.isArray(saved)
         ? saved.filter(id=>validIds.has(id))
         : []
     );
+
   } catch {
+
     return new Set();
+
   }
+
 }
 
-const favorites=loadFavorites();
-const picks=[null,null,null];
-let currentTab="all";
-let selectedSkin=null;
+
+const favorites = loadFavorites();
+
+const picks = [null,null,null];
+
+let currentTab = "all";
+
+let selectedSkin = null;
+
 
 function element(tag,cls,text) {
-  const el=document.createElement(tag);
-  if(cls) el.className=cls;
-  if(text!==undefined) el.textContent=text;
+
+  const el = document.createElement(tag);
+
+  if(cls) {
+    el.className = cls;
+  }
+
+  if(text !== undefined) {
+    el.textContent = text;
+  }
+
   return el;
+
 }
 
+
 function toggleFavorite(id) {
-  if(favorites.has(id)) favorites.delete(id);
-  else favorites.add(id);
+
+  if(favorites.has(id)) {
+    favorites.delete(id);
+  } else {
+    favorites.add(id);
+  }
 
   try {
+
     localStorage.setItem(
       "anxanSkinFavorites",
       JSON.stringify([...favorites])
     );
+
   } catch(e) {
-    console.warn("No se pudieron guardar favoritos",e);
+
+    console.warn(
+      "No se pudieron guardar favoritos",
+      e
+    );
+
   }
 
   renderGallery();
+
 }
 
+
 function renderGallery() {
-  const q=$("search").value.trim().toLowerCase();
-  const gallery=$("gallery");
+
+  const q = $("search").value.trim().toLowerCase();
+
+  const gallery = $("gallery");
+
   gallery.replaceChildren();
 
-  const filtered=skins.filter(s=>{
-    const match=(s.name+" "+s.author)
-      .toLowerCase().includes(q);
-    return match &&
-      (currentTab==="all"||favorites.has(s.id));
+
+  const filtered = skins.filter(s=>{
+
+    const match = (
+      s.name+" "+s.author
+    ).toLowerCase().includes(q);
+
+    return match && (
+      currentTab==="all" ||
+      favorites.has(s.id)
+    );
+
   });
 
-  $("fav-tab").textContent=
+
+  $("fav-tab").textContent =
     "❤️ Mis favoritas ("+favorites.size+")";
 
+
   $("all-tab").classList.toggle(
-    "active",currentTab==="all"
-  );
-  $("fav-tab").classList.toggle(
-    "active",currentTab==="fav"
+    "active",
+    currentTab==="all"
   );
 
-  $("counter").textContent=
+  $("fav-tab").classList.toggle(
+    "active",
+    currentTab==="fav"
+  );
+
+
+  $("counter").textContent =
     filtered.length+" skins";
 
+
   $("empty").classList.toggle(
-    "hidden",filtered.length>0
+    "hidden",
+    filtered.length>0
   );
 
-  filtered.forEach(s=>{
-    const card=element("article","skin");
 
-    const heart=element(
+  filtered.forEach(s=>{
+
+    const card = element("article","skin");
+
+
+    const heart = element(
       "button",
-      "heart"+(favorites.has(s.id)?" active":""),
+      "heart"+(
+        favorites.has(s.id)?" active":""
+      ),
       favorites.has(s.id)?"♥":"♡"
     );
-    heart.type="button";
+
+    heart.type = "button";
+
     heart.setAttribute(
       "aria-label",
-      (favorites.has(s.id)?"Quitar de":"Añadir a")+
-      " favoritas: "+s.name
+      (
+        favorites.has(s.id)
+          ? "Quitar de"
+          : "Añadir a"
+      )+" favoritas: "+s.name
     );
-    heart.setAttribute(
-      "aria-pressed",String(favorites.has(s.id))
-    );
-    heart.onclick=()=>toggleFavorite(s.id);
 
-    const art=element("button","art");
-    art.type="button";
-    art.setAttribute("aria-label","Ampliar "+s.name);
+    heart.setAttribute(
+      "aria-pressed",
+      String(favorites.has(s.id))
+    );
+
+    heart.onclick = ()=>toggleFavorite(s.id);
+
+
+    const art = element("button","art");
+
+    art.type = "button";
+
+    art.setAttribute(
+      "aria-label",
+      "Ampliar "+s.name
+    );
+
 
     if(s.image) {
-      const img=element("img");
-      img.src=s.image;
-      img.alt=s.name;
-      img.loading="lazy";
-      art.append(img);
-    } else {
-      art.textContent="🎨";
-    }
-    art.onclick=()=>openModal(s);
 
-    const info=element("div","skin-info");
+      const img = element("img");
+
+      img.src = s.image;
+      img.alt = s.name;
+      img.loading = "lazy";
+
+      art.append(img);
+
+    } else {
+
+      art.textContent = "🎨";
+
+    }
+
+    art.onclick = ()=>openModal(s);
+
+
+    const info = element("div","skin-info");
+
     info.append(
       element("strong","",s.name),
       element("small","",s.author)
     );
 
-    const pick=element(
-      "button","pick-btn",
-      picks.includes(s.id)?"✓ En tu TOP 3":"Elegir para TOP 3"
+
+    const pick = element(
+      "button",
+      "pick-btn",
+      picks.includes(s.id)
+        ? "✓ En tu TOP 3"
+        : "Elegir para TOP 3"
     );
-    pick.onclick=()=>openModal(s);
+
+    pick.type = "button";
+
+    pick.onclick = ()=>openModal(s);
+
     info.append(pick);
 
-    card.append(heart,art,info);
+
+    card.append(
+      heart,
+      art,
+      info
+    );
+
     gallery.append(card);
+
   });
+
 }
 
+
 function renderPicks() {
-  const labels=[
+
+  const labels = [
     "🥇 Primer puesto · 3 puntos",
     "🥈 Segundo puesto · 2 puntos",
     "🥉 Tercer puesto · 1 punto"
@@ -590,103 +936,313 @@ function renderPicks() {
 
   $("slots").replaceChildren();
 
+
   picks.forEach((id,i)=>{
-    const slot=element("div","slot");
-    const skin=skins.find(s=>s.id===id);
+
+    const slot = element("div","slot");
+
+    const skin = skins.find(s=>s.id===id);
+
 
     slot.append(
       element("b","",labels[i]),
-      element("p","",skin?skin.name:"Sin seleccionar")
+      element(
+        "p",
+        "",
+        skin?skin.name:"Sin seleccionar"
+      )
     );
+
 
     if(skin) {
-      const remove=element("button","","Quitar");
-      remove.onclick=()=>{
-        picks[i]=null;
+
+      const remove = element(
+        "button",
+        "",
+        "Quitar"
+      );
+
+      remove.type = "button";
+
+      remove.onclick = ()=>{
+
+        picks[i] = null;
+
         renderPicks();
+
         renderGallery();
+
       };
+
       slot.append(remove);
+
     }
+
+
     $("slots").append(slot);
+
   });
 
-  // La votación real todavía está desactivada.
-  $("confirm").disabled=true;
+
+  // BLOQUEADO HASTA CONFIGURAR FIRESTORE
+  $("confirm").disabled = true;
+
 }
+
 
 function openModal(s) {
-  selectedSkin=s;
-  $("modal-title").textContent=s.name;
-  $("modal-author").textContent="Por "+s.author;
 
-  const preview=$("modal-preview");
+  selectedSkin = s;
+
+  $("modal-title").textContent = s.name;
+
+  $("modal-author").textContent =
+    "Por "+s.author;
+
+
+  const preview = $("modal-preview");
+
   preview.replaceChildren();
 
+
   if(s.image) {
-    const img=element("img");
-    img.src=s.image;
-    img.alt=s.name;
+
+    const img = element("img");
+
+    img.src = s.image;
+    img.alt = s.name;
+
     preview.append(img);
+
   } else {
+
     preview.append(
-      element("span","","🎨 Imagen pendiente")
+      element(
+        "span",
+        "",
+        "🎨 Imagen pendiente"
+      )
     );
+
   }
 
-  const actions=$("rank-actions");
+
+  const actions = $("rank-actions");
+
   actions.replaceChildren();
 
+
   [3,2,1].forEach((points,i)=>{
-    const btn=element(
-      "button","",
-      ["🥇","🥈","🥉"][i]+" "+points+" puntos"
+
+    const btn = element(
+      "button",
+      "",
+      ["🥇","🥈","🥉"][i]+
+      " "+points+" puntos"
     );
 
-    btn.onclick=()=>{
-      const old=picks.indexOf(s.id);
-      if(old!==-1) picks[old]=null;
+    btn.type = "button";
 
-      picks[i]=s.id;
+    btn.onclick = ()=>{
+
+      const old = picks.indexOf(s.id);
+
+      if(old!==-1) {
+        picks[old] = null;
+      }
+
+      picks[i] = s.id;
+
       closeModal();
+
       renderPicks();
+
       renderGallery();
+
     };
+
     actions.append(btn);
+
   });
 
+
   $("modal").classList.remove("hidden");
+
   $("close").focus();
+
 }
+
 
 function closeModal() {
+
   $("modal").classList.add("hidden");
+
 }
 
-$("close").onclick=closeModal;
 
-$("modal").onclick=e=>{
-  if(e.target===$("modal")) closeModal();
+$("close").onclick = closeModal;
+
+
+$("modal").onclick = e=>{
+
+  if(e.target===$("modal")) {
+    closeModal();
+  }
+
 };
+
 
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closeModal();
+
+  if(e.key==="Escape") {
+    closeModal();
+  }
+
 });
 
-$("all-tab").onclick=()=>{
-  currentTab="all";
+
+$("all-tab").onclick = ()=>{
+
+  currentTab = "all";
+
   renderGallery();
+
 };
 
-$("fav-tab").onclick=()=>{
-  currentTab="fav";
+
+$("fav-tab").onclick = ()=>{
+
+  currentTab = "fav";
+
   renderGallery();
+
 };
 
-$("search").oninput=renderGallery;
+
+$("search").oninput = renderGallery;
+
 
 renderGallery();
+
 renderPicks();
+
 </script>
+
+
+<!-- =====================================
+     FIREBASE AUTHENTICATION
+     Comprueba la sesión del usuario
+     No habilita todavía el envío de votos
+===================================== -->
+
+<script type="module">
+
+import {
+  initializeApp,
+  getApps,
+  getApp
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyAs6sUeZNNisoiXsYAspHow1Z2iOwv9TVg",
+
+  authDomain:
+    "anxanwoman.firebaseapp.com",
+
+  projectId:
+    "anxanwoman",
+
+  storageBucket:
+    "anxanwoman.firebasestorage.app",
+
+  messagingSenderId:
+    "366283389190",
+
+  appId:
+    "1:366283389190:web:60115f7658d96304688687",
+
+  measurementId:
+    "G-6DN2N02ZPG"
+
+};
+
+
+const app = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);
+
+
+const auth = getAuth(app);
+
+
+const status = document.getElementById(
+  "auth-status"
+);
+
+
+const login = document.getElementById(
+  "login-link"
+);
+
+
+onAuthStateChanged(
+
+  auth,
+
+  (user)=>{
+
+    if(user) {
+
+      status.textContent =
+        "✅ Sesión iniciada como " +
+        (
+          user.displayName ||
+          user.email ||
+          "usuario de AnxanWoman"
+        ) +
+        ". Las votaciones aún no están abiertas.";
+
+      login.classList.add("hidden");
+
+    } else {
+
+      status.textContent =
+        "🔐 Inicia sesión para participar " +
+        "cuando se abran las votaciones.";
+
+      login.classList.remove("hidden");
+
+    }
+
+  },
+
+  (error)=>{
+
+    console.error(
+      "Firebase Auth:",
+      error
+    );
+
+    status.textContent =
+      "⚠️ No se pudo comprobar la sesión. " +
+      "Prueba a recargar la página.";
+
+    login.classList.remove("hidden");
+
+  }
+
+);
+
+</script>
+
 </body>
 </html>
