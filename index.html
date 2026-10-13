@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,6 +15,175 @@
     <title>AnxanWoman | Comunidad</title>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- =====================================
+         ESTILOS EVENTO BRAWLOWEEN
+         Independientes del resto de la web
+    ===================================== -->
+
+    <style>
+
+        .anxan-skin-event {
+            position: relative;
+            margin: 35px 0 45px;
+            padding: 45px 25px;
+            text-align: center;
+            border-radius: 24px;
+            border: 2px solid #7542a8;
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(169, 60, 179, .24),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    135deg,
+                    #242044,
+                    #15264a
+                );
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .anxan-skin-event-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .anxan-skin-event-label {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: rgba(255, 212, 90, .12);
+            color: #ffd45a;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .anxan-skin-event h2 {
+            margin: 20px 0 15px;
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 52px);
+            line-height: 1.1;
+        }
+
+        .anxan-skin-event h2 span {
+            color: #ff5baf;
+        }
+
+        .anxan-skin-event-description {
+            max-width: 570px;
+            margin: 0 auto 18px;
+            color: #e5e5f5;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .anxan-skin-event-date {
+            margin: 18px 0 25px;
+            color: #ffd45a;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .anxan-skin-event-button {
+            display: inline-block;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 13px;
+            background: #ff5baf;
+            color: #24132c;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition:
+                transform .2s,
+                background .2s;
+        }
+
+        .anxan-skin-event-button:hover {
+            background: #ff83c1;
+            transform: translateY(-3px);
+        }
+
+        .anxan-skin-event-status {
+            margin: 15px 0 0;
+            color: #c5c5dd;
+            font-size: 13px;
+        }
+
+        /* MODAL DE BLOQUEO */
+
+        .anxan-skin-lock {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(6, 7, 20, .85);
+        }
+
+        .anxan-skin-lock.active {
+            display: flex;
+        }
+
+        .anxan-skin-lock-card {
+            width: min(100%, 420px);
+            padding: 35px 25px;
+            border: 2px solid #ff5baf;
+            border-radius: 22px;
+            background: #242044;
+            color: white;
+            text-align: center;
+            box-shadow:
+                0 20px 70px rgba(0, 0, 0, .5);
+        }
+
+        .anxan-skin-lock-icon {
+            font-size: 52px;
+        }
+
+        .anxan-skin-lock-card h2 {
+            margin: 15px 0;
+            color: #ffd45a;
+            font-size: 26px;
+        }
+
+        .anxan-skin-lock-card p {
+            color: #e2def3;
+            line-height: 1.5;
+        }
+
+        .anxan-skin-lock-close {
+            margin-top: 15px;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 12px;
+            background: #ff5baf;
+            color: #24132c;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+
+            .anxan-skin-event {
+                margin: 25px 0 35px;
+                padding: 35px 18px;
+            }
+
+            .anxan-skin-event-description {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -33,17 +203,22 @@
              onclick="location.href='index.html'"
              style="cursor:pointer;">
 
-            ⭐ ANXAN<span>WOMAN</span>
+             ANXAN<span>WOMAN</span>
 
         </div>
 
 
         <div class="header-menu">
-<a href="login.html"
-   class="header-nav-button"
-   style="text-decoration: none;">
-    INICIAR SESIÓN
-</a>
+
+            <a href="login.html"
+               class="header-nav-button"
+               style="text-decoration: none;">
+
+                INICIAR SESIÓN
+
+            </a>
+
+
             <button class="header-nav-button"
                     id="progress-button">
 
@@ -175,7 +350,7 @@
 
     <div class="challenge-label">
 
-        🎯 RETO DIARIO
+         RETO DIARIO
 
     </div>
 
@@ -198,48 +373,67 @@
     <button class="btn btn-yellow"
             id="daily-challenge-button">
 
-        🎯 ACEPTAR RETO · +10 ⚡
+         ACEPTAR RETO · +10 ⚡
 
     </button>
 
 </section>
 
 
+
 <!-- =====================================
-     EVENTO BRAWLOWEEN - VOTACIONES SKIN
+     EVENTO BRAWLOWEEN
+     NUEVA SECCIÓN INDEPENDIENTE
 ===================================== -->
 
-<section class="anxan-skin-event" aria-labelledby="skin-event-title">
+<section class="anxan-skin-event"
+         aria-labelledby="skin-event-title">
 
     <div class="anxan-skin-event-content">
 
         <span class="anxan-skin-event-label">
-            🎃 EVENTO ESPECIAL BRAWLOWEEN
+
+             EVENTO ESPECIAL BRAWLOWEEN
+
         </span>
 
+
         <h2 id="skin-event-title">
+
             VOTACIONES <span>SKIN</span>
+
         </h2>
 
+
         <p class="anxan-skin-event-description">
+
             50 artistas. 50 creaciones únicas.
             ¡Vota por tu skin de Brawloween favorita!
+
         </p>
+
 
         <p class="anxan-skin-event-date">
-            🏆 Resultados en vídeo el 30 de octubre
+
+             Resultados en vídeo el 30 de octubre
+
         </p>
 
-        <button
-            type="button"
-            id="anxan-skin-event-button"
-            class="anxan-skin-event-button">
+
+        <button type="button"
+                id="anxan-skin-event-button"
+                class="anxan-skin-event-button">
+
             🔒 VER CONCURSO
+
         </button>
+
 
         <p id="anxan-skin-event-status"
            class="anxan-skin-event-status">
+
             Disponible el 16 de octubre
+
         </p>
 
     </div>
@@ -247,8 +441,10 @@
 </section>
 
 
+
 <!-- =====================================
      JUEGOS
+     SIN MODIFICACIONES
 ===================================== -->
 
 <section class="games">
@@ -400,7 +596,7 @@
 
     <div class="challenge-label">
 
-        🎁 EVENTO ESPECIAL
+        EVENTO ESPECIAL
 
     </div>
 
@@ -438,6 +634,7 @@
 
 <!-- =====================================
      FOOTER
+     ENLACES LEGALES CONSERVADOS
 ===================================== -->
 
 <footer>
@@ -450,7 +647,34 @@
     </p>
 
 
-    <p style="margin-top:10px; font-size:12px;">
+    <div class="legal-links">
+
+        <a href="aviso-legal.html">
+            Aviso legal
+        </a>
+
+        <span>·</span>
+
+        <a href="privacidad.html">
+            Privacidad
+        </a>
+
+        <span>·</span>
+
+        <a href="cookies.html">
+            Cookies
+        </a>
+
+        <span>·</span>
+
+        <a href="contacto.html">
+            Contacto
+        </a>
+
+    </div>
+
+
+    <p class="supercell-disclaimer">
 
         Este contenido no está afiliado,
         respaldado ni patrocinado por Supercell.
@@ -463,6 +687,7 @@
 
 <!-- =====================================
      MODAL ANXANWOMAN
+     ORIGINAL SIN MODIFICACIONES
 ===================================== -->
 
 <div id="anxan-modal"
@@ -510,52 +735,218 @@
 </div>
 
 
+
+<!-- =====================================
+     MODAL BLOQUEO BRAWLOWEEN
+===================================== -->
+
+<div id="anxan-skin-lock"
+     class="anxan-skin-lock"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="anxan-skin-lock-title"
+     aria-hidden="true">
+
+    <div class="anxan-skin-lock-card">
+
+        <div class="anxan-skin-lock-icon">
+
+            🔒🎃
+
+        </div>
+
+
+        <h2 id="anxan-skin-lock-title">
+
+            ¡VOTACIONES BLOQUEADAS!
+
+        </h2>
+
+
+        <p>
+
+            Bloqueado hasta el
+            <strong>16 de octubre</strong>.
+
+        </p>
+
+
+        <p>
+
+            ¡Muy pronto podrás votar por tus
+            skins favoritas de Brawloween!
+
+        </p>
+
+
+        <button type="button"
+                id="anxan-skin-lock-close"
+                class="anxan-skin-lock-close">
+
+            ENTENDIDO 
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================
+     SCRIPT ORIGINAL
+===================================== -->
+
 <script src="script.js"></script>
+
+
+
+<!-- =====================================
+     CONTROL DE APERTURA BRAWLOWEEN
+===================================== -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+    // Apertura: 16 de octubre de 2026,
+    // 00:00, hora peninsular española.
+
+    const apertura = new Date(
+        "2026-10-16T00:00:00+02:00"
+    ).getTime();
+
+
+    const boton = document.getElementById(
+        "anxan-skin-event-button"
+    );
+
+
+    const estado = document.getElementById(
+        "anxan-skin-event-status"
+    );
+
+
+    const modal = document.getElementById(
+        "anxan-skin-lock"
+    );
+
+
+    const cerrar = document.getElementById(
+        "anxan-skin-lock-close"
+    );
+
+
+    function estaAbierto() {
+
+        return Date.now() >= apertura;
+
+    }
+
+
+    function actualizarEstado() {
+
+        if (estaAbierto()) {
+
+            boton.textContent = " VER CONCURSO";
+
+            estado.textContent = "¡Concurso disponible!";
+
+        } else {
+
+            boton.textContent = " VER CONCURSO";
+
+            estado.textContent =
+                "Disponible el 16 de octubre";
+
+        }
+
+    }
+
+
+    function cerrarModal() {
+
+        modal.classList.remove("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        boton.focus();
+
+    }
+
+
+    boton.addEventListener("click", function () {
+
+        if (estaAbierto()) {
+
+            window.location.href =
+                "concurso-skins.html";
+
+        } else {
+
+            modal.classList.add("active");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            cerrar.focus();
+
+        }
+
+    });
+
+
+    cerrar.addEventListener(
+        "click",
+        cerrarModal
+    );
+
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === modal) {
+
+                cerrarModal();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("active")
+            ) {
+
+                cerrarModal();
+
+            }
+
+        }
+    );
+
+
+    actualizarEstado();
+
+})();
+
+</script>
 
 
 </body>
 
 </html>
-<!-- =====================================
-     FOOTER
-===================================== -->
-
-<footer>
-
-    <p>
-        Hecho con 💙 por
-        <strong>AnxanWoman</strong>
-    </p>
-
-    <div class="legal-links">
-
-        <a href="aviso-legal.html">
-            Aviso legal
-        </a>
-
-        <span>·</span>
-
-        <a href="privacidad.html">
-            Privacidad
-        </a>
-
-        <span>·</span>
-
-        <a href="cookies.html">
-            Cookies
-        </a>
-
-        <span>·</span>
-
-        <a href="contacto.html">
-            Contacto
-        </a>
-
-    </div>
-
-    <p class="supercell-disclaimer">
-        Este contenido no está afiliado,
-        respaldado ni patrocinado por Supercell.
-    </p>
-
-</footer>
