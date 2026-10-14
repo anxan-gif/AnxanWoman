@@ -2012,3 +2012,50 @@ body.legal-page {
     }
 
 }
+
+.rank-actions {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.rank-actions button {
+  width:100%;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:5px;
+  text-align:left;
+  padding:16px;
+  border-radius:13px;
+  color:white;
+  transition:transform .15s;
+}
+
+.rank-actions button:hover {
+  transform:scale(1.02);
+}
+
+.rank-actions button strong {
+  font-size:16px;
+}
+
+.rank-actions button small {
+  font-size:13px;
+}
+
+.rank-actions .rank-gold {
+  background:#59421f;
+  border:2px solid #d9a83b;
+}
+
+.rank-actions .rank-silver {
+  background:#354461;
+  border:2px solid #9dafc8;
+}
+
+.rank-actions .rank-bronze {
+  background:#503b32;
+  border:2px solid #bc8a6c;
+}
