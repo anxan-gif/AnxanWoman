@@ -1087,34 +1087,54 @@ function openModal(s) {
   const actions = $("rank-actions");
   actions.replaceChildren();
 
-  [3,2,1].forEach((points,i)=>{
-    const btn = crear(
-      "button",
-      "",
-      ["🥇 TOP 1","🥈 TOP 2","🥉 TOP 3"][i]+
-      " · "+points+" puntos"
-    );
+  
+const opciones = [
+  {
+    titulo: "🥇 1.º PUESTO — MI FAVORITA",
+    puntos: "Recibe 3 puntos",
+    clase: "rank-gold"
+  },
+  {
+    titulo: "🥈 2.º PUESTO — MI SEGUNDA FAVORITA",
+    puntos: "Recibe 2 puntos",
+    clase: "rank-silver"
+  },
+  {
+    titulo: "🥉 3.º PUESTO — MI TERCERA FAVORITA",
+    puntos: "Recibe 1 punto",
+    clase: "rank-bronze"
+  }
+];
 
-    btn.type = "button";
+opciones.forEach((opcion,i)=>{
+  const btn = crear("button",opcion.clase);
 
-    btn.onclick = ()=>{
-      if(window.votoEnviadoSkinWars) return;
+  btn.type = "button";
 
-      const anterior = picks.indexOf(s.id);
+  btn.append(
+    crear("strong","",opcion.titulo),
+    crear("small","",opcion.puntos)
+  );
 
-      if(anterior!==-1) {
-        picks[anterior] = null;
-      }
+  btn.onclick = ()=>{
+    if(window.votoEnviadoSkinWars) return;
 
-      picks[i] = s.id;
+    const anterior = picks.indexOf(s.id);
 
-      closeModal();
-      renderPicks();
-      renderGallery();
-    };
+    if(anterior!==-1) {
+      picks[anterior] = null;
+    }
 
-    actions.append(btn);
-  });
+    picks[i] = s.id;
+
+    closeModal();
+    renderPicks();
+    renderGallery();
+  };
+
+  actions.append(btn);
+});
+
 
   $("modal").classList.remove("hidden");
   $("close").focus();
