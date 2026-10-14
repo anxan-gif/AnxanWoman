@@ -16,17 +16,22 @@
   --yellow:#ffd45a;
   --muted:#abb3d0;
 }
+
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
+
 body {
   margin:0;
   background:var(--bg);
   color:#f7f7ff;
   font-family:Fredoka,sans-serif;
 }
+
 button,input {font:inherit}
 button {cursor:pointer}
 a {text-decoration:none;color:inherit}
+.hidden {display:none!important}
+
 header {
   display:flex;
   justify-content:space-between;
@@ -35,13 +40,21 @@ header {
   margin:auto;
   padding:20px;
 }
-.logo {font-size:23px;font-weight:700;color:var(--blue)}
+
+.logo {
+  font-size:23px;
+  font-weight:700;
+  color:var(--blue);
+}
+
 .logo span {color:white}
+
 .nav {
   background:#24294c;
   padding:10px 15px;
   border-radius:12px;
 }
+
 .hero {
   max-width:1100px;
   margin:15px auto;
@@ -51,23 +64,28 @@ header {
   border:1px solid #604b9c;
   border-radius:25px;
 }
+
 .eyebrow {
   color:var(--yellow);
   font-weight:700;
   letter-spacing:2px;
 }
+
 h1 {
   font-size:clamp(38px,7vw,75px);
   line-height:1.05;
   margin:15px 0;
 }
+
 h1 span {color:var(--pink)}
+
 .hero p {
   max-width:650px;
   margin:15px auto;
   font-size:19px;
   line-height:1.5;
 }
+
 .date {
   display:inline-block;
   margin:12px;
@@ -76,6 +94,7 @@ h1 span {color:var(--pink)}
   border-radius:12px;
   background:#201b3f;
 }
+
 .btn {
   display:inline-block;
   border:0;
@@ -83,9 +102,11 @@ h1 span {color:var(--pink)}
   padding:13px 22px;
   font-weight:700;
 }
+
 .btn-main {background:var(--pink);color:#1c1028}
 .btn-blue {background:var(--blue);color:#081526}
 .btn-dark {background:#30375c;color:white}
+
 .hero-actions {
   display:flex;
   flex-wrap:wrap;
@@ -93,11 +114,13 @@ h1 span {color:var(--pink)}
   gap:12px;
   margin-top:22px;
 }
+
 .container {
   max-width:1200px;
   margin:auto;
-  padding:35px 20px 90px;
+  padding:35px 20px 120px;
 }
+
 .section-heading {
   display:flex;
   justify-content:space-between;
@@ -105,8 +128,10 @@ h1 span {color:var(--pink)}
   gap:15px;
   flex-wrap:wrap;
 }
+
 h2 {font-size:30px;margin:0 0 10px}
 .subtitle {color:var(--muted);margin:0 0 22px}
+
 .toolbar {
   display:flex;
   justify-content:space-between;
@@ -114,7 +139,9 @@ h2 {font-size:30px;margin:0 0 10px}
   gap:15px;
   margin:25px 0;
 }
+
 .tabs {display:flex;gap:8px;flex-wrap:wrap}
+
 .tab {
   background:#242947;
   color:#d9ddf0;
@@ -122,11 +149,13 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:12px;
   padding:12px 16px;
 }
+
 .tab.active {
   background:#3c2854;
   color:white;
   border-color:var(--pink);
 }
+
 .search {
   padding:12px 15px;
   border:1px solid #454e79;
@@ -136,23 +165,45 @@ h2 {font-size:30px;margin:0 0 10px}
   min-width:240px;
   max-width:100%;
 }
+
 .gallery {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(195px,1fr));
   gap:18px;
 }
+
 .skin {
   position:relative;
   background:var(--card);
-  border:1px solid #353b64;
+  border:2px solid #353b64;
   border-radius:17px;
   overflow:hidden;
-  transition:transform .2s,border-color .2s;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
 }
+
 .skin:hover {
   transform:translateY(-4px);
   border-color:var(--blue);
 }
+
+.skin.selected {
+  border-color:var(--yellow);
+  box-shadow:0 0 0 2px #ffd45a33;
+}
+
+.skin-rank {
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:2;
+  background:#14182bee;
+  border:1px solid var(--yellow);
+  border-radius:12px;
+  padding:8px 10px;
+  font-weight:700;
+  font-size:13px;
+}
+
 .art {
   width:100%;
   height:220px;
@@ -163,11 +214,13 @@ h2 {font-size:30px;margin:0 0 10px}
   border:0;
   color:#9da9d2;
 }
+
 .art img {
   width:100%;
   height:100%;
   object-fit:contain;
 }
+
 .heart {
   position:absolute;
   top:10px;
@@ -181,22 +234,132 @@ h2 {font-size:30px;margin:0 0 10px}
   color:white;
   font-size:25px;
 }
+
 .heart.active {color:var(--pink)}
+
 .skin-info {padding:14px}
 .skin-info strong {display:block;font-size:17px}
+
 .skin-info small {
   display:block;
   color:var(--muted);
   margin:5px 0 12px;
 }
+
 .pick-btn {
   width:100%;
   border:1px solid #4e75a4;
   background:#243c61;
   color:white;
-  padding:10px;
+  padding:11px;
   border-radius:10px;
+  font-weight:700;
 }
+
+.pick-btn.chosen {
+  background:#524168;
+  border-color:var(--yellow);
+  color:var(--yellow);
+}
+
+/* PANEL FLOTANTE */
+
+.floating-top {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:min(350px,calc(100vw - 36px));
+  z-index:12;
+  background:#20264b;
+  border:2px solid var(--yellow);
+  border-radius:18px;
+  box-shadow:0 12px 45px #0009;
+  overflow:hidden;
+}
+
+.floating-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  background:#30345e;
+  padding:11px 13px;
+}
+
+.floating-head strong {color:var(--yellow)}
+
+.floating-head button {
+  background:#151b38;
+  color:white;
+  border:1px solid #64709c;
+  border-radius:9px;
+  padding:7px 10px;
+}
+
+.floating-content {padding:9px 13px 13px}
+
+.float-row {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:7px 0;
+  border-bottom:1px solid #42486a;
+}
+
+.float-row:last-of-type {border-bottom:0}
+.float-row .medal {font-size:22px}
+
+.float-row img {
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  background:#151b38;
+  border-radius:7px;
+}
+
+.float-row .details {
+  flex:1;
+  min-width:0;
+}
+
+.float-row .details strong {
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:13px;
+}
+
+.float-row .details small {color:var(--muted)}
+
+.float-row button {
+  background:#424a73;
+  color:white;
+  border:0;
+  border-radius:7px;
+  padding:5px 8px;
+}
+
+.float-link {
+  display:block;
+  text-align:center;
+  background:var(--pink);
+  color:#24142c;
+  font-weight:700;
+  border-radius:9px;
+  padding:10px;
+  margin-top:10px;
+}
+
+.floating-top.minimized .floating-content {display:none}
+
+.floating-top.minimized {
+  width:auto;
+  max-width:calc(100vw - 24px);
+}
+
+/* VOTACIÓN */
+
 .vote {
   margin-top:65px;
   background:linear-gradient(135deg,#24264c,#30224c);
@@ -205,7 +368,9 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:30px;
   text-align:center;
 }
+
 .vote h2 {color:var(--yellow)}
+
 .auth-panel {
   margin:20px auto;
   padding:15px;
@@ -214,12 +379,14 @@ h2 {font-size:30px;margin:0 0 10px}
   border:1px solid #49527e;
   border-radius:14px;
 }
+
 .slots {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:15px;
   margin:25px 0;
 }
+
 .slot {
   background:#151b38;
   border:1px solid #49527e;
@@ -227,8 +394,10 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:20px 12px;
   min-height:140px;
 }
+
 .slot b {display:block;margin-bottom:12px}
 .slot p {color:#c9d2eb}
+
 .slot button {
   background:#39446d;
   color:white;
@@ -236,6 +405,7 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:8px;
   padding:7px 12px;
 }
+
 .confirm {
   padding:16px 35px;
   font-size:18px;
@@ -245,9 +415,17 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:14px;
   font-weight:700;
 }
-.confirm:disabled {opacity:.55;cursor:not-allowed}
+
+.confirm:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 .note {color:var(--muted);font-size:14px}
 .empty {text-align:center;color:var(--muted);padding:50px 15px}
+
+/* VENTANA DE SELECCIÓN */
+
 .modal {
   position:fixed;
   inset:0;
@@ -258,7 +436,7 @@ h2 {font-size:30px;margin:0 0 10px}
   justify-content:center;
   padding:20px;
 }
-.hidden {display:none!important}
+
 .modal-box {
   background:#24294e;
   border:1px solid #6975aa;
@@ -268,6 +446,7 @@ h2 {font-size:30px;margin:0 0 10px}
   max-height:90vh;
   overflow:auto;
 }
+
 .modal-preview {
   display:grid;
   place-items:center;
@@ -276,12 +455,19 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:14px;
   margin:15px 0;
 }
+
 .modal-preview img {
   max-width:100%;
   max-height:55vh;
   object-fit:contain;
 }
-.rank-actions {display:flex;flex-wrap:wrap;gap:8px}
+
+.rank-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
 .rank-actions button {
   flex:1;
   min-width:110px;
@@ -291,6 +477,7 @@ h2 {font-size:30px;margin:0 0 10px}
   background:#344677;
   color:white;
 }
+
 .close {
   float:right;
   background:none;
@@ -298,18 +485,37 @@ h2 {font-size:30px;margin:0 0 10px}
   color:white;
   font-size:25px;
 }
-footer {text-align:center;padding:30px;color:var(--muted)}
+
+footer {
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+}
+
 @media(max-width:650px) {
   .hero {margin:10px;padding:35px 18px}
+
   .gallery {
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
+
   .art {height:165px}
   .skin-info {padding:10px}
   .slots {grid-template-columns:1fr}
   .vote {padding:20px 12px}
-  .container {padding:30px 12px}
+  .container {padding:30px 12px 110px}
+
+  .floating-top {
+    right:8px;
+    bottom:8px;
+    width:min(340px,calc(100vw - 16px));
+  }
+
+  .floating-content {
+    max-height:52vh;
+    overflow:auto;
+  }
 }
 </style>
 </head>
@@ -317,12 +523,15 @@ footer {text-align:center;padding:30px;color:var(--muted)}
 <body>
 
 <header>
-  <a href="index.html" class="logo">ANXAN<span>WOMAN</span></a>
+  <a href="index.html" class="logo">
+    ANXAN<span>WOMAN</span>
+  </a>
   <a href="index.html" class="nav">← Inicio</a>
 </header>
 
 <section class="hero">
   <div class="eyebrow">🎃 CONCURSO BRAWLOWEEN</div>
+
   <h1>ANXAN<br><span>SKIN WARS</span></h1>
 
   <p>
@@ -368,6 +577,7 @@ footer {text-align:center;padding:30px;color:var(--muted)}
         y guarda tus favoritos.
       </p>
     </div>
+
     <span id="counter"></span>
   </div>
 
@@ -376,6 +586,7 @@ footer {text-align:center;padding:30px;color:var(--muted)}
       <button class="tab active" id="all-tab">
         Todas las skins
       </button>
+
       <button class="tab" id="fav-tab">
         ❤️ Mis favoritas (0)
       </button>
@@ -436,6 +647,35 @@ footer {text-align:center;padding:30px;color:var(--muted)}
   ANXAN SKIN WARS · Concurso de fans no oficial
 </footer>
 
+<!-- PANEL FLOTANTE -->
+
+<aside id="floating-top"
+       class="floating-top hidden"
+       aria-label="Tu selección del TOP 3">
+
+  <div class="floating-head">
+    <strong id="floating-title">
+      🏆 MI TOP 3 · 0/3
+    </strong>
+
+    <button id="floating-toggle"
+            type="button"
+            aria-expanded="true">
+      − Minimizar
+    </button>
+  </div>
+
+  <div class="floating-content">
+    <div id="floating-list"></div>
+
+    <a href="#votacion" class="float-link">
+      🏆 IR A MI VOTACIÓN
+    </a>
+  </div>
+</aside>
+
+<!-- VENTANA DE ELECCIÓN -->
+
 <div id="modal" class="modal hidden">
   <div class="modal-box"
        role="dialog"
@@ -444,21 +684,28 @@ footer {text-align:center;padding:30px;color:var(--muted)}
 
     <button id="close"
             class="close"
-            aria-label="Cerrar">×</button>
+            aria-label="Cerrar">
+      ×
+    </button>
 
     <h2 id="modal-title"></h2>
-    <div id="modal-preview" class="modal-preview"></div>
+
+    <div id="modal-preview"
+         class="modal-preview"></div>
+
     <p id="modal-author"></p>
-    <div id="rank-actions" class="rank-actions"></div>
+
+    <p>¿En qué puesto quieres colocar esta skin?</p>
+
+    <div id="rank-actions"
+         class="rank-actions"></div>
   </div>
 </div>
 
+<!-- GALERÍA, FAVORITOS Y TOP FLOTANTE -->
+
 <script>
 "use strict";
-
-// DATOS DEFINITIVOS DE LOS 55 PARTICIPANTES.
-// El número de skin se mantiene fijo para
-// identificar los votos correctamente.
 
 const participantes = [
   ["Gus Pennywise","Gigi67pro"],
@@ -518,6 +765,8 @@ const participantes = [
   ["Sandy Espectral","Juancito"]
 ];
 
+// RUTA CORRECTA DE LAS IMÁGENES EN GITHUB
+
 const skins = participantes.map(([name,author],i)=>{
   const numero = String(i+1).padStart(2,"0");
 
@@ -530,7 +779,10 @@ const skins = participantes.map(([name,author],i)=>{
 });
 
 const $ = id => document.getElementById(id);
-const validIds = new Set(skins.map(s=>s.id));
+
+const validIds = new Set(
+  skins.map(s=>s.id)
+);
 
 function cargarFavoritos() {
   try {
@@ -550,13 +802,20 @@ function cargarFavoritos() {
 
 const favorites = cargarFavoritos();
 const picks = [null,null,null];
+
 let currentTab = "all";
 
 function crear(tag,clase,texto) {
   const el = document.createElement(tag);
+
   if(clase) el.className = clase;
   if(texto !== undefined) el.textContent = texto;
+
   return el;
+}
+
+function buscarSkin(id) {
+  return skins.find(s=>s.id===id);
 }
 
 function toggleFavorite(id) {
@@ -581,6 +840,7 @@ function toggleFavorite(id) {
 function renderGallery() {
   const busqueda = $("search").value.trim().toLowerCase();
   const gallery = $("gallery");
+
   gallery.replaceChildren();
 
   const filtradas = skins.filter(s=>{
@@ -613,6 +873,20 @@ function renderGallery() {
   filtradas.forEach(s=>{
     const card = crear("article","skin");
 
+    const rank = picks.indexOf(s.id);
+
+    if(rank>=0) {
+      card.classList.add("selected");
+
+      card.append(
+        crear(
+          "span",
+          "skin-rank",
+          ["🥇 TOP 1","🥈 TOP 2","🥉 TOP 3"][rank]
+        )
+      );
+    }
+
     const heart = crear(
       "button",
       "heart"+(favorites.has(s.id)?" active":""),
@@ -620,6 +894,7 @@ function renderGallery() {
     );
 
     heart.type = "button";
+
     heart.setAttribute(
       "aria-label",
       (favorites.has(s.id)?"Quitar de":"Añadir a")+
@@ -647,6 +922,7 @@ function renderGallery() {
     art.onclick = ()=>openModal(s);
 
     const info = crear("div","skin-info");
+
     info.append(
       crear("strong","",s.name),
       crear("small","","🎨 "+s.author)
@@ -654,16 +930,15 @@ function renderGallery() {
 
     const pick = crear(
       "button",
-      "pick-btn",
-      picks.includes(s.id)
-        ? "✓ En tu TOP 3"
-        : "Elegir para TOP 3"
+      "pick-btn"+(rank>=0?" chosen":""),
+      rank>=0 ? "✓ CAMBIAR" : "ELEGIR"
     );
 
     pick.type = "button";
     pick.onclick = ()=>openModal(s);
 
     info.append(pick);
+
     card.append(heart,art,info);
     gallery.append(card);
   });
@@ -680,14 +955,14 @@ function renderPicks() {
 
   picks.forEach((id,i)=>{
     const slot = crear("div","slot");
-    const skin = skins.find(s=>s.id===id);
+    const skin = buscarSkin(id);
 
     slot.append(
       crear("b","",labels[i]),
       crear("p","",skin?skin.name:"Sin seleccionar")
     );
 
-    if(skin) {
+    if(skin && !window.votoEnviadoSkinWars) {
       const quitar = crear("button","","Quitar");
       quitar.type = "button";
 
@@ -703,10 +978,92 @@ function renderPicks() {
     $("slots").append(slot);
   });
 
+  renderFloatingTop();
+
   if(window.actualizarBotonVoto) {
     window.actualizarBotonVoto();
   }
 }
+
+function renderFloatingTop() {
+  const total = picks.filter(Boolean).length;
+  const panel = $("floating-top");
+
+  panel.classList.toggle("hidden",total===0);
+
+  $("floating-title").textContent =
+    "🏆 MI TOP 3 · "+total+"/3";
+
+  const list = $("floating-list");
+  list.replaceChildren();
+
+  picks.forEach((id,i)=>{
+    const skin = buscarSkin(id);
+    const row = crear("div","float-row");
+
+    row.append(
+      crear("span","medal",["🥇","🥈","🥉"][i])
+    );
+
+    if(skin) {
+      const img = crear("img");
+      img.src = skin.image;
+      img.alt = "";
+      row.append(img);
+    }
+
+    const details = crear("div","details");
+
+    details.append(
+      crear(
+        "strong",
+        "",
+        skin?skin.name:"Sin seleccionar"
+      )
+    );
+
+    details.append(
+      crear("small","",(3-i)+" puntos")
+    );
+
+    row.append(details);
+
+    if(skin && !window.votoEnviadoSkinWars) {
+      const remove = crear("button","","✕");
+      remove.type = "button";
+
+      remove.setAttribute(
+        "aria-label",
+        "Quitar "+skin.name
+      );
+
+      remove.onclick = ()=>{
+        picks[i] = null;
+        renderPicks();
+        renderGallery();
+      };
+
+      row.append(remove);
+    }
+
+    list.append(row);
+  });
+}
+
+$("floating-toggle").onclick = ()=>{
+  const panel = $("floating-top");
+
+  const minimized =
+    panel.classList.toggle("minimized");
+
+  $("floating-toggle").textContent =
+    minimized?"+ Mostrar":"− Minimizar";
+
+  $("floating-toggle").setAttribute(
+    "aria-expanded",
+    String(!minimized)
+  );
+};
 
 function openModal(s) {
   $("modal-title").textContent = s.name;
@@ -732,15 +1089,22 @@ function openModal(s) {
 
   [3,2,1].forEach((points,i)=>{
     const btn = crear(
-      "button","",
-      ["🥇","🥈","🥉"][i]+" "+points+" puntos"
+      "button",
+      "",
+      ["🥇 TOP 1","🥈 TOP 2","🥉 TOP 3"][i]+
+      " · "+points+" puntos"
     );
 
     btn.type = "button";
 
     btn.onclick = ()=>{
+      if(window.votoEnviadoSkinWars) return;
+
       const anterior = picks.indexOf(s.id);
-      if(anterior!==-1) picks[anterior] = null;
+
+      if(anterior!==-1) {
+        picks[anterior] = null;
+      }
 
       picks[i] = s.id;
 
@@ -763,11 +1127,15 @@ function closeModal() {
 $("close").onclick = closeModal;
 
 $("modal").onclick = e=>{
-  if(e.target===$("modal")) closeModal();
+  if(e.target===$("modal")) {
+    closeModal();
+  }
 };
 
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closeModal();
+  if(e.key==="Escape") {
+    closeModal();
+  }
 });
 
 $("all-tab").onclick = ()=>{
@@ -785,6 +1153,8 @@ $("search").oninput = renderGallery;
 renderGallery();
 renderPicks();
 </script>
+
+<!-- FIREBASE -->
 
 <script type="module">
 import {
@@ -825,10 +1195,6 @@ let authComprobada = false;
 let enviando = false;
 let votoEnviado = false;
 
-// Horario peninsular español.
-// 16 octubre 00:00 CEST
-// 26 octubre 00:00 CET
-
 const APERTURA =
   new Date("2026-10-16T00:00:00+02:00");
 
@@ -846,6 +1212,8 @@ function papeletaCompleta() {
 }
 
 function actualizarBotonVoto() {
+  window.votoEnviadoSkinWars = votoEnviado;
+
   if(votoEnviado) {
     boton.disabled = true;
     boton.textContent = "✅ VOTO ENVIADO";
@@ -860,10 +1228,12 @@ function actualizarBotonVoto() {
 
   if(!plazoAbierto()) {
     boton.disabled = true;
+
     boton.textContent =
       Date.now() < APERTURA.getTime()
         ? "🔒 VOTACIONES NO ABIERTAS"
         : "🔒 VOTACIONES CERRADAS";
+
     return;
   }
 
@@ -880,6 +1250,7 @@ function actualizarBotonVoto() {
   }
 
   boton.disabled = !papeletaCompleta();
+
   boton.textContent = papeletaCompleta()
     ? "🏆 ENVIAR MI VOTACIÓN"
     : "ELIGE TUS 3 SKINS";
@@ -889,6 +1260,7 @@ window.actualizarBotonVoto = actualizarBotonVoto;
 
 onAuthStateChanged(auth,user=>{
   const cuentaAnterior = usuario?.uid;
+
   usuario = user;
   authComprobada = true;
 
@@ -921,6 +1293,7 @@ onAuthStateChanged(auth,user=>{
     }
   } else {
     login.classList.remove("hidden");
+
     status.textContent =
       "🔐 Inicia sesión para participar.";
   }
@@ -929,10 +1302,13 @@ onAuthStateChanged(auth,user=>{
 
 },error=>{
   console.error("Firebase Auth:",error);
+
   usuario = null;
   authComprobada = false;
+
   status.textContent =
     "⚠️ No se pudo comprobar la sesión.";
+
   login.classList.remove("hidden");
   actualizarBotonVoto();
 });
@@ -940,7 +1316,8 @@ onAuthStateChanged(auth,user=>{
 boton.addEventListener("click",async()=>{
   if(enviando || votoEnviado) return;
 
-  if(!usuario || !plazoAbierto() ||
+  if(!usuario ||
+     !plazoAbierto() ||
      !papeletaCompleta()) {
     actualizarBotonVoto();
     return;
@@ -967,7 +1344,9 @@ boton.addEventListener("click",async()=>{
 
   try {
     const referencia = doc(
-      db,"votos_skins",usuario.uid
+      db,
+      "votos_skins",
+      usuario.uid
     );
 
     await setDoc(referencia,{
@@ -977,9 +1356,13 @@ boton.addEventListener("click",async()=>{
     });
 
     votoEnviado = true;
+    window.votoEnviadoSkinWars = true;
 
     status.textContent =
       "🎉 ¡Tu votación se ha guardado correctamente!";
+
+    renderPicks();
+    renderGallery();
 
     alert(
       "🎉 ¡VOTO REGISTRADO!\n\n"+
