@@ -480,6 +480,26 @@ footer {
 <main class="container">
 
 <section id="galeria">
+  <div id="aviso-login-galeria"
+     class="auth-panel hidden"
+     style="margin-bottom:24px;text-align:center;">
+
+  <p style="font-size:1.15rem;font-weight:800;margin-bottom:10px;">
+    🔐 ¡INICIA SESIÓN ANTES DE VOTAR!
+  </p>
+
+  <p style="margin-bottom:14px;">
+    Guarda tu TOP 3 en tu cuenta para
+    recuperarlo desde cualquier dispositivo.
+  </p>
+
+  <a href="login.html"
+     class="btn btn-blue"
+     style="font-weight:800;padding:14px 26px;">
+    💙 INICIAR SESIÓN
+  </a>
+
+</div>
   <div class="section-heading">
     <div>
       <h2>🎨 Galería de skins</h2>
@@ -520,16 +540,22 @@ footer {
     🥇 3 puntos · 🥈 2 puntos · 🥉 1 punto
   </p>
 
-  <div class="auth-panel" aria-live="polite">
-    <p id="auth-status">
-      🔄 Comprobando inicio de sesión...
-    </p>
-    <a id="login-link"
-       href="login.html"
-       class="btn btn-blue hidden">
-      🔐 Iniciar sesión para votar
-    </a>
-  </div>
+<div class="auth-panel" aria-live="polite">
+ <p id="auth-title"
+   style="font-size:1.15rem;font-weight:800;margin-bottom:10px;">
+  🔄 COMPROBANDO TU SESIÓN...
+</p>
+  <p id="auth-status">
+    🔄 Comprobando inicio de sesión...
+  </p>
+
+<a id="login-link"
+   href="login.html"
+   class="btn btn-blue hidden"
+   style="font-size:1.1rem;font-weight:800;padding:15px 28px;margin-top:12px;">
+    🔐 INICIAR SESIÓN
+  </a>
+</div>
 
   <div class="slots" id="slots"></div>
 
@@ -1165,6 +1191,7 @@ async function cargarBorradorFirebase(uid) {
   return seleccion;
 }
 const status = document.getElementById("auth-status");
+const authTitle = document.getElementById("auth-title");
 const login = document.getElementById("login-link");
 const boton = document.getElementById("confirm");
 
@@ -1341,6 +1368,14 @@ if (uid) {
 
 usuario = user;
   authComprobada = true;
+  authTitle.textContent = user
+  ? "💙 ¡YA ESTÁS DENTRO!"
+  : "🔐 ¡IDENTIFÍCATE PARA PARTICIPAR!";
+  const avisoLoginGaleria = document.getElementById("aviso-login-galeria");
+
+if (avisoLoginGaleria) {
+  avisoLoginGaleria.classList.toggle("hidden", !!user);
+}
   votoEnviado = false;
   comprobandoVoto = !!user;
   errorComprobacion = false;
