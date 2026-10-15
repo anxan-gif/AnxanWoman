@@ -860,6 +860,9 @@ function renderPicks() {
   if (window.actualizarAvisoLogin) {
     window.actualizarAvisoLogin();
   }
+    if (window.guardarBorradorAlCambiar) {
+    window.guardarBorradorAlCambiar();
+  }
   const labels = [
     "🥇 Primer puesto · 3 puntos",
     "🥈 Segundo puesto · 2 puntos",
@@ -1085,7 +1088,8 @@ import {
 import {
   getFirestore,
   doc,
-  setDoc
+  setDoc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -1104,7 +1108,60 @@ const app = getApps().length
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+// =====================================
+// BORRADOR DEL TOP 3 EN FIREBASE
+// =====================================
 
+// Guardar el borrador de la cuenta
+async function guardarBorradorFirebase(uid) {
+  if (!uid) return;
+
+  await setDoc(
+    doc(db, "borradores_skins", uid),
+    {
+      primero: picks[0],
+      segundo: picks[1],
+      tercero: picks[2]
+    }
+  );
+}
+
+// Recuperar el borrador de la cuenta
+async function cargarBorradorFirebase(uid) {
+  if (!uid) return null;
+
+  const documento = await getDoc(
+    doc(db, "borradores_skins", uid)
+  );
+
+  if (!documento.exists()) {
+    return null;
+  }
+
+  const datos = documento.data();
+
+  const seleccion = [
+    datos.primero ?? null,
+    datos.segundo ?? null,
+    datos.tercero ?? null
+  ];
+
+  // Comprobar que las skins son válidas
+  const idsValidos = seleccion.every(
+    id => id === null || validIds.has(id)
+  );
+
+  const elegidos = seleccion.filter(Boolean);
+
+  if (
+    !idsValidos ||
+    new Set(elegidos).size !== elegidos.length
+  ) {
+    return null;
+  }
+
+  return seleccion;
+}
 const status = document.getElementById("auth-status");
 const login = document.getElementById("login-link");
 const boton = document.getElementById("confirm");
@@ -1193,6 +1250,29 @@ function actualizarBotonVoto() {
 }
 
 window.actualizarBotonVoto = actualizarBotonVoto;
+  // Guardar el borrador cuando cambie la selección
+let temporizadorBorrador = null;
+let borradorFirebaseCargado = false;
+
+window.guardarBorradorAlCambiar = function() {
+  if (!usuario || !borradorFirebaseCargado || votoEnviado) {
+    return;
+  }
+
+  clearTimeout(temporizadorBorrador);
+
+  const uid = usuario.uid;
+
+  temporizadorBorrador = setTimeout(async () => {
+    if (usuario?.uid !== uid || votoEnviado) return;
+
+    try {
+      await guardarBorradorFirebase(uid);
+    } catch (error) {
+      console.error("No se pudo guardar el borrador:", error);
+    }
+  }, 500);
+};
 window.actualizarAvisoLogin = function() {
   if (authComprobada && !usuario) {
     status.textContent = picks.some(Boolean)
@@ -1228,7 +1308,9 @@ async function comprobarVotoPrevio(user) {
 
 onAuthStateChanged(auth,async user=>{
   const uid = user?.uid || null;
-
+  // Detener cualquier guardado pendiente de la sesión anterior
+  clearTimeout(temporizadorBorrador);
+  borradorFirebaseCargado = false;
   usuario = user;
   authComprobada = true;
   votoEnviado = false;
