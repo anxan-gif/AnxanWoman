@@ -857,8 +857,16 @@ function guardarSeleccion() {
 function renderPicks() {
   guardarSeleccion();
 
-  if (window.actualizarAvisoLogin) {
-    window.actualizarAvisoLogin();
+  window.guardarBorradorAlCambiar = function() {
+  if (
+    !usuario ||
+    !borradorFirebaseCargado ||
+    votoEnviado ||
+    enviando ||
+    comprobandoVoto ||
+    errorComprobacion
+  ) {
+    return;
   }
     if (window.guardarBorradorAlCambiar) {
     window.guardarBorradorAlCambiar();
@@ -1253,6 +1261,7 @@ window.actualizarBotonVoto = actualizarBotonVoto;
   // Guardar el borrador cuando cambie la selección
 let temporizadorBorrador = null;
 let borradorFirebaseCargado = false;
+  let uidBorradorActual = null;
 
 window.guardarBorradorAlCambiar = function() {
   if (!usuario || !borradorFirebaseCargado || votoEnviado) {
@@ -1310,8 +1319,17 @@ onAuthStateChanged(auth,async user=>{
   const uid = user?.uid || null;
   // Detener cualquier guardado pendiente de la sesión anterior
   clearTimeout(temporizadorBorrador);
-  borradorFirebaseCargado = false;
-  usuario = user;
+borradorFirebaseCargado = false;
+
+// Si cambia la cuenta, no reutilizar su selección anterior
+if (uidBorradorActual !== null && uidBorradorActual !== uid) {
+  picks.fill(null);
+  localStorage.removeItem("anxan_skin_wars_borrador");
+}
+
+uidBorradorActual = uid;
+
+usuario = user;
   authComprobada = true;
   votoEnviado = false;
   comprobandoVoto = !!user;
@@ -1331,7 +1349,48 @@ onAuthStateChanged(auth,async user=>{
   }
 
   login.classList.add("hidden");
+  // Recuperar el borrador de Firebase
+  try {
+    const borradorNube = await cargarBorradorFirebase(uid);
 
+    // Evitar aplicar datos de una sesión anterior
+    if (usuario?.uid !== uid) return;
+
+      const haySeleccionLocal = picks.some(Boolean);
+    const haySeleccionNube =
+      borradorNube && borradorNube.some(Boolean);
+
+    if (haySeleccionNube && haySeleccionLocal) {
+      const sonIguales = picks.every(
+        (id, i) => id === borradorNube[i]
+      );
+
+      if (!sonIguales) {
+        const usarNube = window.confirm(
+          "💙 Tienes dos selecciones diferentes.\n\n" +
+          "ACEPTAR: recuperar el TOP 3 guardado en tu cuenta.\n\n" +
+          "CANCELAR: conservar el TOP 3 de este dispositivo.\n\n" +
+          "La selección que elijas será la que se guarde."
+        );
+
+        if (usarNube) {
+          picks.splice(0, 3, ...borradorNube);
+        }
+      }
+    } else if (haySeleccionNube && !haySeleccionLocal) {
+      picks.splice(0, 3, ...borradorNube);
+    }
+
+    // Ya se puede activar el guardado automático
+    borradorFirebaseCargado = true;
+
+    renderPicks();
+    renderGallery();
+
+  } catch (error) {
+    console.error("No se pudo recuperar el borrador:", error);
+    borradorFirebaseCargado = false;
+  }
   const nombre =
     user.displayName ||
     user.email ||
