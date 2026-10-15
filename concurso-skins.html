@@ -1177,7 +1177,7 @@ async function comprobarVotoPrevio(user) {
   );
 
   const recibo = await getDoc(
-    doc(db,"recibos_votos_skins",user.uid)
+    doc(db,"votos_skins",user.uid)
   );
 
   return recibo.exists();
