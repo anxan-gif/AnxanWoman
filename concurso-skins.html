@@ -16,19 +16,17 @@
   --yellow:#ffd45a;
   --muted:#abb3d0;
 }
-
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
-
 body {
   margin:0;
   background:var(--bg);
   color:#f7f7ff;
   font-family:Fredoka,sans-serif;
 }
-
 button,input {font:inherit}
 button {cursor:pointer}
+button:disabled {cursor:not-allowed;opacity:.65}
 a {text-decoration:none;color:inherit}
 .hidden {display:none!important}
 
@@ -40,21 +38,13 @@ header {
   margin:auto;
   padding:20px;
 }
-
-.logo {
-  font-size:23px;
-  font-weight:700;
-  color:var(--blue);
-}
-
+.logo {font-size:23px;font-weight:700;color:var(--blue)}
 .logo span {color:white}
-
 .nav {
   background:#24294c;
   padding:10px 15px;
   border-radius:12px;
 }
-
 .hero {
   max-width:1100px;
   margin:15px auto;
@@ -64,28 +54,23 @@ header {
   border:1px solid #604b9c;
   border-radius:25px;
 }
-
 .eyebrow {
   color:var(--yellow);
   font-weight:700;
   letter-spacing:2px;
 }
-
 h1 {
   font-size:clamp(38px,7vw,75px);
   line-height:1.05;
   margin:15px 0;
 }
-
 h1 span {color:var(--pink)}
-
 .hero p {
   max-width:650px;
   margin:15px auto;
   font-size:19px;
   line-height:1.5;
 }
-
 .date {
   display:inline-block;
   margin:12px;
@@ -94,7 +79,6 @@ h1 span {color:var(--pink)}
   border-radius:12px;
   background:#201b3f;
 }
-
 .btn {
   display:inline-block;
   border:0;
@@ -102,11 +86,9 @@ h1 span {color:var(--pink)}
   padding:13px 22px;
   font-weight:700;
 }
-
 .btn-main {background:var(--pink);color:#1c1028}
 .btn-blue {background:var(--blue);color:#081526}
 .btn-dark {background:#30375c;color:white}
-
 .hero-actions {
   display:flex;
   flex-wrap:wrap;
@@ -114,13 +96,11 @@ h1 span {color:var(--pink)}
   gap:12px;
   margin-top:22px;
 }
-
 .container {
   max-width:1200px;
   margin:auto;
   padding:35px 20px 120px;
 }
-
 .section-heading {
   display:flex;
   justify-content:space-between;
@@ -128,10 +108,8 @@ h1 span {color:var(--pink)}
   gap:15px;
   flex-wrap:wrap;
 }
-
 h2 {font-size:30px;margin:0 0 10px}
 .subtitle {color:var(--muted);margin:0 0 22px}
-
 .toolbar {
   display:flex;
   justify-content:space-between;
@@ -139,9 +117,7 @@ h2 {font-size:30px;margin:0 0 10px}
   gap:15px;
   margin:25px 0;
 }
-
 .tabs {display:flex;gap:8px;flex-wrap:wrap}
-
 .tab {
   background:#242947;
   color:#d9ddf0;
@@ -149,13 +125,11 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:12px;
   padding:12px 16px;
 }
-
 .tab.active {
   background:#3c2854;
   color:white;
   border-color:var(--pink);
 }
-
 .search {
   padding:12px 15px;
   border:1px solid #454e79;
@@ -165,13 +139,11 @@ h2 {font-size:30px;margin:0 0 10px}
   min-width:240px;
   max-width:100%;
 }
-
 .gallery {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(195px,1fr));
   gap:18px;
 }
-
 .skin {
   position:relative;
   background:var(--card);
@@ -180,17 +152,14 @@ h2 {font-size:30px;margin:0 0 10px}
   overflow:hidden;
   transition:transform .2s,border-color .2s,box-shadow .2s;
 }
-
 .skin:hover {
   transform:translateY(-4px);
   border-color:var(--blue);
 }
-
 .skin.selected {
   border-color:var(--yellow);
   box-shadow:0 0 0 2px #ffd45a33;
 }
-
 .skin-rank {
   position:absolute;
   top:10px;
@@ -203,7 +172,6 @@ h2 {font-size:30px;margin:0 0 10px}
   font-weight:700;
   font-size:13px;
 }
-
 .art {
   width:100%;
   height:220px;
@@ -214,13 +182,11 @@ h2 {font-size:30px;margin:0 0 10px}
   border:0;
   color:#9da9d2;
 }
-
 .art img {
   width:100%;
   height:100%;
   object-fit:contain;
 }
-
 .heart {
   position:absolute;
   top:10px;
@@ -234,18 +200,14 @@ h2 {font-size:30px;margin:0 0 10px}
   color:white;
   font-size:25px;
 }
-
 .heart.active {color:var(--pink)}
-
 .skin-info {padding:14px}
 .skin-info strong {display:block;font-size:17px}
-
 .skin-info small {
   display:block;
   color:var(--muted);
   margin:5px 0 12px;
 }
-
 .pick-btn {
   width:100%;
   border:1px solid #4e75a4;
@@ -255,15 +217,11 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:10px;
   font-weight:700;
 }
-
 .pick-btn.chosen {
   background:#524168;
   border-color:var(--yellow);
   color:var(--yellow);
 }
-
-/* PANEL FLOTANTE */
-
 .floating-top {
   position:fixed;
   right:18px;
@@ -276,7 +234,6 @@ h2 {font-size:30px;margin:0 0 10px}
   box-shadow:0 12px 45px #0009;
   overflow:hidden;
 }
-
 .floating-head {
   display:flex;
   align-items:center;
@@ -285,9 +242,7 @@ h2 {font-size:30px;margin:0 0 10px}
   background:#30345e;
   padding:11px 13px;
 }
-
 .floating-head strong {color:var(--yellow)}
-
 .floating-head button {
   background:#151b38;
   color:white;
@@ -295,9 +250,7 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:9px;
   padding:7px 10px;
 }
-
 .floating-content {padding:9px 13px 13px}
-
 .float-row {
   display:flex;
   align-items:center;
@@ -305,10 +258,8 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:7px 0;
   border-bottom:1px solid #42486a;
 }
-
 .float-row:last-of-type {border-bottom:0}
 .float-row .medal {font-size:22px}
-
 .float-row img {
   width:42px;
   height:42px;
@@ -316,12 +267,7 @@ h2 {font-size:30px;margin:0 0 10px}
   background:#151b38;
   border-radius:7px;
 }
-
-.float-row .details {
-  flex:1;
-  min-width:0;
-}
-
+.float-row .details {flex:1;min-width:0}
 .float-row .details strong {
   display:block;
   white-space:nowrap;
@@ -329,9 +275,7 @@ h2 {font-size:30px;margin:0 0 10px}
   text-overflow:ellipsis;
   font-size:13px;
 }
-
 .float-row .details small {color:var(--muted)}
-
 .float-row button {
   background:#424a73;
   color:white;
@@ -339,7 +283,6 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:7px;
   padding:5px 8px;
 }
-
 .float-link {
   display:block;
   text-align:center;
@@ -350,16 +293,11 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:10px;
   margin-top:10px;
 }
-
 .floating-top.minimized .floating-content {display:none}
-
 .floating-top.minimized {
   width:auto;
   max-width:calc(100vw - 24px);
 }
-
-/* VOTACIÓN */
-
 .vote {
   margin-top:65px;
   background:linear-gradient(135deg,#24264c,#30224c);
@@ -368,9 +306,7 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:30px;
   text-align:center;
 }
-
 .vote h2 {color:var(--yellow)}
-
 .auth-panel {
   margin:20px auto;
   padding:15px;
@@ -379,14 +315,12 @@ h2 {font-size:30px;margin:0 0 10px}
   border:1px solid #49527e;
   border-radius:14px;
 }
-
 .slots {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:15px;
   margin:25px 0;
 }
-
 .slot {
   background:#151b38;
   border:1px solid #49527e;
@@ -394,10 +328,8 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:20px 12px;
   min-height:140px;
 }
-
 .slot b {display:block;margin-bottom:12px}
 .slot p {color:#c9d2eb}
-
 .slot button {
   background:#39446d;
   color:white;
@@ -405,7 +337,6 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:8px;
   padding:7px 12px;
 }
-
 .confirm {
   padding:16px 35px;
   font-size:18px;
@@ -415,17 +346,12 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:14px;
   font-weight:700;
 }
-
-.confirm:disabled {
-  opacity:.55;
-  cursor:not-allowed;
-}
-
 .note {color:var(--muted);font-size:14px}
-.empty {text-align:center;color:var(--muted);padding:50px 15px}
-
-/* VENTANA DE SELECCIÓN */
-
+.empty {
+  text-align:center;
+  color:var(--muted);
+  padding:50px 15px;
+}
 .modal {
   position:fixed;
   inset:0;
@@ -436,7 +362,6 @@ h2 {font-size:30px;margin:0 0 10px}
   justify-content:center;
   padding:20px;
 }
-
 .modal-box {
   background:#24294e;
   border:1px solid #6975aa;
@@ -446,7 +371,6 @@ h2 {font-size:30px;margin:0 0 10px}
   max-height:90vh;
   overflow:auto;
 }
-
 .modal-preview {
   display:grid;
   place-items:center;
@@ -455,19 +379,16 @@ h2 {font-size:30px;margin:0 0 10px}
   border-radius:14px;
   margin:15px 0;
 }
-
 .modal-preview img {
   max-width:100%;
   max-height:55vh;
   object-fit:contain;
 }
-
 .rank-actions {
   display:flex;
   flex-wrap:wrap;
   gap:8px;
 }
-
 .rank-actions button {
   flex:1;
   min-width:110px;
@@ -476,8 +397,8 @@ h2 {font-size:30px;margin:0 0 10px}
   padding:12px;
   background:#344677;
   color:white;
+  font-weight:700;
 }
-
 .close {
   float:right;
   background:none;
@@ -485,33 +406,27 @@ h2 {font-size:30px;margin:0 0 10px}
   color:white;
   font-size:25px;
 }
-
 footer {
   text-align:center;
   padding:30px;
   color:var(--muted);
 }
-
 @media(max-width:650px) {
   .hero {margin:10px;padding:35px 18px}
-
   .gallery {
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
-
   .art {height:165px}
   .skin-info {padding:10px}
   .slots {grid-template-columns:1fr}
   .vote {padding:20px 12px}
   .container {padding:30px 12px 110px}
-
   .floating-top {
     right:8px;
     bottom:8px;
     width:min(340px,calc(100vw - 16px));
   }
-
   .floating-content {
     max-height:52vh;
     overflow:auto;
@@ -531,7 +446,6 @@ footer {
 
 <section class="hero">
   <div class="eyebrow">🎃 CONCURSO BRAWLOWEEN</div>
-
   <h1>ANXAN<br><span>SKIN WARS</span></h1>
 
   <p>
@@ -540,7 +454,7 @@ footer {
   </p>
 
   <div class="date">
-    Votaciones: <b>16–25 DE OCTUBRE</b>
+    Votaciones: <b>16 OCT · 21:00 H – 25 OCT</b>
   </div>
 
   <div class="date">
@@ -548,18 +462,15 @@ footer {
   </div>
 
   <div class="hero-actions">
-    <a id="youtube-link"
-       href="https://youtube.com/@anxanwoman"
+    <a href="https://youtube.com/@anxanwoman"
        target="_blank"
        rel="noopener noreferrer"
        class="btn btn-dark">
       ▶ Canal de AnxanWoman
     </a>
-
     <a href="#galeria" class="btn btn-main">
       Explorar skins
     </a>
-
     <a href="#votacion" class="btn btn-blue">
       Ir a votar
     </a>
@@ -577,7 +488,6 @@ footer {
         y guarda tus favoritos.
       </p>
     </div>
-
     <span id="counter"></span>
   </div>
 
@@ -586,12 +496,10 @@ footer {
       <button class="tab active" id="all-tab">
         Todas las skins
       </button>
-
       <button class="tab" id="fav-tab">
         ❤️ Mis favoritas (0)
       </button>
     </div>
-
     <input id="search"
            class="search"
            type="search"
@@ -607,9 +515,7 @@ footer {
 
 <section class="vote" id="votacion">
   <h2>🏆 ¡ES HORA DE VOTAR!</h2>
-
   <p>Elige tus tres mejores skins de Brawloween.</p>
-
   <p class="subtitle">
     🥇 3 puntos · 🥈 2 puntos · 🥉 1 punto
   </p>
@@ -618,7 +524,6 @@ footer {
     <p id="auth-status">
       🔄 Comprobando inicio de sesión...
     </p>
-
     <a id="login-link"
        href="login.html"
        class="btn btn-blue hidden">
@@ -640,41 +545,32 @@ footer {
     Los resultados se anunciarán el 30 de octubre.
   </p>
 </section>
-
 </main>
 
 <footer>
   ANXAN SKIN WARS · Concurso de fans no oficial
 </footer>
 
-<!-- PANEL FLOTANTE -->
-
 <aside id="floating-top"
        class="floating-top hidden"
        aria-label="Tu selección del TOP 3">
-
   <div class="floating-head">
     <strong id="floating-title">
       🏆 MI TOP 3 · 0/3
     </strong>
-
     <button id="floating-toggle"
             type="button"
             aria-expanded="true">
       − Minimizar
     </button>
   </div>
-
   <div class="floating-content">
     <div id="floating-list"></div>
-
     <a href="#votacion" class="float-link">
       🏆 IR A MI VOTACIÓN
     </a>
   </div>
 </aside>
-
-<!-- VENTANA DE ELECCIÓN -->
 
 <div id="modal" class="modal hidden">
   <div class="modal-box"
@@ -684,28 +580,24 @@ footer {
 
     <button id="close"
             class="close"
-            aria-label="Cerrar">
-      ×
-    </button>
+            aria-label="Cerrar">×</button>
 
     <h2 id="modal-title"></h2>
-
     <div id="modal-preview"
          class="modal-preview"></div>
-
     <p id="modal-author"></p>
-
     <p>¿En qué puesto quieres colocar esta skin?</p>
-
     <div id="rank-actions"
          class="rank-actions"></div>
   </div>
 </div>
 
-<!-- GALERÍA, FAVORITOS Y TOP FLOTANTE -->
-
 <script>
 "use strict";
+
+/* =====================================
+   PARTICIPANTES: 55 SKINS
+===================================== */
 
 const participantes = [
   ["Gus Pennywise","Gigi67pro"],
@@ -765,11 +657,8 @@ const participantes = [
   ["Sandy Espectral","Juancito"]
 ];
 
-// RUTA CORRECTA DE LAS IMÁGENES EN GITHUB
-
 const skins = participantes.map(([name,author],i)=>{
   const numero = String(i+1).padStart(2,"0");
-
   return {
     id:"skin-"+numero,
     name,
@@ -779,17 +668,13 @@ const skins = participantes.map(([name,author],i)=>{
 });
 
 const $ = id => document.getElementById(id);
-
-const validIds = new Set(
-  skins.map(s=>s.id)
-);
+const validIds = new Set(skins.map(s=>s.id));
 
 function cargarFavoritos() {
   try {
     const guardados = JSON.parse(
       localStorage.getItem("anxanSkinFavorites") || "[]"
     );
-
     return new Set(
       Array.isArray(guardados)
         ? guardados.filter(id=>validIds.has(id))
@@ -804,13 +689,12 @@ const favorites = cargarFavoritos();
 const picks = [null,null,null];
 
 let currentTab = "all";
+let seleccionBloqueada = false;
 
 function crear(tag,clase,texto) {
   const el = document.createElement(tag);
-
   if(clase) el.className = clase;
   if(texto !== undefined) el.textContent = texto;
-
   return el;
 }
 
@@ -840,7 +724,6 @@ function toggleFavorite(id) {
 function renderGallery() {
   const busqueda = $("search").value.trim().toLowerCase();
   const gallery = $("gallery");
-
   gallery.replaceChildren();
 
   const filtradas = skins.filter(s=>{
@@ -872,12 +755,10 @@ function renderGallery() {
 
   filtradas.forEach(s=>{
     const card = crear("article","skin");
-
     const rank = picks.indexOf(s.id);
 
     if(rank>=0) {
       card.classList.add("selected");
-
       card.append(
         crear(
           "span",
@@ -894,13 +775,11 @@ function renderGallery() {
     );
 
     heart.type = "button";
-
     heart.setAttribute(
       "aria-label",
       (favorites.has(s.id)?"Quitar de":"Añadir a")+
       " favoritas: "+s.name
     );
-
     heart.onclick = ()=>toggleFavorite(s.id);
 
     const art = crear("button","art");
@@ -922,7 +801,6 @@ function renderGallery() {
     art.onclick = ()=>openModal(s);
 
     const info = crear("div","skin-info");
-
     info.append(
       crear("strong","",s.name),
       crear("small","","🎨 "+s.author)
@@ -935,10 +813,10 @@ function renderGallery() {
     );
 
     pick.type = "button";
+    pick.disabled = seleccionBloqueada;
     pick.onclick = ()=>openModal(s);
 
     info.append(pick);
-
     card.append(heart,art,info);
     gallery.append(card);
   });
@@ -962,7 +840,7 @@ function renderPicks() {
       crear("p","",skin?skin.name:"Sin seleccionar")
     );
 
-    if(skin && !window.votoEnviadoSkinWars) {
+    if(skin && !seleccionBloqueada) {
       const quitar = crear("button","","Quitar");
       quitar.type = "button";
 
@@ -1028,10 +906,9 @@ function renderFloatingTop() {
 
     row.append(details);
 
-    if(skin && !window.votoEnviadoSkinWars) {
+    if(skin && !seleccionBloqueada) {
       const remove = crear("button","","✕");
       remove.type = "button";
-
       remove.setAttribute(
         "aria-label",
         "Quitar "+skin.name
@@ -1052,7 +929,6 @@ function renderFloatingTop() {
 
 $("floating-toggle").onclick = ()=>{
   const panel = $("floating-top");
-
   const minimized =
     panel.classList.toggle("minimized");
 
@@ -1087,54 +963,35 @@ function openModal(s) {
   const actions = $("rank-actions");
   actions.replaceChildren();
 
-  
-const opciones = [
-  {
-    titulo: "🥇 1.º PUESTO — MI FAVORITA",
-    puntos: "Recibe 3 puntos",
-    clase: "rank-gold"
-  },
-  {
-    titulo: "🥈 2.º PUESTO — MI SEGUNDA FAVORITA",
-    puntos: "Recibe 2 puntos",
-    clase: "rank-silver"
-  },
-  {
-    titulo: "🥉 3.º PUESTO — MI TERCERA FAVORITA",
-    puntos: "Recibe 1 punto",
-    clase: "rank-bronze"
-  }
-];
+  const opciones = [
+    "🥇 1.º PUESTO",
+    "🥈 2.º PUESTO",
+    "🥉 3.º PUESTO"
+  ];
 
-opciones.forEach((opcion,i)=>{
-  const btn = crear("button",opcion.clase);
+  opciones.forEach((titulo,i)=>{
+    const btn = crear("button","",titulo);
+    btn.type = "button";
+    btn.disabled = seleccionBloqueada;
 
-  btn.type = "button";
+    btn.onclick = ()=>{
+      if(seleccionBloqueada) return;
 
-  btn.append(
-    crear("strong","",opcion.titulo),
-    crear("small","",opcion.puntos)
-  );
+      const anterior = picks.indexOf(s.id);
 
-  btn.onclick = ()=>{
-    if(window.votoEnviadoSkinWars) return;
+      if(anterior!==-1) {
+        picks[anterior] = null;
+      }
 
-    const anterior = picks.indexOf(s.id);
+      picks[i] = s.id;
 
-    if(anterior!==-1) {
-      picks[anterior] = null;
-    }
+      closeModal();
+      renderPicks();
+      renderGallery();
+    };
 
-    picks[i] = s.id;
-
-    closeModal();
-    renderPicks();
-    renderGallery();
-  };
-
-  actions.append(btn);
-});
-
+    actions.append(btn);
+  });
 
   $("modal").classList.remove("hidden");
   $("close").focus();
@@ -1153,9 +1010,7 @@ $("modal").onclick = e=>{
 };
 
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") {
-    closeModal();
-  }
+  if(e.key==="Escape") closeModal();
 });
 
 $("all-tab").onclick = ()=>{
@@ -1174,11 +1029,15 @@ renderGallery();
 renderPicks();
 </script>
 
-<!-- FIREBASE -->
+<!-- =====================================
+     FIREBASE: VOTACIÓN OFICIAL
+===================================== -->
 
 <script type="module">
 import {
-  initializeApp
+  initializeApp,
+  getApp,
+  getApps
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
 import {
@@ -1202,7 +1061,10 @@ const firebaseConfig = {
   measurementId:"G-6DN2N02ZPG"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -1214,10 +1076,22 @@ let usuario = null;
 let authComprobada = false;
 let enviando = false;
 let votoEnviado = false;
+let comprobandoVoto = false;
+let errorComprobacion = false;
 
+/*
+  APERTURA:
+  16 octubre 2026, 21:00 España peninsular
+  Equivale a 19:00 UTC.
+*/
 const APERTURA =
-  new Date("2026-10-16T00:00:00+02:00");
+  new Date("2026-10-16T21:00:00+02:00");
 
+/*
+  CIERRE:
+  26 octubre 2026, 00:00 España peninsular
+  Equivale a 23:00 UTC del día 25.
+*/
 const CIERRE =
   new Date("2026-10-26T00:00:00+01:00");
 
@@ -1232,7 +1106,8 @@ function papeletaCompleta() {
 }
 
 function actualizarBotonVoto() {
-  window.votoEnviadoSkinWars = votoEnviado;
+  seleccionBloqueada =
+    votoEnviado || enviando || comprobandoVoto;
 
   if(votoEnviado) {
     boton.disabled = true;
@@ -1246,20 +1121,24 @@ function actualizarBotonVoto() {
     return;
   }
 
+  if(!authComprobada || comprobandoVoto) {
+    boton.disabled = true;
+    boton.textContent = "⏳ COMPROBANDO SESIÓN";
+    return;
+  }
+
+  if(errorComprobacion) {
+    boton.disabled = true;
+    boton.textContent = "⚠️ RECARGA PARA REINTENTAR";
+    return;
+  }
+
   if(!plazoAbierto()) {
     boton.disabled = true;
-
     boton.textContent =
       Date.now() < APERTURA.getTime()
         ? "🔒 VOTACIONES NO ABIERTAS"
         : "🔒 VOTACIONES CERRADAS";
-
-    return;
-  }
-
-  if(!authComprobada) {
-    boton.disabled = true;
-    boton.textContent = "⏳ COMPROBANDO SESIÓN";
     return;
   }
 
@@ -1278,53 +1157,111 @@ function actualizarBotonVoto() {
 
 window.actualizarBotonVoto = actualizarBotonVoto;
 
-onAuthStateChanged(auth,user=>{
-  const cuentaAnterior = usuario?.uid;
+/*
+  Firestore no permite leer votos con las
+  reglas privadas actuales.
+
+  Para detectar un voto previo sin abrir
+  la lectura pública, usamos una colección
+  de recibos individuales.
+
+  IMPORTANTE:
+  Las reglas de esa colección se explican
+  después del HTML.
+*/
+async function comprobarVotoPrevio(user) {
+  if(!user) return false;
+
+  const {getDoc} = await import(
+    "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
+  );
+
+  const recibo = await getDoc(
+    doc(db,"recibos_votos_skins",user.uid)
+  );
+
+  return recibo.exists();
+}
+
+onAuthStateChanged(auth,async user=>{
+  const uid = user?.uid || null;
 
   usuario = user;
   authComprobada = true;
+  votoEnviado = false;
+  comprobandoVoto = !!user;
+  errorComprobacion = false;
 
-  if(cuentaAnterior !== user?.uid) {
-    votoEnviado = false;
+  picks.fill(null);
+  actualizarBotonVoto();
+  renderPicks();
+  renderGallery();
+
+  if(!user) {
+    login.classList.remove("hidden");
+    status.textContent =
+      "🔐 Inicia sesión para participar.";
+    return;
   }
 
-  if(user) {
-    login.classList.add("hidden");
+  login.classList.add("hidden");
 
-    const nombre =
-      user.displayName ||
-      user.email ||
-      "usuario de AnxanWoman";
+  const nombre =
+    user.displayName ||
+    user.email ||
+    "usuario de AnxanWoman";
 
-    if(votoEnviado) {
+  try {
+    const yaVoto = await comprobarVotoPrevio(user);
+
+    if(usuario?.uid !== uid) return;
+
+    votoEnviado = yaVoto;
+
+    if(yaVoto) {
       status.textContent =
-        "🎉 Tu votación se ha registrado.";
+        "🎉 Tu cuenta ya ha registrado su voto.";
     } else if(Date.now()<APERTURA.getTime()) {
       status.textContent =
         "✅ Sesión iniciada como "+nombre+
-        ". Las votaciones comienzan el 16 de octubre.";
+        ". Las votaciones comienzan el 16 de octubre a las 21:00 h.";
     } else if(!plazoAbierto()) {
       status.textContent =
-        "🔒 Las votaciones finalizaron el 25 de octubre.";
+        "🔒 Las votaciones han finalizado.";
     } else {
       status.textContent =
         "✅ Sesión iniciada como "+nombre+
         ". ¡Elige tu TOP 3!";
     }
-  } else {
-    login.classList.remove("hidden");
+
+  } catch(error) {
+    if(usuario?.uid !== uid) return;
+
+    console.error(
+      "Error al comprobar el voto:",
+      error
+    );
+
+    errorComprobacion = true;
 
     status.textContent =
-      "🔐 Inicia sesión para participar.";
+      "⚠️ No se pudo comprobar si ya has votado. Recarga la página.";
+  } finally {
+    if(usuario?.uid === uid) {
+      comprobandoVoto = false;
+      actualizarBotonVoto();
+      renderPicks();
+      renderGallery();
+    }
   }
-
-  actualizarBotonVoto();
 
 },error=>{
   console.error("Firebase Auth:",error);
 
   usuario = null;
   authComprobada = false;
+  comprobandoVoto = false;
+  errorComprobacion = true;
 
   status.textContent =
     "⚠️ No se pudo comprobar la sesión.";
@@ -1333,8 +1270,14 @@ onAuthStateChanged(auth,user=>{
   actualizarBotonVoto();
 });
 
+/*
+  ENVÍO DEFINITIVO
+*/
 boton.addEventListener("click",async()=>{
-  if(enviando || votoEnviado) return;
+  if(enviando || votoEnviado ||
+     comprobandoVoto || errorComprobacion) {
+    return;
+  }
 
   if(!usuario ||
      !plazoAbierto() ||
@@ -1343,6 +1286,7 @@ boton.addEventListener("click",async()=>{
     return;
   }
 
+  const uid = usuario.uid;
   const [primero,segundo,tercero] = picks;
 
   const nombre = id=>
@@ -1361,28 +1305,31 @@ boton.addEventListener("click",async()=>{
 
   enviando = true;
   actualizarBotonVoto();
+  renderPicks();
+  renderGallery();
 
   try {
     const referencia = doc(
-      db,
-      "votos_skins",
-      usuario.uid
+      db,"votos_skins",uid
     );
 
+    /*
+      La creación solo funciona una vez.
+      Las reglas impiden sobrescribir
+      una papeleta existente.
+    */
     await setDoc(referencia,{
       primero,
       segundo,
       tercero
     });
 
+    if(usuario?.uid !== uid) return;
+
     votoEnviado = true;
-    window.votoEnviadoSkinWars = true;
 
     status.textContent =
       "🎉 ¡Tu votación se ha guardado correctamente!";
-
-    renderPicks();
-    renderGallery();
 
     alert(
       "🎉 ¡VOTO REGISTRADO!\n\n"+
@@ -1406,18 +1353,27 @@ boton.addEventListener("click",async()=>{
         "de volver a intentarlo."
       );
     }
+
   } finally {
     enviando = false;
     actualizarBotonVoto();
+    renderPicks();
+    renderGallery();
   }
 });
 
-actualizarBotonVoto();
+/*
+  ACTUALIZACIÓN AUTOMÁTICA AL ABRIR
+  LAS VOTACIONES SIN RECARGAR.
+*/
+setInterval(actualizarBotonVoto,1000);
 
 document.addEventListener(
   "visibilitychange",
   actualizarBotonVoto
 );
+
+actualizarBotonVoto();
 </script>
 
 </body>
