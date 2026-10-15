@@ -821,8 +821,39 @@ function renderGallery() {
     gallery.append(card);
   });
 }
-
+// Guardar automáticamente las skins seleccionadas
+function guardarSeleccion() {
+  try {
+    localStorage.setItem(
+      "anxan_skin_wars_borrador",
+      JSON.stringify(picks)
+    );
+  } catch (error) {
+    console.warn("No se pudo guardar la selección", error);
+  }
+}
 function renderPicks() {
+  // Recuperar las skins seleccionadas al recargar
+try {
+  const borradorGuardado = JSON.parse(
+    localStorage.getItem("anxan_skin_wars_borrador")
+  );
+
+  if (Array.isArray(borradorGuardado) && borradorGuardado.length === 3) {
+    const idsValidos = borradorGuardado.every(
+      id => id === null || validIds.has(id)
+    );
+
+    const elegidos = borradorGuardado.filter(Boolean);
+
+    if (idsValidos && new Set(elegidos).size === elegidos.length) {
+      picks.splice(0, 3, ...borradorGuardado);
+    }
+  }
+} catch (error) {
+  console.warn("No se pudo recuperar la selección", error);
+}
+    guardarSeleccion();
   const labels = [
     "🥇 Primer puesto · 3 puntos",
     "🥈 Segundo puesto · 2 puntos",
@@ -1192,7 +1223,6 @@ onAuthStateChanged(auth,async user=>{
   comprobandoVoto = !!user;
   errorComprobacion = false;
 
-  picks.fill(null);
   actualizarBotonVoto();
   renderPicks();
   renderGallery();
