@@ -1,28 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="AnxanWoman - Juegos, Destino Brawler y comunidad de Brawl Stars">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AnxanWoman - Juegos, Destino Brawler y comunidad de Brawl Stars">
     <title>AnxanWoman | Comunidad</title>
-
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- =====================================
-         ESTILOS EVENTO BRAWLOWEEN
-         Independientes del resto de la web
-    ===================================== -->
-
     <style>
-
         .anxan-skin-event {
             position: relative;
             margin: 35px 0 45px;
@@ -31,16 +17,8 @@
             border-radius: 24px;
             border: 2px solid #7542a8;
             background:
-                radial-gradient(
-                    circle at 15% 15%,
-                    rgba(169, 60, 179, .24),
-                    transparent 45%
-                ),
-                linear-gradient(
-                    135deg,
-                    #242044,
-                    #15264a
-                );
+                radial-gradient(circle at 15% 15%, rgba(169, 60, 179, .24), transparent 45%),
+                linear-gradient(135deg, #242044, #15264a);
             color: #ffffff;
             overflow: hidden;
         }
@@ -98,9 +76,7 @@
             font-size: 17px;
             font-weight: 700;
             cursor: pointer;
-            transition:
-                transform .2s,
-                background .2s;
+            transition: transform .2s, background .2s;
         }
 
         .anxan-skin-event-button:hover {
@@ -113,8 +89,6 @@
             color: #c5c5dd;
             font-size: 13px;
         }
-
-        /* MODAL DE BLOQUEO */
 
         .anxan-skin-lock {
             position: fixed;
@@ -139,8 +113,7 @@
             background: #242044;
             color: white;
             text-align: center;
-            box-shadow:
-                0 20px 70px rgba(0, 0, 0, .5);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .5);
         }
 
         .anxan-skin-lock-icon {
@@ -171,7 +144,6 @@
         }
 
         @media (max-width: 600px) {
-
             .anxan-skin-event {
                 margin: 25px 0 35px;
                 padding: 35px 18px;
@@ -180,115 +152,152 @@
             .anxan-skin-event-description {
                 font-size: 16px;
             }
-
         }
 
+        /* USUARIO CONECTADO */
+        .anxan-account {
+            position: relative;
+        }
+
+        .anxan-user-menu[hidden],
+        .anxan-account-dropdown[hidden],
+        #anxan-login-link[hidden] {
+            display: none !important;
+        }
+
+        .anxan-user-trigger {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            max-width: 190px;
+        }
+
+        #anxan-username {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .anxan-account-dropdown {
+            position: absolute;
+            z-index: 1000;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 170px;
+            padding: 7px;
+            border-radius: 12px;
+            border: 1px solid #6477ad;
+            background: #202746;
+            box-shadow: 0 12px 30px rgba(0,0,0,.3);
+        }
+
+        .anxan-account-dropdown button {
+            display: block;
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: white;
+            text-align: left;
+            font: inherit;
+            cursor: pointer;
+            padding: 11px;
+            border-radius: 8px;
+        }
+
+        .anxan-account-dropdown button:hover {
+            background: #36466d;
+        }
     </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================
-     HEADER
-===================================== -->
-
 <header>
-
     <div class="header-content">
-
         <div class="logo"
              onclick="location.href='index.html'"
              style="cursor:pointer;">
-
-             ANXAN<span>WOMAN</span>
-
+            ANXAN<span>WOMAN</span>
         </div>
-
 
         <div class="header-menu">
 
-            <a href="login.html"
-               class="header-nav-button"
-               style="text-decoration: none;">
+            <div class="anxan-account" id="anxan-account">
 
-                INICIAR SESIÓN
+                <a href="login.html"
+                   class="header-nav-button"
+                   id="anxan-login-link"
+                   style="text-decoration:none;">
+                    INICIAR SESIÓN
+                </a>
 
-            </a>
+                <div id="anxan-user-menu"
+                     class="anxan-user-menu"
+                     hidden>
 
+                    <button type="button"
+                            class="header-nav-button anxan-user-trigger"
+                            id="anxan-user-trigger"
+                            aria-expanded="false"
+                            aria-controls="anxan-account-dropdown">
+
+                        <span aria-hidden="true">👤</span>
+                        <span id="anxan-username">MI CUENTA</span>
+                        <span aria-hidden="true">▾</span>
+                    </button>
+
+                    <div id="anxan-account-dropdown"
+                         class="anxan-account-dropdown"
+                         hidden>
+
+                        <button type="button" id="anxan-logout">
+                            Cerrar sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <button class="header-nav-button"
                     id="progress-button">
-
                 ⚡ TU PROGRESO
-
             </button>
-
 
             <button class="header-nav-button"
                     id="ranking-button">
-
                 🏆 TOP COMUNIDAD
-
             </button>
 
-
             <div class="user-points">
-
                 ⚡ <span id="header-points">0</span>
-
             </div>
 
         </div>
-
     </div>
-
 </header>
 
-
-
 <main>
-
-
-<!-- =====================================
-     PORTADA
-===================================== -->
 
 <section class="hero">
 
     <h1 class="hero-title">
-
         ANXAN<span>WOMAN</span>
-
     </h1>
 
-
     <h2 class="hero-slogan">
-
         JUEGA · COMPITE · DIVIÉRTETE
-
     </h2>
 
-
     <p>
-
         Juegos, sorpresas y decisiones de la comunidad
         para hacer tus partidas de Brawl Stars
         mucho más divertidas.
-
     </p>
 
-
     <div class="social-section">
-
         <p class="social-title">
-
             💙 SÍGUEME Y ÚNETE A LA COMUNIDAD
-
         </p>
-
 
         <div class="social-buttons">
 
@@ -296,95 +305,57 @@
                target="_blank"
                rel="noopener noreferrer"
                class="social-btn youtube">
-
                 ▶ YouTube
-
             </a>
-
 
             <a href="https://www.twitch.tv/anxanwoman"
                target="_blank"
                rel="noopener noreferrer"
                class="social-btn twitch">
-
                 💜 Twitch
-
             </a>
-
 
             <a href="https://www.tiktok.com/@anxanwoman"
                target="_blank"
                rel="noopener noreferrer"
                class="social-btn tiktok">
-
                 ♪ TikTok
-
             </a>
-
 
             <a href="https://discord.gg/bBK5kYDpq"
                target="_blank"
                rel="noopener noreferrer"
                class="social-btn discord">
-
                 💬 Discord
-
             </a>
 
         </div>
-
     </div>
-
 </section>
 
-
-
 <div class="container">
-
-
-<!-- =====================================
-     RETO DIARIO
-===================================== -->
 
 <section class="daily-challenge">
 
     <div class="challenge-label">
-
-         RETO DIARIO
-
+        RETO DIARIO
     </div>
 
-
     <h2 id="daily-challenge-title">
-
         CARGANDO RETO...
-
     </h2>
 
-
     <p id="daily-challenge-text">
-
         Cada día tienes una nueva misión.
         Complétala y consigue Rayitos.
-
     </p>
-
 
     <button class="btn btn-yellow"
             id="daily-challenge-button">
-
-         ACEPTAR RETO · +10 ⚡
-
+        ACEPTAR RETO · +10 ⚡
     </button>
 
 </section>
-
-
-
-<!-- =====================================
-     EVENTO BRAWLOWEEN
-     NUEVA SECCIÓN INDEPENDIENTE
-===================================== -->
 
 <section class="anxan-skin-event"
          aria-labelledby="skin-event-title">
@@ -392,353 +363,158 @@
     <div class="anxan-skin-event-content">
 
         <span class="anxan-skin-event-label">
-
-             EVENTO ESPECIAL BRAWLOWEEN
-
+            EVENTO ESPECIAL BRAWLOWEEN
         </span>
 
-
         <h2 id="skin-event-title">
-
             VOTACIONES <span>SKIN</span>
-
         </h2>
 
-
         <p class="anxan-skin-event-description">
-
             50 artistas. 50 creaciones únicas.
             ¡Vota por tu skin de Brawloween favorita!
-
         </p>
-
 
         <p class="anxan-skin-event-date">
-
-             Resultados en vídeo el 30 de octubre
-
+            Resultados en vídeo el 30 de octubre
         </p>
-
 
         <button type="button"
                 id="anxan-skin-event-button"
                 class="anxan-skin-event-button">
-
             🔒 VER CONCURSO
-
         </button>
-
 
         <p id="anxan-skin-event-status"
            class="anxan-skin-event-status">
-
             Disponible el 16 de octubre
-
         </p>
 
     </div>
-
 </section>
-
-
-
-<!-- =====================================
-     JUEGOS
-     SIN MODIFICACIONES
-===================================== -->
 
 <section class="games">
 
     <h2 class="section-title">
-
         🎮 ¿QUÉ HACEMOS HOY?
-
     </h2>
-
 
     <div class="game-grid">
 
-
-        <!-- RULETA -->
-
         <div class="game-card"
              onclick="location.href='ruleta.html'">
-
-            <span class="game-icon">
-
-                🎰
-
-            </span>
-
-            <h3>
-
-                RULETA
-
-            </h3>
-
+            <span class="game-icon">🎰</span>
+            <h3>RULETA</h3>
             <p>
-
                 Deja que el azar elija
                 tu próximo Brawler.
-
             </p>
-
         </div>
-
-
-
-        <!-- QUIZ -->
 
         <div class="game-card"
              onclick="location.href='quiz.html'">
-
-            <span class="game-icon">
-
-                🧠
-
-            </span>
-
-            <h3>
-
-                BRAWL QUIZ
-
-            </h3>
-
+            <span class="game-icon">🧠</span>
+            <h3>BRAWL QUIZ</h3>
             <p>
-
                 ¿Cuánto sabes realmente
                 sobre Brawl Stars?
-
             </p>
-
         </div>
-
-
-
-        <!-- DESTINO BRAWLER -->
 
         <div class="game-card"
              onclick="location.href='destino.html'">
-
-            <span class="game-icon">
-
-                🔮
-
-            </span>
-
-            <h3>
-
-                DESTINO BRAWLER
-
-            </h3>
-
+            <span class="game-icon">🔮</span>
+            <h3>DESTINO BRAWLER</h3>
             <p>
-
                 Descubre tu trío y tu
                 predicción semanal.
-
             </p>
-
         </div>
-
-
-
-        <!-- ADIVINA EL BRAWLER -->
 
         <div class="game-card"
              onclick="location.href='emojis.html'">
-
-            <span class="game-icon">
-
-                🧩
-
-            </span>
-
-            <h3>
-
-                ADIVINA EL BRAWLER
-
-            </h3>
-
+            <span class="game-icon">🧩</span>
+            <h3>ADIVINA EL BRAWLER</h3>
             <p>
-
                 Descubre qué Brawler se esconde
                 detrás de los emojis.
-
             </p>
-
         </div>
 
-
     </div>
-
 </section>
 
-
-
-<!-- =====================================
-     PUBLICIDAD
-===================================== -->
-
 <div class="ad-space">
-
     ESPACIO PUBLICITARIO
-
 </div>
-
-
-
-<!-- =====================================
-     EVENTO ESPECIAL
-===================================== -->
 
 <section class="event-card">
 
     <div class="challenge-label">
-
         EVENTO ESPECIAL
-
     </div>
 
-
-    <h2>
-
-        CALENDARIO DE ADVIENTO
-
-    </h2>
-
+    <h2>CALENDARIO DE ADVIENTO</h2>
 
     <p>
-
         24 días. 24 sorpresas.
         Retos, juegos y eventos especiales
         para la comunidad.
-
     </p>
 
-
     <div class="locked">
-
         🔒 DICIEMBRE 2026
-
     </div>
 
 </section>
 
-
 </div>
-
 </main>
-
-
-
-<!-- =====================================
-     FOOTER
-     ENLACES LEGALES CONSERVADOS
-===================================== -->
 
 <footer>
 
     <p>
-
         Hecho con 💙 por
         <strong>AnxanWoman</strong>
-
     </p>
-
 
     <div class="legal-links">
 
-        <a href="aviso-legal.html">
-            Aviso legal
-        </a>
-
+        <a href="aviso-legal.html">Aviso legal</a>
         <span>·</span>
-
-        <a href="privacidad.html">
-            Privacidad
-        </a>
-
+        <a href="privacidad.html">Privacidad</a>
         <span>·</span>
-
-        <a href="cookies.html">
-            Cookies
-        </a>
-
+        <a href="cookies.html">Cookies</a>
         <span>·</span>
-
-        <a href="contacto.html">
-            Contacto
-        </a>
+        <a href="contacto.html">Contacto</a>
 
     </div>
 
-
     <p class="supercell-disclaimer">
-
         Este contenido no está afiliado,
         respaldado ni patrocinado por Supercell.
-
     </p>
 
 </footer>
 
-
-
-<!-- =====================================
-     MODAL ANXANWOMAN
-     ORIGINAL SIN MODIFICACIONES
-===================================== -->
-
-<div id="anxan-modal"
-     class="anxan-modal">
+<div id="anxan-modal" class="anxan-modal">
 
     <div class="anxan-modal-card">
 
-        <div id="modal-icon"
-             class="modal-icon">
+        <div id="modal-icon" class="modal-icon">⚡</div>
 
-            ⚡
+        <h2 id="modal-title">ANXANWOMAN</h2>
 
-        </div>
+        <p id="modal-text">¡Bienvenido!</p>
 
+        <div id="modal-reward" class="modal-reward"></div>
 
-        <h2 id="modal-title">
-
-            ANXANWOMAN
-
-        </h2>
-
-
-        <p id="modal-text">
-
-            ¡Bienvenido!
-
-        </p>
-
-
-        <div id="modal-reward"
-             class="modal-reward">
-
-        </div>
-
-
-        <button id="modal-button"
-                class="btn btn-yellow">
-
+        <button id="modal-button" class="btn btn-yellow">
             CERRAR
-
         </button>
 
     </div>
-
 </div>
-
-
-
-<!-- =====================================
-     MODAL BLOQUEO BRAWLOWEEN
-===================================== -->
 
 <div id="anxan-skin-lock"
      class="anxan-skin-lock"
@@ -749,125 +525,75 @@
 
     <div class="anxan-skin-lock-card">
 
-        <div class="anxan-skin-lock-icon">
-
-            🔒🎃
-
-        </div>
-
+        <div class="anxan-skin-lock-icon">🔒🎃</div>
 
         <h2 id="anxan-skin-lock-title">
-
             ¡VOTACIONES BLOQUEADAS!
-
         </h2>
 
-
         <p>
-
             Bloqueado hasta el
             <strong>16 de octubre</strong>.
-
         </p>
-
 
         <p>
-
             ¡Muy pronto podrás votar por tus
             skins favoritas de Brawloween!
-
         </p>
-
 
         <button type="button"
                 id="anxan-skin-lock-close"
                 class="anxan-skin-lock-close">
-
-            ENTENDIDO 
-
+            ENTENDIDO
         </button>
 
     </div>
-
 </div>
 
-
-
-<!-- =====================================
-     SCRIPT ORIGINAL
-===================================== -->
-
+<!-- SCRIPT ORIGINAL DE LA WEB -->
 <script src="script.js"></script>
 
-
-
-<!-- =====================================
-     CONTROL DE APERTURA BRAWLOWEEN
-===================================== -->
-
+<!-- APERTURA DEL CONCURSO -->
 <script>
-
 (function () {
-
     "use strict";
-
-    // Apertura: 16 de octubre de 2026,
-    // 00:00, hora peninsular española.
 
     const apertura = new Date(
         "2026-10-16T00:00:00+02:00"
     ).getTime();
 
-
     const boton = document.getElementById(
         "anxan-skin-event-button"
     );
-
 
     const estado = document.getElementById(
         "anxan-skin-event-status"
     );
 
-
     const modal = document.getElementById(
         "anxan-skin-lock"
     );
-
 
     const cerrar = document.getElementById(
         "anxan-skin-lock-close"
     );
 
-
     function estaAbierto() {
-
         return Date.now() >= apertura;
-
     }
-
 
     function actualizarEstado() {
-
         if (estaAbierto()) {
-
             boton.textContent = " VER CONCURSO";
-
             estado.textContent = "¡Concurso disponible!";
-
         } else {
-
             boton.textContent = " VER CONCURSO";
-
             estado.textContent =
                 "Disponible el 16 de octubre";
-
         }
-
     }
 
-
     function cerrarModal() {
-
         modal.classList.remove("active");
 
         modal.setAttribute(
@@ -876,19 +602,13 @@
         );
 
         boton.focus();
-
     }
 
-
     boton.addEventListener("click", function () {
-
         if (estaAbierto()) {
-
             window.location.href =
                 "concurso-skins.html";
-
         } else {
-
             modal.classList.add("active");
 
             modal.setAttribute(
@@ -897,56 +617,179 @@
             );
 
             cerrar.focus();
-
         }
-
     });
-
 
     cerrar.addEventListener(
         "click",
         cerrarModal
     );
 
-
     modal.addEventListener(
         "click",
         function (event) {
-
             if (event.target === modal) {
-
                 cerrarModal();
-
             }
-
         }
     );
-
 
     document.addEventListener(
         "keydown",
         function (event) {
-
             if (
                 event.key === "Escape" &&
                 modal.classList.contains("active")
             ) {
-
                 cerrarModal();
-
             }
-
         }
     );
 
-
     actualizarEstado();
-
 })();
+</script>
+
+<!-- FIREBASE: MOSTRAR USUARIO CONECTADO -->
+<script type="module">
+
+import {
+    initializeApp,
+    getApps,
+    getApp
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAs6sUeZNNisoiXsYAspHow1Z2iOwv9TVg",
+    authDomain: "anxanwoman.firebaseapp.com",
+    projectId: "anxanwoman",
+    storageBucket: "anxanwoman.firebasestorage.app",
+    messagingSenderId: "366283389190",
+    appId: "1:366283389190:web:60115f7658d96304688687",
+    measurementId: "G-6DN2N02ZPG"
+};
+
+const app = getApps().length
+    ? getApp()
+    : initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const loginLink = document.getElementById(
+    "anxan-login-link"
+);
+
+const userMenu = document.getElementById(
+    "anxan-user-menu"
+);
+
+const username = document.getElementById(
+    "anxan-username"
+);
+
+const trigger = document.getElementById(
+    "anxan-user-trigger"
+);
+
+const dropdown = document.getElementById(
+    "anxan-account-dropdown"
+);
+
+const logout = document.getElementById(
+    "anxan-logout"
+);
+
+function closeDropdown() {
+    dropdown.hidden = true;
+
+    trigger.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+}
+
+onAuthStateChanged(auth, (user) => {
+
+    closeDropdown();
+
+    loginLink.hidden = !!user;
+    userMenu.hidden = !user;
+
+    if (user) {
+        username.textContent =
+            user.displayName?.trim() || "MI CUENTA";
+    }
+
+}, (error) => {
+
+    console.error(
+        "No se pudo comprobar la sesión:",
+        error
+    );
+
+    loginLink.hidden = false;
+    userMenu.hidden = true;
+});
+
+trigger.addEventListener("click", () => {
+
+    dropdown.hidden = !dropdown.hidden;
+
+    trigger.setAttribute(
+        "aria-expanded",
+        String(!dropdown.hidden)
+    );
+
+});
+
+document.addEventListener("click", (event) => {
+
+    if (!document.getElementById("anxan-account").contains(event.target)) {
+        closeDropdown();
+    }
+
+});
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+        closeDropdown();
+    }
+
+});
+
+logout.addEventListener("click", async () => {
+
+    logout.disabled = true;
+
+    try {
+        await signOut(auth);
+        closeDropdown();
+
+    } catch (error) {
+
+        console.error(
+            "No se pudo cerrar sesión:",
+            error
+        );
+
+        alert(
+            "No se pudo cerrar sesión. Inténtalo de nuevo."
+        );
+
+    } finally {
+        logout.disabled = false;
+    }
+
+});
 
 </script>
 
-
 </body>
-
 </html>
