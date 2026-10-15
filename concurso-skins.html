@@ -1207,20 +1207,32 @@ let errorComprobacion = false;
   16 octubre 2026, 21:00 España peninsular
   Equivale a 19:00 UTC.
 */
+// PRUEBA: 15 de octubre, de 22:10 a 22:30
+const APERTURA_PRUEBA =
+  new Date("2026-10-15T22:10:00+02:00");
+
+const CIERRE_PRUEBA =
+  new Date("2026-10-15T22:30:00+02:00");
+
+// VOTACIONES OFICIALES
 const APERTURA =
   new Date("2026-10-16T21:00:00+02:00");
 
-/*
-  CIERRE:
-  26 octubre 2026, 00:00 España peninsular
-  Equivale a 23:00 UTC del día 25.
-*/
 const CIERRE =
   new Date("2026-10-26T00:00:00+01:00");
 
 function plazoAbierto() {
-  return Date.now() >= APERTURA.getTime()
-    && Date.now() < CIERRE.getTime();
+  const ahora = Date.now();
+
+  const prueba =
+    ahora >= APERTURA_PRUEBA.getTime() &&
+    ahora < CIERRE_PRUEBA.getTime();
+
+  const oficial =
+    ahora >= APERTURA.getTime() &&
+    ahora < CIERRE.getTime();
+
+  return prueba || oficial;
 }
 
 function papeletaCompleta() {
@@ -1256,14 +1268,21 @@ function actualizarBotonVoto() {
     return;
   }
 
-  if(!plazoAbierto()) {
-    boton.disabled = true;
-    boton.textContent =
-      Date.now() < APERTURA.getTime()
-        ? "🔒 VOTACIONES NO ABIERTAS"
-        : "🔒 VOTACIONES CERRADAS";
-    return;
+  if (!plazoAbierto()) {
+  boton.disabled = true;
+
+  const ahora = Date.now();
+
+  if (ahora < APERTURA_PRUEBA.getTime()) {
+    boton.textContent = "🔒 PRUEBA A LAS 22:10";
+  } else if (ahora < APERTURA.getTime()) {
+    boton.textContent = "🔒 VOTACIONES NO ABIERTAS";
+  } else {
+    boton.textContent = "🔒 VOTACIONES CERRADAS";
   }
+
+  return;
+}
 
   if(!usuario) {
     boton.disabled = true;
@@ -1445,22 +1464,24 @@ if (!yaVoto) {
     borradorFirebaseCargado = false;
   }
 }
-    if(yaVoto) {
-      status.textContent =
-        "🎉 Tu cuenta ya ha registrado su voto.";
-    } else if(Date.now()<APERTURA.getTime()) {
-      status.textContent =
-        "✅ Sesión iniciada como "+nombre+
-        ". Las votaciones comienzan el 16 de octubre a las 21:00 h.";
-    } else if(!plazoAbierto()) {
-      status.textContent =
-        "🔒 Las votaciones han finalizado.";
-    } else {
-      status.textContent =
-        "✅ Sesión iniciada como "+nombre+
-        ". ¡Elige tu TOP 3!";
-    }
+   if (yaVoto) {
+  status.textContent =
+    "🎉 Tu cuenta ya ha registrado su voto.";
 
+} else if (!plazoAbierto() && Date.now() < APERTURA.getTime()) {
+  status.textContent =
+    "✅ Sesión iniciada como " + nombre +
+    ". Las votaciones oficiales comienzan el 16 de octubre a las 21:00 h.";
+
+} else if (!plazoAbierto()) {
+  status.textContent =
+    "🔒 Las votaciones han finalizado.";
+
+} else {
+  status.textContent =
+    "✅ Sesión iniciada como " + nombre +
+    ". ¡Elige tu TOP 3!";
+}
   } catch(error) {
     if(usuario?.uid !== uid) return;
 
