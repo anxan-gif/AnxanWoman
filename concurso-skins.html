@@ -854,6 +854,9 @@ try {
   console.warn("No se pudo recuperar la selección", error);
 }
     guardarSeleccion();
+    if (window.actualizarAvisoLogin) {
+    window.actualizarAvisoLogin();
+  }
   const labels = [
     "🥇 Primer puesto · 3 puntos",
     "🥈 Segundo puesto · 2 puntos",
@@ -1187,7 +1190,13 @@ function actualizarBotonVoto() {
 }
 
 window.actualizarBotonVoto = actualizarBotonVoto;
-
+window.actualizarAvisoLogin = function() {
+  if (authComprobada && !usuario) {
+    status.textContent = picks.some(Boolean)
+      ? "💙 ¡Tu selección está guardada! Inicia sesión para enviar tu voto. No perderás tus skins elegidas."
+      : "🔐 Inicia sesión para participar.";
+  }
+};
 /*
   Firestore no permite leer votos con las
   reglas privadas actuales.
@@ -1230,7 +1239,9 @@ onAuthStateChanged(auth,async user=>{
   if(!user) {
     login.classList.remove("hidden");
     status.textContent =
-      "🔐 Inicia sesión para participar.";
+  picks.some(Boolean)
+    ? "💙 ¡Tu selección está guardada! Inicia sesión para enviar tu voto. No perderás tus skins elegidas."
+    : "🔐 Inicia sesión para participar.";
     return;
   }
 
