@@ -857,20 +857,14 @@ function guardarSeleccion() {
 function renderPicks() {
   guardarSeleccion();
 
-  window.guardarBorradorAlCambiar = function() {
-  if (
-    !usuario ||
-    !borradorFirebaseCargado ||
-    votoEnviado ||
-    enviando ||
-    comprobandoVoto ||
-    errorComprobacion
-  ) {
-    return;
+  if (window.actualizarAvisoLogin) {
+    window.actualizarAvisoLogin();
   }
-    if (window.guardarBorradorAlCambiar) {
+
+  if (window.guardarBorradorAlCambiar) {
     window.guardarBorradorAlCambiar();
   }
+
   const labels = [
     "🥇 Primer puesto · 3 puntos",
     "🥈 Segundo puesto · 2 puntos",
@@ -1264,16 +1258,30 @@ let borradorFirebaseCargado = false;
   let uidBorradorActual = null;
 
 window.guardarBorradorAlCambiar = function() {
-  if (!usuario || !borradorFirebaseCargado || votoEnviado) {
-    return;
-  }
+ if (
+  !usuario ||
+  !borradorFirebaseCargado ||
+  votoEnviado ||
+  enviando ||
+  comprobandoVoto ||
+  errorComprobacion
+) {
+  return;
+}
 
   clearTimeout(temporizadorBorrador);
 
   const uid = usuario.uid;
 
   temporizadorBorrador = setTimeout(async () => {
-    if (usuario?.uid !== uid || votoEnviado) return;
+    if (
+  usuario?.uid !== uid ||
+  votoEnviado ||
+  enviando ||
+  comprobandoVoto ||
+  errorComprobacion ||
+  !borradorFirebaseCargado
+) return;
 
     try {
       await guardarBorradorFirebase(uid);
@@ -1322,12 +1330,14 @@ onAuthStateChanged(auth,async user=>{
 borradorFirebaseCargado = false;
 
 // Si cambia la cuenta, no reutilizar su selección anterior
-if (uidBorradorActual !== null && uidBorradorActual !== uid) {
+if (uid && uidBorradorActual && uidBorradorActual !== uid) {
   picks.fill(null);
   localStorage.removeItem("anxan_skin_wars_borrador");
 }
 
-uidBorradorActual = uid;
+if (uid) {
+  uidBorradorActual = uid;
+}
 
 usuario = user;
   authComprobada = true;
@@ -1349,14 +1359,31 @@ usuario = user;
   }
 
   login.classList.add("hidden");
-  // Recuperar el borrador de Firebase
+
+const nombre =
+  user.displayName ||
+  user.email ||
+  "usuario de AnxanWoman";
+
+  const nombre =
+    user.displayName ||
+    user.email ||
+    "usuario de AnxanWoman";
+
+  try {
+    const yaVoto = await comprobarVotoPrevio(user);
+
+    if(usuario?.uid !== uid) return;
+
+    votoEnviado = yaVoto;
+if (!yaVoto) {
+  // Recuperar el TOP 3 guardado en Firebase
   try {
     const borradorNube = await cargarBorradorFirebase(uid);
 
-    // Evitar aplicar datos de una sesión anterior
     if (usuario?.uid !== uid) return;
 
-      const haySeleccionLocal = picks.some(Boolean);
+    const haySeleccionLocal = picks.some(Boolean);
     const haySeleccionNube =
       borradorNube && borradorNube.some(Boolean);
 
@@ -1381,28 +1408,13 @@ usuario = user;
       picks.splice(0, 3, ...borradorNube);
     }
 
-    // Ya se puede activar el guardado automático
     borradorFirebaseCargado = true;
-
-    renderPicks();
-    renderGallery();
 
   } catch (error) {
     console.error("No se pudo recuperar el borrador:", error);
     borradorFirebaseCargado = false;
   }
-  const nombre =
-    user.displayName ||
-    user.email ||
-    "usuario de AnxanWoman";
-
-  try {
-    const yaVoto = await comprobarVotoPrevio(user);
-
-    if(usuario?.uid !== uid) return;
-
-    votoEnviado = yaVoto;
-
+}
     if(yaVoto) {
       status.textContent =
         "🎉 Tu cuenta ya ha registrado su voto.";
