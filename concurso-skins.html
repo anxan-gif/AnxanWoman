@@ -821,19 +821,7 @@ function renderGallery() {
     gallery.append(card);
   });
 }
-// Guardar automáticamente las skins seleccionadas
-function guardarSeleccion() {
-  try {
-    localStorage.setItem(
-      "anxan_skin_wars_borrador",
-      JSON.stringify(picks)
-    );
-  } catch (error) {
-    console.warn("No se pudo guardar la selección", error);
-  }
-}
-function renderPicks() {
-  // Recuperar las skins seleccionadas al recargar
+// Recuperar la selección una sola vez al cargar la página
 try {
   const borradorGuardado = JSON.parse(
     localStorage.getItem("anxan_skin_wars_borrador")
@@ -853,8 +841,23 @@ try {
 } catch (error) {
   console.warn("No se pudo recuperar la selección", error);
 }
-    guardarSeleccion();
-    if (window.actualizarAvisoLogin) {
+
+// Guardar automáticamente las skins seleccionadas
+function guardarSeleccion() {
+  try {
+    localStorage.setItem(
+      "anxan_skin_wars_borrador",
+      JSON.stringify(picks)
+    );
+  } catch (error) {
+    console.warn("No se pudo guardar la selección", error);
+  }
+}
+
+function renderPicks() {
+  guardarSeleccion();
+
+  if (window.actualizarAvisoLogin) {
     window.actualizarAvisoLogin();
   }
   const labels = [
