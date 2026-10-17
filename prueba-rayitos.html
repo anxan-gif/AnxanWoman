@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prueba de Rayitos - AnxanWoman</title>
+</head>
+<body>
+  <h1>⚡ Prueba de conexión de Rayitos</h1>
+  <p id="estado">Esperando...</p>
+  <button id="probar" disabled>Probar conexión Firebase</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const app = initializeApp({
+      apiKey: "AIzaSyAs6sUeZNNisoiXsYAspHow1Z2iOwv9TVg",
+      authDomain: "anxanwoman.firebaseapp.com",
+      projectId: "anxanwoman",
+      appId: "1:366283389190:web:60115f7658d96304688687"
+    });
+
+    const auth = getAuth(app);
+    const estado = document.getElementById("estado");
+    const boton = document.getElementById("probar");
+
+    onAuthStateChanged(auth, usuario => {
+      if (!usuario) {
+        estado.textContent = "🔒 Inicia sesión en AnxanWoman para probar.";
+        boton.disabled = true;
+        return;
+      }
+
+      estado.textContent = "✅ Sesión de Firebase detectada.";
+      boton.disabled = false;
+    });
+
+    boton.addEventListener("click", async () => {
+      boton.disabled = true;
+      estado.textContent = "⏳ Comprobando Firebase y Cloudflare...";
+
+      try {
+        const usuario = auth.currentUser;
+        if (!usuario) throw new Error("Sesión no disponible");
+
+        const token = await usuario.getIdToken();
+
+        const respuesta = await fetch(
+          "https://anxan-rayitos-api.anxan9.workers.dev/api/mi-saldo",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok && resultado.usuario_verificado === true) {
+          estado.textContent = "🎉 ¡Firebase y Cloudflare conectados correctamente!";
+        } else {
+          estado.textContent = "⚠️ La verificación no se ha completado.";
+        }
+      } catch (error) {
+        console.error("Prueba Rayitos:", error);
+        estado.textContent = "❌ Error de conexión. Revisa la consola.";
+      } finally {
+        boton.disabled = !auth.currentUser;
+      }
+    });
+  </script>
+</body>
+</html>
