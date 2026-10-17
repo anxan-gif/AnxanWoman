@@ -8,6 +8,7 @@
 <body>
   <h1>⚡ Prueba de conexión de Rayitos</h1>
   <p id="estado">Esperando...</p>
+  <button onclick="iniciarSesionPrueba()">🔐 Iniciar sesión con Google</button>
   <button id="probar" disabled>Probar conexión Firebase</button>
 
   <script type="module">
@@ -20,8 +21,13 @@
       projectId: "anxanwoman",
       appId: "1:366283389190:web:60115f7658d96304688687"
     });
-
     const auth = getAuth(app);
+    window.iniciarSesionPrueba = async () => {
+  const { GoogleAuthProvider, signInWithPopup } =
+    await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js");
+
+  await signInWithPopup(auth, new GoogleAuthProvider());
+};
     const estado = document.getElementById("estado");
     const boton = document.getElementById("probar");
 
