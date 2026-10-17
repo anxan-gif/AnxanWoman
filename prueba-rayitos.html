@@ -63,7 +63,11 @@
 
         const resultado = await respuesta.json();
 
-        if (respuesta.ok && resultado.usuario_verificado === true) {
+       if (
+  respuesta.ok &&
+  (resultado.estado === "OK" ||
+   resultado.estado === "PENDIENTE_MIGRACION")
+) {
           estado.textContent = "🎉 ¡Firebase y Cloudflare conectados correctamente!";
         } else {
           estado.textContent = "⚠️ La verificación no se ha completado.";
