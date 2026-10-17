@@ -611,3 +611,39 @@ window.addEventListener(
 pintarRayos();
 cargarRetoDiario();
 iniciarFirebase();
+/* ==========================================
+   PRUEBA SEGURA DE AUTENTICACIÓN DE RAYITOS
+   Solo para la rama prueba-rayitos
+========================================== */
+
+window.probarConexionRayitos = async function () {
+  if (!auth?.currentUser) {
+    alert("Primero debes iniciar sesión en AnxanWoman.");
+    return;
+  }
+
+  try {
+    const token = await auth.currentUser.getIdToken();
+
+    const respuesta = await fetch(
+      "https://anxan-rayitos-api.anxan9.workers.dev/api/mi-saldo",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    const resultado = await respuesta.json();
+
+    if (respuesta.ok && resultado.usuario_verificado === true) {
+      alert("✅ ¡Firebase y Cloudflare están conectados correctamente!");
+    } else {
+      alert("⚠️ No se pudo verificar la sesión.");
+    }
+  } catch (error) {
+    console.error("Error de conexión con Rayitos:", error);
+    alert("⚠️ Error al conectar con Cloudflare.");
+  }
+};
