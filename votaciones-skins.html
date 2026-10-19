@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#0e1022">
+
+<title>ANXAN SKIN WARS | Concurso Brawloween</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{--bg:#0e1022;--blue:#39baff;--pink:#ff5baf;--yellow:#ffd45a;--muted:#abb3d0}
+
+*{box-sizing:border-box}
+
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 12%,#30215c 0%,#151a37 52%,var(--bg) 100%);color:#f7f7ff;font-family:Fredoka,sans-serif}
+
+a{text-decoration:none;color:inherit}
+
+header{max-width:1150px;margin:auto;padding:22px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+
+.logo{font-weight:700;font-size:23px;color:var(--blue)}.logo span{color:white}
+
+.back{padding:10px 16px;border-radius:12px;background:#24294c}
+
+main{max-width:1050px;margin:25px auto 70px;padding:0 20px;text-align:center}
+
+.eyebrow{color:var(--yellow);font-weight:700;letter-spacing:2px;font-size:14px}
+
+h1{font-size:clamp(45px,9vw,90px);line-height:1.02;margin:16px 0}h1 span{color:var(--pink)}
+
+.intro{color:#d4d8ee;font-size:clamp(17px,2.5vw,21px);line-height:1.5;margin:16px auto 36px;max-width:650px}
+
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+
+.choice{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:255px;border:2px solid #59639d;border-radius:24px;padding:26px 20px;transition:transform .18s,border-color .18s,box-shadow .18s}
+
+.choice:hover,.choice:focus-visible{transform:translateY(-5px);border-color:var(--yellow);box-shadow:0 10px 35px #0006;outline:none}
+
+.votes{background:linear-gradient(135deg,#203b65,#253056)}.results{background:linear-gradient(135deg,#422458,#282752)}
+
+.symbol{font-size:55px}.choice strong{font-size:clamp(22px,3vw,32px);letter-spacing:.5px}.choice small{font-size:16px;line-height:1.45;color:#d9def5;max-width:270px}
+
+.video{display:flex;align-items:center;justify-content:center;gap:18px;text-align:left;max-width:720px;margin:26px auto 0;padding:22px 25px;border:1px solid #6b527e;border-radius:18px;background:#262443;transition:background .2s}
+
+.video:hover,.video:focus-visible{background:#36305c;outline:2px solid var(--pink);outline-offset:2px}
+
+.video-icon{font-size:38px}.video strong{display:block;font-size:21px}.video small{display:block;color:var(--muted);margin-top:5px;font-size:14px}
+
+footer{color:var(--muted);font-size:13px;text-align:center;padding:0 20px 30px}
+
+@media(max-width:620px){.choices{gap:12px}.choice{padding:22px 10px;min-height:215px;gap:10px}.symbol{font-size:42px}.choice strong{font-size:18px}.choice small{font-size:13px}.video{padding:17px 15px;gap:12px}.video strong{font-size:17px}}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a class="logo" href="index.html">ANXAN<span>WOMAN</span></a>
+
+<a class="back" href="index.html">← Inicio</a>
+
+</header>
+
+<main>
+
+<div class="eyebrow">🎃 CONCURSO BRAWLOWEEN</div>
+
+<h1>ANXAN<br><span>SKIN WARS</span></h1>
+
+<p class="intro">¡55 creaciones de nuestra comunidad! Elige qué apartado quieres visitar.</p>
+
+<div class="choices">
+
+<a class="choice votes" href="votaciones-skins.html" aria-label="Ir a votaciones y galería de skins">
+
+<span class="symbol" aria-hidden="true">🗳️</span>
+
+<strong>VOTACIONES</strong>
+
+<small>Descubre las 55 skins, consulta la galería y accede a las votaciones.</small>
+
+</a>
+
+<a class="choice results" href="resultados-skins.html" aria-label="Ir a los resultados del concurso">
+
+<span class="symbol" aria-hidden="true">🏆</span>
+
+<strong>RESULTADOS</strong>
+
+<small>Consulta el ranking cuando se desbloquee el 31 de octubre a las 00:00 h.</small>
+
+</a>
+
+</div>
+
+<!-- IMPORTANTE: sustituir el enlace del canal por la URL exacta del vídeo cuando esté publicado. -->
+
+<a class="video" href="https://www.youtube.com/@anxanwoman" target="_blank" rel="noopener noreferrer" aria-label="Ir al canal de YouTube de AnxanWoman; vídeo del concurso próximamente">
+
+<span class="video-icon" aria-hidden="true">▶️</span>
+
+<span><strong>VÍDEO DEL CONCURSO</strong><small>Estreno: 30 de octubre · Por ahora, enlace al canal de YouTube</small></span>
+
+</a>
+
+</main>
+
+<footer>ANXAN SKIN WARS · Concurso de fans no oficial</footer>
+
+</body>
+
+</html>
