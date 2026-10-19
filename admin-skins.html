@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Panel privado | ANXAN SKIN WARS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{--bg:#0e1022;--card:#1c2040;--blue:#39baff;--pink:#ff5baf;--yellow:#ffd45a;--muted:#abb3d0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f7ff;font-family:Fredoka,sans-serif}a{color:inherit;text-decoration:none}header{max-width:1150px;margin:auto;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}.logo{font-size:23px;font-weight:700;color:var(--blue)}.logo span{color:white}.back{background:#24294c;padding:11px 15px;border-radius:12px}.hero{max-width:1050px;margin:20px auto;padding:40px 22px;text-align:center;background:linear-gradient(140deg,#30215c,#15294d);border:1px solid #604b9c;border-radius:25px}h1{font-size:clamp(32px,6vw,60px);margin:12px 0;color:var(--yellow)}.eyebrow{letter-spacing:2px;color:var(--pink);font-weight:700}.content{max-width:1050px;margin:0 auto 70px;padding:0 16px}.panel{padding:24px;border-radius:22px;background:var(--card);border:1px solid #4b507d;margin-bottom:20px}.center{text-align:center}.muted{color:var(--muted);line-height:1.5}.btn{display:inline-block;padding:13px 20px;border:0;border-radius:12px;background:var(--blue);color:#081526;font-weight:700;font-family:inherit;cursor:pointer}.btn:disabled{opacity:.6;cursor:wait}.hidden{display:none!important}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}.stat{background:#24294c;border:1px solid #4b507d;border-radius:15px;padding:20px;text-align:center}.stat strong{display:block;font-size:30px;color:var(--yellow)}.stat span{color:var(--muted)}.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}.results{display:grid;gap:12px;margin-top:22px}.entry{display:flex;align-items:center;gap:16px;background:var(--card);padding:13px;border-radius:15px;border:1px solid #444b75}.entry img{width:76px;height:76px;object-fit:contain;background:#151b38;border-radius:10px}.position{font-size:22px;min-width:50px;text-align:center;color:var(--yellow)}.detail{flex:1;min-width:0}.detail strong{display:block;font-size:18px}.detail small{color:var(--muted)}.points{text-align:right;font-weight:700;white-space:nowrap;color:var(--blue)}.points small{display:block;font-weight:400;color:var(--muted)}.warning{border-color:#ac6891;color:#ffb6d9}footer{text-align:center;color:var(--muted);padding:25px}@media(max-width:500px){.entry{gap:9px}.entry img{width:58px;height:58px}.position{min-width:32px;font-size:17px}.detail strong{font-size:15px}.points{font-size:13px}}
+
+</style>
+
+</head>
+
+<body>
+
+<header><a class="logo" href="index.html">ANXAN<span>WOMAN</span></a><a class="back" href="concurso-skins.html">← Concurso</a></header>
+
+<section class="hero"><div class="eyebrow">🔐 SOLO ADMINISTRACIÓN</div><h1>🏆 PANEL SKIN WARS</h1><p>Clasificación provisional privada · 55 skins</p></section>
+
+<main class="content">
+
+<section class="panel center" id="auth-panel"><h2 id="auth-title">🔄 Comprobando acceso…</h2><p class="muted" id="auth-message">Verificando tu sesión con Firebase.</p><a class="btn hidden" id="login" href="login.html">🔐 Iniciar sesión</a></section>
+
+<section class="hidden" id="dashboard">
+
+<div class="stats"><div class="stat"><strong id="ballots">—</strong><span>Papeletas válidas</span></div><div class="stat"><strong id="total-points">—</strong><span>Puntos repartidos</span></div><div class="stat"><strong>55</strong><span>Skins participantes</span></div></div>
+
+<div class="panel"><div class="toolbar"><div><h2>📊 Ranking provisional</h2><p class="muted" id="updated">Pulsa actualizar para consultar los votos.</p></div><button class="btn" id="refresh" type="button">🔄 Actualizar votos</button></div><p class="muted" id="status" role="status"></p><p class="muted">🥇 3 puntos · 🥈 2 puntos · 🥉 1 punto. En caso de empate se ordena por número de skin; el empate sigue existiendo.</p></div>
+
+<div class="results" id="results"></div>
+
+</section>
+
+</main><footer>ANXAN SKIN WARS · Panel privado · No publicar capturas antes del estreno</footer>
+
+<script type="module">
+
+import {initializeApp,getApp,getApps} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+
+import {getAuth,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+
+import {getFirestore,collection,getDocs} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+
+const firebaseConfig={apiKey:'AIzaSyAs6sUeZNNisoiXsYAspHow1Z2iOwv9TVg',authDomain:'anxanwoman.firebaseapp.com',projectId:'anxanwoman',storageBucket:'anxanwoman.firebasestorage.app',messagingSenderId:'366283389190',appId:'1:366283389190:web:60115f7658d96304688687',measurementId:'G-6DN2N02ZPG'};
+
+const app=getApps().length?getApp():initializeApp(firebaseConfig);
+
+const auth=getAuth(app),db=getFirestore(app);
+
+const participantes=[
+
+['Gus Pennywise','Gigi67pro'],['Mandy Reina calabaza','Yeripro55'],['Edgar Halloween','Azyrion'],['Mortis Parca','PEAK|MANDYS|EAESW'],['Starr Zombie','Bianca'],['Glowy Tatuaje del Inframundo','Eljuanpi'],['Primo ‘El Fredy’','GamerZone3'],['Spike Calabaza','Naserbs'],['Shelly','ItzMarioXBs'],['Stu Calabaza','Juan'],['Collete Bruja','BSL | PIXA'],['Juju Muñeca','Clara sb'],['Melodie Truco o trato','Mery'],['Edgar Oscuro','AmetsCA26'],['Surge Caballero oscuro','Adrian'],['Lily Halloween','Dylan'],['Dracon','Ernesto'],['Mandy Espectral','DeCraneo'],['Lily Caperuza','Lince'],['Kit Rey Halloween','Maikell'],['Byron Vampiro','Sakrosh'],['Edgar Zombie','Fersuperpro15'],['Leon Calabaza','Brawlllllllll bb'],['Nani Murciélago','Tomas Ruiz'],['Mandy Calabaza','¡•πYattaπ•!'],['Melodie Reina del abismo','Mateo'],['Leon Calabaza','Luka'],['Kit Galowina','Maleta083'],['Colt Zombie','Renuevosbaterista'],['Rico Poseído','Roi Edits'],['Nani Calabaza','FABRIZIO JUEGA'],['Chester Pesadilla','Emanuel Guerra'],['Gray Putrefacto','Fgjji'],['Tara Espectral','Carolina De Las Heras'],['Maisisteins','Darryl'],['Pumpkin Edgar','Elneno07n'],['Draco Jinete sin cabeza','elyeltygames6594'],['Cosmo Conspiranoico','Yanixe Ortiz'],['Trunk Hueso Magmático','Reinoso'],['Spike GhostFace','M'],['Meeple Necromancer','La Reina del Sur'],['Vince Drácula','liñan'],['El Mata leon','Clan pollitos letales'],['Gigi Novia Cadaver','Frogu185'],['EMZ Monsterhigh','Charlotte'],['Gus Halloween','Zero'],['Squeak Calabaza','Trueno'],['Gus Georgie','Eric Blanes'],['Edgar Slenderman','Eder Blanes'],['Darryl','Candy'],['Gus Drácula','Jeyden'],['Crow en Putrefacción','Im-perverso'],['Spike Calabaza','Priiv'],['Rico Malvado','ElReyMouad'],['Sandy Espectral','Juancito']
+
+];
+
+const skins=participantes.map(([nombre,autor],i)=>({id:'skin-'+String(i+1).padStart(2,'0'),nombre,autor,puntos:0,primeros:0,segundos:0,terceros:0}));
+
+const ids=new Set(skins.map(s=>s.id));
+
+const $=id=>document.getElementById(id);
+
+let currentUser=null,loading=false;
+
+function make(tag,cls,value){const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=value;return el}
+
+function render(rows){$('results').replaceChildren();rows.forEach((s,i)=>{const row=make('article','entry'),pos=make('span','position',['🥇','🥈','🥉'][i]||`${i+1}.º`),img=make('img');img.src=`skins/imagenes-skin-wars-web/${s.id}.webp`;img.alt=s.nombre;img.loading='lazy';const detail=make('div','detail');detail.append(make('strong','',s.nombre),make('small','',`🎨 ${s.autor} · ${s.id}`));const points=make('div','points');points.append(make('span','',`${s.puntos} pts`),make('small','',`🥇 ${s.primeros} · 🥈 ${s.segundos} · 🥉 ${s.terceros}`));row.append(pos,img,detail,points);$('results').append(row)})}
+
+async function refresh(){if(loading||!currentUser)return;loading=true;$('refresh').disabled=true;$('status').textContent='⏳ Consultando las papeletas de Firebase…';try{const snapshot=await getDocs(collection(db,'votos_skins'));if(!currentUser)return;const rows=skins.map(s=>({...s,puntos:0,primeros:0,segundos:0,terceros:0}));const map=new Map(rows.map(s=>[s.id,s]));let valid=0,invalid=0;snapshot.forEach(doc=>{const d=doc.data(),picks=[d.primero,d.segundo,d.tercero];if(picks.some(id=>!ids.has(id))||new Set(picks).size!==3){invalid++;return}valid++;picks.forEach((id,i)=>{const s=map.get(id);s.puntos+=3-i;if(i===0)s.primeros++;else if(i===1)s.segundos++;else s.terceros++})});rows.sort((a,b)=>b.puntos-a.puntos||a.id.localeCompare(b.id));$('ballots').textContent=valid;$('total-points').textContent=valid*6;$('updated').textContent='Última consulta: '+new Date().toLocaleString('es-ES');$('status').textContent=invalid?`⚠️ ${invalid} papeleta(s) con datos no válidos, excluidas del cálculo.`:`✅ ${valid} papeleta(s) contabilizadas. Ranking provisional privado.`;render(rows)}catch(e){console.error('Error al consultar votos:',e);$('status').textContent=e.code==='permission-denied'?'⛔ Acceso denegado. Comprueba que has iniciado sesión con tu cuenta administradora y que las reglas están publicadas.':'⚠️ No se pudieron consultar los votos. Comprueba la conexión e inténtalo de nuevo.'}finally{loading=false;$('refresh').disabled=false}}
+
+$('refresh').addEventListener('click',refresh);
+
+onAuthStateChanged(auth,user=>{currentUser=user;$('auth-title').textContent=user?'🔐 Comprobando permisos…':'🔐 Inicia sesión';$('auth-message').textContent=user?'Consultaremos Firebase para comprobar si esta cuenta tiene permiso de administradora.':'Debes iniciar sesión con tu cuenta administradora de AnxanWoman.';$('login').classList.toggle('hidden',!!user);$('dashboard').classList.toggle('hidden',!user);if(user)refresh();else{$('results').replaceChildren();$('auth-panel').classList.remove('hidden')}},e=>{$('auth-title').textContent='⚠️ Error de autenticación';$('auth-message').textContent='No se pudo comprobar tu sesión.';console.error(e)});
+
+</script>
+
+</body></html>
