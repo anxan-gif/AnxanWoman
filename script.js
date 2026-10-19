@@ -126,7 +126,13 @@ async function actualizarRayos() {
             return;
         }
 
-        rayos = resultado.data().count * 10;
+        
+const moduloRayitos = await import("./rayitos.js");
+
+rayos = await moduloRayitos.consultarSaldo(
+  usuarioActual
+);
+
         pintarRayos();
 
     } catch (error) {
