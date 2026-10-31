@@ -265,6 +265,112 @@
     }
 </style>
 
+<style>
+/* EVENTO PRINCIPAL: BINGO */
+.bingo-featured {
+    margin: 35px 0 24px;
+    padding: 55px 25px;
+    text-align: center;
+    border: 4px solid #ffda48;
+    border-radius: 25px;
+    background:
+        radial-gradient(circle at top right,
+            rgba(255, 213, 48, .22),
+            transparent 55%),
+        linear-gradient(145deg, #234d9d, #101e48);
+    box-shadow: 0 12px 35px rgba(0,0,0,.3);
+    color: white;
+}
+
+.bingo-featured-label {
+    display: inline-block;
+    background: #ffda48;
+    color: #192b58;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.bingo-featured h2 {
+    color: #ffda48;
+    font-size: clamp(32px, 6vw, 58px);
+    margin: 22px 0 15px;
+    text-shadow: 3px 4px #10244e;
+}
+
+.bingo-featured p {
+    max-width: 580px;
+    margin: 0 auto 25px;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.bingo-featured-button {
+    display: inline-block;
+    padding: 17px 35px;
+    background: #ffda48;
+    color: #192b58;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 18px;
+    transition: transform .2s;
+}
+
+.bingo-featured-button:hover {
+    transform: scale(1.05);
+}
+
+/* EVENTO ANTERIOR: SKIN WARS */
+.anxan-skin-event {
+    margin: 18px 0 30px;
+    padding: 20px 18px;
+    border-radius: 16px;
+    border-width: 1px;
+}
+
+.anxan-skin-event h2 {
+    font-size: clamp(21px, 3vw, 28px);
+    margin: 10px 0;
+}
+
+.anxan-skin-event-description {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.anxan-skin-event-date {
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+.anxan-skin-event-button {
+    padding: 10px 20px;
+    font-size: 13px;
+}
+
+.anxan-skin-event-label {
+    padding: 5px 11px;
+    font-size: 10px;
+}
+
+@media (max-width: 600px) {
+    .bingo-featured {
+        padding: 35px 16px;
+    }
+
+    .bingo-featured p {
+        font-size: 15px;
+    }
+
+    .anxan-skin-event {
+        padding: 18px 14px;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -413,6 +519,25 @@
 
 </section>
 
+<section class="bingo-featured">
+    <span class="bingo-featured-label">
+        EVENTO PRINCIPAL
+    </span>
+
+    <h2>BINGO BRAWL TALK</h2>
+
+    <p>
+        ¡12 predicciones para la próxima Brawl Talk!
+        ¿Cuántas conseguiremos acertar?
+        Entra y marca las que se cumplan.
+    </p>
+
+    <a href="bingo-brawl-talk.html"
+       class="bingo-featured-button">
+        JUGAR AL BINGO
+    </a>
+</section>
+
 <section class="anxan-skin-event"
          aria-labelledby="skin-event-title">
 
@@ -457,17 +582,6 @@
 
     <div class="game-grid">
         
-<div class="game-card bingo-home-card"
-     onclick="location.href='bingo-brawl-talk.html'">
-    <span class="game-icon">BINGO</span>
-    <h3>BINGO BRAWL TALK</h3>
-    <p>
-        ¡Marca las predicciones que se cumplan
-        durante la próxima Brawl Talk!
-    </p>
-</div>
-
-
         <div class="game-card"
              onclick="location.href='ruleta.html'">
             <span class="game-icon">🎰</span>
