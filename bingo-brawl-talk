@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bingo Brawl Talk | AnxanWoman</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .bingo-page {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 45px 16px 80px;
+            color: white;
+        }
+
+        .bingo-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bingo-heading h1 {
+            font-size: clamp(30px, 6vw, 60px);
+            color: #ffdc48;
+            text-shadow: 3px 4px 0 #17366e;
+            margin: 12px 0;
+        }
+
+        .bingo-heading p {
+            color: #d8e5ff;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .bingo-board {
+            background: linear-gradient(
+                145deg, #1b3773, #101d47
+            );
+            border: 5px solid #f7bf39;
+            border-radius: 25px;
+            padding: clamp(8px, 2vw, 22px);
+            box-shadow: 0 15px 40px #0006;
+        }
+
+        .bingo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: clamp(5px, 1.5vw, 13px);
+        }
+
+        .bingo-cell {
+            min-width: 0;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background: linear-gradient(
+                160deg, #316bd1, #25488f
+            );
+
+            border: 2px solid #729cff;
+            border-radius: 14px;
+            padding: 8px;
+            color: white;
+            font-weight: 850;
+            font-size: clamp(10px, 1.65vw, 17px);
+            overflow-wrap: anywhere;
+            line-height: 1.25;
+            box-shadow: inset 0 -5px 0 #102e66;
+        }
+
+        .bingo-cell.pending {
+            background: #24385d;
+            border-style: dashed;
+            border-color: #7183a8;
+            color: #b9c8df;
+        }
+
+        .bingo-status {
+            text-align: center;
+            padding: 23px 15px;
+            margin: 25px auto;
+            background: #172952;
+            border: 1px solid #516ca2;
+            border-radius: 16px;
+            max-width: 760px;
+        }
+
+        .bingo-status h2 {
+            color: #ffdc48;
+            margin: 0 0 10px;
+        }
+
+        .bingo-status p {
+            color: #e1e9ff;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .bingo-back {
+            display: inline-block;
+            margin-top: 25px;
+            color: #ffdc48;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        @media (max-width: 520px) {
+            .bingo-page {
+                padding-top: 26px;
+            }
+
+            .bingo-board {
+                border-width: 3px;
+                border-radius: 15px;
+            }
+
+            .bingo-cell {
+                border-radius: 8px;
+                padding: 3px;
+                border-width: 1px;
+                font-size: clamp(9px, 2.3vw, 12px);
+                box-shadow: inset 0 -3px 0 #102e66;
+            }
+
+            .bingo-grid {
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html"
+           class="logo"
+           style="text-decoration:none;">
+            ANXAN<span>WOMAN</span>
+        </a>
+
+        <div class="header-menu">
+            <a href="index.html"
+               class="header-nav-button"
+               style="text-decoration:none;">
+                INICIO
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="bingo-page">
+
+    <div class="bingo-heading">
+        <h1>BINGO BRAWL TALK</h1>
+
+        <p>
+            ¿Cuántas de nuestras predicciones
+            aparecerán en la próxima Brawl Talk?
+            Este es el tablero que compartimos
+            toda la comunidad.
+        </p>
+    </div>
+
+    <section class="bingo-board"
+             aria-label="Tablero de predicciones">
+
+        <div class="bingo-grid">
+
+            <div class="bingo-cell">
+                Brawler tirador legendario
+            </div>
+
+            <div class="bingo-cell">
+                Brawler apoyo mítico
+            </div>
+
+            <div class="bingo-cell">
+                Compañero para Meeple
+            </div>
+
+            <div class="bingo-cell">
+                Mascota rana para nuevo brawler
+            </div>
+
+            <div class="bingo-cell">
+                Colaboración con GTA
+            </div>
+
+            <div class="bingo-cell">
+                Evento navideño
+            </div>
+
+            <div class="bingo-cell">
+                Buffies del trío Candyland
+            </div>
+
+            <div class="bingo-cell">
+                Buffies del trío Kenji, Kaze y Nori
+            </div>
+
+            <div class="bingo-cell">
+                Hipercarga de Vince
+            </div>
+
+            <div class="bingo-cell">
+                Hipercarga de Cosmo
+            </div>
+
+            <div class="bingo-cell">
+                Rework de Rankeds
+            </div>
+
+            <div class="bingo-cell">
+                Skin Pro Pass de Bo
+            </div>
+
+            <div class="bingo-cell pending">
+                Pendiente
+            </div>
+
+            <div class="bingo-cell pending">
+                Pendiente
+            </div>
+
+            <div class="bingo-cell pending">
+                Pendiente
+            </div>
+
+            <div class="bingo-cell pending">
+                Pendiente
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bingo-status">
+        <h2>12 de 16 predicciones</h2>
+
+        <p>
+            Las cuatro casillas restantes
+            están reservadas para nuevas
+            predicciones de la comunidad.
+        </p>
+    </section>
+
+    <a href="index.html" class="bingo-back">
+        Volver a AnxanWoman
+    </a>
+
+</main>
+
+<footer>
+    <p>
+        Hecho con cariño por
+        <strong>AnxanWoman</strong>
+    </p>
+
+    <p class="supercell-disclaimer">
+        Este contenido no está afiliado,
+        respaldado ni patrocinado por Supercell.
+    </p>
+</footer>
+
+</body>
+</html>
