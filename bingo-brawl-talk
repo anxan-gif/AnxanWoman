@@ -9,7 +9,24 @@
     <title>Bingo Brawl Talk | AnxanWoman</title>
 
     <link rel="stylesheet" href="css/style.css">
+    /* CASILLAS INTERACTIVAS */
 
+    .bingo-cell:not(.pending) {
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.2s ease;
+    }
+
+    .bingo-cell.marked {
+        background: linear-gradient(
+            160deg, #28d86f, #118d46
+        );
+        border-color: #85ffb0;
+        color: white;
+    }
+
+</style>
+</head>
     <style>
         .bingo-page {
             max-width: 1050px;
@@ -136,6 +153,90 @@
         }
     </style>
 </head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cells = document.querySelectorAll(
+        ".bingo-cell:not(.pending)"
+    );
+
+    const storageKey = "anxan-bingo-brawltalk-v1";
+
+    let saved = [];
+
+    try {
+        saved = JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+        if (!Array.isArray(saved)) {
+            saved = [];
+        }
+    } catch (error) {
+        saved = [];
+    }
+
+    cells.forEach((cell, index) => {
+
+        cell.setAttribute("role", "button");
+        cell.setAttribute("tabindex", "0");
+
+        const updateCell = (marked) => {
+            cell.classList.toggle("marked", marked);
+            cell.setAttribute(
+                "aria-pressed",
+                String(marked)
+            );
+        };
+
+        updateCell(saved.includes(index));
+
+        const toggleCell = () => {
+
+            const marked = !cell.classList.contains(
+                "marked"
+            );
+
+            updateCell(marked);
+
+            const selected = Array.from(cells)
+                .map((item, i) =>
+                    item.classList.contains("marked")
+                        ? i
+                        : null
+                )
+                .filter(i => i !== null);
+
+            try {
+                localStorage.setItem(
+                    storageKey,
+                    JSON.stringify(selected)
+                );
+            } catch (error) {
+                console.warn(
+                    "No se pudo guardar el bingo",
+                    error
+                );
+            }
+        };
+
+        cell.addEventListener("click", toggleCell);
+
+        cell.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+                event.preventDefault();
+                toggleCell();
+            }
+        });
+
+    });
+
+});
+</script>
 
 <body>
 
