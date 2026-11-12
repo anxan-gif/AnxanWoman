@@ -3,349 +3,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Bingo Brawl Talk | AnxanWoman</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Actividad finalizada | AnxanWoman</title>
     <style>
-        .bingo-page {
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 45px 16px 80px;
-            color: white;
-        }
-
-        .bingo-heading {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .bingo-heading h1 {
-            font-size: clamp(30px, 6vw, 60px);
-            color: #ffdc48;
-            text-shadow: 3px 4px 0 #17366e;
-            margin: 12px 0;
-        }
-
-        .bingo-heading p {
-            color: #d8e5ff;
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .bingo-board {
-            background: linear-gradient(
-                145deg, #1b3773, #101d47
-            );
-            border: 5px solid #f7bf39;
-            border-radius: 25px;
-            padding: clamp(8px, 2vw, 22px);
-            box-shadow: 0 15px 40px #0006;
-        }
-
-        .bingo-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: clamp(5px, 1.5vw, 13px);
-        }
-
-        .bingo-cell {
-            min-width: 0;
-            aspect-ratio: 1 / 1;
+        body {
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            background: linear-gradient(
-                160deg, #316bd1, #25488f
-            );
-            border: 2px solid #729cff;
-            border-radius: 14px;
-            padding: 8px;
+            background: #101525;
             color: white;
-            font-family: inherit;
-            font-weight: 700;
-            font-size: clamp(10px, 1.65vw, 17px);
-            overflow-wrap: anywhere;
-            line-height: 1.25;
-            box-shadow: inset 0 -5px 0 #102e66;
-            cursor: pointer;
-            user-select: none;
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .bingo-cell:hover {
-            transform: scale(1.03);
-        }
-
-        .bingo-cell.marked {
-            background: linear-gradient(
-                160deg, #28d86f, #118d46
-            );
-            border-color: #85ffb0;
-            box-shadow: inset 0 -5px 0 #08662d;
-            color: white;
-        }
-
-        .bingo-cell:focus-visible {
-            outline: 3px solid #ffdc48;
-            outline-offset: 3px;
-        }
-
-        .bingo-status {
+            font-family: Arial, sans-serif;
             text-align: center;
-            padding: 23px 15px;
-            margin: 25px auto;
-            background: #172952;
-            border: 1px solid #516ca2;
-            border-radius: 16px;
-            max-width: 760px;
         }
 
-        .bingo-status h2 {
-            color: #ffdc48;
-            margin: 0 0 10px;
+        main {
+            padding: 30px;
         }
 
-        .bingo-status p {
-            color: #e1e9ff;
+        h1 {
+            color: #ffda48;
+        }
+
+        p {
+            color: #ddd;
             line-height: 1.6;
-            margin: 0;
         }
 
-        .bingo-back {
+        a {
             display: inline-block;
-            margin-top: 25px;
-            color: #ffdc48;
-            font-weight: 800;
+            margin-top: 20px;
+            padding: 14px 25px;
+            border-radius: 12px;
+            background: #2479ff;
+            color: white;
             text-decoration: none;
-        }
-
-        @media (max-width: 520px) {
-            .bingo-page {
-                padding-top: 26px;
-            }
-
-            .bingo-board {
-                border-width: 3px;
-                border-radius: 15px;
-            }
-
-            .bingo-cell {
-                border-radius: 8px;
-                padding: 3px;
-                border-width: 1px;
-                font-size: clamp(9px, 2.3vw, 12px);
-                box-shadow: inset 0 -3px 0 #102e66;
-            }
-
-            .bingo-grid {
-                gap: 5px;
-            }
+            font-weight: bold;
         }
     </style>
 </head>
-
 <body>
-
-<header>
-    <div class="header-content">
-        <a href="index.html"
-           class="logo"
-           style="text-decoration:none;">
-            ANXAN<span>WOMAN</span>
+    <main>
+        <h1>🎮 ACTIVIDAD FINALIZADA</h1>
+        <p>
+            Bingo Brawl Talk ha finalizado
+            y ya no está disponible.
+        </p>
+        <a href="index.html">
+            VOLVER AL INICIO
         </a>
-
-        <div class="header-menu">
-            <a href="index.html"
-               class="header-nav-button"
-               style="text-decoration:none;">
-                INICIO
-            </a>
-        </div>
-    </div>
-</header>
-
-<main class="bingo-page">
-
-    <div class="bingo-heading">
-        <h1>BINGO BRAWL TALK</h1>
-
-        <p>
-            ¿Cuántas de nuestras predicciones
-            aparecerán en la próxima Brawl Talk?
-            ¡Marca las que se cumplan!
-        </p>
-    </div>
-
-    <section class="bingo-board"
-             aria-label="Tablero de predicciones">
-
-        <div class="bingo-grid">
-
-            <button class="bingo-cell" type="button">
-                Brawler tirador legendario
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Brawler apoyo mítico
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Compañero para Meeple
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Mascota rana para nuevo brawler
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Colaboración con GTA
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Evento navideño
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Buffies del trío Candyland
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Buffies del trío de Gale, Mr. P y Lou
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Hipercarga de Vince
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Hipercarga de Cosmo
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Rework de Rankeds
-            </button>
-
-            <button class="bingo-cell" type="button">
-                Skin Pro Pass de Bo
-            </button>
-
-        </div>
-    </section>
-
-    <section class="bingo-status">
-        <h2 id="bingo-counter">
-            0 de 12 marcadas
-        </h2>
-
-        <p>
-            Pulsa una casilla para marcarla
-            en verde. Si vuelves a pulsarla,
-            se desmarcará.
-        </p>
-    </section>
-
-    <a href="index.html" class="bingo-back">
-        Volver a AnxanWoman
-    </a>
-
-</main>
-
-<footer>
-    <p>
-        Hecho con cariño por
-        <strong>AnxanWoman</strong>
-    </p>
-
-    <p class="supercell-disclaimer">
-        Este contenido no está afiliado,
-        respaldado ni patrocinado por Supercell.
-    </p>
-</footer>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-    const cells = document.querySelectorAll(".bingo-cell");
-    const counter = document.getElementById("bingo-counter");
-    const storageKey = "anxan-bingo-brawltalk-v1";
-
-    let saved = [];
-
-    try {
-        const stored = JSON.parse(
-            localStorage.getItem(storageKey) || "[]"
-        );
-
-        if (Array.isArray(stored)) {
-            saved = stored;
-        }
-    } catch (error) {
-        saved = [];
-    }
-
-    function updateCounter() {
-        const marked = document.querySelectorAll(
-            ".bingo-cell.marked"
-        ).length;
-
-        counter.textContent =
-            marked + " de " + cells.length + " marcadas";
-    }
-
-    function saveSelection() {
-        const selected = Array.from(cells)
-            .map((cell, index) =>
-                cell.classList.contains("marked")
-                    ? index
-                    : null
-            )
-            .filter(index => index !== null);
-
-        try {
-            localStorage.setItem(
-                storageKey,
-                JSON.stringify(selected)
-            );
-        } catch (error) {
-            console.warn("No se pudo guardar el bingo", error);
-        }
-    }
-
-    cells.forEach((cell, index) => {
-
-        const isMarked = saved.includes(index);
-
-        cell.classList.toggle("marked", isMarked);
-        cell.setAttribute(
-            "aria-pressed",
-            String(isMarked)
-        );
-
-        cell.addEventListener("click", () => {
-
-            const marked = cell.classList.toggle("marked");
-
-            cell.setAttribute(
-                "aria-pressed",
-                String(marked)
-            );
-
-            saveSelection();
-            updateCounter();
-        });
-    });
-
-    updateCounter();
-});
-</script>
-
+    </main>
 </body>
 </html>
