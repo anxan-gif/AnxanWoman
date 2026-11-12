@@ -3,160 +3,19 @@
 <html lang="es">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2505039545339291"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AnxanWoman - Juegos, Destino Brawler y comunidad de Brawl Stars">
+
     <title>AnxanWoman | Comunidad</title>
+
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        .anxan-skin-event {
-            position: relative;
-            margin: 35px 0 45px;
-            padding: 45px 25px;
-            text-align: center;
-            border-radius: 24px;
-            border: 2px solid #7542a8;
-            background:
-                radial-gradient(circle at 15% 15%, rgba(169, 60, 179, .24), transparent 45%),
-                linear-gradient(135deg, #242044, #15264a);
-            color: #ffffff;
-            overflow: hidden;
-        }
-
-        .anxan-skin-event-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .anxan-skin-event-label {
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 30px;
-            background: rgba(255, 212, 90, .12);
-            color: #ffd45a;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .anxan-skin-event h2 {
-            margin: 20px 0 15px;
-            color: #ffffff;
-            font-size: clamp(30px, 5vw, 52px);
-            line-height: 1.1;
-        }
-
-        .anxan-skin-event h2 span {
-            color: #ff5baf;
-        }
-
-        .anxan-skin-event-description {
-            max-width: 570px;
-            margin: 0 auto 18px;
-            color: #e5e5f5;
-            font-size: 18px;
-            line-height: 1.5;
-        }
-
-        .anxan-skin-event-date {
-            margin: 18px 0 25px;
-            color: #ffd45a;
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .anxan-skin-event-button {
-            display: inline-block;
-            padding: 15px 32px;
-            border: none;
-            border-radius: 13px;
-            background: #ff5baf;
-            color: #24132c;
-            font-family: inherit;
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform .2s, background .2s;
-        }
-
-        .anxan-skin-event-button:hover {
-            background: #ff83c1;
-            transform: translateY(-3px);
-        }
-
-        .anxan-skin-event-status {
-            margin: 15px 0 0;
-            color: #c5c5dd;
-            font-size: 13px;
-        }
-
-        .anxan-skin-lock {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(6, 7, 20, .85);
-        }
-
-        .anxan-skin-lock.active {
-            display: flex;
-        }
-
-        .anxan-skin-lock-card {
-            width: min(100%, 420px);
-            padding: 35px 25px;
-            border: 2px solid #ff5baf;
-            border-radius: 22px;
-            background: #242044;
-            color: white;
-            text-align: center;
-            box-shadow: 0 20px 70px rgba(0, 0, 0, .5);
-        }
-
-        .anxan-skin-lock-icon {
-            font-size: 52px;
-        }
-
-        .anxan-skin-lock-card h2 {
-            margin: 15px 0;
-            color: #ffd45a;
-            font-size: 26px;
-        }
-
-        .anxan-skin-lock-card p {
-            color: #e2def3;
-            line-height: 1.5;
-        }
-
-        .anxan-skin-lock-close {
-            margin-top: 15px;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 12px;
-            background: #ff5baf;
-            color: #24132c;
-            font-family: inherit;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        @media (max-width: 600px) {
-            .anxan-skin-event {
-                margin: 25px 0 35px;
-                padding: 35px 18px;
-            }
-
-            .anxan-skin-event-description {
-                font-size: 16px;
-            }
-        }
-
         /* USUARIO CONECTADO */
+
         .anxan-account {
             position: relative;
         }
@@ -210,173 +69,51 @@
         .anxan-account-dropdown button:hover {
             background: #36466d;
         }
-        
-/* MENÚ DE USUARIO ADAPTADO A MÓVIL */
-@media (max-width: 650px) {
-    .anxan-account-dropdown {
-        position: fixed;
-        top: 70px;
-        left: 12px;
-        right: 12px;
-        width: auto;
-        min-width: 0;
-        max-width: none;
-        z-index: 99999;
-        padding: 10px;
-        box-sizing: border-box;
-    }
 
-    .anxan-account-dropdown button {
-        display: block;
-        width: 100%;
-        padding: 15px;
-        text-align: center;
-        white-space: normal;
-    }
+        /* MENÚ DE USUARIO ADAPTADO A MÓVIL */
 
-    .anxan-user-trigger {
-        max-width: 145px;
-        min-width: 0;
-    }
+        @media (max-width: 650px) {
+            .anxan-account-dropdown {
+                position: fixed;
+                top: 70px;
+                left: 12px;
+                right: 12px;
+                width: auto;
+                min-width: 0;
+                max-width: none;
+                z-index: 99999;
+                padding: 10px;
+                box-sizing: border-box;
+            }
 
-    #anxan-username {
-        max-width: 95px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
+            .anxan-account-dropdown button {
+                display: block;
+                width: 100%;
+                padding: 15px;
+                text-align: center;
+                white-space: normal;
+            }
 
+            .anxan-user-trigger {
+                max-width: 145px;
+                min-width: 0;
+            }
+
+            #anxan-username {
+                max-width: 95px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
     </style>
-    
-<style>
-    .game-card.bingo-home-card {
-        background: linear-gradient(
-            145deg, #ffcf35, #f58c24
-        );
-        color: #252044;
-    }
-
-    .game-card.bingo-home-card .game-icon {
-        font-size: 29px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        padding: 8px 0;
-    }
-</style>
-
-<style>
-/* EVENTO PRINCIPAL: BINGO */
-.bingo-featured {
-    margin: 35px 0 24px;
-    padding: 55px 25px;
-    text-align: center;
-    border: 4px solid #ffda48;
-    border-radius: 25px;
-    background:
-        radial-gradient(circle at top right,
-            rgba(255, 213, 48, .22),
-            transparent 55%),
-        linear-gradient(145deg, #234d9d, #101e48);
-    box-shadow: 0 12px 35px rgba(0,0,0,.3);
-    color: white;
-}
-
-.bingo-featured-label {
-    display: inline-block;
-    background: #ffda48;
-    color: #192b58;
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 1px;
-}
-
-.bingo-featured h2 {
-    color: #ffda48;
-    font-size: clamp(32px, 6vw, 58px);
-    margin: 22px 0 15px;
-    text-shadow: 3px 4px #10244e;
-}
-
-.bingo-featured p {
-    max-width: 580px;
-    margin: 0 auto 25px;
-    line-height: 1.6;
-    font-size: 18px;
-}
-
-.bingo-featured-button {
-    display: inline-block;
-    padding: 17px 35px;
-    background: #ffda48;
-    color: #192b58;
-    border-radius: 14px;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 18px;
-    transition: transform .2s;
-}
-
-.bingo-featured-button:hover {
-    transform: scale(1.05);
-}
-
-/* EVENTO ANTERIOR: SKIN WARS */
-.anxan-skin-event {
-    margin: 18px 0 30px;
-    padding: 20px 18px;
-    border-radius: 16px;
-    border-width: 1px;
-}
-
-.anxan-skin-event h2 {
-    font-size: clamp(21px, 3vw, 28px);
-    margin: 10px 0;
-}
-
-.anxan-skin-event-description {
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.anxan-skin-event-date {
-    font-size: 12px;
-    margin: 8px 0;
-}
-
-.anxan-skin-event-button {
-    padding: 10px 20px;
-    font-size: 13px;
-}
-
-.anxan-skin-event-label {
-    padding: 5px 11px;
-    font-size: 10px;
-}
-
-@media (max-width: 600px) {
-    .bingo-featured {
-        padding: 35px 16px;
-    }
-
-    .bingo-featured p {
-        font-size: 15px;
-    }
-
-    .anxan-skin-event {
-        padding: 18px 14px;
-    }
-}
-</style>
-
 </head>
 
 <body>
 
 <header>
     <div class="header-content">
+
         <div class="logo"
              onclick="location.href='index.html'"
              style="cursor:pointer;">
@@ -416,6 +153,7 @@
                         <button type="button" id="anxan-logout">
                             Cerrar sesión
                         </button>
+
                     </div>
                 </div>
             </div>
@@ -440,216 +178,178 @@
 
 <main>
 
-<section class="hero">
+    <section class="hero">
 
-    <h1 class="hero-title">
-        ANXAN<span>WOMAN</span>
-    </h1>
+        <h1 class="hero-title">
+            ANXAN<span>WOMAN</span>
+        </h1>
 
-    <h2 class="hero-slogan">
-        JUEGA · COMPITE · DIVIÉRTETE
-    </h2>
-
-    <p>
-        Juegos, sorpresas y decisiones de la comunidad
-        para hacer tus partidas de Brawl Stars
-        mucho más divertidas.
-    </p>
-
-    <div class="social-section">
-        <p class="social-title">
-            💙 SÍGUEME Y ÚNETE A LA COMUNIDAD
-        </p>
-
-        <div class="social-buttons">
-
-            <a href="https://youtube.com/@anxanwoman"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="social-btn youtube">
-                ▶ YouTube
-            </a>
-
-            <a href="https://www.twitch.tv/anxanwoman"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="social-btn twitch">
-                💜 Twitch
-            </a>
-
-            <a href="https://www.tiktok.com/@anxanwoman"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="social-btn tiktok">
-                ♪ TikTok
-            </a>
-
-            <a href="https://discord.gg/bBK5kYDpq"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="social-btn discord">
-                💬 Discord
-            </a>
-
-        </div>
-    </div>
-</section>
-
-<div class="container">
-
-<section class="daily-challenge">
-
-    <div class="challenge-label">
-        RETO DIARIO
-    </div>
-
-    <h2 id="daily-challenge-title">
-        CARGANDO RETO...
-    </h2>
-
-    <p id="daily-challenge-text">
-        Cada día tienes una nueva misión.
-        Complétala y consigue Rayitos.
-    </p>
-
-    <button class="btn btn-yellow"
-            id="daily-challenge-button">
-        ACEPTAR RETO · +10 ⚡
-    </button>
-
-</section>
-
-<section class="bingo-featured">
-    <span class="bingo-featured-label">
-        EVENTO PRINCIPAL
-    </span>
-
-    <h2>BINGO BRAWL TALK</h2>
-
-    <p>
-        ¡12 predicciones para la próxima Brawl Talk!
-        ¿Cuántas conseguiremos acertar?
-        Entra y marca las que se cumplan.
-    </p>
-
-    <a href="bingo-brawl-talk.html"
-       class="bingo-featured-button">
-        JUGAR AL BINGO
-    </a>
-</section>
-
-<section class="anxan-skin-event"
-         aria-labelledby="skin-event-title">
-
-    <div class="anxan-skin-event-content">
-
-        <span class="anxan-skin-event-label">
-            EVENTO ESPECIAL BRAWLOWEEN
-        </span>
-
-        <h2 id="skin-event-title">
-            VOTACIONES <span>SKIN</span>
+        <h2 class="hero-slogan">
+            JUEGA · COMPITE · DIVIÉRTETE
         </h2>
 
-        <p class="anxan-skin-event-description">
-            50 artistas. 50 creaciones únicas.
-            ¡Vota por tu skin de Brawloween favorita!
+        <p>
+            Juegos, sorpresas y decisiones de la comunidad
+            para hacer tus partidas de Brawl Stars
+            mucho más divertidas.
         </p>
 
-        <p class="anxan-skin-event-date">
-            Resultados en vídeo el 30 de octubre
-        </p>
+        <div class="social-section">
 
-        <button type="button"
-                id="anxan-skin-event-button"
-                class="anxan-skin-event-button">
-            🔒 VER CONCURSO
-        </button>
-
-        <p id="anxan-skin-event-status"
-           class="anxan-skin-event-status">
-            Disponible el 16 de octubre
-        </p>
-
-    </div>
-</section>
-
-<section class="games">
-
-    <h2 class="section-title">
-        🎮 ¿QUÉ HACEMOS HOY?
-    </h2>
-
-    <div class="game-grid">
-        
-        <div class="game-card"
-             onclick="location.href='ruleta.html'">
-            <span class="game-icon">🎰</span>
-            <h3>RULETA</h3>
-            <p>
-                Deja que el azar elija
-                tu próximo Brawler.
+            <p class="social-title">
+                💙 SÍGUEME Y ÚNETE A LA COMUNIDAD
             </p>
+
+            <div class="social-buttons">
+
+                <a href="https://youtube.com/@anxanwoman"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-btn youtube">
+                    ▶ YouTube
+                </a>
+
+                <a href="https://www.twitch.tv/anxanwoman"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-btn twitch">
+                    💜 Twitch
+                </a>
+
+                <a href="https://www.tiktok.com/@anxanwoman"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-btn tiktok">
+                    ♪ TikTok
+                </a>
+
+                <a href="https://discord.gg/bBK5kYDpq"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-btn discord">
+                    💬 Discord
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <section class="daily-challenge">
+
+            <div class="challenge-label">
+                RETO DIARIO
+            </div>
+
+            <h2 id="daily-challenge-title">
+                CARGANDO RETO...
+            </h2>
+
+            <p id="daily-challenge-text">
+                Cada día tienes una nueva misión.
+                Complétala y consigue Rayitos.
+            </p>
+
+            <button class="btn btn-yellow"
+                    id="daily-challenge-button">
+                ACEPTAR RETO · +10 ⚡
+            </button>
+
+        </section>
+
+        <section class="games">
+
+            <h2 class="section-title">
+                🎮 ¿QUÉ HACEMOS HOY?
+            </h2>
+
+            <div class="game-grid">
+
+                <div class="game-card"
+                     onclick="location.href='ruleta.html'">
+
+                    <span class="game-icon">🎰</span>
+
+                    <h3>RULETA</h3>
+
+                    <p>
+                        Deja que el azar elija
+                        tu próximo Brawler.
+                    </p>
+
+                </div>
+
+                <div class="game-card"
+                     onclick="location.href='quiz.html'">
+
+                    <span class="game-icon">🧠</span>
+
+                    <h3>BRAWL QUIZ</h3>
+
+                    <p>
+                        ¿Cuánto sabes realmente
+                        sobre Brawl Stars?
+                    </p>
+
+                </div>
+
+                <div class="game-card"
+                     onclick="location.href='destino.html'">
+
+                    <span class="game-icon">🔮</span>
+
+                    <h3>DESTINO BRAWLER</h3>
+
+                    <p>
+                        Descubre tu trío y tu
+                        predicción semanal.
+                    </p>
+
+                </div>
+
+                <div class="game-card"
+                     onclick="location.href='emojis.html'">
+
+                    <span class="game-icon">🧩</span>
+
+                    <h3>ADIVINA EL BRAWLER</h3>
+
+                    <p>
+                        Descubre qué Brawler se esconde
+                        detrás de los emojis.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+        <div class="ad-space">
+            ESPACIO PUBLICITARIO
         </div>
 
-        <div class="game-card"
-             onclick="location.href='quiz.html'">
-            <span class="game-icon">🧠</span>
-            <h3>BRAWL QUIZ</h3>
-            <p>
-                ¿Cuánto sabes realmente
-                sobre Brawl Stars?
-            </p>
-        </div>
+        <section class="event-card">
 
-        <div class="game-card"
-             onclick="location.href='destino.html'">
-            <span class="game-icon">🔮</span>
-            <h3>DESTINO BRAWLER</h3>
-            <p>
-                Descubre tu trío y tu
-                predicción semanal.
-            </p>
-        </div>
+            <div class="challenge-label">
+                EVENTO ESPECIAL
+            </div>
 
-        <div class="game-card"
-             onclick="location.href='emojis.html'">
-            <span class="game-icon">🧩</span>
-            <h3>ADIVINA EL BRAWLER</h3>
+            <h2>CALENDARIO DE ADVIENTO</h2>
+
             <p>
-                Descubre qué Brawler se esconde
-                detrás de los emojis.
+                24 días. 24 sorpresas.
+                Retos, juegos y eventos especiales
+                para la comunidad.
             </p>
-        </div>
+
+            <div class="locked">
+                🔒 DICIEMBRE 2026
+            </div>
+
+        </section>
 
     </div>
-</section>
-
-<div class="ad-space">
-    ESPACIO PUBLICITARIO
-</div>
-
-<section class="event-card">
-
-    <div class="challenge-label">
-        EVENTO ESPECIAL
-    </div>
-
-    <h2>CALENDARIO DE ADVIENTO</h2>
-
-    <p>
-        24 días. 24 sorpresas.
-        Retos, juegos y eventos especiales
-        para la comunidad.
-    </p>
-
-    <div class="locked">
-        🔒 DICIEMBRE 2026
-    </div>
-
-</section>
-
-</div>
 </main>
 
 <footer>
@@ -663,10 +363,13 @@
 
         <a href="aviso-legal.html">Aviso legal</a>
         <span>·</span>
+
         <a href="privacidad.html">Privacidad</a>
         <span>·</span>
+
         <a href="cookies.html">Cookies</a>
         <span>·</span>
+
         <a href="contacto.html">Contacto</a>
 
     </div>
@@ -682,11 +385,17 @@
 
     <div class="anxan-modal-card">
 
-        <div id="modal-icon" class="modal-icon">⚡</div>
+        <div id="modal-icon" class="modal-icon">
+            ⚡
+        </div>
 
-        <h2 id="modal-title">ANXANWOMAN</h2>
+        <h2 id="modal-title">
+            ANXANWOMAN
+        </h2>
 
-        <p id="modal-text">¡Bienvenido!</p>
+        <p id="modal-text">
+            ¡Bienvenido!
+        </p>
 
         <div id="modal-reward" class="modal-reward"></div>
 
@@ -697,139 +406,8 @@
     </div>
 </div>
 
-<div id="anxan-skin-lock"
-     class="anxan-skin-lock"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="anxan-skin-lock-title"
-     aria-hidden="true">
-
-    <div class="anxan-skin-lock-card">
-
-        <div class="anxan-skin-lock-icon">🔒🎃</div>
-
-        <h2 id="anxan-skin-lock-title">
-            ¡VOTACIONES BLOQUEADAS!
-        </h2>
-
-        <p>
-            Bloqueado hasta el
-            <strong>16 de octubre</strong>.
-        </p>
-
-        <p>
-            ¡Muy pronto podrás votar por tus
-            skins favoritas de Brawloween!
-        </p>
-
-        <button type="button"
-                id="anxan-skin-lock-close"
-                class="anxan-skin-lock-close">
-            ENTENDIDO
-        </button>
-
-    </div>
-</div>
-
 <!-- SCRIPT ORIGINAL DE LA WEB -->
 <script src="script.js"></script>
-
-<!-- APERTURA DEL CONCURSO -->
-<script>
-(function () {
-    "use strict";
-
-    const apertura = new Date(
-        "2026-10-16T00:00:00+02:00"
-    ).getTime();
-
-    const boton = document.getElementById(
-        "anxan-skin-event-button"
-    );
-
-    const estado = document.getElementById(
-        "anxan-skin-event-status"
-    );
-
-    const modal = document.getElementById(
-        "anxan-skin-lock"
-    );
-
-    const cerrar = document.getElementById(
-        "anxan-skin-lock-close"
-    );
-
-    function estaAbierto() {
-        return Date.now() >= apertura;
-    }
-
-    function actualizarEstado() {
-        if (estaAbierto()) {
-            boton.textContent = " VER CONCURSO";
-            estado.textContent = "¡Concurso disponible!";
-        } else {
-            boton.textContent = " VER CONCURSO";
-            estado.textContent =
-                "Disponible el 16 de octubre";
-        }
-    }
-
-    function cerrarModal() {
-        modal.classList.remove("active");
-
-        modal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        boton.focus();
-    }
-
-    boton.addEventListener("click", function () {
-        if (estaAbierto()) {
-            window.location.href =
-                "concurso-skins.html";
-        } else {
-            modal.classList.add("active");
-
-            modal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-            cerrar.focus();
-        }
-    });
-
-    cerrar.addEventListener(
-        "click",
-        cerrarModal
-    );
-
-    modal.addEventListener(
-        "click",
-        function (event) {
-            if (event.target === modal) {
-                cerrarModal();
-            }
-        }
-    );
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-            if (
-                event.key === "Escape" &&
-                modal.classList.contains("active")
-            ) {
-                cerrarModal();
-            }
-        }
-    );
-
-    actualizarEstado();
-})();
-</script>
 
 <!-- FIREBASE: MOSTRAR USUARIO CONECTADO -->
 <script type="module">
@@ -971,6 +549,14 @@ logout.addEventListener("click", async () => {
 });
 
 </script>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5536d89acd364f448726bf460eb71732"}'></script><!-- End Cloudflare Web Analytics -->
+
+<!-- Cloudflare Web Analytics -->
+<script
+    type="module"
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "5536d89acd364f448726bf460eb71732"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
